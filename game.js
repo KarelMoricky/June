@@ -4,7 +4,8 @@ const ALLOW_DEV_MODE = true;
 const ID_OBJECT = "gameObject";
 const ID_LOG = "log";
 const ID_VIEWPORT = "viewPort";
-const ID_CURSOR= "cursor";
+const ID_CURSOR = "cursor";
+const ID_GRID = "grid";
 const ID_CIRCLE = "circle";
 const ID_PAUSE = "pause";
 const IDS_TILES = [
@@ -17,9 +18,9 @@ const SOUND_FILES = [
     /*1*/"./sounds/test2.wav"
 ];
 
-const GRID_SIZE = 10;
-const RAD2DEG = Math.PI / 180;
-const DEG2RAD = 180 / Math.PI;
+const GRID_SIZE = 12;
+const DEG2RAD = Math.PI / 180;
+const RAD2DEG = 180 / Math.PI;
 
 var m_SvgDoc;
 var m_Svg;
@@ -35,10 +36,13 @@ var m_FrameTime = 0;
 var m_GameTime = 0;
 var m_Click = false;
 var m_ClickPos = [];
+var m_ClickViewBox = [];
+var m_ClickTilePos = [];
 var m_IsPaused = false;
 var m_IsDev = false;
 var m_Sounds = [];
-var m_ViewPortDimensions = []
+var m_ViewPortDimensions = [];
+var m_SelectedTile = null;
 //#endregion
 
 //#region Init
@@ -65,11 +69,10 @@ function OnLoad()
     m_Cursor = m_SvgDoc.getElementById(ID_CURSOR);
 
     //--- Get viewport dimensions
-    let viewPortDimensionsStr = m_ViewPort.getAttribute("viewBox").split(" ");
-    for (let i = 0; i < viewPortDimensionsStr.length; i++)
-    {
-        m_ViewPortDimensions[i] = parseInt(viewPortDimensionsStr[i]);
-    }
+    m_ViewPortDimensions = GetViewBox(m_ViewPort);
+    
+    const minTransform = new DOMPointReadOnly(m_ViewPortDimensions[0], m_ViewPortDimensions[1]).matrixTransform(m_ViewPort.getScreenCTM());
+    const maxTransform = new DOMPointReadOnly(-m_ViewPortDimensions[0], -m_ViewPortDimensions[1]).matrixTransform(m_ViewPort.getScreenCTM());
 
     for (let i = 0; i < IDS_TILES.length; i++)
     {
@@ -98,16 +101,13 @@ function OnLoad()
     }
 
     //--- Init grid
-    let viewCenter = [m_ViewPortDimensions[2] * .5, m_ViewPortDimensions[3] * 0.5];
-    console.log(viewCenter);
-    CreateElement("circle", m_ViewPort, [["cx", viewCenter[0]], ["cy", viewCenter[1]], ["r", 10], ["fill", "blue"]]);
-    console.log(GRID_SIZE);
-    console.log(GRID_SIZE / 2);
+    let grid = m_SvgDoc.getElementById(ID_GRID);
+    CreateElement("circle", m_ViewPort, [["r", 0.1], ["fill", "blue"]]);
     for (let x = -GRID_SIZE / 2; x <= GRID_SIZE / 2; x++)
     {
         for (let y = -GRID_SIZE / 2; y <= GRID_SIZE / 2; y++)
         {
-            CreateElement("circle", m_ViewPort, [["cx", viewCenter[0] + x * 40 * Math.sin(30 * DEG2RAD)], ["cy", viewCenter[1] + y * 40 * Math.cos(30 * DEG2RAD)], ["r", 5], ["fill", "green"], ["class", "ignoreCursor"]]);
+            CreateElement("circle", grid, [["cx", x], ["cy", y], ["r", 0.1], ["fill", "grey"]]);
         }
     }
 
@@ -152,8 +152,11 @@ function OnDblClick()
 function OnMouseMove(ev)
 {
     const transform = new DOMPointReadOnly(ev.clientX, ev.clientY).matrixTransform(m_ViewPort.getScreenCTM().inverse());
-    m_Cursor.setAttribute("cx", transform.x);
-    m_Cursor.setAttribute("cy", transform.y);
+    if (m_Cursor)
+    {
+        m_Cursor.setAttribute("cx", transform.x);
+        m_Cursor.setAttribute("cy", transform.y);
+    }
 }
 
 function OnPointerDown(ev)
@@ -163,6 +166,18 @@ function OnPointerDown(ev)
 
     m_Click = true;
     m_ClickPos = [ev.offsetX, ev.offsetY];
+
+    m_ClickTilePos = [];
+    m_ClickViewBox = [];
+    if (m_SelectedTile)
+    {
+        console.log(m_SelectedTile);
+        console.log(m_SelectedTile.getAttribute("x"));
+        m_ClickTilePos = [parseInt(m_SelectedTile.getAttribute("x")), parseInt(m_SelectedTile.getAttribute("y"))];
+    }
+    else
+        m_ClickViewBox = GetViewBox(m_ViewPort);
+
     m_Svg.addEventListener("pointermove", OnPointerMove);
 }
 
@@ -175,16 +190,40 @@ function OnPointerUp(ev)
 function OnPointerMove(ev)
 {
     let offset = [-ev.offsetX + m_ClickPos[0], -ev.offsetY + m_ClickPos[1]];
-    m_ViewPort.setAttribute("viewBox", offset[0] + " " + offset[1] + " 1920 1080");
+
+    //--- #TODO: Limit by edge, not center
+    //const minTransform = new DOMPointReadOnly(m_ViewPortDimensions[0], m_ViewPortDimensions[1]).matrixTransform(m_ViewPort.getScreenCTM());
+    //const maxTransform = new DOMPointReadOnly(-m_ViewPortDimensions[0], -m_ViewPortDimensions[1]).matrixTransform(m_ViewPort.getScreenCTM());
+
+    if (m_ClickTilePos.length != 0)
+    {
+        //--- Drag tile
+        m_SelectedTile.setAttribute("x", m_ClickTilePos[0] - offset[0]);
+        m_SelectedTile.setAttribute("y", m_ClickTilePos[1] - offset[1]);
+    }
+    
+    if (m_ClickViewBox.length != 0)
+    {
+        //--- Drag view
+        let viewBox = [
+            Clamp(m_ClickViewBox[0] + offset[0], -m_ViewPortDimensions[2], 0),
+            Clamp(m_ClickViewBox[1] + offset[1], -m_ViewPortDimensions[3], 0),
+            m_ClickViewBox[2],
+            m_ClickViewBox[3]
+        ];
+        SetViewBox(m_ViewPort, viewBox);
+    }
 }
 
 function OnTileMouseEnter(ev)
 {
+    m_SelectedTile = ev.toElement.parentElement;
     console.debug("OnTileMouseEnter: " + ev.fromElement.id + " > " + ev.toElement.id);
 }
 
 function OnTileMouseLeave(ev)
 {
+    m_SelectedTile = null;
     console.debug("OnTileMouseLeave: " + ev.fromElement.id + " > " + ev.toElement.id);
 }
 //#endregion
@@ -219,17 +258,40 @@ function CreateElement(type, parent, params = [])
     }
     return element;
 }
+
+function GetViewBox(element)
+{
+    let viewPortDimensionsStr = element.getAttribute("viewBox").split(" ");
+    let viewPortDimensions = [];
+    for (let i = 0; i < viewPortDimensionsStr.length; i++)
+    {
+        viewPortDimensions[i] = parseInt(viewPortDimensionsStr[i]);
+    }
+    return viewPortDimensions;
+}
+
+function SetViewBox(element, viewBox)
+{
+    element.setAttribute("viewBox", viewBox[0] + " " + viewBox[1] + " " + viewBox[2] + " " + viewBox[3]);
+}
 //#endregion
 
 //#region Math
-function Lerp(a, b, t) {
+function Lerp(a, b, t)
+{
 	return a * (1 - t) + (b * t);
 }
-function InvLerp(a, b, v) {
+function InvLerp(a, b, v)
+{
 	return Math.min(Math.max((v - a) / (b - a), 0), 1);
 }
-function SmoothStep(x) {
+function SmoothStep(x)
+{
 	return x * x * (3 - 2 * x);
+}
+function Clamp(value, min, max)
+{
+    return Math.max(min, Math.min(max, value));
 }
 //#endregion
 
