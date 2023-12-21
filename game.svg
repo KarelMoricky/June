@@ -11,19 +11,19 @@
   </g>
 
   <!-- Play area menu -->
-  <svg id="level" x="0" y="0" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+  <svg id="viewPort" x="0" y="0" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
     <!-- <image href="https://www.nasa.gov/wp-content/uploads/2022/08/jsc2022e046413_orig.jpg?w=1536" width="100%" height="100%" /> -->
     <!-- <rect width="100%" height="100%" style="fill:rgb(255,255,255);" /> -->
 
-   <svg id="tile1" x="50%" y="50%" type="image/svg+xml" data="tile.svg">
-      <image id="tilePicture" class="ignoreCursor" href="images/tile_placeholder.png" width="196px" height="196px" />
-      <polygon id="tileArea" points="98,48 186,98 98,148 10,96" />
-   </svg>
+    <svg id="tile1" class="tile" x="960" y="540" type="image/svg+xml" data="tile.svg">
+      <image id="tilePicture" class="ignoreCursor" href="images/tile_placeholder.png" width="196px" height="196px" x="-96" y="-98" />
+      <polygon id="tileArea" points="0,-50 88,0 0,50 -88,-2" />
+    </svg>
 
-      <svg id="tile2" x="55%" y="55%" type="image/svg+xml" data="tile.svg">
-      <image id="tilePicture" class="ignoreCursor" href="images/tile_placeholder.png" width="196px" height="196px" />
-      <polygon id="tileArea" points="98,48 186,98 98,148 10,96" />
-   </svg>
+    <svg id="tile2" class="tile" x="55%" y="55%" type="image/svg+xml" data="tile.svg">
+      <image id="tilePicture" class="ignoreCursor" href="images/tile_placeholder.png" width="196px" height="196px" x="-96" y="-98" />
+      <polygon id="tileArea" points="0,-50 88,0 0,50 -88,-2" />
+    </svg>
 
     <!-- <circle id="circle" style="fill: rgb(0,128,0);" cx="50%" cy="50%" r="5%" /> -->
     <circle id="cursor" class="ignoreCursor" style="fill: rgb(255,0,0);" cx="0" cy="0" r="10px" />

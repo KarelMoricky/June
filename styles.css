@@ -55,3 +55,8 @@ body
 {
 	pointer-events: none;
 }
+
+.tile
+{
+	overflow: visible;
+}

@@ -3,7 +3,7 @@ const ALLOW_DEV_MODE = true;
 
 const ID_OBJECT = "gameObject";
 const ID_LOG = "log";
-const ID_LEVEL = "level";
+const ID_VIEWPORT = "viewPort";
 const ID_CURSOR= "cursor";
 const ID_CIRCLE = "circle";
 const ID_PAUSE = "pause";
@@ -17,14 +17,19 @@ const SOUND_FILES = [
     /*1*/"./sounds/test2.wav"
 ];
 
+const GRID_SIZE = 10;
+const RAD2DEG = Math.PI / 180;
+const DEG2RAD = 180 / Math.PI;
+
 var m_SvgDoc;
 var m_Svg;
 var m_Log;
-var m_Level;
+var m_ViewPort;
 var m_Pause;
 var m_Circle;
 var m_Cursor;
 var m_Tiles = [];
+var m_Grid;
 
 var m_FrameTime = 0;
 var m_GameTime = 0;
@@ -33,6 +38,7 @@ var m_ClickPos = [];
 var m_IsPaused = false;
 var m_IsDev = false;
 var m_Sounds = [];
+var m_ViewPortDimensions = []
 //#endregion
 
 //#region Init
@@ -43,7 +49,7 @@ function OnLoad()
 
     m_Log = document.getElementById(ID_LOG);
 
-    var object = document.getElementById(ID_OBJECT);
+    let object = document.getElementById(ID_OBJECT);
     m_SvgDoc = object.contentDocument;
     if (!m_SvgDoc)
 	{
@@ -54,15 +60,22 @@ function OnLoad()
 
     m_Svg = m_SvgDoc.firstElementChild;
     m_Pause = m_SvgDoc.getElementById(ID_PAUSE);
-    m_Level = m_SvgDoc.getElementById(ID_LEVEL);
+    m_ViewPort = m_SvgDoc.getElementById(ID_VIEWPORT);
     m_Circle = m_SvgDoc.getElementById(ID_CIRCLE);
     m_Cursor = m_SvgDoc.getElementById(ID_CURSOR);
+
+    //--- Get viewport dimensions
+    let viewPortDimensionsStr = m_ViewPort.getAttribute("viewBox").split(" ");
+    for (let i = 0; i < viewPortDimensionsStr.length; i++)
+    {
+        m_ViewPortDimensions[i] = parseInt(viewPortDimensionsStr[i]);
+    }
 
     for (let i = 0; i < IDS_TILES.length; i++)
     {
         m_Tiles[i] = m_SvgDoc.getElementById(IDS_TILES[i]);
 
-        var tileArea = m_Tiles[i].getElementById(ID_TILE_AREA);
+        let tileArea = m_Tiles[i].getElementById(ID_TILE_AREA);
         tileArea.addEventListener("mouseenter", OnTileMouseEnter);
         tileArea.addEventListener("mouseleave", OnTileMouseLeave);
     }
@@ -78,14 +91,30 @@ function OnLoad()
     document.addEventListener("fullscreenchange", OnFullScreenChange);
     OnFullScreenChange();
 
+    //--- Load sounds
     for (let i = 0; i < SOUND_FILES.length; i++)
     {
         m_Sounds[i] = new Audio(SOUND_FILES[i]);
     }
 
+    //--- Init grid
+    let viewCenter = [m_ViewPortDimensions[2] * .5, m_ViewPortDimensions[3] * 0.5];
+    console.log(viewCenter);
+    CreateElement("circle", m_ViewPort, [["cx", viewCenter[0]], ["cy", viewCenter[1]], ["r", 10], ["fill", "blue"]]);
+    console.log(GRID_SIZE);
+    console.log(GRID_SIZE / 2);
+    for (let x = -GRID_SIZE / 2; x <= GRID_SIZE / 2; x++)
+    {
+        for (let y = -GRID_SIZE / 2; y <= GRID_SIZE / 2; y++)
+        {
+            CreateElement("circle", m_ViewPort, [["cx", viewCenter[0] + x * 40 * Math.sin(30 * DEG2RAD)], ["cy", viewCenter[1] + y * 40 * Math.cos(30 * DEG2RAD)], ["r", 5], ["fill", "green"], ["class", "ignoreCursor"]]);
+        }
+    }
+
     if (m_IsDev)
         document.title = "[DEV] " + document.title;
 }
+
 //#endregion
 
 //#region Events
@@ -122,7 +151,7 @@ function OnDblClick()
 */
 function OnMouseMove(ev)
 {
-    const transform = new DOMPointReadOnly(ev.clientX, ev.clientY).matrixTransform(m_Level.getScreenCTM().inverse());
+    const transform = new DOMPointReadOnly(ev.clientX, ev.clientY).matrixTransform(m_ViewPort.getScreenCTM().inverse());
     m_Cursor.setAttribute("cx", transform.x);
     m_Cursor.setAttribute("cy", transform.y);
 }
@@ -145,8 +174,8 @@ function OnPointerUp(ev)
 
 function OnPointerMove(ev)
 {
-    var offset = [-ev.offsetX + m_ClickPos[0], -ev.offsetY + m_ClickPos[1]];
-    m_Level.setAttribute("viewBox", offset[0] + " " + offset[1] + " 1920 1080");
+    let offset = [-ev.offsetX + m_ClickPos[0], -ev.offsetY + m_ClickPos[1]];
+    m_ViewPort.setAttribute("viewBox", offset[0] + " " + offset[1] + " 1920 1080");
 }
 
 function OnTileMouseEnter(ev)
@@ -174,8 +203,21 @@ function OnFrame(time)
 }
 function OnFrameGame()
 {
-    //var radius = 10 * InvLerp(-1, 1, Math.sin(m_GameTime * 0.007));
+    //let radius = 10 * InvLerp(-1, 1, Math.sin(m_GameTime * 0.007));
     //m_Circle.setAttribute("r", radius + "%");
+}
+//#endregion
+
+//#region Misc
+function CreateElement(type, parent, params = [])
+{
+    let element = document.createElementNS("http://www.w3.org/2000/svg", type);
+    parent.appendChild(element);
+    for (let i = 0; i < params.length; i++)
+    {
+        element.setAttribute(params[i][0], params[i][1]);
+    }
+    return element;
 }
 //#endregion
 
@@ -196,7 +238,7 @@ function SmoothStep(x) {
 function ToggleFullscreen() {
     if (!IsFullScreen())
     {
-        var docElm = document.documentElement;
+        let docElm = document.documentElement;
         if (docElm.requestFullscreen)
             docElm.requestFullscreen();
         else if (docElm.mozRequestFullScreen)
@@ -238,7 +280,7 @@ function PlaySound(index)
         return;
     }
 
-    var sound = m_Sounds[index];
+    let sound = m_Sounds[index];
     sound.load();
     sound.play();
 }
@@ -246,7 +288,7 @@ function PlaySound(index)
 function PlayAudio(name)
 {
     //--- https://www.w3schools.com/JSREF/dom_obj_audio.asp
-    var audioObject = document.getElementById(name);
+    let audioObject = document.getElementById(name);
     audioObject.load();
     audioObject.play();
 }
