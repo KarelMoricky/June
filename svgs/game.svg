@@ -16,7 +16,7 @@
 
   <!-- Grid, inspired by https://www.jointjs.com/blog/isometric-diagrams, size must be multiply of (1, 0.8602) -->
   <g id="grid" class="ignoreCursor" transform="rotate(30) skewX(-30) scale(100, 86.02)">
-    <circle id="gridDebug" class="ignoreCursor" style="fill: rgb(0,255,255);" cx="0" cy="0" r="1" />
+    <circle id="gridDebug" class="ignoreCursor" style="fill: rgb(0,255,255);" cx="1000" cy="1000" r="1" />
   </g>
 
   <!-- Tile -->
@@ -25,14 +25,14 @@
     <polygon id="tileArea" points="0,-50 88,0 0,50 -88,-2" />
   </svg>
 
-  <svg id="tile2" class="tile" x="100" y="100">
-    <image id="tilePicture" class="ignoreCursor" href="../images/tile_placeholder.png" width="196px" height="196px" x="-96" y="-98" />
+  <svg id="tile2" class="tile" x="100" y="200">
+    <image id="tilePicture" class="ignoreCursor" href="../images/tile_placeholder2.png" width="196px" height="196px" x="-96" y="-98" />
     <polygon id="tileArea" points="0,-50 88,0 0,50 -88,-2" />
   </svg>
 
   <!-- Debug cursor -->
-  <circle id="cursor" class="ignoreCursor" style="fill: rgb(255,0,0);" cx="0" cy="0" r="10px" />
-  <circle id="circle" class="ignoreCursor" style="fill: rgb(0,0,255);" cx="0" cy="0" r="5px" />
+  <circle id="cursor" class="ignoreCursor" style="fill: rgb(255,0,0);" cx="1000" cy="1000" r="10px" />
+  <circle id="circle" class="ignoreCursor" style="fill: rgb(0,0,255);" cx="1000" cy="1000" r="15px" />
 
   <!-- Pause menu -->
   <!-- <g id="pause">

@@ -1,5 +1,5 @@
 <svg
-    id="ui"
+    id="pause"
     xmlns="http://www.w3.org/2000/svg"
     xmlns:xlink="http://www.w3.org/1999/xlink" >
 
@@ -8,8 +8,6 @@
   <link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../styles/pause.css" />
 
   <!-- Pause menu -->
-  <g id="pause">
-    <rect x="0" y="0" width="100%" height="100%" />
-    <text x="50%" y="50%">Click to play</text>
-  </g>
+  <rect x="0" y="0" width="100%" height="100%" />
+  <text x="50%" y="50%">Click to play</text>
 </svg>

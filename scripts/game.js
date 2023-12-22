@@ -42,6 +42,10 @@ var m_IsDev = false;
 var m_Sounds = [];
 var m_GameDimensions = [];
 var m_SelectedTile = null;
+let m_IsoMatrix = new DOMMatrixReadOnly()
+    .rotate(30)
+    .skewX(-30)
+    .scale(1 * 100, 0.8602 * 100);
 //#endregion
 
 //#region Init
@@ -99,7 +103,7 @@ function OnLoad()
     {
         for (let y = -GRID_SIZE / 2; y <= GRID_SIZE / 2; y++)
         {
-            CreateElement("circle", m_Grid, [["cx", x], ["cy", y], ["r", 0.1], ["fill", "rgb(230,230,230)"]]);
+            CreateElement("circle", m_Grid, [["cx", x], ["cy", y], ["r", 0.03], ["fill", "rgb(230,230,230)"]]);
         }
     }
 
@@ -118,12 +122,14 @@ function OnDblClick()
 */
 function OnMouseMove(ev)
 {
+    /*
     const transform = new DOMPointReadOnly(ev.clientX, ev.clientY).matrixTransform(m_Game.getScreenCTM().inverse());
     if (m_Cursor)
     {
         m_Cursor.setAttribute("cx", transform.x);
         m_Cursor.setAttribute("cy", transform.y);
     }
+    */
 }
 
 function OnPointerDown(ev)
@@ -133,10 +139,6 @@ function OnPointerDown(ev)
 
     m_Click = true;
     m_ClickPos = [ev.clientX, ev.clientY];
-
-    //--- Debug circles
-    m_Circle.setAttribute("cx", m_ClickPos[0]);
-    m_Circle.setAttribute("cy", m_ClickPos[1]);
 
     m_ClickTilePos = [];
     m_ClickViewBox = [];
@@ -169,20 +171,14 @@ function OnPointerMove(ev)
         let posX = m_ClickTilePos[0] - (m_ClickPos[0] - ev.clientX) * coef;
         let posY = m_ClickTilePos[1] - (m_ClickPos[1] - ev.clientY) * coef;
 
-        //--- #TODO: Use tile center position
-        var gridTransform = new DOMPointReadOnly(ev.clientX, ev.clientY).matrixTransform(m_Grid.getScreenCTM().inverse());
+        //--- Snap to grid
+        var gridTransform = new DOMPointReadOnly(posX, posY).matrixTransform(m_IsoMatrix.inverse());
         gridTransform.x = Math.round(gridTransform.x);
         gridTransform.y = Math.round(gridTransform.y);
-
-        m_GridDebug.setAttribute("cx", gridTransform.x);
-        m_GridDebug.setAttribute("cy", gridTransform.y);
-
-        gridTransform = gridTransform.matrixTransform(m_Grid.getScreenCTM());
+        gridTransform = gridTransform.matrixTransform(m_IsoMatrix);
     
-        m_SelectedTile.setAttribute("x", m_ClickTilePos[0] - (m_ClickPos[0] - gridTransform.x) * coef);
-        m_SelectedTile.setAttribute("y", m_ClickTilePos[1] - (m_ClickPos[1] - gridTransform.y) * coef);
-
-        m_Log.innerHTML = gridTransform.x + "," + gridTransform.y;
+        m_SelectedTile.setAttribute("x", gridTransform.x);
+        m_SelectedTile.setAttribute("y", gridTransform.y);
     }
     else if (m_ClickViewBox.length != 0)
     {

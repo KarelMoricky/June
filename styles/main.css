@@ -6,7 +6,7 @@ body, html
 body
 {
 	color: black;
-	background-color: white;
+	background-color: #EFEBE0;
 	overflow: hidden; /* Hide scrollbars */
 }
 
