@@ -12,14 +12,10 @@ body
 
 #log
 {
-	color: black;
+	color: white;
+	background-color: black;
 	position: absolute;
 	font-family: Consolas;
-}
-
-#uiObject
-{
-	pointer-events: none;
 }
 
 .svgObject

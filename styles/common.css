@@ -2,3 +2,8 @@
 {
 	pointer-events: none;
 }
+
+/* Disable blue highlight of clickable elements on Android */
+* {
+    -webkit-tap-highlight-color: transparent;
+}
