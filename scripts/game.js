@@ -2,13 +2,12 @@
 const ALLOW_DEV_MODE = true;
 
 const ID_OBJECT = "gameObject";
+const ID_UI_OBJECT = "uiObject";
+const ID_GAME = "game";
 const ID_LOG = "log";
-const ID_VIEWPORT = "viewPort";
 const ID_CURSOR = "cursor";
 const ID_GRID = "grid";
-const ID_CIRCLE_VIEW = "circleView";
-const ID_CIRCLE_SCREEN = "circleScreen";
-const ID_PAUSE = "pause";
+const ID_CIRCLE = "circle";
 const IDS_TILES = [
     "tile1",
     "tile2"
@@ -24,27 +23,24 @@ const DEG2RAD = Math.PI / 180;
 const RAD2DEG = 180 / Math.PI;
 
 var m_SvgDoc;
+var m_UiSvgDoc;
 var m_Svg;
 var m_Log;
-var m_ViewPort;
-var m_Pause;
-var m_CircleView;
-var m_CircleScreen;
+var m_Circle;
 var m_Cursor;
 var m_Tiles = [];
 var m_Grid;
+var m_GridDebug;
 
 var m_FrameTime = 0;
 var m_GameTime = 0;
 var m_Click = false;
-var m_ClickPosScreen = [];
-var m_ClickPosView = null;
+var m_ClickPos = [];
 var m_ClickViewBox = [];
 var m_ClickTilePos = [];
-var m_IsPaused = false;
 var m_IsDev = false;
 var m_Sounds = [];
-var m_ViewPortDimensions = [];
+var m_GameDimensions = [];
 var m_SelectedTile = null;
 //#endregion
 
@@ -60,20 +56,17 @@ function OnLoad()
     m_SvgDoc = object.contentDocument;
     if (!m_SvgDoc)
 	{
-		//--- Failed to load, show just the map
-		alert("Error when loading SVG!");
+		alert("Error when loading Game SVG!");
 		return;
     }
 
     m_Svg = m_SvgDoc.firstElementChild;
-    m_Pause = m_SvgDoc.getElementById(ID_PAUSE);
-    m_ViewPort = m_SvgDoc.getElementById(ID_VIEWPORT);
-    m_CircleView = m_SvgDoc.getElementById(ID_CIRCLE_VIEW);
-    m_CircleScreen = m_SvgDoc.getElementById(ID_CIRCLE_SCREEN);
+    m_Game = m_SvgDoc.getElementById(ID_GAME);
+    m_Circle = m_SvgDoc.getElementById(ID_CIRCLE);
     m_Cursor = m_SvgDoc.getElementById(ID_CURSOR);
 
-    //--- Get viewport dimensions
-    m_ViewPortDimensions = GetViewBox(m_ViewPort);
+    //--- Get game dimensions
+    m_GameDimensions = GetViewBox(m_Game);
 
     for (let i = 0; i < IDS_TILES.length; i++)
     {
@@ -84,16 +77,13 @@ function OnLoad()
         //tileArea.addEventListener("mouseleave", OnTileMouseLeave);
     }
 
-    m_Svg.addEventListener("click", OnClick);
+    //uiSvg.addEventListener("click", OnClick);
     m_Svg.addEventListener("mousemove", OnMouseMove);
     //m_Svg.addEventListener("dblclick", OnDblClick);
     m_Svg.addEventListener("pointerdown", OnPointerDown);
     m_Svg.addEventListener("pointerup", OnPointerUp);
 
     window.requestAnimationFrame(OnFrame);
-
-    document.addEventListener("fullscreenchange", OnFullScreenChange);
-    OnFullScreenChange();
 
     //--- Load sounds
     for (let i = 0; i < SOUND_FILES.length; i++)
@@ -102,13 +92,14 @@ function OnLoad()
     }
 
     //--- Init grid
-    let grid = m_SvgDoc.getElementById(ID_GRID);
-    CreateElement("circle", m_ViewPort, [["r", 0.1], ["fill", "blue"]]);
+    m_Grid = m_SvgDoc.getElementById(ID_GRID);
+    m_GridDebug = m_SvgDoc.getElementById("gridDebug");
+    CreateElement("circle", m_Game, [["r", 0.1], ["fill", "blue"]]);
     for (let x = -GRID_SIZE / 2; x <= GRID_SIZE / 2; x++)
     {
         for (let y = -GRID_SIZE / 2; y <= GRID_SIZE / 2; y++)
         {
-            CreateElement("circle", grid, [["cx", x], ["cy", y], ["r", 0.1], ["fill", "rgb(230,230,230)"]]);
+            CreateElement("circle", m_Grid, [["cx", x], ["cy", y], ["r", 0.1], ["fill", "rgb(230,230,230)"]]);
         }
     }
 
@@ -119,31 +110,6 @@ function OnLoad()
 //#endregion
 
 //#region Events
-function OnFullScreenChange()
-{
-    m_IsPaused = !m_IsDev && !IsFullScreen();
-    if (m_IsPaused)
-    {
-        m_Pause.setAttribute("visibility", "visible");
-    }
-    else
-    {
-        m_Pause.setAttribute("visibility", "hidden");
-    }
-}
-
-function OnClick()
-{
-    if (m_IsPaused)
-    {
-        ToggleFullscreen();
-        return;
-    }
-
-    //m_Circle.setAttribute("style", "fill: rgb(128,0,128);");
-    //PlaySound(0);
-    //PlaySound(1);
-}
 /*
 function OnDblClick()
 {
@@ -152,14 +118,12 @@ function OnDblClick()
 */
 function OnMouseMove(ev)
 {
-    /*
-    const transform = new DOMPointReadOnly(ev.clientX, ev.clientY).matrixTransform(m_ViewPort.getScreenCTM().inverse());
+    const transform = new DOMPointReadOnly(ev.clientX, ev.clientY).matrixTransform(m_Game.getScreenCTM().inverse());
     if (m_Cursor)
     {
         m_Cursor.setAttribute("cx", transform.x);
         m_Cursor.setAttribute("cy", transform.y);
     }
-    */
 }
 
 function OnPointerDown(ev)
@@ -168,17 +132,11 @@ function OnPointerDown(ev)
         return;
 
     m_Click = true;
-    m_ClickPosScreen = [ev.clientX, ev.clientY];
-    m_ClickPosView = new DOMPointReadOnly(m_ClickPosScreen[0], m_ClickPosScreen[1]).matrixTransform(m_ViewPort.getScreenCTM().inverse()); //--- Incorrect in Firefox
+    m_ClickPos = [ev.clientX, ev.clientY];
 
     //--- Debug circles
-    m_CircleView.setAttribute("cx", m_ClickPosView.x);
-    m_CircleView.setAttribute("cy", m_ClickPosView.y);
-
-    m_CircleScreen.setAttribute("cx", m_ClickPosScreen[0]);
-    m_CircleScreen.setAttribute("cy", m_ClickPosScreen[1]);
-
-    m_Log.innerHTML = m_ClickPosScreen + "<br />" + m_ClickPosView.x + "," + m_ClickPosView.y + "<br />" + m_ViewPort.getBoundingClientRect().x;
+    m_Circle.setAttribute("cx", m_ClickPos[0]);
+    m_Circle.setAttribute("cy", m_ClickPos[1]);
 
     m_ClickTilePos = [];
     m_ClickViewBox = [];
@@ -190,7 +148,7 @@ function OnPointerDown(ev)
     }
     else
     {
-        m_ClickViewBox = GetViewBox(m_ViewPort);
+        m_ClickViewBox = GetViewBox(m_Game);
     }
 
     m_Svg.addEventListener("pointermove", OnPointerMove);
@@ -207,24 +165,36 @@ function OnPointerMove(ev)
     if (m_ClickTilePos.length != 0)
     {
         //--- Drag tile
-        let viewPortClient = new DOMPointReadOnly(ev.clientX, ev.clientY).matrixTransform(m_ViewPort.getScreenCTM().inverse());
-        viewPortClient.x -= m_ClickPosView.x;
-        viewPortClient.y -= m_ClickPosView.y;
+        let coef = Math.min((m_GameDimensions[2] / window.innerWidth), (m_GameDimensions[3] / window.innerHeight)); //--- I have no idea what I'm doing
+        let posX = m_ClickTilePos[0] - (m_ClickPos[0] - ev.clientX) * coef;
+        let posY = m_ClickTilePos[1] - (m_ClickPos[1] - ev.clientY) * coef;
+
+        //--- #TODO: Use tile center position
+        var gridTransform = new DOMPointReadOnly(ev.clientX, ev.clientY).matrixTransform(m_Grid.getScreenCTM().inverse());
+        gridTransform.x = Math.round(gridTransform.x);
+        gridTransform.y = Math.round(gridTransform.y);
+
+        m_GridDebug.setAttribute("cx", gridTransform.x);
+        m_GridDebug.setAttribute("cy", gridTransform.y);
+
+        gridTransform = gridTransform.matrixTransform(m_Grid.getScreenCTM());
     
-        m_SelectedTile.setAttribute("x", m_ClickTilePos[0] + viewPortClient.x);
-        m_SelectedTile.setAttribute("y", m_ClickTilePos[1] + viewPortClient.y);
+        m_SelectedTile.setAttribute("x", m_ClickTilePos[0] - (m_ClickPos[0] - gridTransform.x) * coef);
+        m_SelectedTile.setAttribute("y", m_ClickTilePos[1] - (m_ClickPos[1] - gridTransform.y) * coef);
+
+        m_Log.innerHTML = gridTransform.x + "," + gridTransform.y;
     }
     else if (m_ClickViewBox.length != 0)
     {
         //--- Drag view
         let coef = Math.min((m_ClickViewBox[2] / window.innerWidth), (m_ClickViewBox[3] / window.innerHeight)); //--- I have no idea what I'm doing
         let viewBox = [
-            m_ClickViewBox[0] + (m_ClickPosScreen[0] - ev.clientX) * coef,
-            m_ClickViewBox[1] + (m_ClickPosScreen[1] - ev.clientY) * coef,
+            m_ClickViewBox[0] + (m_ClickPos[0] - ev.clientX) * coef,
+            m_ClickViewBox[1] + (m_ClickPos[1] - ev.clientY) * coef,
             m_ClickViewBox[2],
             m_ClickViewBox[3]
         ];
-        SetViewBox(m_ViewPort, viewBox);
+        SetViewBox(m_Game, viewBox);
     }
 }
 
@@ -272,13 +242,13 @@ function CreateElement(type, parent, params = [])
 
 function GetViewBox(element)
 {
-    let viewPortDimensionsStr = element.getAttribute("viewBox").split(" ");
-    let viewPortDimensions = [];
-    for (let i = 0; i < viewPortDimensionsStr.length; i++)
+    let viewBoxStr = element.getAttribute("viewBox").split(" ");
+    let viewBox = [];
+    for (let i = 0; i < viewBoxStr.length; i++)
     {
-        viewPortDimensions[i] = parseInt(viewPortDimensionsStr[i]);
+        viewBox[i] = parseInt(viewBoxStr[i]);
     }
-    return viewPortDimensions;
+    return viewBox;
 }
 
 function SetViewBox(element, viewBox)
@@ -306,42 +276,6 @@ function Clamp(value, min, max)
 }
 //#endregion
 
-//#region Full-screen
-//--- https://stackoverflow.com/questions/36672561/how-to-exit-fullscreen-onclick-using-javascript
-function ToggleFullscreen() {
-    if (!IsFullScreen())
-    {
-        let docElm = document.documentElement;
-        if (docElm.requestFullscreen)
-            docElm.requestFullscreen();
-        else if (docElm.mozRequestFullScreen)
-            docElm.mozRequestFullScreen();
-        else if (docElm.webkitRequestFullScreen)
-            docElm.webkitRequestFullScreen();
-        else if (docElm.msRequestFullscreen)
-            docElm.msRequestFullscreen();
-    }
-    else
-    {
-        if (document.exitFullscreen)
-            document.exitFullscreen();
-        else if (document.webkitExitFullscreen)
-            document.webkitExitFullscreen();
-        else if (document.mozCancelFullScreen)
-            document.mozCancelFullScreen();
-        else if (document.msExitFullscreen)
-            document.msExitFullscreen();
-    }
-}
-function IsFullScreen()
-{
-    return (document.fullscreenElement && document.fullscreenElement !== null) ||
-        (document.webkitFullscreenElement && document.webkitFullscreenElement !== null) ||
-        (document.mozFullScreenElement && document.mozFullScreenElement !== null) ||
-        (document.msFullscreenElement && document.msFullscreenElement !== null);
-}
-
-//#endregion
 
 //#region Audio
 
