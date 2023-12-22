@@ -8,7 +8,6 @@ body
 	color: black;
 	background-color: white;
 	overflow: hidden; /* Hide scrollbars */
-	cursor: wait;
 }
 
 .svgObject
@@ -41,7 +40,7 @@ body
 {
 	fill: rgba(0, 0, 0, 0);
 	stroke: none;
-	cursor: grab;
+	cursor: pointer;
 }
 
 #log

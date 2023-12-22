@@ -6,7 +6,8 @@ const ID_LOG = "log";
 const ID_VIEWPORT = "viewPort";
 const ID_CURSOR = "cursor";
 const ID_GRID = "grid";
-const ID_CIRCLE = "circle";
+const ID_CIRCLE_VIEW = "circleView";
+const ID_CIRCLE_SCREEN = "circleScreen";
 const ID_PAUSE = "pause";
 const IDS_TILES = [
     "tile1",
@@ -27,7 +28,8 @@ var m_Svg;
 var m_Log;
 var m_ViewPort;
 var m_Pause;
-var m_Circle;
+var m_CircleView;
+var m_CircleScreen;
 var m_Cursor;
 var m_Tiles = [];
 var m_Grid;
@@ -35,7 +37,8 @@ var m_Grid;
 var m_FrameTime = 0;
 var m_GameTime = 0;
 var m_Click = false;
-var m_ClickPos = [];
+var m_ClickPosScreen = [];
+var m_ClickPosView = null;
 var m_ClickViewBox = [];
 var m_ClickTilePos = [];
 var m_IsPaused = false;
@@ -65,22 +68,20 @@ function OnLoad()
     m_Svg = m_SvgDoc.firstElementChild;
     m_Pause = m_SvgDoc.getElementById(ID_PAUSE);
     m_ViewPort = m_SvgDoc.getElementById(ID_VIEWPORT);
-    m_Circle = m_SvgDoc.getElementById(ID_CIRCLE);
+    m_CircleView = m_SvgDoc.getElementById(ID_CIRCLE_VIEW);
+    m_CircleScreen = m_SvgDoc.getElementById(ID_CIRCLE_SCREEN);
     m_Cursor = m_SvgDoc.getElementById(ID_CURSOR);
 
     //--- Get viewport dimensions
     m_ViewPortDimensions = GetViewBox(m_ViewPort);
-    
-    const minTransform = new DOMPointReadOnly(m_ViewPortDimensions[0], m_ViewPortDimensions[1]).matrixTransform(m_ViewPort.getScreenCTM());
-    const maxTransform = new DOMPointReadOnly(-m_ViewPortDimensions[0], -m_ViewPortDimensions[1]).matrixTransform(m_ViewPort.getScreenCTM());
 
     for (let i = 0; i < IDS_TILES.length; i++)
     {
         m_Tiles[i] = m_SvgDoc.getElementById(IDS_TILES[i]);
 
-        let tileArea = m_Tiles[i].getElementById(ID_TILE_AREA);
-        tileArea.addEventListener("mouseenter", OnTileMouseEnter);
-        tileArea.addEventListener("mouseleave", OnTileMouseLeave);
+        //let tileArea = m_Tiles[i].getElementById(ID_TILE_AREA);
+        //tileArea.addEventListener("mouseenter", OnTileMouseEnter);
+        //tileArea.addEventListener("mouseleave", OnTileMouseLeave);
     }
 
     m_Svg.addEventListener("click", OnClick);
@@ -107,7 +108,7 @@ function OnLoad()
     {
         for (let y = -GRID_SIZE / 2; y <= GRID_SIZE / 2; y++)
         {
-            CreateElement("circle", grid, [["cx", x], ["cy", y], ["r", 0.1], ["fill", "grey"]]);
+            CreateElement("circle", grid, [["cx", x], ["cy", y], ["r", 0.1], ["fill", "rgb(230,230,230)"]]);
         }
     }
 
@@ -151,12 +152,14 @@ function OnDblClick()
 */
 function OnMouseMove(ev)
 {
+    /*
     const transform = new DOMPointReadOnly(ev.clientX, ev.clientY).matrixTransform(m_ViewPort.getScreenCTM().inverse());
     if (m_Cursor)
     {
         m_Cursor.setAttribute("cx", transform.x);
         m_Cursor.setAttribute("cy", transform.y);
     }
+    */
 }
 
 function OnPointerDown(ev)
@@ -165,18 +168,30 @@ function OnPointerDown(ev)
         return;
 
     m_Click = true;
-    m_ClickPos = [ev.offsetX, ev.offsetY];
+    m_ClickPosScreen = [ev.clientX, ev.clientY];
+    m_ClickPosView = new DOMPointReadOnly(m_ClickPosScreen[0], m_ClickPosScreen[1]).matrixTransform(m_ViewPort.getScreenCTM().inverse()); //--- Incorrect in Firefox
+
+    //--- Debug circles
+    m_CircleView.setAttribute("cx", m_ClickPosView.x);
+    m_CircleView.setAttribute("cy", m_ClickPosView.y);
+
+    m_CircleScreen.setAttribute("cx", m_ClickPosScreen[0]);
+    m_CircleScreen.setAttribute("cy", m_ClickPosScreen[1]);
+
+    m_Log.innerHTML = m_ClickPosScreen + "<br />" + m_ClickPosView.x + "," + m_ClickPosView.y + "<br />" + m_ViewPort.getBoundingClientRect().x;
 
     m_ClickTilePos = [];
     m_ClickViewBox = [];
+
+    m_SelectedTile = m_SvgDoc.elementFromPoint(ev.clientX, ev.clientY).parentElement;
     if (m_SelectedTile)
     {
-        console.log(m_SelectedTile);
-        console.log(m_SelectedTile.getAttribute("x"));
         m_ClickTilePos = [parseInt(m_SelectedTile.getAttribute("x")), parseInt(m_SelectedTile.getAttribute("y"))];
     }
     else
+    {
         m_ClickViewBox = GetViewBox(m_ViewPort);
+    }
 
     m_Svg.addEventListener("pointermove", OnPointerMove);
 }
@@ -189,25 +204,23 @@ function OnPointerUp(ev)
 
 function OnPointerMove(ev)
 {
-    let offset = [-ev.offsetX + m_ClickPos[0], -ev.offsetY + m_ClickPos[1]];
-
-    //--- #TODO: Limit by edge, not center
-    //const minTransform = new DOMPointReadOnly(m_ViewPortDimensions[0], m_ViewPortDimensions[1]).matrixTransform(m_ViewPort.getScreenCTM());
-    //const maxTransform = new DOMPointReadOnly(-m_ViewPortDimensions[0], -m_ViewPortDimensions[1]).matrixTransform(m_ViewPort.getScreenCTM());
-
     if (m_ClickTilePos.length != 0)
     {
         //--- Drag tile
-        m_SelectedTile.setAttribute("x", m_ClickTilePos[0] - offset[0]);
-        m_SelectedTile.setAttribute("y", m_ClickTilePos[1] - offset[1]);
-    }
+        let viewPortClient = new DOMPointReadOnly(ev.clientX, ev.clientY).matrixTransform(m_ViewPort.getScreenCTM().inverse());
+        viewPortClient.x -= m_ClickPosView.x;
+        viewPortClient.y -= m_ClickPosView.y;
     
-    if (m_ClickViewBox.length != 0)
+        m_SelectedTile.setAttribute("x", m_ClickTilePos[0] + viewPortClient.x);
+        m_SelectedTile.setAttribute("y", m_ClickTilePos[1] + viewPortClient.y);
+    }
+    else if (m_ClickViewBox.length != 0)
     {
         //--- Drag view
+        let coef = Math.min((m_ClickViewBox[2] / window.innerWidth), (m_ClickViewBox[3] / window.innerHeight)); //--- I have no idea what I'm doing
         let viewBox = [
-            Clamp(m_ClickViewBox[0] + offset[0], -m_ViewPortDimensions[2], 0),
-            Clamp(m_ClickViewBox[1] + offset[1], -m_ViewPortDimensions[3], 0),
+            m_ClickViewBox[0] + (m_ClickPosScreen[0] - ev.clientX) * coef,
+            m_ClickViewBox[1] + (m_ClickPosScreen[1] - ev.clientY) * coef,
             m_ClickViewBox[2],
             m_ClickViewBox[3]
         ];
@@ -217,13 +230,11 @@ function OnPointerMove(ev)
 
 function OnTileMouseEnter(ev)
 {
-    m_SelectedTile = ev.toElement.parentElement;
     console.debug("OnTileMouseEnter: " + ev.fromElement.id + " > " + ev.toElement.id);
 }
 
 function OnTileMouseLeave(ev)
 {
-    m_SelectedTile = null;
     console.debug("OnTileMouseLeave: " + ev.fromElement.id + " > " + ev.toElement.id);
 }
 //#endregion
