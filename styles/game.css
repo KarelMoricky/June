@@ -6,6 +6,16 @@
 	font-size: 100%;
 }
 
+.gameStateDefault
+{
+	cursor: default;
+}
+
+.gameStateMove
+{
+	cursor: move;
+}
+
 .tile
 {
 	overflow: visible;
@@ -15,5 +25,19 @@
 {
 	fill: rgba(0, 255, 0, 0);
 	stroke: none;
-	cursor: pointer;
+}
+
+.tileStateEditable
+{
+	cursor: grab;
+}
+
+.tileStateEditing
+{
+	cursor: grabbing;
+}
+
+.tileStateConfirmed
+{
+	cursor: not-allowed;
 }

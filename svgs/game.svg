@@ -1,5 +1,6 @@
 <svg
   id="game"
+  class="gameStateDefault"
   x="0"
   y="0"
   viewBox="-960 -540 1920 1080"
@@ -20,21 +21,21 @@
   </g> -->
 
   <!-- Tile -->
-  <svg id="tile1" class="tile" gridX="0" gridY="0">
+  <svg id="tile1" class="tile" gX="0" gY="0" tX="0" tY="0" tC="1">
     <g transform="scale(0.5, 0.5)">
       <image class="ignoreCursor" href="../images/tile_placeholder1.png" width="512" height="512" transform="translate(-256,-256)" />
       <polygon id="tileArea" points="256,124 480,256 480,380 256,510 32,380 32,256" transform="translate(-256,-256)" />
     </g>
   </svg>
 
-  <svg id="tile2" class="tile" gridX="3" gridY="0">
+  <svg id="tile2" class="tile" gX="3" gY="0" tX="-1" tY="0">
     <g transform="scale(0.5, 0.5)">
       <image class="ignoreCursor" href="../images/tile_placeholder2.png" width="512" height="512" transform="translate(-256,-256)" />
       <polygon id="tileArea" points="256,124 480,256 480,380 256,510 32,380 32,256" transform="translate(-256,-256)" />
     </g>
   </svg>
 
-  <svg id="tile3" class="tile" gridX="2" gridY="2">
+  <svg id="tile3" class="tile" gX="2" gY="2" tX="0" tY="-1">
     <g transform="scale(0.5, 0.5)">
       <image class="ignoreCursor" href="../images/tile_placeholder3.png" width="512" height="512" transform="translate(-256,-256)" />
       <polygon id="tileArea" points="256,124 480,256 480,380 256,510 32,380 32,256" transform="translate(-256,-256)" />

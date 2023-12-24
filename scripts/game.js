@@ -23,6 +23,20 @@ const ISO_MATRIX = new DOMMatrixReadOnly()
     .skewX(-30)
     .scale(1 * ISO_SIZE, 0.8602 * ISO_SIZE);
 
+const VAR_GRID_X = "gX";
+const VAR_GRID_Y = "gY";
+const VAR_GRID_Z = "gZ";
+const VAR_TARGET_X = "tX";
+const VAR_TARGET_Y = "tY";
+const VAR_TARGET_CONFIRMED = "tC";
+
+const GAME_STATE_DEFAULT = "gameStateDefault";
+const GAME_STATE_MOVE = "gameStateMove";
+
+const TILE_STATE_EDITABLE = "tileStateEditable";
+const TILE_STATE_EDITING = "tileStateEditing";
+const TILE_STATE_CONFIRMED = "tileStateConfirmed";
+
 var m_SvgDoc;
 var m_UiSvgDoc;
 var m_Svg;
@@ -66,20 +80,22 @@ function OnLoad()
     for (let i = 0; i < IDS_TILES.length; i++)
     {
         let tile = m_SvgDoc.getElementById(IDS_TILES[i])
-        let gridX = parseInt(tile.getAttribute("gridX"));
-        let gridY = parseInt(tile.getAttribute("gridY"));
-        SetTilePos(tile, gridX, gridY);
 
-        m_Tiles[i] = tile;
-        //let tileArea = m_Tiles[i].getElementById(ID_TILE_AREA);
-        //tileArea.addEventListener("mouseenter", OnTileMouseEnter);
-        //tileArea.addEventListener("mouseleave", OnTileMouseLeave);
+        let gridX = parseInt(tile.getAttribute(VAR_GRID_X));
+        let gridY = parseInt(tile.getAttribute(VAR_GRID_Y));
+        SetTilePos(tile, gridX, gridY);
+        EvaluateTile(tile);
+
+        m_Tiles[i] = tile; //--- Must be called after SetTilePos(), otherwise the tile will think it's already occupied
     }
 
     //uiSvg.addEventListener("click", OnClick);
     //m_Svg.addEventListener("mousemove", OnMouseMove);
     m_Svg.addEventListener("pointerdown", OnPointerDown);
     m_Svg.addEventListener("pointerup", OnPointerUp);
+
+    if (m_IsDev)
+        m_Svg.addEventListener("keydown", OnKeyDown);
 
     window.requestAnimationFrame(OnFrame);
 
@@ -130,7 +146,7 @@ function OnPointerDown(ev)
     let element = m_SvgDoc.elementFromPoint(ev.clientX, ev.clientY);
     while (element)
     {
-        if (element.getAttribute("class") == "tile")
+        if (element.getAttribute("class") == "tile" && !element.getAttribute(VAR_TARGET_CONFIRMED))
         {
             m_SelectedTile = element;
             break;
@@ -145,6 +161,7 @@ function OnPointerDown(ev)
     if (m_SelectedTile)
     {
         m_ClickTilePos = [parseInt(m_SelectedTile.getAttribute("x")), parseInt(m_SelectedTile.getAttribute("y"))];
+        SetTileState(m_SelectedTile, TILE_STATE_EDITING);
     }
     else
     {
@@ -158,6 +175,14 @@ function OnPointerUp(ev)
 {
     m_Click = false;
     m_Svg.removeEventListener("pointermove", OnPointerMove);
+
+    //--- Confirm tile
+    if (m_SelectedTile)
+        EvaluateTile(m_SelectedTile);
+    else
+        m_Svg.setAttribute("class", GAME_STATE_DEFAULT);
+
+    m_SelectedTile = null;
 }
 
 function OnPointerMove(ev)
@@ -188,19 +213,18 @@ function OnPointerMove(ev)
             m_ClickViewBox[3]
         ];
         SetViewBox(m_Game, viewBox);
+
+        m_Svg.setAttribute("class", GAME_STATE_MOVE);
     }
 }
-/*
-function OnTileMouseEnter(ev)
-{
-    console.debug("OnTileMouseEnter: " + ev.fromElement.id + " > " + ev.toElement.id);
-}
 
-function OnTileMouseLeave(ev)
+function OnKeyDown(ev)
 {
-    console.debug("OnTileMouseLeave: " + ev.fromElement.id + " > " + ev.toElement.id);
+    if (ev.keyCode == 192)
+    {
+        //--- ToDo: Move tiles to their target positions
+    }
 }
-*/
 //#endregion
 
 //#region Update
@@ -230,10 +254,19 @@ function SetTilePos(tile, gridX, gridY)
 
 function SetTileTransform(tile, gridTransform)
 {
-    tile.setAttribute("gridX", gridTransform.x);
-    tile.setAttribute("gridY", gridTransform.y);
-    tile.setAttribute("gridZ", gridTransform.x + gridTransform.y); //--- "Closeness" to camera, lower tiles are rendered above upper ones
+    //--- Check if some tile (including itself) already occupies the coordinates
+    for (let i = 0; i < m_Tiles.length; i++)
+    {
+        if (m_Tiles[i].getAttribute(VAR_GRID_X) == gridTransform.x && m_Tiles[i].getAttribute(VAR_GRID_Y) == gridTransform.y)
+            return;
+    }
 
+    //--- Save grid position
+    tile.setAttribute(VAR_GRID_X, gridTransform.x);
+    tile.setAttribute(VAR_GRID_Y, gridTransform.y);
+    tile.setAttribute(VAR_GRID_Z, gridTransform.x + gridTransform.y); //--- "Closeness" to camera, lower tiles are rendered above upper ones
+
+    //--- Set screen position
     let gameTransform = gridTransform.matrixTransform(ISO_MATRIX);
     tile.setAttribute("x", gameTransform.x);
     tile.setAttribute("y", gameTransform.y);
@@ -243,11 +276,30 @@ function SetTileTransform(tile, gridTransform)
 
 function UpdateTiles()
 {
-    m_Tiles.sort((a, b) => parseInt(a.getAttribute("gridZ")) - parseInt(b.getAttribute("gridZ")));
+    m_Tiles.sort((a, b) => parseInt(a.getAttribute(VAR_GRID_Z)) - parseInt(b.getAttribute(VAR_GRID_Z)));
 
     for (let i = 0; i < m_Tiles.length; i++)
     {
         m_Svg.appendChild(m_Tiles[i]);
     }
+}
+
+function EvaluateTile(tile)
+{
+    if (tile.getAttribute(VAR_GRID_X) == tile.getAttribute(VAR_TARGET_X) && tile.getAttribute(VAR_GRID_Y) == tile.getAttribute(VAR_TARGET_Y))
+    {
+        tile.setAttribute(VAR_TARGET_CONFIRMED, true);
+        SetTileState(tile, TILE_STATE_CONFIRMED);
+    }
+    else
+    {
+        SetTileState(tile, TILE_STATE_EDITABLE);
+    }
+}
+
+function SetTileState(tile, state)
+{
+    let tileArea = tile.getElementById(ID_TILE_AREA);
+    tileArea.setAttribute("class", state);
 }
 //#endregion
