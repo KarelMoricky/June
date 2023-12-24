@@ -15,24 +15,30 @@
   <!-- <rect x="-960" y="-540" width="100%" height="100%" style="fill: rgb(220,220,220);" /> -->
 
   <!-- Grid, inspired by https://www.jointjs.com/blog/isometric-diagrams, size must be multiply of (1, 0.8602) -->
-  <g id="grid" class="ignoreCursor" transform="rotate(30) skewX(-30) scale(100, 86.02)">
+  <!-- <g id="grid" class="ignoreCursor" transform="rotate(30) skewX(-30) scale(100, 86.02)">
     <circle id="gridDebug" class="ignoreCursor" style="fill: rgb(0,255,255);" cx="1000" cy="1000" r="1" />
-  </g>
+  </g> -->
 
   <!-- Tile -->
   <svg id="tile1" class="tile" gridX="0" gridY="0">
-    <image id="tilePicture" class="ignoreCursor" href="../images/tile_placeholder.png" width="196px" height="196px" x="-96" y="-98" transform="scale(2, 2)" />
-    <polygon id="tileArea" points="0,-50 88,0 0,50 -88,-2" transform="scale(2, 2)" />
+    <g transform="scale(0.5, 0.5)">
+      <image class="ignoreCursor" href="../images/tile_placeholder1.png" width="512" height="512" transform="translate(-256,-256)" />
+      <polygon id="tileArea" points="256,124 480,256 480,380 256,510 32,380 32,256" transform="translate(-256,-256)" />
+    </g>
   </svg>
 
   <svg id="tile2" class="tile" gridX="3" gridY="0">
-    <image id="tilePicture" class="ignoreCursor" href="../images/tile_placeholder2.png" width="196px" height="196px" x="-96" y="-98" transform="scale(2, 2)" />
-    <polygon id="tileArea" points="0,-50 88,0 0,50 -88,-2" transform="scale(2, 2)" />
+    <g transform="scale(0.5, 0.5)">
+      <image class="ignoreCursor" href="../images/tile_placeholder2.png" width="512" height="512" transform="translate(-256,-256)" />
+      <polygon id="tileArea" points="256,124 480,256 480,380 256,510 32,380 32,256" transform="translate(-256,-256)" />
+    </g>
   </svg>
 
   <svg id="tile3" class="tile" gridX="2" gridY="2">
-    <image id="tilePicture" class="ignoreCursor" href="../images/tile_placeholder2.png" width="196px" height="196px" x="-96" y="-98" transform="scale(2, 2)" />
-    <polygon id="tileArea" points="0,-50 88,0 0,50 -88,-2" transform="scale(2, 2)" />
+    <g transform="scale(0.5, 0.5)">
+      <image class="ignoreCursor" href="../images/tile_placeholder3.png" width="512" height="512" transform="translate(-256,-256)" />
+      <polygon id="tileArea" points="256,124 480,256 480,380 256,510 32,380 32,256" transform="translate(-256,-256)" />
+    </g>
   </svg>
 
   <!-- Debug cursor -->

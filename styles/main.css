@@ -18,6 +18,17 @@ body
 	font-family: Consolas;
 }
 
+#disclaimer
+{
+	font-family: sans-serif;
+	font-weight: bold;
+	font-size: 150%;
+	color: red;
+	text-align: center;
+	width: 100%;
+	pointer-events: none;
+}
+
 .svgObject
 {
 	position: absolute;

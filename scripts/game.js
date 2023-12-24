@@ -17,6 +17,11 @@ const SOUND_FILES = [
 ];
 
 const GRID_SIZE = 12;
+const ISO_SIZE = 128;
+const ISO_MATRIX = new DOMMatrixReadOnly()
+    .rotate(30)
+    .skewX(-30)
+    .scale(1 * ISO_SIZE, 0.8602 * ISO_SIZE);
 
 var m_SvgDoc;
 var m_UiSvgDoc;
@@ -36,10 +41,6 @@ var m_ClickTilePos = [];
 var m_Sounds = [];
 var m_GameViewBox = [];
 var m_SelectedTile = null;
-let m_IsoMatrix = new DOMMatrixReadOnly()
-    .rotate(30)
-    .skewX(-30)
-    .scale(1 * 200, 0.8602 * 200);
 //#endregion
 
 //#region Init
@@ -124,10 +125,23 @@ function OnPointerDown(ev)
     m_Click = true;
     m_ClickPos = [ev.clientX, ev.clientY];
 
+    //--- Find tile to which clickable area belongs to
+    m_SelectedTile = null;
+    let element = m_SvgDoc.elementFromPoint(ev.clientX, ev.clientY);
+    while (element)
+    {
+        if (element.getAttribute("class") == "tile")
+        {
+            m_SelectedTile = element;
+            break;
+        }
+
+        element = element.parentElement;
+    }
+
+    //--- Decide what is being dragged
     m_ClickTilePos = [];
     m_ClickViewBox = [];
-
-    m_SelectedTile = m_SvgDoc.elementFromPoint(ev.clientX, ev.clientY).parentElement;
     if (m_SelectedTile)
     {
         m_ClickTilePos = [parseInt(m_SelectedTile.getAttribute("x")), parseInt(m_SelectedTile.getAttribute("y"))];
@@ -156,7 +170,7 @@ function OnPointerMove(ev)
         let posY = m_ClickTilePos[1] - (m_ClickPos[1] - ev.clientY) * coef;
 
         //--- Snap to grid
-        var gridTransform = new DOMPointReadOnly(posX, posY).matrixTransform(m_IsoMatrix.inverse());
+        var gridTransform = new DOMPointReadOnly(posX, posY).matrixTransform(ISO_MATRIX.inverse());
         gridTransform.x = Math.round(gridTransform.x);
         gridTransform.y = Math.round(gridTransform.y);
 
@@ -220,7 +234,7 @@ function SetTileTransform(tile, gridTransform)
     tile.setAttribute("gridY", gridTransform.y);
     tile.setAttribute("gridZ", gridTransform.x + gridTransform.y); //--- "Closeness" to camera, lower tiles are rendered above upper ones
 
-    let gameTransform = gridTransform.matrixTransform(m_IsoMatrix);
+    let gameTransform = gridTransform.matrixTransform(ISO_MATRIX);
     tile.setAttribute("x", gameTransform.x);
     tile.setAttribute("y", gameTransform.y);
 
