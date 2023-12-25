@@ -29,6 +29,10 @@ const VAR_GRID_Z = "gZ";
 const VAR_TARGET_X = "tX";
 const VAR_TARGET_Y = "tY";
 const VAR_TARGET_CONFIRMED = "tC";
+const VAR_CONDITION = "cond";
+
+const CLASS_TILE_SHOWN = "tile";
+const CLASS_TILE_HIDDEN = "tileHidden";
 
 const GAME_STATE_DEFAULT = "gameStateDefault";
 const GAME_STATE_MOVE = "gameStateMove";
@@ -55,6 +59,7 @@ var m_ClickTilePos = [];
 var m_Sounds = [];
 var m_GameViewBox = [];
 var m_SelectedTile = null;
+var m_ConfirmedCount = 0;
 //#endregion
 
 //#region Init
@@ -88,6 +93,7 @@ function OnLoad()
 
         m_Tiles[i] = tile; //--- Must be called after SetTilePos(), otherwise the tile will think it's already occupied
     }
+    RevealTiles();
 
     //uiSvg.addEventListener("click", OnClick);
     //m_Svg.addEventListener("mousemove", OnMouseMove);
@@ -200,7 +206,6 @@ function OnPointerMove(ev)
         gridTransform.y = Math.round(gridTransform.y);
 
         SetTileTransform(m_SelectedTile, gridTransform);
-        UpdateTiles();
     }
     else if (m_ClickViewBox.length != 0)
     {
@@ -220,9 +225,20 @@ function OnPointerMove(ev)
 
 function OnKeyDown(ev)
 {
-    if (ev.keyCode == 192)
+    if (ev.keyCode == 49)
     {
-        //--- ToDo: Move tiles to their target positions
+        //--- [1] Reveal all tiles
+        m_ConfirmedCount = 1000;
+        RevealTiles();
+    }
+    if (ev.keyCode == 50)
+    {
+        //--- [2] Move all shown tiles to target coordinates
+        for (let i = 0; i < m_Tiles.length; i++)
+        {
+            if (m_Tiles[i].getAttribute("class") == CLASS_TILE_SHOWN)
+            SetTilePos(m_Tiles[i], m_Tiles[i].getAttribute(VAR_TARGET_X), m_Tiles[i].getAttribute(VAR_TARGET_Y));
+        }
     }
 }
 //#endregion
@@ -272,6 +288,7 @@ function SetTileTransform(tile, gridTransform)
     tile.setAttribute("y", gameTransform.y);
 
     Log(tile.id, gridTransform.x, gridTransform.y);
+    UpdateTiles();
 }
 
 function UpdateTiles()
@@ -284,12 +301,25 @@ function UpdateTiles()
     }
 }
 
+function RevealTiles()
+{
+    for (let i = 0; i < m_Tiles.length; i++)
+    {
+        if (m_Tiles[i].getAttribute(VAR_CONDITION) <= m_ConfirmedCount)
+            m_Tiles[i].setAttribute("class", CLASS_TILE_SHOWN);
+        else
+            m_Tiles[i].setAttribute("class", CLASS_TILE_HIDDEN);
+    }
+}
+
 function EvaluateTile(tile)
 {
     if (tile.getAttribute(VAR_GRID_X) == tile.getAttribute(VAR_TARGET_X) && tile.getAttribute(VAR_GRID_Y) == tile.getAttribute(VAR_TARGET_Y))
     {
         tile.setAttribute(VAR_TARGET_CONFIRMED, true);
         SetTileState(tile, TILE_STATE_CONFIRMED);
+        m_ConfirmedCount++;
+        RevealTiles();
     }
     else
     {

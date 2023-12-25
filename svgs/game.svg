@@ -35,7 +35,7 @@
     </g>
   </svg>
 
-  <svg id="tile3" class="tile" gX="2" gY="2" tX="0" tY="-1">
+  <svg id="tile3" class="tile" gX="2" gY="2" tX="0" tY="-1" cond="2">
     <g transform="scale(0.5, 0.5)">
       <image class="ignoreCursor" href="../images/tile_placeholder3.png" width="512" height="512" transform="translate(-256,-256)" />
       <polygon id="tileArea" points="256,124 480,256 480,380 256,510 32,380 32,256" transform="translate(-256,-256)" />

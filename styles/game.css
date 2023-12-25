@@ -16,9 +16,14 @@
 	cursor: move;
 }
 
-.tile
+.tile, .tileHidden
 {
 	overflow: visible;
+}
+
+.tileHidden
+{
+	display: none;
 }
 
 #tileArea
