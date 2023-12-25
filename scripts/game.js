@@ -177,20 +177,6 @@ function OnPointerDown(ev)
     m_Svg.addEventListener("pointermove", OnPointerMove);
 }
 
-function OnPointerUp(ev)
-{
-    m_Click = false;
-    m_Svg.removeEventListener("pointermove", OnPointerMove);
-
-    //--- Confirm tile
-    if (m_SelectedTile)
-        EvaluateTile(m_SelectedTile);
-    else
-        m_Svg.setAttribute("class", GAME_STATE_DEFAULT);
-
-    m_SelectedTile = null;
-}
-
 function OnPointerMove(ev)
 {
     if (m_ClickTilePos.length != 0)
@@ -223,6 +209,20 @@ function OnPointerMove(ev)
     }
 }
 
+function OnPointerUp(ev)
+{
+    m_Click = false;
+    m_Svg.removeEventListener("pointermove", OnPointerMove);
+
+    //--- Confirm tile
+    if (m_SelectedTile)
+        EvaluateTile(m_SelectedTile);
+    else
+        m_Svg.setAttribute("class", GAME_STATE_DEFAULT);
+
+    m_SelectedTile = null;
+}
+
 function OnKeyDown(ev)
 {
     if (ev.keyCode == 49)
@@ -231,13 +231,24 @@ function OnKeyDown(ev)
         m_ConfirmedCount = 1000;
         RevealTiles();
     }
-    if (ev.keyCode == 50)
+    else if (ev.keyCode == 50)
     {
         //--- [2] Move all shown tiles to target coordinates
+        let shownTiles = [];
         for (let i = 0; i < m_Tiles.length; i++)
         {
             if (m_Tiles[i].getAttribute("class") == CLASS_TILE_SHOWN)
-            SetTilePos(m_Tiles[i], m_Tiles[i].getAttribute(VAR_TARGET_X), m_Tiles[i].getAttribute(VAR_TARGET_Y));
+            {
+                shownTiles.push(m_Tiles[i]);
+            }
+        }
+        for (let i = 0; i < shownTiles.length; i++)
+        {
+            if (shownTiles[i].getAttribute("class") == CLASS_TILE_SHOWN)
+            {
+                SetTilePos(shownTiles[i], shownTiles[i].getAttribute(VAR_TARGET_X), shownTiles[i].getAttribute(VAR_TARGET_Y));
+                EvaluateTile(shownTiles[i]);
+            }
         }
     }
 }
