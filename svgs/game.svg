@@ -9,6 +9,7 @@
   xmlns:xlink="http://www.w3.org/1999/xlink" >
 
   <!-- Styles -->
+	<link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Slab" />
   <link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../styles/common.css" />
   <link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../styles/game.css" />
 
@@ -20,6 +21,36 @@
     <circle id="gridDebug" class="ignoreCursor" style="fill: rgb(0,255,255);" cx="1000" cy="1000" r="1" />
   </g> -->
 
+  <!-- Text -->
+  <g class="text">
+
+    <!-- Intro text -->
+    <svg x="-400" y="-380" width="800" height="400">
+      <text text-anchor="middle">
+        <tspan x="50%" dy="1.5em" style="font-size: 200%; font-weight: bold;">Vera and Karel's</tspan>
+        <tspan x="50%" dy="1.2em" style="font-size: 300%; font-weight: 700;">[BOY/GIRL]</tspan>
+        <tspan x="50%" dy="1.7em" style="font-size: 150%;">was born on June ??th 2024</tspan>
+        <tspan x="50%" dy="3.2em">To find out their name,</tspan>
+        <tspan x="50%" dy="1.5em">please play a little game we designed.</tspan>
+      </text>
+    </svg>
+
+    <!-- Tutorial: Camera -->
+    <svg x="-200" y="160" width="400" height="100">
+      <text text-anchor="middle">
+        <tspan x="50%" dy="3.2em">Drag in empty area to move the view ➡</tspan>
+      </text>
+    </svg>
+
+    <!-- Tutorial: Tile -->
+    <svg x="440" y="160" width="400" height="100">
+      <text text-anchor="middle">
+        <tspan x="50%" dy="3.2em">🖐 Grab a tile to move it to its place</tspan>
+      </text>
+    </svg>
+
+  </g>
+
   <!-- Tile -->
   <svg id="tile1" class="tile" gX="0" gY="0" tX="0" tY="0" tC="1">
     <g transform="scale(0.5, 0.5)">
@@ -28,7 +59,7 @@
     </g>
   </svg>
 
-  <svg id="tile2" class="tile" gX="3" gY="0" tX="-1" tY="0">
+  <svg id="tile2" class="tile" gX="3" gY="0" tX="1" tY="0">
     <g transform="scale(0.5, 0.5)">
       <image class="ignoreCursor" href="../images/tile_placeholder2.png" width="512" height="512" transform="translate(-256,-256)" />
       <polygon id="tileArea" points="256,124 480,256 480,380 256,510 32,380 32,256" transform="translate(-256,-256)" />

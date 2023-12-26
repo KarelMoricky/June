@@ -28,19 +28,6 @@ function SetViewBox(element, viewBox)
 //#endregion
 
 //#region Audio
-function PlaySound(index)
-{
-    if (index < 0 || index >= m_Sounds.length)
-    {
-        alert("Cannot play sound, index=" + index + " is out of bounds!");
-        return;
-    }
-
-    let sound = m_Sounds[index];
-    sound.load();
-    sound.play();
-}
-
 function PlayAudio(name)
 {
     //--- https://www.w3schools.com/JSREF/dom_obj_audio.asp

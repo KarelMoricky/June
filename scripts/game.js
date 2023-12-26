@@ -11,13 +11,9 @@ const IDS_TILES = [
     "tile3"
 ]
 const ID_TILE_AREA = "tileArea";
-const SOUND_FILES = [
-    /*0*/"./sounds/test.wav",
-    /*1*/"./sounds/test2.wav"
-];
 
 const GRID_SIZE = 12;
-const ISO_SIZE = 128;
+const ISO_SIZE = 140;
 const ISO_MATRIX = new DOMMatrixReadOnly()
     .rotate(30)
     .skewX(-30)
@@ -56,7 +52,6 @@ var m_Click = false;
 var m_ClickPos = [];
 var m_ClickViewBox = [];
 var m_ClickTilePos = [];
-var m_Sounds = [];
 var m_GameViewBox = [];
 var m_SelectedTile = null;
 var m_ConfirmedCount = 0;
@@ -89,7 +84,7 @@ function OnLoad()
         let gridX = parseInt(tile.getAttribute(VAR_GRID_X));
         let gridY = parseInt(tile.getAttribute(VAR_GRID_Y));
         SetTilePos(tile, gridX, gridY);
-        EvaluateTile(tile);
+        EvaluateTile(tile, false);
 
         m_Tiles[i] = tile; //--- Must be called after SetTilePos(), otherwise the tile will think it's already occupied
     }
@@ -104,12 +99,6 @@ function OnLoad()
         m_Svg.addEventListener("keydown", OnKeyDown);
 
     window.requestAnimationFrame(OnFrame);
-
-    //--- Load sounds
-    for (let i = 0; i < SOUND_FILES.length; i++)
-    {
-        m_Sounds[i] = new Audio(SOUND_FILES[i]);
-    }
 
     //--- Init grid
     // m_Grid = m_SvgDoc.getElementById(ID_GRID);
@@ -141,8 +130,8 @@ function OnMouseMove(ev)
 
 function OnPointerDown(ev)
 {
-    if (m_IsPaused)
-        return;
+    // if (m_IsPaused)
+    //     return;
 
     m_Click = true;
     m_ClickPos = [ev.clientX, ev.clientY];
@@ -216,7 +205,7 @@ function OnPointerUp(ev)
 
     //--- Confirm tile
     if (m_SelectedTile)
-        EvaluateTile(m_SelectedTile);
+        EvaluateTile(m_SelectedTile, true);
     else
         m_Svg.setAttribute("class", GAME_STATE_DEFAULT);
 
@@ -247,7 +236,7 @@ function OnKeyDown(ev)
             if (shownTiles[i].getAttribute("class") == CLASS_TILE_SHOWN)
             {
                 SetTilePos(shownTiles[i], shownTiles[i].getAttribute(VAR_TARGET_X), shownTiles[i].getAttribute(VAR_TARGET_Y));
-                EvaluateTile(shownTiles[i]);
+                EvaluateTile(shownTiles[i], false);
             }
         }
     }
@@ -257,14 +246,14 @@ function OnKeyDown(ev)
 //#region Update
 function OnFrame(time)
 {
-    if (!m_IsPaused)
-    {
-        m_GameTime += time - m_FrameTime;
-        OnFrameGame(m_GameTime);
-    }
+    // if (!m_IsPaused)
+    // {
+    //     m_GameTime += time - m_FrameTime;
+    //     OnFrameGame(m_GameTime);
+    // }
 
-    m_FrameTime = time;
-    window.requestAnimationFrame(OnFrame);
+    // m_FrameTime = time;
+    // window.requestAnimationFrame(OnFrame);
 }
 function OnFrameGame()
 {
@@ -284,7 +273,7 @@ function SetTileTransform(tile, gridTransform)
     //--- Check if some tile (including itself) already occupies the coordinates
     for (let i = 0; i < m_Tiles.length; i++)
     {
-        if (m_Tiles[i].getAttribute(VAR_GRID_X) == gridTransform.x && m_Tiles[i].getAttribute(VAR_GRID_Y) == gridTransform.y)
+        if (m_Tiles[i].getAttribute("class") == CLASS_TILE_SHOWN && m_Tiles[i].getAttribute(VAR_GRID_X) == gridTransform.x && m_Tiles[i].getAttribute(VAR_GRID_Y) == gridTransform.y)
             return;
     }
 
@@ -323,7 +312,7 @@ function RevealTiles()
     }
 }
 
-function EvaluateTile(tile)
+function EvaluateTile(tile, isManual)
 {
     if (tile.getAttribute(VAR_GRID_X) == tile.getAttribute(VAR_TARGET_X) && tile.getAttribute(VAR_GRID_Y) == tile.getAttribute(VAR_TARGET_Y))
     {
@@ -331,6 +320,9 @@ function EvaluateTile(tile)
         SetTileState(tile, TILE_STATE_CONFIRMED);
         m_ConfirmedCount++;
         RevealTiles();
+
+        if (isManual)
+            PlayAudio("audioTest1");
     }
     else
     {

@@ -3,6 +3,9 @@
 	<head>
 		<title>Project June</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Slab" />
 		<link rel="stylesheet" type="text/css" href="styles/common.css" />
 		<link rel="stylesheet" type="text/css" href="styles/main.css" />
 	</head>
@@ -11,12 +14,30 @@
 		<script src="scripts/debug.js"></script>
 
 		<script src="scripts/game.js"></script>
-		<object id="gameObject" class="svgObject" type="image/svg+xml" data="svgs/game.svg"></object>
+		<object id="gameObject" class="fullScreen" type="image/svg+xml" data="svgs/game.svg"></object>
 		
-		<script src="scripts/pause.js"></script>
-		<object id="pauseObject" class="svgObject" type="image/svg+xml" data="svgs/pause.svg"></object>
+		<!-- <script src="scripts/pause.js"></script>
+		<object id="pauseObject" class="fullScreen" type="image/svg+xml" data="svgs/pause.svg"></object> -->
+
+		<!-- <script src="scripts/message.js"></script>
+		<div id="messageArea" class="fullScreen">
+			<div id="messageBox">
+				<div id="tier0">
+					<p class="tier0_large">Vera and Karel's</p>
+					<p id="tier0_sex">YONGER SON</p>
+					<p class="tier0_large">was born on June XXth 2024</p>
+					<br />
+					<p>To find out their name, please play<br />a little game we designed.</p>
+					<button id="playButton" type="button" autofocus>PLAY</button>
+					<p>(for best experience turn on sound 🔊)</p>
+				</div>
+			</div>
+		</div> -->
 
 		<div id="log"></div>
-		<div id="disclaimer">CONFIDENTIAL! DO NOT SHARE!</div>
+		<div id="disclaimer" class="fullScreen">CONFIDENTIAL! DO NOT SHARE!</div>
+
+		<audio id="audioTest1" src="./sounds/test.wav"></audio>
+		<audio id="audioTest2" src="./sounds/test2.wav"></audio>
 	</body>
 </html>

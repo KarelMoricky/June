@@ -46,3 +46,9 @@
 {
 	cursor: not-allowed;
 }
+
+.text
+{
+	font-family: "Roboto Slab", sans-serif;
+	font-size: 18px;
+}

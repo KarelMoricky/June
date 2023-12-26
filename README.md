@@ -10,4 +10,4 @@
      .d88P"                                     
     888P"                                       
 
-Announcement game foe Vera and Karel's younger child.
+Announcement game for Vera and Karel's younger child.
