@@ -5,12 +5,9 @@ const ID_GAME = "game";
 const ID_CURSOR = "cursor";
 const ID_GRID = "grid";
 const ID_CIRCLE = "circle";
-const IDS_TILES = [
-    "tile1",
-    "tile2",
-    "tile3"
-]
+const IDS_TILES = ["tile01", "tile02", "tile03", "tile04"]
 const ID_TILE_AREA = "tileArea";
+const ID_INTRO = "intro";
 const ID_TUTORIAL_VIEW = "tutorialView";
 const ID_TUTORIAL_TILE = "tutorialTile";
 const ID_LOADING = "loading";
@@ -338,6 +335,19 @@ function EvaluateTile(tile, isManual)
 
         if (isManual)
             PlayAudio("audioTest1");
+
+        if (m_ConfirmedCount == 2)
+        {
+            //--- Hide tutorial
+            let intro = m_SvgDoc.getElementById(ID_INTRO);
+            intro.setAttribute("class", "hidden");
+
+            let tutorialView = m_SvgDoc.getElementById(ID_TUTORIAL_VIEW);
+            tutorialView.setAttribute("class", "hidden");
+        
+            let tutorialTile = m_SvgDoc.getElementById(ID_TUTORIAL_TILE);
+            tutorialTile.setAttribute("class", "hidden");
+        }
     }
     else
     {

@@ -25,7 +25,7 @@
   <g class="text">
 
     <!-- Intro text -->
-    <svg x="-400" y="-380" width="800" height="400">
+    <svg id="intro" x="-400" y="-380" width="800" height="400">
       <text text-anchor="middle">
         <tspan x="50%" dy="1.5em" style="font-size: 200%; font-weight: bold;">Vera and Karel's</tspan>
         <tspan x="50%" dy="1.2em" style="font-size: 300%; font-weight: 700;">[BOY/GIRL]</tspan>
@@ -51,25 +51,24 @@
   </g>
 
   <!-- Tile -->
-  <svg id="tile1" class="tile" gX="0" gY="0" tX="0" tY="0" tC="1">
-    <g transform="scale(0.5, 0.5)">
-      <image class="ignoreCursor" href="../data/images/tile_placeholder1.png" width="512" height="512" transform="translate(-256,-256)" />
-      <polygon id="tileArea" points="256,124 480,256 480,380 256,510 32,380 32,256" transform="translate(-256,-256)" />
-    </g>
+  <svg id="tile01" class="tile" gX="0" gY="0" tX="0" tY="0" tC="1">
+    <image class="ignoreCursor" href="../data/images/tile01.png" width="256" height="256" transform="translate(-128,-128)" />
+    <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
   </svg>
 
-  <svg id="tile2" class="tileHidden" gX="3" gY="0" tX="1" tY="0">
-    <g transform="scale(0.5, 0.5)">
-      <image class="ignoreCursor" href="../data/images/tile_placeholder2.png" width="512" height="512" transform="translate(-256,-256)" />
-      <polygon id="tileArea" points="256,124 480,256 480,380 256,510 32,380 32,256" transform="translate(-256,-256)" />
-    </g>
+  <svg id="tile02" class="tileHidden" gX="3" gY="0" tX="1" tY="0">
+    <image class="ignoreCursor" href="../data/images/tile02.png" width="256" height="256" transform="translate(-128,-128)" />
+    <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
   </svg>
 
-  <svg id="tile3" class="tileHidden" gX="2" gY="2" tX="0" tY="-1" cond="2">
-    <g transform="scale(0.5, 0.5)">
-      <image class="ignoreCursor" href="../data/images/tile_placeholder3.png" width="512" height="512" transform="translate(-256,-256)" />
-      <polygon id="tileArea" points="256,124 480,256 480,380 256,510 32,380 32,256" transform="translate(-256,-256)" />
-    </g>
+  <svg id="tile03" class="tileHidden" gX="2" gY="2" tX="0" tY="-1" cond="2">
+    <image class="ignoreCursor" href="../data/images/tile03.png" width="256" height="256" transform="translate(-128,-128)" />
+    <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
+  </svg>
+
+  <svg id="tile04" class="tileHidden" gX="2" gY="3" tX="0" tY="2" cond="2">
+    <image class="ignoreCursor" href="../data/images/tile04.png" width="256" height="256" transform="translate(-128,-128)" />
+    <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
   </svg>
 
   <!-- Debug cursor -->

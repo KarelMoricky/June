@@ -32,6 +32,7 @@ body
 	text-align: center;
 	color: #4E8257;
 }
+/* https://www.w3schools.com/howto/howto_css_loader.asp */
 #loadingSpinner
 {
 	margin: auto;
@@ -42,7 +43,6 @@ body
 	height: 60px;
 	animation: loadingSpin 2s linear infinite;
 }
-
 @keyframes loadingSpin
 {
 	0% { transform: rotate(0deg); }
