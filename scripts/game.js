@@ -11,6 +11,10 @@ const IDS_TILES = [
     "tile3"
 ]
 const ID_TILE_AREA = "tileArea";
+const ID_TUTORIAL_VIEW = "tutorialView";
+const ID_TUTORIAL_TILE = "tutorialTile";
+const ID_LOADING = "loading";
+const ID_LOADING_BACKGROUND = "loadingBackground";
 
 const GRID_SIZE = 12;
 const ISO_SIZE = 140;
@@ -99,6 +103,17 @@ function OnLoad()
         m_Svg.addEventListener("keydown", OnKeyDown);
 
     window.requestAnimationFrame(OnFrame);
+
+    //--- Show tutorial
+    let tutorialView = m_SvgDoc.getElementById(ID_TUTORIAL_VIEW);
+    tutorialView.setAttribute("class", "");
+
+    let tutorialTile = m_SvgDoc.getElementById(ID_TUTORIAL_TILE);
+    tutorialTile.setAttribute("class", "");
+
+    //--- Hide loading
+    let loading = document.getElementById(ID_LOADING);
+    loading.setAttribute("class", "hidden");
 
     //--- Init grid
     // m_Grid = m_SvgDoc.getElementById(ID_GRID);

@@ -10,7 +10,46 @@ body
 	overflow: hidden; /* Hide scrollbars */
 }
 
-#messageArea
+#loading
+{
+	pointer-events: none;
+}
+#loadingBox
+{
+	position: absolute;
+	left: 50%;
+	top: 55%;
+	transform: translate(-50%, -50%);
+	width: 300px;
+	height: 280px;
+	background-color: rgba(239, 235, 224, 0.8);
+}
+#loadingText
+{
+	margin-top: 8%;
+	font-size: 160%;
+	font-family: "Roboto Slab", sans-serif;
+	text-align: center;
+	color: #4E8257;
+}
+#loadingSpinner
+{
+	margin: auto;
+	border: 16px solid #A1CECC;
+	border-top: 16px solid #4E8257;
+	border-radius: 50%;
+	width: 60px;
+	height: 60px;
+	animation: loadingSpin 2s linear infinite;
+}
+
+@keyframes loadingSpin
+{
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+
+/* #messageArea
 {
 	background-color: rgba(239, 235, 224, 0.5);
 }
@@ -41,7 +80,7 @@ body
 	font-size: 200%;
 	font-weight: bold;
 	color: rgb(119, 114, 100);
-}
+} */
 
 #tier0_sex
 {

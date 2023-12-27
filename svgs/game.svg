@@ -36,19 +36,18 @@
     </svg>
 
     <!-- Tutorial: Camera -->
-    <svg x="-200" y="160" width="400" height="100">
+    <svg id="tutorialView" class="hidden" x="-200" y="160" width="400" height="100">
       <text text-anchor="middle">
         <tspan x="50%" dy="3.2em">Drag in empty area to move the view ➡</tspan>
       </text>
     </svg>
 
     <!-- Tutorial: Tile -->
-    <svg x="440" y="160" width="400" height="100">
+    <svg id="tutorialTile" class="hidden" x="440" y="160" width="400" height="100">
       <text text-anchor="middle">
         <tspan x="50%" dy="3.2em">🖐 Grab a tile to move it to its place</tspan>
       </text>
     </svg>
-
   </g>
 
   <!-- Tile -->
@@ -59,14 +58,14 @@
     </g>
   </svg>
 
-  <svg id="tile2" class="tile" gX="3" gY="0" tX="1" tY="0">
+  <svg id="tile2" class="tileHidden" gX="3" gY="0" tX="1" tY="0">
     <g transform="scale(0.5, 0.5)">
       <image class="ignoreCursor" href="../images/tile_placeholder2.png" width="512" height="512" transform="translate(-256,-256)" />
       <polygon id="tileArea" points="256,124 480,256 480,380 256,510 32,380 32,256" transform="translate(-256,-256)" />
     </g>
   </svg>
 
-  <svg id="tile3" class="tile" gX="2" gY="2" tX="0" tY="-1" cond="2">
+  <svg id="tile3" class="tileHidden" gX="2" gY="2" tX="0" tY="-1" cond="2">
     <g transform="scale(0.5, 0.5)">
       <image class="ignoreCursor" href="../images/tile_placeholder3.png" width="512" height="512" transform="translate(-256,-256)" />
       <polygon id="tileArea" points="256,124 480,256 480,380 256,510 32,380 32,256" transform="translate(-256,-256)" />
@@ -74,6 +73,6 @@
   </svg>
 
   <!-- Debug cursor -->
-  <circle id="cursor" class="ignoreCursor" style="fill: rgb(255,0,0);" cx="1000" cy="1000" r="10px" />
-  <circle id="circle" class="ignoreCursor" style="fill: rgb(0,0,255);" cx="1000" cy="1000" r="15px" />
+  <!-- <circle id="cursor" class="ignoreCursor" style="fill: rgb(255,0,0);" cx="1000" cy="1000" r="10px" />
+  <circle id="circle" class="ignoreCursor" style="fill: rgb(0,0,255);" cx="1000" cy="1000" r="15px" /> -->
 </svg>
