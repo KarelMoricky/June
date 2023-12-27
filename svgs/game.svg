@@ -50,24 +50,137 @@
     </svg>
   </g>
 
-  <!-- Tile -->
-  <svg id="tile01" class="tile" gX="0" gY="0" tX="0" tY="0" tC="1">
+  <!-- Tiles -->
+
+  <!-- Tier 1-->
+  <svg id="tile01" class="tile" gX="0" gY="0"   tX="0" tY="0" conf="1">
     <image class="ignoreCursor" href="../data/images/tile01.png" width="256" height="256" transform="translate(-128,-128)" />
+    <text class="tileNumber">1</text>
     <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
   </svg>
 
-  <svg id="tile02" class="tileHidden" gX="3" gY="0" tX="1" tY="0">
+  <svg id="tile02" class="tileHidden" gX="3" gY="0"   tX="1" tY="0">
     <image class="ignoreCursor" href="../data/images/tile02.png" width="256" height="256" transform="translate(-128,-128)" />
+    <text class="tileNumber">2</text>
     <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
   </svg>
 
-  <svg id="tile03" class="tileHidden" gX="2" gY="2" tX="0" tY="-1" cond="2">
+  <!-- Tier 2-->
+  <svg id="tile03" class="tileHidden" gX="1" gY="3"   tX="0" tY="1"   cond="2">
     <image class="ignoreCursor" href="../data/images/tile03.png" width="256" height="256" transform="translate(-128,-128)" />
+    <text class="tileNumber">3</text>
     <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
   </svg>
 
-  <svg id="tile04" class="tileHidden" gX="2" gY="3" tX="0" tY="2" cond="2">
+  <svg id="tile04" class="tileHidden" gX="-2" gY="-2"   tX="1" tY="-1"   cond="2">
     <image class="ignoreCursor" href="../data/images/tile04.png" width="256" height="256" transform="translate(-128,-128)" />
+    <text class="tileNumber">4</text>
+    <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
+  </svg>
+
+  <svg id="tile05" class="tileHidden" gX="4" gY="0"   tX="2" tY="0"   cond="2">
+    <image class="ignoreCursor" href="../data/images/tile05.png" width="256" height="256" transform="translate(-128,-128)" />
+    <text class="tileNumber">5</text>
+    <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
+  </svg>
+
+  <!-- Tier 3-->
+  <svg id="tile06" class="tileHidden" gX="-2" gY="-2"   tX="-1" tY="1"   cond="5">
+    <image class="ignoreCursor" href="../data/images/tile06.png" width="256" height="256" transform="translate(-128,-128)" />
+    <text class="tileNumber">6</text>
+    <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
+  </svg>
+
+  <svg id="tile07" class="tileHidden" gX="0" gY="3"   tX="-1" tY="0"   cond="5">
+    <image class="ignoreCursor" href="../data/images/tile07.png" width="256" height="256" transform="translate(-128,-128)" />
+    <text class="tileNumber">7</text>
+    <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
+  </svg>
+
+  <svg id="tile08" class="tileHidden" gX="4" gY="-1"   tX="1" tY="1"   cond="5">
+    <image class="ignoreCursor" href="../data/images/tile08.png" width="256" height="256" transform="translate(-128,-128)" />
+    <text class="tileNumber">8</text>
+    <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
+  </svg>
+
+  <svg id="tile09" class="tileHidden" gX="2" gY="3"   tX="2" tY="-1"   cond="5">
+    <image class="ignoreCursor" href="../data/images/tile09.png" width="256" height="256" transform="translate(-128,-128)" />
+    <text class="tileNumber">9</text>
+    <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
+  </svg>
+
+  <!-- Tier 4-->
+  <svg id="tile10" class="tileHidden" gX="-2" gY="-2"   tX="-2" tY="1"   cond="9">
+    <image class="ignoreCursor" href="../data/images/tile10.png" width="256" height="256" transform="translate(-128,-128)" />
+    <text class="tileNumber">10</text>
+    <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
+  </svg>
+
+  <svg id="tile11" class="tileHidden" gX="4" gY="3"   tX="0" tY="2"   cond="9">
+    <image class="ignoreCursor" href="../data/images/tile11.png" width="256" height="256" transform="translate(-128,-128)" />
+    <text class="tileNumber">11</text>
+    <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
+  </svg>
+
+  <svg id="tile12" class="tileHidden" gX="0" gY="-3"   tX="0" tY="-1"   cond="9">
+    <image class="ignoreCursor" href="../data/images/tile12.png" width="256" height="256" transform="translate(-128,-128)" />
+    <text class="tileNumber">12</text>
+    <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
+  </svg>
+
+  <svg id="tile13" class="tileHidden" gX="4" gY="1"   tX="1" tY="2"   cond="9">
+    <image class="ignoreCursor" href="../data/images/tile13.png" width="256" height="256" transform="translate(-128,-128)" />
+    <text class="tileNumber">13</text>
+    <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
+  </svg>
+
+  <svg id="tile14" class="tileHidden" gX="-2" gY="3"   tX="2" tY="-2"   cond="9">
+    <image class="ignoreCursor" href="../data/images/tile14.png" width="256" height="256" transform="translate(-128,-128)" />
+    <text class="tileNumber">14</text>
+    <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
+  </svg>
+
+  <!-- Tier 5-->
+  <svg id="tile15" class="tileHidden" gX="-2" gY="-2"   tX="-2" tY="2"   cond="14">
+    <image class="ignoreCursor" href="../data/images/tile15.png" width="256" height="256" transform="translate(-128,-128)" />
+    <text class="tileNumber">15</text>
+    <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
+  </svg>
+
+  <svg id="tile16" class="tileHidden" gX="-1" gY="4"   tX="-2" tY="0"   cond="14">
+    <image class="ignoreCursor" href="../data/images/tile16.png" width="256" height="256" transform="translate(-128,-128)" />
+    <text class="tileNumber">16</text>
+    <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
+  </svg>
+
+  <svg id="tile17" class="tileHidden" gX="3" gY="4"   tX="-1" tY="2"   cond="14">
+    <image class="ignoreCursor" href="../data/images/tile17.png" width="256" height="256" transform="translate(-128,-128)" />
+    <text class="tileNumber">17</text>
+    <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
+  </svg>
+
+  <svg id="tile18" class="tileHidden" gX="4" gY="-2"   tX="0" tY="-2"   cond="14">
+    <image class="ignoreCursor" href="../data/images/tile18.png" width="256" height="256" transform="translate(-128,-128)" />
+    <text class="tileNumber">18</text>
+    <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
+  </svg>
+
+  <svg id="tile19" class="tileHidden" gX="4" gY="2"   tX="1" tY="-2"   cond="14">
+    <image class="ignoreCursor" href="../data/images/tile19.png" width="256" height="256" transform="translate(-128,-128)" />
+    <text class="tileNumber">19</text>
+    <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
+  </svg>
+
+  <svg id="tile20" class="tileHidden" gX="-4" gY="1"   tX="2" tY="1"   cond="14">
+    <image class="ignoreCursor" href="../data/images/tile20.png" width="256" height="256" transform="translate(-128,-128)" />
+    <text class="tileNumber">20</text>
+    <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
+  </svg>
+
+  <!-- Tier 6-->
+  <svg id="tile21" class="tileHidden" gX="3" gY="3"   tX="2" tY="2"   cond="20">
+    <image class="ignoreCursor" href="../data/images/tile21.png" width="256" height="256" transform="translate(-128,-128)" />
+    <text class="tileNumber">21</text>
     <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
   </svg>
 

@@ -5,7 +5,7 @@ const ID_GAME = "game";
 const ID_CURSOR = "cursor";
 const ID_GRID = "grid";
 const ID_CIRCLE = "circle";
-const IDS_TILES = ["tile01", "tile02", "tile03", "tile04"]
+const IDS_TILES = ["tile01", "tile02", "tile03", "tile04", "tile05", "tile06", "tile07", "tile08", "tile09", "tile10", "tile11", "tile12", "tile13", "tile14", "tile15", "tile16", "tile17", "tile18", "tile19", "tile20", "tile21"]
 const ID_TILE_AREA = "tileArea";
 const ID_INTRO = "intro";
 const ID_TUTORIAL_VIEW = "tutorialView";
@@ -25,7 +25,7 @@ const VAR_GRID_Y = "gY";
 const VAR_GRID_Z = "gZ";
 const VAR_TARGET_X = "tX";
 const VAR_TARGET_Y = "tY";
-const VAR_TARGET_CONFIRMED = "tC";
+const VAR_TARGET_CONFIRMED = "conf";
 const VAR_CONDITION = "cond";
 
 const CLASS_TILE_SHOWN = "tile";

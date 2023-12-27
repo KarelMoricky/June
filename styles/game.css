@@ -47,6 +47,16 @@
 	cursor: not-allowed;
 }
 
+.tileNumber
+{
+	fill: red;
+	font-weight: 800;
+	font-size: 80px;
+	stroke: white;
+    stroke-width: 2px;
+	pointer-events: none;
+}
+
 .text
 {
 	font-family: "Roboto Slab", sans-serif;
