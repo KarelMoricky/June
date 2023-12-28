@@ -6,7 +6,7 @@ body, html
 body
 {
 	color: black;
-	background-color: rgb(239, 235, 224);
+	background-color: rgb(249,229,192);
 	overflow: hidden; /* Hide scrollbars */
 	overscroll-behavior-y: contain !important; /* https://stackoverflow.com/questions/24081699/why-onbeforeunload-event-is-not-firing */
 }
@@ -94,19 +94,23 @@ body
 	font-size: 150%;
 }
 
-#log
+#log, #pos
 {
 	color: white;
 	background-color: black;
 	position: absolute;
 	font-family: Consolas;
 }
+#pos
+{
+	bottom: 40px;
+}
 
 #disclaimer
 {
 	font-family: sans-serif;
 	font-weight: bold;
-	font-size: 150%;
+	font-size: 120%;
 	color: red;
 	text-align: center;
 	pointer-events: none;

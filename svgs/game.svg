@@ -3,7 +3,7 @@
   class="gameStateDefault"
   x="0"
   y="0"
-  viewBox="-960 -540 1920 1080"
+  viewBox="-960 -950 1920 1080" 
   preserveAspectRatio="xMidYMid slice"
   xmlns="http://www.w3.org/2000/svg"
   xmlns:xlink="http://www.w3.org/1999/xlink" >
@@ -21,29 +21,100 @@
     <circle id="gridDebug" class="ignoreCursor" style="fill: rgb(0,255,255);" cx="1000" cy="1000" r="1" />
   </g> -->
 
-  <!-- Text -->
-  <g class="text">
-
+  <!-- Texts -->
+  <g class="textTitle">
     <!-- Intro text -->
-    <svg id="intro" x="-400" y="-380" width="800" height="400">
+    <svg id="intro" x="-400" y="-700" width="800" height="400">
       <text text-anchor="middle">
         <tspan x="50%" dy="1.5em" style="font-size: 200%; font-weight: bold;">Vera and Karel's</tspan>
-        <tspan x="50%" dy="1.2em" style="font-size: 300%; font-weight: 700;">[BOY/GIRL]</tspan>
+        <tspan x="50%" dy="1.2em" style="font-size: 400%; font-weight: 700;">[BOY/GIRL]</tspan>
         <tspan x="50%" dy="1.7em" style="font-size: 150%;">was born on June ??th 2024</tspan>
         <tspan x="50%" dy="3.2em">To find out their name,</tspan>
         <tspan x="50%" dy="1.5em">please play a little game we designed.</tspan>
       </text>
     </svg>
+  </g>
 
+  <g id="notes" class="textNote">
+
+    <!-- Tier 0 -->
+    <!-- <svg id="note0" x="180" y="-80" tileTier="0">
+      <text>
+        <tspan x="0" dy="1.5em">Hello, Little One</tspan>
+        <tspan x="0" dy="1.5em">There is a great number of things we want to tell you,</tspan>
+        <tspan x="0" dy="1.5em">could tell you, and yet we are speechless.</tspan>
+        <tspan x="0" dy="1.5em">Where and when do we start?</tspan>
+        <tspan x="0" dy="1.5em">Let us begin with...</tspan>
+      </text>
+    </svg> -->
+
+    <!-- Tier 1 -->
+    <svg id="note1" x="80" y="-320" width="100%" height="100%" tileTier="1">
+      <text>
+        <tspan x="0" dy="1.5em">Tier 1</tspan>
+        <tspan x="0" dy="1.5em">Schnobble</tspan>
+        <tspan x="0" dy="1.5em">Schnobble</tspan>
+        <tspan x="0" dy="1.5em">Schnobble</tspan>
+        <tspan x="0" dy="1.5em">Schnobble</tspan>
+      </text>
+    </svg>
+
+    <!-- Tier 2 -->
+    <svg id="note2" x="-500" y="-250" width="100%" height="100%" tileTier="2">
+      <text>
+        <tspan x="0" dy="1.5em">Tier 2</tspan>
+        <tspan x="0" dy="1.5em">Schnobble</tspan>
+        <tspan x="0" dy="1.5em">Schnobble</tspan>
+        <tspan x="0" dy="1.5em">Schnobble</tspan>
+        <tspan x="0" dy="1.5em">Schnobble</tspan>
+      </text>
+    </svg>
+
+    <!-- Tier 3 -->
+    <svg id="note3" x="-500" y="350" width="100%" height="100%" tileTier="3">
+      <text>
+        <tspan x="0" dy="1.5em">Tier 3</tspan>
+        <tspan x="0" dy="1.5em">Schnobble</tspan>
+        <tspan x="0" dy="1.5em">Schnobble</tspan>
+        <tspan x="0" dy="1.5em">Schnobble</tspan>
+        <tspan x="0" dy="1.5em">Schnobble</tspan>
+      </text>
+    </svg>
+
+    <!-- Tier 4 -->
+    <svg id="note4" x="250" y="-300" width="100%" height="100%" tileTier="4">
+      <text>
+        <tspan x="0" dy="1.5em">Tier 4</tspan>
+        <tspan x="0" dy="1.5em">Schnobble</tspan>
+        <tspan x="0" dy="1.5em">Schnobble</tspan>
+        <tspan x="0" dy="1.5em">Schnobble</tspan>
+        <tspan x="0" dy="1.5em">Schnobble</tspan>
+      </text>
+    </svg>
+
+    <!-- Tier 5 -->
+    <svg id="note5" x="200" y="350" width="100%" height="100%" tileTier="5">
+      <text>
+        <tspan x="0" dy="1.5em">Tier 5</tspan>
+        <tspan x="0" dy="1.5em">Schnobble</tspan>
+        <tspan x="0" dy="1.5em">Schnobble</tspan>
+        <tspan x="0" dy="1.5em">Schnobble</tspan>
+        <tspan x="0" dy="1.5em">Schnobble</tspan>
+      </text>
+    </svg>
+
+  </g>
+
+  <g class="textTutorial">
     <!-- Tutorial: Camera -->
-    <svg id="tutorialView" class="hidden" x="-200" y="160" width="400" height="100">
+    <svg id="tutorialView" class="hidden" x="-200" y="-300" width="400" height="100">
       <text text-anchor="middle">
-        <tspan x="50%" dy="3.2em">Drag in empty area to move the view ➡</tspan>
+        <tspan x="50%" dy="3.2em">Drag in empty area to move the view 👇</tspan>
       </text>
     </svg>
 
     <!-- Tutorial: Tile -->
-    <svg id="tutorialTile" class="hidden" x="440" y="160" width="400" height="100">
+    <svg id="tutorialTile" class="hidden" x="140" y="100" width="400" height="100">
       <text text-anchor="middle">
         <tspan x="50%" dy="3.2em">🖐 Grab a tile to move it to its place</tspan>
       </text>
@@ -52,133 +123,133 @@
 
   <!-- Tiles -->
 
-  <!-- Tier 1-->
-  <svg id="tile01" class="tile" gX="0" gY="0"   tX="0" tY="0" conf="1">
+  <!-- Tier 0 -->
+  <svg id="tile01" tileId="1" class="tile">
     <image class="ignoreCursor" href="../data/images/tile01.png" width="256" height="256" transform="translate(-128,-128)" />
     <text class="tileNumber">1</text>
     <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
   </svg>
 
-  <svg id="tile02" class="tileHidden" gX="3" gY="0"   tX="1" tY="0">
+  <svg id="tile02" tileId="2" class="tileHidden">
     <image class="ignoreCursor" href="../data/images/tile02.png" width="256" height="256" transform="translate(-128,-128)" />
     <text class="tileNumber">2</text>
     <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
   </svg>
 
-  <!-- Tier 2-->
-  <svg id="tile03" class="tileHidden" gX="1" gY="3"   tX="0" tY="1"   cond="2">
+  <!-- Tier 1 -->
+  <svg id="tile03" tileId="3" class="tileHidden" tileTier="1">
     <image class="ignoreCursor" href="../data/images/tile03.png" width="256" height="256" transform="translate(-128,-128)" />
     <text class="tileNumber">3</text>
     <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
   </svg>
 
-  <svg id="tile04" class="tileHidden" gX="-2" gY="-2"   tX="1" tY="-1"   cond="2">
+  <svg id="tile04" tileId="4" class="tileHidden" tileTier="1">
     <image class="ignoreCursor" href="../data/images/tile04.png" width="256" height="256" transform="translate(-128,-128)" />
     <text class="tileNumber">4</text>
     <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
   </svg>
 
-  <svg id="tile05" class="tileHidden" gX="4" gY="0"   tX="2" tY="0"   cond="2">
+  <svg id="tile05" tileId="5" class="tileHidden" tileTier="1">
     <image class="ignoreCursor" href="../data/images/tile05.png" width="256" height="256" transform="translate(-128,-128)" />
     <text class="tileNumber">5</text>
     <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
   </svg>
 
-  <!-- Tier 3-->
-  <svg id="tile06" class="tileHidden" gX="-2" gY="-2"   tX="-1" tY="1"   cond="5">
+  <!-- Tier 2 -->
+  <svg id="tile06" tileId="6" class="tileHidden" tileTier="2">
     <image class="ignoreCursor" href="../data/images/tile06.png" width="256" height="256" transform="translate(-128,-128)" />
     <text class="tileNumber">6</text>
     <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
   </svg>
 
-  <svg id="tile07" class="tileHidden" gX="0" gY="3"   tX="-1" tY="0"   cond="5">
+  <svg id="tile07" tileId="7" class="tileHidden" tileTier="2">
     <image class="ignoreCursor" href="../data/images/tile07.png" width="256" height="256" transform="translate(-128,-128)" />
     <text class="tileNumber">7</text>
     <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
   </svg>
 
-  <svg id="tile08" class="tileHidden" gX="4" gY="-1"   tX="1" tY="1"   cond="5">
+  <svg id="tile08" tileId="8" class="tileHidden" tileTier="2">
     <image class="ignoreCursor" href="../data/images/tile08.png" width="256" height="256" transform="translate(-128,-128)" />
     <text class="tileNumber">8</text>
     <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
   </svg>
 
-  <svg id="tile09" class="tileHidden" gX="2" gY="3"   tX="2" tY="-1"   cond="5">
+  <svg id="tile09" tileId="9" class="tileHidden" tileTier="2">
     <image class="ignoreCursor" href="../data/images/tile09.png" width="256" height="256" transform="translate(-128,-128)" />
     <text class="tileNumber">9</text>
     <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
   </svg>
 
-  <!-- Tier 4-->
-  <svg id="tile10" class="tileHidden" gX="-2" gY="-2"   tX="-2" tY="1"   cond="9">
+  <!-- Tier 3 -->
+  <svg id="tile10" tileId="10" class="tileHidden" tileTier="3">
     <image class="ignoreCursor" href="../data/images/tile10.png" width="256" height="256" transform="translate(-128,-128)" />
     <text class="tileNumber">10</text>
     <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
   </svg>
 
-  <svg id="tile11" class="tileHidden" gX="4" gY="3"   tX="0" tY="2"   cond="9">
+  <svg id="tile11" tileId="11" class="tileHidden" tileTier="3">
     <image class="ignoreCursor" href="../data/images/tile11.png" width="256" height="256" transform="translate(-128,-128)" />
     <text class="tileNumber">11</text>
     <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
   </svg>
 
-  <svg id="tile12" class="tileHidden" gX="0" gY="-3"   tX="0" tY="-1"   cond="9">
+  <svg id="tile12" tileId="12" class="tileHidden" tileTier="3">
     <image class="ignoreCursor" href="../data/images/tile12.png" width="256" height="256" transform="translate(-128,-128)" />
     <text class="tileNumber">12</text>
     <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
   </svg>
 
-  <svg id="tile13" class="tileHidden" gX="4" gY="1"   tX="1" tY="2"   cond="9">
+  <svg id="tile13" tileId="13" class="tileHidden" tileTier="3">
     <image class="ignoreCursor" href="../data/images/tile13.png" width="256" height="256" transform="translate(-128,-128)" />
     <text class="tileNumber">13</text>
     <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
   </svg>
 
-  <svg id="tile14" class="tileHidden" gX="-2" gY="3"   tX="2" tY="-2"   cond="9">
+  <svg id="tile14" tileId="14" class="tileHidden" tileTier="3">
     <image class="ignoreCursor" href="../data/images/tile14.png" width="256" height="256" transform="translate(-128,-128)" />
     <text class="tileNumber">14</text>
     <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
   </svg>
 
-  <!-- Tier 5-->
-  <svg id="tile15" class="tileHidden" gX="-2" gY="-2"   tX="-2" tY="2"   cond="14">
+  <!-- Tier 4 -->
+  <svg id="tile15" tileId="15" class="tileHidden" tileTier="4">
     <image class="ignoreCursor" href="../data/images/tile15.png" width="256" height="256" transform="translate(-128,-128)" />
     <text class="tileNumber">15</text>
     <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
   </svg>
 
-  <svg id="tile16" class="tileHidden" gX="-1" gY="4"   tX="-2" tY="0"   cond="14">
+  <svg id="tile16" tileId="16" class="tileHidden" tileTier="4">
     <image class="ignoreCursor" href="../data/images/tile16.png" width="256" height="256" transform="translate(-128,-128)" />
     <text class="tileNumber">16</text>
     <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
   </svg>
 
-  <svg id="tile17" class="tileHidden" gX="3" gY="4"   tX="-1" tY="2"   cond="14">
+  <svg id="tile17" tileId="17" class="tileHidden" tileTier="4">
     <image class="ignoreCursor" href="../data/images/tile17.png" width="256" height="256" transform="translate(-128,-128)" />
     <text class="tileNumber">17</text>
     <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
   </svg>
 
-  <svg id="tile18" class="tileHidden" gX="4" gY="-2"   tX="0" tY="-2"   cond="14">
+  <svg id="tile18" tileId="18" class="tileHidden" tileTier="4">
     <image class="ignoreCursor" href="../data/images/tile18.png" width="256" height="256" transform="translate(-128,-128)" />
     <text class="tileNumber">18</text>
     <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
   </svg>
 
-  <svg id="tile19" class="tileHidden" gX="4" gY="2"   tX="1" tY="-2"   cond="14">
+  <svg id="tile19" tileId="19" class="tileHidden" tileTier="4">
     <image class="ignoreCursor" href="../data/images/tile19.png" width="256" height="256" transform="translate(-128,-128)" />
     <text class="tileNumber">19</text>
     <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
   </svg>
 
-  <svg id="tile20" class="tileHidden" gX="-4" gY="1"   tX="2" tY="1"   cond="14">
+  <svg id="tile20" tileId="20" class="tileHidden" tileTier="4">
     <image class="ignoreCursor" href="../data/images/tile20.png" width="256" height="256" transform="translate(-128,-128)" />
     <text class="tileNumber">20</text>
     <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />
   </svg>
 
-  <!-- Tier 6-->
-  <svg id="tile21" class="tileHidden" gX="3" gY="3"   tX="2" tY="2"   cond="20">
+  <!-- Tier 5 -->
+  <svg id="tile21" tileId="21" class="tileHidden" tileTier="5">
     <image class="ignoreCursor" href="../data/images/tile21.png" width="256" height="256" transform="translate(-128,-128)" />
     <text class="tileNumber">21</text>
     <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" transform="translate(-128,-128)" />

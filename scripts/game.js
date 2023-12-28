@@ -1,17 +1,19 @@
 //#region Variables
+const REVEAL_BY_TIERS = true;
+const FORCED_START = [];//[-2, -2];
+
 const ID_OBJECT = "gameObject";
 const ID_UI_OBJECT = "uiObject";
 const ID_GAME = "game";
 const ID_CURSOR = "cursor";
 const ID_GRID = "grid";
 const ID_CIRCLE = "circle";
-const IDS_TILES = ["tile01", "tile02", "tile03", "tile04", "tile05", "tile06", "tile07", "tile08", "tile09", "tile10", "tile11", "tile12", "tile13", "tile14", "tile15", "tile16", "tile17", "tile18", "tile19", "tile20", "tile21"]
 const ID_TILE_AREA = "tileArea";
 const ID_INTRO = "intro";
 const ID_TUTORIAL_VIEW = "tutorialView";
 const ID_TUTORIAL_TILE = "tutorialTile";
 const ID_LOADING = "loading";
-const ID_LOADING_BACKGROUND = "loadingBackground";
+const ID_NOTES = "notes";
 
 const GRID_SIZE = 12;
 const ISO_SIZE = 140;
@@ -25,8 +27,8 @@ const VAR_GRID_Y = "gY";
 const VAR_GRID_Z = "gZ";
 const VAR_TARGET_X = "tX";
 const VAR_TARGET_Y = "tY";
-const VAR_TARGET_CONFIRMED = "conf";
-const VAR_CONDITION = "cond";
+const VAR_TARGET_CONFIRMED = "tileConfirmed";
+const VAR_TIER = "tileTier";
 
 const CLASS_TILE_SHOWN = "tile";
 const CLASS_TILE_HIDDEN = "tileHidden";
@@ -38,14 +40,45 @@ const TILE_STATE_EDITABLE = "tileStateEditable";
 const TILE_STATE_EDITING = "tileStateEditing";
 const TILE_STATE_CONFIRMED = "tileStateConfirmed";
 
+//--- Imported from table
+const TARGET_POSITIONS = new Map([
+    ["tile15", [-2,2]],	["tile10", [-2,1]],	["tile16", [-2,0]],		
+    ["tile17", [-1,2]],	["tile06", [-1,1]],	["tile11", [-1,0]],		
+    ["tile07", [0,2]],	["tile03", [0,1]],	["tile01", [0,0]],	["tile12", [0,-1]],	["tile18", [0,-2]],
+    ["tile13", [1,2]],	["tile21", [1,1]],	["tile02", [1,0]],	["tile04", [1,-1]],	["tile19", [1,-2]],
+    ["tile14", [2,2]],	["tile08", [2,1]],	["tile05", [2,0]],	["tile09", [2,-1]],	["tile20", [2,-2]],
+]);
+const ORIGIN_POSITIONS = new Map([								
+    ["tile20", [-4,1]],					
+    ["tile15", [-3,-1]],			
+["tile14", [-2,3]],				["tile04", [-2,-1]],	["tile10", [-2,-2]],	["tile17", [-2,-3]],	
+        ["tile06", [-1,-2]],		
+["tile16", [0,4]],				["tile01", [0,0]],			["tile14", [0,-3]],	
+["tile12", [1,4]],	["tile03", [1,3]],							
+["tile07", [2,4]],			["tile02", [2,1]],					
+["tile21", [3,3]],		["tile05", [3,1]],					
+["tile11", [4,4]],	["tile09", [4,3]],	["tile19", [4,2]],	["tile08", [4,1]],	["tile13", [4,0]],	["tile18", [4,-1]],			
+]);
+const TIERS = [
+    2,
+    5,
+    9,
+    14,
+    20,
+    21,
+]
+//--- End of import
+
 var m_SvgDoc;
 var m_UiSvgDoc;
 var m_Svg;
 var m_Circle;
 var m_Cursor;
 var m_Tiles = [];
+var m_TilesZSorted = [];
 var m_Grid;
 var m_GridDebug;
+var m_Notes;
 
 var m_FrameTime = 0;
 var m_GameTime = 0;
@@ -56,6 +89,7 @@ var m_ClickTilePos = [];
 var m_GameViewBox = [];
 var m_SelectedTile = null;
 var m_ConfirmedCount = 0;
+var m_Tier = 0;
 //#endregion
 
 //#region Init
@@ -74,22 +108,46 @@ function OnLoad()
     m_Game = m_SvgDoc.getElementById(ID_GAME);
     m_Circle = m_SvgDoc.getElementById(ID_CIRCLE);
     m_Cursor = m_SvgDoc.getElementById(ID_CURSOR);
+    m_Notes = m_SvgDoc.getElementById(ID_NOTES);
 
     //--- Get game dimensions
     m_GameViewBox = GetViewBox(m_Game);
 
-    for (let i = 0; i < IDS_TILES.length; i++)
+    let i = 0;
+    for (let tileID of TARGET_POSITIONS.keys())
     {
-        let tile = m_SvgDoc.getElementById(IDS_TILES[i])
+        let tile = m_SvgDoc.getElementById(tileID)
 
-        let gridX = parseInt(tile.getAttribute(VAR_GRID_X));
-        let gridY = parseInt(tile.getAttribute(VAR_GRID_Y));
+        //--- Get target position
+        let targetPosition = TARGET_POSITIONS.get(tileID);
+        tile.setAttribute(VAR_TARGET_X, targetPosition[0]);
+        tile.setAttribute(VAR_TARGET_Y, targetPosition[1]);
+
+        //--- Get origin position
+        let originPosition = ORIGIN_POSITIONS.get(tileID);
+        if (!originPosition)
+        {
+            alert("Origin position for \"" + tileID + "\" not defined in ORIGIN_POSITIONS!");
+            continue;
+        }
+        let gridX = originPosition[0];
+        let gridY = originPosition[1];
+
+        if (FORCED_START.length == 2 && !tile.getAttribute(VAR_TARGET_CONFIRMED))
+        {
+            gridX = FORCED_START[0];
+            gridY = FORCED_START[1];
+        }
+
         SetTilePos(tile, gridX, gridY);
         EvaluateTile(tile, false);
 
         m_Tiles[i] = tile; //--- Must be called after SetTilePos(), otherwise the tile will think it's already occupied
+        m_TilesZSorted[i] = tile;
+        i++;
     }
-    RevealTiles();
+    m_Tiles.sort((a, b) => parseInt(a.getAttribute("tileId")) - parseInt(b.getAttribute("tileId")));
+    UpdateTier();
 
     //uiSvg.addEventListener("click", OnClick);
     //m_Svg.addEventListener("mousemove", OnMouseMove);
@@ -97,7 +155,10 @@ function OnLoad()
     m_Svg.addEventListener("pointerup", OnPointerUp);
 
     if (m_IsDev)
+    {
+        m_Svg.addEventListener("mousemove", LogPos);
         m_Svg.addEventListener("keydown", OnKeyDown);
+    }
 
     window.requestAnimationFrame(OnFrame);
 
@@ -128,6 +189,9 @@ function OnLoad()
 window.addEventListener("beforeunload", OnBeforeUnload);
 function OnBeforeUnload(ev)
 {
+    if (m_IsDev)
+        return;
+
     ev.preventDefault();
     ev.returnValue = 'Game progress will not be saved. Are you sure you want to leave?';
 }
@@ -236,7 +300,7 @@ function OnKeyDown(ev)
     {
         //--- [1] Reveal all tiles
         m_ConfirmedCount = 1000;
-        RevealTiles();
+        UpdateTier();
     }
     else if (ev.keyCode == 50)
     {
@@ -256,6 +320,7 @@ function OnKeyDown(ev)
                 SetTilePos(shownTiles[i], shownTiles[i].getAttribute(VAR_TARGET_X), shownTiles[i].getAttribute(VAR_TARGET_Y));
                 EvaluateTile(shownTiles[i], false);
             }
+            UpdateTier();
         }
     }
 }
@@ -311,36 +376,70 @@ function SetTileTransform(tile, gridTransform)
 
 function UpdateTiles()
 {
-    m_Tiles.sort((a, b) => parseInt(a.getAttribute(VAR_GRID_Z)) - parseInt(b.getAttribute(VAR_GRID_Z)));
+    m_TilesZSorted.sort((a, b) => parseInt(a.getAttribute(VAR_GRID_Z)) - parseInt(b.getAttribute(VAR_GRID_Z)));
 
-    for (let i = 0; i < m_Tiles.length; i++)
+    for (let i = 0; i < m_TilesZSorted.length; i++)
     {
-        m_Svg.appendChild(m_Tiles[i]);
+        m_Svg.appendChild(m_TilesZSorted[i]);
     }
 }
 
-function RevealTiles()
+function UpdateTier()
 {
+    m_Tier = 0;
+    for (let i = 0; i < TIERS.length; i++)
+    {
+        if (m_ConfirmedCount < TIERS[i])
+            break;
+
+        m_Tier = i + 1;
+    }
+
     for (let i = 0; i < m_Tiles.length; i++)
     {
-        if (m_Tiles[i].getAttribute(VAR_CONDITION) <= m_ConfirmedCount)
-            m_Tiles[i].setAttribute("class", CLASS_TILE_SHOWN);
+        if (REVEAL_BY_TIERS)
+        {
+            //--- Reveal multiple tiles according to their tier
+            if (m_Tiles[i].getAttribute(VAR_TIER) <= m_Tier)
+                m_Tiles[i].setAttribute("class", CLASS_TILE_SHOWN);
+            else
+                m_Tiles[i].setAttribute("class", CLASS_TILE_HIDDEN);
+        }
         else
-            m_Tiles[i].setAttribute("class", CLASS_TILE_HIDDEN);
+        {
+            //--- Reveal the next tile in line, one by one
+            if (m_Tiles[i].getAttribute("class") == CLASS_TILE_HIDDEN)
+            {
+                m_Tiles[i].setAttribute("class", CLASS_TILE_SHOWN);
+                break;
+            }
+        }
+    }
+
+    var notes = m_Notes.children;
+    for (var i = 0; i < notes.length; i++)
+    {
+        if (notes[i].getAttribute(VAR_TIER) == m_Tier)
+            notes[i].setAttribute("class", "");
+        else
+            notes[i].setAttribute("class", "hidden");
     }
 }
 
 function EvaluateTile(tile, isManual)
 {
-    if (tile.getAttribute(VAR_GRID_X) == tile.getAttribute(VAR_TARGET_X) && tile.getAttribute(VAR_GRID_Y) == tile.getAttribute(VAR_TARGET_Y))
+    let isConfirmed = tile.getAttribute(VAR_TARGET_CONFIRMED) != null;
+    if (!isConfirmed && tile.getAttribute(VAR_GRID_X) == tile.getAttribute(VAR_TARGET_X) && tile.getAttribute(VAR_GRID_Y) == tile.getAttribute(VAR_TARGET_Y))
     {
         tile.setAttribute(VAR_TARGET_CONFIRMED, true);
         SetTileState(tile, TILE_STATE_CONFIRMED);
         m_ConfirmedCount++;
-        RevealTiles();
 
         if (isManual)
+        {
+            UpdateTier();
             PlayAudio("audioTest1");
+        }
 
         if (m_ConfirmedCount == 2)
         {
