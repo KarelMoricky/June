@@ -125,6 +125,12 @@ function OnLoad()
     // }
 }
 
+window.addEventListener("beforeunload", OnBeforeUnload);
+function OnBeforeUnload(ev)
+{
+    ev.preventDefault();
+    ev.returnValue = 'Game progress will not be saved. Are you sure you want to leave?';
+}
 //#endregion
 
 //#region Events
