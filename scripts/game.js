@@ -1,6 +1,7 @@
 //#region Variables
 const REVEAL_BY_TIERS = true;
 const FORCED_START = [];//[-2, -2];
+const FOREVER_LOAD = false;
 
 const ID_OBJECT = "gameObject";
 const ID_UI_OBJECT = "uiObject";
@@ -162,16 +163,19 @@ function OnLoad()
 
     window.requestAnimationFrame(OnFrame);
 
-    //--- Show tutorial
-    let tutorialView = m_SvgDoc.getElementById(ID_TUTORIAL_VIEW);
-    tutorialView.setAttribute("class", "");
+    if (!m_IsDev || !FOREVER_LOAD)
+    {
+        //--- Show tutorial
+        let tutorialView = m_SvgDoc.getElementById(ID_TUTORIAL_VIEW);
+        tutorialView.setAttribute("class", "");
 
-    let tutorialTile = m_SvgDoc.getElementById(ID_TUTORIAL_TILE);
-    tutorialTile.setAttribute("class", "");
+        let tutorialTile = m_SvgDoc.getElementById(ID_TUTORIAL_TILE);
+        tutorialTile.setAttribute("class", "");
 
-    //--- Hide loading
-    let loading = document.getElementById(ID_LOADING);
-    loading.setAttribute("class", "hidden");
+        //--- Hide loading
+        let loading = document.getElementById(ID_LOADING);
+        loading.setAttribute("class", "hidden");
+    }
 
     //--- Init grid
     // m_Grid = m_SvgDoc.getElementById(ID_GRID);

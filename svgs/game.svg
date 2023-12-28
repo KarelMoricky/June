@@ -49,7 +49,7 @@
     </svg> -->
 
     <!-- Tier 1 -->
-    <svg id="note1" x="80" y="-320" width="100%" height="100%" tileTier="1">
+    <svg id="note1" class="hidden" x="80" y="-320" width="100%" height="100%" tileTier="1">
       <text>
         <tspan x="0" dy="1.5em">Tier 1</tspan>
         <tspan x="0" dy="1.5em">Schnobble</tspan>
@@ -60,7 +60,7 @@
     </svg>
 
     <!-- Tier 2 -->
-    <svg id="note2" x="-500" y="-250" width="100%" height="100%" tileTier="2">
+    <svg id="note2" class="hidden" x="-500" y="-250" width="100%" height="100%" tileTier="2">
       <text>
         <tspan x="0" dy="1.5em">Tier 2</tspan>
         <tspan x="0" dy="1.5em">Schnobble</tspan>
@@ -71,7 +71,7 @@
     </svg>
 
     <!-- Tier 3 -->
-    <svg id="note3" x="-500" y="350" width="100%" height="100%" tileTier="3">
+    <svg id="note3" class="hidden" x="-500" y="350" width="100%" height="100%" tileTier="3">
       <text>
         <tspan x="0" dy="1.5em">Tier 3</tspan>
         <tspan x="0" dy="1.5em">Schnobble</tspan>
@@ -82,7 +82,7 @@
     </svg>
 
     <!-- Tier 4 -->
-    <svg id="note4" x="250" y="-300" width="100%" height="100%" tileTier="4">
+    <svg id="note4" class="hidden" x="250" y="-300" width="100%" height="100%" tileTier="4">
       <text>
         <tspan x="0" dy="1.5em">Tier 4</tspan>
         <tspan x="0" dy="1.5em">Schnobble</tspan>
@@ -93,7 +93,7 @@
     </svg>
 
     <!-- Tier 5 -->
-    <svg id="note5" x="200" y="350" width="100%" height="100%" tileTier="5">
+    <svg id="note5" class="hidden" x="200" y="350" width="100%" height="100%" tileTier="5">
       <text>
         <tspan x="0" dy="1.5em">Tier 5</tspan>
         <tspan x="0" dy="1.5em">Schnobble</tspan>
