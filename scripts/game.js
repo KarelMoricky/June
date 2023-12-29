@@ -20,32 +20,54 @@ var Game = new function()
 
     var m_Click = false;
     var m_ClickPos = [];
-    var m_GameViewBox = [];
+    var m_DefaultViewBox = [];
     //#endregion
 
-    //#region Init
+    //#region Public functions
 
     this.GetGame = function()
     {
         return m_Game;
     }
+
     this.GetSVG = function()
     {
         return m_Svg;
     }
+
     this.GetSVGDoc = function()
     {
         return m_SvgDoc;
     }
+
     this.GetClickPos = function()
     {
         return m_ClickPos;
     }
-    this.GetViewBox = function()
+
+    this.GetDefaultViewBox = function()
     {
-        return m_GameViewBox;
+        return m_DefaultViewBox;
     }
 
+    this.GetCurrentViewBox = function()
+    {
+        let viewBoxStr = m_Game.getAttribute("viewBox").split(" ");
+        let viewBox = [];
+        for (let i = 0; i < viewBoxStr.length; i++)
+        {
+            viewBox[i] = parseInt(viewBoxStr[i]);
+        }
+        return viewBox;
+    }
+    
+    this.SetCurrentViewBox = function(viewBox)
+    {
+        m_Game.setAttribute("viewBox", viewBox[0] + " " + viewBox[1] + " " + viewBox[2] + " " + viewBox[3]);
+    }
+    //#endregion
+
+    //#region Init
     //--- Show loading screen (hidden by default so it's not shown if JavaScript is disabled)
     let loadingBox = document.getElementById(ID_LOADING);
     loading.setAttribute("class", "fullScreen");
@@ -85,7 +107,7 @@ var Game = new function()
         }
 
         //--- Get game dimensions
-        m_GameViewBox = GetViewBox(m_Game);
+        m_DefaultViewBox = Game.GetCurrentViewBox();
 
         window.dispatchEvent(new Event(EVENT_GAME_INIT));
     }

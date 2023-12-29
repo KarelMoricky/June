@@ -218,7 +218,7 @@ var Tile = new function()
 
     function DragTile(ev, snap)
     {
-        let viewBox = GetViewBox(Game.GetGame());
+        let viewBox = Game.GetCurrentViewBox();
         let coef = Math.min((viewBox[2] / window.innerWidth), (viewBox[3] / window.innerHeight)); //--- I have no idea what I'm doing
         let posX = m_ClickTilePos[0] - (Game.GetClickPos()[0] - ev.clientX) * coef;
         let posY = m_ClickTilePos[1] - (Game.GetClickPos()[1] - ev.clientY) * coef;
@@ -256,6 +256,9 @@ var Tile = new function()
                 break;
             }
         }
+
+        //if (tile.getAttribute(VAR_GRID_X) == gridTransform.x && tile.getAttribute(VAR_GRID_Y) == gridTransform.y)
+        //    return;
     
         //--- Save grid position
         tile.setAttribute(VAR_GRID_X, gridTransform.x);
@@ -339,7 +342,7 @@ var Tile = new function()
             if (isManual)
             {
                 UpdateTier();
-                PlayAudio("audioTest1");
+                PlayAudio("tileMove");
             }
             
             //--- #HACK
