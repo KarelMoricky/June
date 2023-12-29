@@ -342,9 +342,14 @@ function DragTile(ev, snap)
     {
         gridTransform.x = Math.round(gridTransform.x);
         gridTransform.y = Math.round(gridTransform.y);
+        SetTileTransform(m_SelectedTile, gridTransform);
     }
-
-    SetTileTransform(m_SelectedTile, gridTransform);
+    else
+    {
+        m_SelectedTile.setAttribute("x", posX);
+        m_SelectedTile.setAttribute("y", posY);
+        UpdateTiles();
+    }
 }
 
 function SetTilePos(tile, gridX, gridY)
@@ -358,7 +363,12 @@ function SetTileTransform(tile, gridTransform)
     for (let i = 0; i < m_Tiles.length; i++)
     {
         if (m_Tiles[i].getAttribute("class") == CLASS_TILE_SHOWN && m_Tiles[i].getAttribute(VAR_GRID_X) == gridTransform.x && m_Tiles[i].getAttribute(VAR_GRID_Y) == gridTransform.y)
-            return;
+        {
+            //--- Return back to original position in case of collision with existing tile
+            gridTransform.x = tile.getAttribute(VAR_GRID_X);
+            gridTransform.y = tile.getAttribute(VAR_GRID_Y);
+            break;
+        }
     }
 
     //--- Save grid position
