@@ -10,12 +10,6 @@
 		<link rel="stylesheet" type="text/css" href="styles/main.css" />
 	</head>
 	<body>
-		<script src="scripts/main.js"></script>
-		<script src="scripts/debug.js"></script>
-
-		<script src="scripts/game.js"></script>
-		<object id="gameObject" class="fullScreen" type="image/svg+xml" data="svgs/game.svg"></object>
-		
 		<!-- <script src="scripts/pause.js"></script>
 		<object id="pauseObject" class="fullScreen" type="image/svg+xml" data="svgs/pause.svg"></object> -->
 
@@ -33,19 +27,36 @@
 				</div>
 			</div>
 		</div> -->
+
+		<!-- Game -->
+		<object id="gameObject" class="fullScreen" type="image/svg+xml" data="svgs/game.svg"></object>
 		
-		<div id="loading" class="fullScreen">
+		<!-- Loading screen -->
+		<div id="loading" class="fullScreen hidden">
 			<div id="loadingBox">
 				<div id="loadingText">LOADING</div>
 				<div id="loadingSpinner"></div>
 			</div>
 		</div>
 
+		<!-- Info about disabled JavaScript -->
+		<noscript class="fullScreen">
+			<p id="noScript">Please <a href="https://www.enablejavascript.io">enable JavaScript</a> in your browser to play the game.</p>
+		</noscript>
+
+		<!-- Dev tools -->
 		<div id="log" class="ignoreCursor"></div>
 		<div id="pos" class="ignoreCursor"></div>
 		<div id="disclaimer">CONFIDENTIAL! DO NOT SHARE!</div>
 
+		<!-- Audio -->
 		<audio id="audioTest1" src="./data/sounds/test.wav"></audio>
 		<audio id="audioTest2" src="./data/sounds/test2.wav"></audio>
+
+		<!-- Scripts -->
+		<script src="scripts/defs.js"></script>
+		<script src="scripts/main.js"></script>
+		<script src="scripts/debug.js"></script>
+		<script src="scripts/game.js"></script>
 	</body>
 </html>

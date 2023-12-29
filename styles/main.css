@@ -19,11 +19,11 @@ body
 {
 	pointer-events: none;
 }
-#loadingBox
+#loadingBox, #noScript
 {
 	position: absolute;
 	left: 50%;
-	top: 65%;
+	top: 70%;
 	transform: translate(-50%, -50%);
 	width: 300px;
 	height: 280px;
@@ -52,6 +52,18 @@ body
 {
 	0% { transform: rotate(0deg); }
 	100% { transform: rotate(360deg); }
+}
+
+#noScript
+{
+	height: auto;
+	top: 60%;
+	padding: 10px;
+	font-family: "Roboto Slab", sans-serif;
+	text-align: center;
+	color: black;
+	background-color: darkorange;
+	border: 1px solid black;
 }
 
 /* #messageArea

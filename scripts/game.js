@@ -1,9 +1,6 @@
 //#region Variables
-const REVEAL_BY_TIERS = false;
-const FORCED_START = [];//[-2, -2];
-const FOREVER_LOAD = false;
-const TILE_SNAP = false;
 
+//--- IDs
 const ID_OBJECT = "gameObject";
 const ID_UI_OBJECT = "uiObject";
 const ID_GAME = "game";
@@ -17,13 +14,7 @@ const ID_TUTORIAL_TILE = "tutorialTile";
 const ID_LOADING = "loading";
 const ID_NOTES = "notes";
 
-const GRID_SIZE = 12;
-const ISO_SIZE = 140;
-const ISO_MATRIX = new DOMMatrixReadOnly()
-    .rotate(30)
-    .skewX(-30)
-    .scale(1 * ISO_SIZE, 0.8602 * ISO_SIZE);
-
+//--- Classes
 const VAR_GRID_X = "gX";
 const VAR_GRID_Y = "gY";
 const VAR_TARGET_X = "tX";
@@ -42,35 +33,15 @@ const TILE_STATE_EDITABLE = "tileStateEditable";
 const TILE_STATE_EDITING = "tileStateEditing";
 const TILE_STATE_CONFIRMED = "tileStateConfirmed";
 
-//--- Imported from table
-const TARGET_POSITIONS = new Map([
-    ["tile15", [-2,2]],	["tile10", [-2,1]],	["tile16", [-2,0]],		
-    ["tile17", [-1,2]],	["tile06", [-1,1]],	["tile11", [-1,0]],		
-    ["tile07", [0,2]],	["tile03", [0,1]],	["tile01", [0,0]],	["tile12", [0,-1]],	["tile18", [0,-2]],
-    ["tile13", [1,2]],	["tile21", [1,1]],	["tile02", [1,0]],	["tile04", [1,-1]],	["tile19", [1,-2]],
-    ["tile14", [2,2]],	["tile08", [2,1]],	["tile05", [2,0]],	["tile09", [2,-1]],	["tile20", [2,-2]],
-]);
-const ORIGIN_POSITIONS = new Map([								
-    ["tile20", [-4,1]],					
-    ["tile15", [-3,-1]],			
-["tile14", [-2,3]],				["tile04", [-2,-1]],	["tile10", [-2,-2]],	["tile17", [-2,-3]],	
-        ["tile06", [-1,-2]],		
-["tile16", [0,4]],				["tile01", [0,0]],			["tile14", [0,-3]],	
-["tile12", [1,4]],	["tile03", [1,3]],							
-["tile07", [2,4]],			["tile02", [2,1]],					
-["tile21", [3,3]],		["tile05", [3,1]],					
-["tile11", [4,4]],	["tile09", [4,3]],	["tile19", [4,2]],	["tile08", [4,1]],	["tile13", [4,0]],	["tile18", [4,-1]],			
-]);
-const TIERS = [
-    2,
-    5,
-    9,
-    14,
-    20,
-    21,
-]
-//--- End of import
+//--- Grid
+const GRID_SIZE = 12;
+const ISO_SIZE = 140;
+const ISO_MATRIX = new DOMMatrixReadOnly()
+    .rotate(30)
+    .skewX(-30)
+    .scale(1 * ISO_SIZE, 0.8602 * ISO_SIZE);
 
+//--- Variables
 var m_SvgDoc;
 var m_UiSvgDoc;
 var m_Svg;
@@ -95,6 +66,11 @@ var m_Tier = 0;
 //#endregion
 
 //#region Init
+
+//--- Show loading screen (hidden by default so it's not shown if JavaScript is disabled)
+let loadingBox = document.getElementById(ID_LOADING);
+loading.setAttribute("class", "fullScreen");
+
 window.addEventListener("load", OnLoad);
 function OnLoad()
 {
@@ -162,7 +138,7 @@ function OnLoad()
         m_Svg.addEventListener("keydown", OnKeyDown);
     }
 
-    if (!m_IsDev || !FOREVER_LOAD)
+    if (!m_IsDev || !DEV_FOREVER_LOAD)
     {
         //--- Show tutorial
         let tutorialView = m_SvgDoc.getElementById(ID_TUTORIAL_VIEW);
@@ -255,7 +231,7 @@ function OnPointerMove(ev)
 {
     if (m_ClickTilePos.length != 0)
     {
-        DragTile(ev, TILE_SNAP);
+        DragTile(ev, TILE_DRAG_SNAP);
     }
     else if (m_ClickViewBox.length != 0)
     {
@@ -495,30 +471,4 @@ function SetTileState(tile, state)
     let tileArea = tile.getElementById(ID_TILE_AREA);
     tileArea.setAttribute("class", state);
 }
-//#endregion
-
-//#region Animations
-var AnimateConfirmTile = {
-    start: function(tile)
-    {
-        this.tile = tile;
-        this.progress = 0;
-        this.update = this.update.bind(this);
-        this.update();
-        console.log("START", tile.id);
-    },
-    update: function()
-    {
-        this.progress = Math.min(this.progress + 0.1, 1);
-        if (this.progress < 1)
-            window.requestAnimationFrame(this.update);
-        else
-          AnimateConfirmTile.end();
-    },
-    end: function()
-    {
-        console.log("END", this.tile.id);
-    }
-};
-
 //#endregion
