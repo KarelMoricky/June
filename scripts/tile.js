@@ -1,5 +1,7 @@
 var Tile = new function()
 {
+    const INERTIA_DEFAULT = 0.02;
+
     const ID_TILE_AREA = "tileArea";
     const ID_INTRO = "intro";
     //const ID_GRID = "grid";
@@ -29,11 +31,14 @@ var Tile = new function()
         .scale(1 * ISO_SIZE, 0.8602 * ISO_SIZE);
 
     var m_Selected;
+    var m_AnimatedTile;
     var m_Tiles = [];
     var m_TilesZSorted = [];
     var m_ClickTilePos = [];
     var m_ConfirmedCount = 0;
     var m_Tier = 0;
+    var m_TargetPos = [];
+    var m_TimePrev = 0;
     // var m_Grid;
     // var m_GridDebug;
 
@@ -105,6 +110,8 @@ var Tile = new function()
         {
             Game.GetSVG().addEventListener("keydown", OnKeyDown);
         }
+
+        requestAnimationFrame(OnEachFrame);
         
         //--- Init grid
         // m_Grid = m_SvgDoc.getElementById(ID_GRID);
@@ -119,10 +126,31 @@ var Tile = new function()
         // }
     }
 
+    function OnEachFrame()
+    {
+        let timeNow = Date.now();
+        let timeSlice = (timeNow - m_TimePrev) * INERTIA_DEFAULT;
+        m_TimePrev = timeNow;
+
+        if (m_AnimatedTile && m_TargetPos.length > 0 && m_AnimatedTile.getAttribute("x") != null)
+        {
+            let posX = Lerp(m_AnimatedTile.getAttribute("x"), m_TargetPos[0], timeSlice);
+            let posY = Lerp(m_AnimatedTile.getAttribute("y"), m_TargetPos[1], timeSlice);
+
+            m_AnimatedTile.setAttribute("x", posX);
+            m_AnimatedTile.setAttribute("y", posY);
+         }
+         
+         requestAnimationFrame(OnEachFrame);
+    }
+
     function OnGameDragStart(ev)
     {
         if (!m_Selected)
             return;
+
+        m_TargetPos = [];
+        m_AnimatedTile = m_Selected;
 
         m_ClickTilePos = [parseInt(m_Selected.getAttribute("x")), parseInt(m_Selected.getAttribute("y"))];
         SetTileState(m_Selected, TILE_STATE_EDITING);
@@ -190,18 +218,17 @@ var Tile = new function()
         let posY = m_ClickTilePos[1] - (Game.GetClickPos()[1] - ev.clientY) * coef;
     
         //--- Snap to grid
-        var gridTransform = new DOMPointReadOnly(posX, posY).matrixTransform(ISO_MATRIX.inverse());
         if (snap)
         {
+            var gridTransform = new DOMPointReadOnly(posX, posY).matrixTransform(ISO_MATRIX.inverse());
             gridTransform.x = Math.round(gridTransform.x);
             gridTransform.y = Math.round(gridTransform.y);
             SetTileTransform(m_Selected, gridTransform);
         }
         else
         {
-            m_Selected.setAttribute("x", posX);
-            m_Selected.setAttribute("y", posY);
-            UpdateTiles();
+            m_TargetPos[0] = posX;
+            m_TargetPos[1] = posY;
         }
     }
     
@@ -230,8 +257,17 @@ var Tile = new function()
     
         //--- Set screen position
         let gameTransform = gridTransform.matrixTransform(ISO_MATRIX);
-        tile.setAttribute("x", gameTransform.x);
-        tile.setAttribute("y", gameTransform.y);
+
+        if (tile == m_AnimatedTile)
+        {
+            m_TargetPos[0] = gameTransform.x;
+            m_TargetPos[1] = gameTransform.y;
+        }
+        else
+        {
+            tile.setAttribute("x", gameTransform.x);
+            tile.setAttribute("y", gameTransform.y);
+        }
     
         Debug.Log(tile.id, gridTransform.x, gridTransform.y);
         UpdateTiles();
@@ -248,7 +284,7 @@ var Tile = new function()
         }
     
         //--- Dragged tile always on top
-        if (m_Selected)
+        if (!TILE_DRAG_SNAP && m_Selected)
             Game.GetSVG().appendChild(m_Selected);
     }
     

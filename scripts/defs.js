@@ -3,7 +3,7 @@ const DEV_FOREVER_LOAD = false; //--- When true, loading screen will remain stuc
 
 const REVEAL_BY_TIERS = false; //--- True to reveal tiles in batches based on unlocked tiers (see TIERS variable below)
 const FORCED_START = []; //--- When defined, all new tiles will start on this position instead of the one configured in ORIGIN_POSITIONS
-const TILE_DRAG_SNAP = false; //--- Snap tiles to grid even when dragging the tile
+const TILE_DRAG_SNAP = true; //--- Snap tiles to grid even when dragging the tile
 
 //--- Target positions of individual tiles. Imported from Google Sheets.
 const TARGET_POSITIONS = new Map([
