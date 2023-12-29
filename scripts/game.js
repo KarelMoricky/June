@@ -18,7 +18,7 @@ var Game = new function()
     var m_Cursor;
     var m_Notes;
 
-    var m_Click = false;
+    var m_Click = -1;
     var m_ClickPos = [];
     var m_DefaultViewBox = [];
     //#endregion
@@ -142,12 +142,12 @@ var Game = new function()
 
     function OnPointerDown(ev)
     {
-        if (m_Click)
+        if (m_Click != -1)
             return;
 
         Tile.SetSelected(ev);
 
-        m_Click = true;
+        m_Click = ev.pointerId;
         m_ClickPos = [ev.clientX, ev.clientY];
         m_Svg.addEventListener("pointermove", OnPointerMove);
 
@@ -156,12 +156,18 @@ var Game = new function()
 
     function OnPointerMove(ev)
     {
+        if (ev.pointerId != m_Click)
+            return;
+
         window.dispatchEvent(new PointerEvent(EVENT_GAME_DRAG, ev));
     }
 
     function OnPointerUp(ev)
     {
-        m_Click = false;
+        if (ev.pointerId != m_Click)
+            return;
+
+        m_Click = -1;
         m_Svg.removeEventListener("pointermove", OnPointerMove);
 
         window.dispatchEvent(new PointerEvent(EVENT_GAME_DRAG_END, ev));
