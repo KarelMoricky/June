@@ -1,7 +1,8 @@
 //#region Variables
-const REVEAL_BY_TIERS = true;
+const REVEAL_BY_TIERS = false;
 const FORCED_START = [];//[-2, -2];
 const FOREVER_LOAD = false;
+const TILE_SNAP = false;
 
 const ID_OBJECT = "gameObject";
 const ID_UI_OBJECT = "uiObject";
@@ -25,7 +26,6 @@ const ISO_MATRIX = new DOMMatrixReadOnly()
 
 const VAR_GRID_X = "gX";
 const VAR_GRID_Y = "gY";
-const VAR_GRID_Z = "gZ";
 const VAR_TARGET_X = "tX";
 const VAR_TARGET_Y = "tY";
 const VAR_TARGET_CONFIRMED = "tileConfirmed";
@@ -33,6 +33,7 @@ const VAR_TIER = "tileTier";
 
 const CLASS_TILE_SHOWN = "tile";
 const CLASS_TILE_HIDDEN = "tileHidden";
+const CLASS_TILE_CONFIRMED = "tileConfirmed";
 
 const GAME_STATE_DEFAULT = "gameStateDefault";
 const GAME_STATE_MOVE = "gameStateMove";
@@ -161,8 +162,6 @@ function OnLoad()
         m_Svg.addEventListener("keydown", OnKeyDown);
     }
 
-    window.requestAnimationFrame(OnFrame);
-
     if (!m_IsDev || !FOREVER_LOAD)
     {
         //--- Show tutorial
@@ -256,17 +255,7 @@ function OnPointerMove(ev)
 {
     if (m_ClickTilePos.length != 0)
     {
-        //--- Drag tile
-        let coef = Math.min((m_GameViewBox[2] / window.innerWidth), (m_GameViewBox[3] / window.innerHeight)); //--- I have no idea what I'm doing
-        let posX = m_ClickTilePos[0] - (m_ClickPos[0] - ev.clientX) * coef;
-        let posY = m_ClickTilePos[1] - (m_ClickPos[1] - ev.clientY) * coef;
-
-        //--- Snap to grid
-        var gridTransform = new DOMPointReadOnly(posX, posY).matrixTransform(ISO_MATRIX.inverse());
-        gridTransform.x = Math.round(gridTransform.x);
-        gridTransform.y = Math.round(gridTransform.y);
-
-        SetTileTransform(m_SelectedTile, gridTransform);
+        DragTile(ev, TILE_SNAP);
     }
     else if (m_ClickViewBox.length != 0)
     {
@@ -291,11 +280,21 @@ function OnPointerUp(ev)
 
     //--- Confirm tile
     if (m_SelectedTile)
-        EvaluateTile(m_SelectedTile, true);
-    else
-        m_Svg.setAttribute("class", GAME_STATE_DEFAULT);
+    {
+        DragTile(ev, true);
+        let tile = m_SelectedTile;
+        m_SelectedTile = null;
+        
+        let isConfirmed = EvaluateTile(tile, true);
+        UpdateTiles();
 
-    m_SelectedTile = null;
+        if (isConfirmed)
+            AnimateTile(tile, true);
+    }
+    else
+    {
+        m_Svg.setAttribute("class", GAME_STATE_DEFAULT);
+    }
 }
 
 function OnKeyDown(ev)
@@ -330,26 +329,24 @@ function OnKeyDown(ev)
 }
 //#endregion
 
-//#region Update
-function OnFrame(time)
-{
-    // if (!m_IsPaused)
-    // {
-    //     m_GameTime += time - m_FrameTime;
-    //     OnFrameGame(m_GameTime);
-    // }
-
-    // m_FrameTime = time;
-    // window.requestAnimationFrame(OnFrame);
-}
-function OnFrameGame()
-{
-    //let radius = 10 * InvLerp(-1, 1, Math.sin(m_GameTime * 0.007));
-    //m_Circle.setAttribute("r", radius + "%");
-}
-//#endregion
-
 //#region Tiles
+function DragTile(ev, snap)
+{
+    let coef = Math.min((m_GameViewBox[2] / window.innerWidth), (m_GameViewBox[3] / window.innerHeight)); //--- I have no idea what I'm doing
+    let posX = m_ClickTilePos[0] - (m_ClickPos[0] - ev.clientX) * coef;
+    let posY = m_ClickTilePos[1] - (m_ClickPos[1] - ev.clientY) * coef;
+
+    //--- Snap to grid
+    var gridTransform = new DOMPointReadOnly(posX, posY).matrixTransform(ISO_MATRIX.inverse());
+    if (snap)
+    {
+        gridTransform.x = Math.round(gridTransform.x);
+        gridTransform.y = Math.round(gridTransform.y);
+    }
+
+    SetTileTransform(m_SelectedTile, gridTransform);
+}
+
 function SetTilePos(tile, gridX, gridY)
 {
     SetTileTransform(tile, new DOMPointReadOnly(gridX, gridY));
@@ -367,7 +364,6 @@ function SetTileTransform(tile, gridTransform)
     //--- Save grid position
     tile.setAttribute(VAR_GRID_X, gridTransform.x);
     tile.setAttribute(VAR_GRID_Y, gridTransform.y);
-    tile.setAttribute(VAR_GRID_Z, gridTransform.x + gridTransform.y); //--- "Closeness" to camera, lower tiles are rendered above upper ones
 
     //--- Set screen position
     let gameTransform = gridTransform.matrixTransform(ISO_MATRIX);
@@ -380,12 +376,17 @@ function SetTileTransform(tile, gridTransform)
 
 function UpdateTiles()
 {
-    m_TilesZSorted.sort((a, b) => parseInt(a.getAttribute(VAR_GRID_Z)) - parseInt(b.getAttribute(VAR_GRID_Z)));
+    m_TilesZSorted.sort((a, b) => parseInt(a.getAttribute("y")) - parseInt(b.getAttribute("y")));
 
     for (let i = 0; i < m_TilesZSorted.length; i++)
     {
         m_Svg.appendChild(m_TilesZSorted[i]);
+        AnimateTile(m_TilesZSorted[i], false);
     }
+
+    //--- Dragged tile always on top
+    if (m_SelectedTile)
+        m_Svg.appendChild(m_SelectedTile);
 }
 
 function UpdateTier()
@@ -461,11 +462,22 @@ function EvaluateTile(tile, isManual)
             let tutorialTile = m_SvgDoc.getElementById(ID_TUTORIAL_TILE);
             tutorialTile.setAttribute("class", "hidden");
         }
+        return true;
     }
     else
     {
         SetTileState(tile, TILE_STATE_EDITABLE);
+        return false;
     }
+}
+
+function AnimateTile(tile, animate)
+{
+    let tilePicture = tile.getElementById("tilePicture");
+    if (animate)
+        tilePicture.setAttribute("class", "animateTileConfirmed");
+    else
+        tilePicture.setAttribute("class", "");
 }
 
 function SetTileState(tile, state)
@@ -473,4 +485,30 @@ function SetTileState(tile, state)
     let tileArea = tile.getElementById(ID_TILE_AREA);
     tileArea.setAttribute("class", state);
 }
+//#endregion
+
+//#region Animations
+var AnimateConfirmTile = {
+    start: function(tile)
+    {
+        this.tile = tile;
+        this.progress = 0;
+        this.update = this.update.bind(this);
+        this.update();
+        console.log("START", tile.id);
+    },
+    update: function()
+    {
+        this.progress = Math.min(this.progress + 0.1, 1);
+        if (this.progress < 1)
+            window.requestAnimationFrame(this.update);
+        else
+          AnimateConfirmTile.end();
+    },
+    end: function()
+    {
+        console.log("END", this.tile.id);
+    }
+};
+
 //#endregion
