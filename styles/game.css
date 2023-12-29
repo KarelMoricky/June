@@ -83,6 +83,7 @@
 #note
 {
 	overflow: visible;
+	pointer-events: none;
 }
 
 #note rect, #note polygon

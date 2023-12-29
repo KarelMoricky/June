@@ -110,6 +110,38 @@ body
 	font-size: 150%;
 }
 
+#note2
+{
+	width: min(500px, 80%);
+
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, 80px);
+
+	background-color: white;
+	border-radius: 10px;
+	padding: 10px;
+
+	color: black;
+	font-family: Caveat, serif;
+	font-size: 22px;
+
+	pointer-events: none;
+}
+
+#note2:before /* https://codepen.io/run-time/pen/VNRBJd */
+{
+	content: "";
+	position: absolute;
+	border-left: 30px solid white;
+	border-right: 30px solid transparent;
+	border-bottom: 30px solid white;
+	border-top: 30px solid transparent;
+	left: 60%;
+	top: -48px;
+}
+
 #log, #pos
 {
 	color: white;
@@ -142,4 +174,45 @@ body
 	height: 100%;
 	left: 0;
 	top: 0;
+}
+
+
+
+.animateFadeIn
+{
+	opacity: 0;
+	animation-name: animateFadeIn;
+	animation-delay: 1.5s; 
+	animation-duration: 1s;
+	animation-iteration-count: 1;
+	animation-timing-function: ease;
+	animation-fill-mode: forwards;
+}
+@keyframes animateFadeIn {
+    0% {
+        opacity: 0;
+    }
+	
+    100% {
+        opacity: 1;
+    }
+}
+
+.animateFadeOut
+{
+	opacity: 1;
+	animation-name: animateFadeOut;
+	animation-duration: 0.2s;
+	animation-iteration-count: 1;
+	animation-timing-function: ease;
+	animation-fill-mode: forwards;
+}
+@keyframes animateFadeOut {
+    0% {
+        opacity: 1;
+    }
+	
+    100% {
+        opacity: 0;
+    }
 }

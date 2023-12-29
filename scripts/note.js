@@ -1,6 +1,7 @@
 var Note = new function()
 {
     var m_Note = null;
+    var m_Note2 = document.getElementById("note2");
 
     window.addEventListener(EVENT_GAME_INIT, OnGameInit);
     window.addEventListener(EVENT_TILE_CONFIRMED, OnTileConfirmed);
@@ -23,9 +24,11 @@ var Note = new function()
         let posX = tile.getAttribute("x");
         let posY = tile.getAttribute("y");
 
-        m_Note.setAttribute("class", "animateFadeIn");
-        m_Note.setAttribute("x", posX);
-        m_Note.setAttribute("y", posY);
+        // m_Note.setAttribute("class", "animateFadeIn");
+        // m_Note.setAttribute("x", posX);
+        // m_Note.setAttribute("y", posY);
+
+        m_Note2.setAttribute("class", "animateFadeIn");
 
         if (CONFIRMATION_MOVE_DURATION > 0)
             Camera.MoveCameraGame(posX, posY, CONFIRMATION_MOVE_DURATION);
@@ -33,6 +36,9 @@ var Note = new function()
 
     function OnGameDragStart()
     {
+        if (!m_Note2.classList.contains("hidden"))
+            m_Note2.setAttribute("class", "animateFadeOut");
+
         if (m_Note && Tile.GetSelected())
             m_Note.setAttribute("class", "animateFadeOut");
     }

@@ -92,6 +92,21 @@ var Game = new function()
         m_Svg.addEventListener("pointerdown", OnPointerDown);
         m_Svg.addEventListener("pointerup", OnPointerUp);
 
+        if (!Debug.IsDev())
+        {
+            m_Svg.addEventListener("click", (ev) => {
+                let docElm = document.documentElement;
+                if (docElm.requestFullscreen)
+                    docElm.requestFullscreen();
+                else if (docElm.mozRequestFullScreen)
+                    docElm.mozRequestFullScreen();
+                else if (docElm.webkitRequestFullScreen)
+                    docElm.webkitRequestFullScreen();
+                else if (docElm.msRequestFullscreen)
+                    docElm.msRequestFullscreen();
+            });
+        }
+
         if (!Debug.IsDev() || !DEV_FOREVER_LOAD)
         {
             //--- Show tutorial
@@ -124,8 +139,12 @@ var Game = new function()
     //#endregion
 
     //#region Events
+
     function OnPointerDown(ev)
     {
+        if (m_Click)
+            return;
+
         Tile.SetSelected(ev);
 
         m_Click = true;
