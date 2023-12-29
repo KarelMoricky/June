@@ -112,6 +112,8 @@ body
 
 #disclaimer
 {
+	position: absolute;
+	width: 100%;
 	font-family: sans-serif;
 	font-weight: bold;
 	font-size: 120%;

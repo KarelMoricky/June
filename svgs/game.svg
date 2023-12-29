@@ -9,7 +9,7 @@
   xmlns:xlink="http://www.w3.org/1999/xlink" >
 
   <!-- Styles -->
-	<link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Slab" />
+	<link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Caveat|Roboto+Slab" />
   <link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../styles/common.css" />
   <link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../styles/game.css" />
 
@@ -102,7 +102,6 @@
         <tspan x="0" dy="1.5em">Schnobble</tspan>
       </text>
     </svg>
-
   </g>
 
   <g class="textTutorial">

@@ -420,13 +420,17 @@ function UpdateTier()
         }
     }
 
-    var notes = m_Notes.children;
-    for (var i = 0; i < notes.length; i++)
+    //--- Reveal tier texts
+    if (REVEAL_BY_TIERS)
     {
-        if (notes[i].getAttribute(VAR_TIER) == m_Tier)
-            notes[i].setAttribute("class", "");
-        else
-            notes[i].setAttribute("class", "hidden");
+        var notes = m_Notes.children;
+        for (var i = 0; i < notes.length; i++)
+        {
+            if (notes[i].getAttribute(VAR_TIER) == m_Tier)
+                notes[i].setAttribute("class", "");
+            else
+                notes[i].setAttribute("class", "hidden");
+        }
     }
 }
 
