@@ -4,6 +4,7 @@ var Tile = new function()
 
     const ID_TILES_ELEMENT = "tiles";
     const ID_TILE_AREA = "tileArea";
+    const ID_TILE_CONTENT = "tileContent";
     const ID_INTRO = "intro";
     //const ID_GRID = "grid";
     
@@ -217,7 +218,8 @@ var Tile = new function()
 
     function DragTile(ev, snap)
     {
-        let coef = Math.min((Game.GetViewBox()[2] / window.innerWidth), (Game.GetViewBox()[3] / window.innerHeight)); //--- I have no idea what I'm doing
+        let viewBox = GetViewBox(Game.GetGame());
+        let coef = Math.min((viewBox[2] / window.innerWidth), (viewBox[3] / window.innerHeight)); //--- I have no idea what I'm doing
         let posX = m_ClickTilePos[0] - (Game.GetClickPos()[0] - ev.clientX) * coef;
         let posY = m_ClickTilePos[1] - (Game.GetClickPos()[1] - ev.clientY) * coef;
     
@@ -341,7 +343,7 @@ var Tile = new function()
             }
             
             //--- #HACK
-            let tilePicture = tile.getElementById("tilePicture");
+            let tilePicture = tile.getElementById(ID_TILE_CONTENT);
             tilePicture.setAttribute("transform","translate(-128,-128)");
 
             let ev = new CustomEvent(EVENT_TILE_CONFIRMED, {detail: {"tile": tile, "isManual": isManual}});
@@ -370,7 +372,10 @@ var Tile = new function()
     
     function AnimateTile(tile, animate)
     {
-        let tilePicture = tile.getElementById("tilePicture");
+        let tilePicture = tile.getElementById(ID_TILE_CONTENT);
+        if (tilePicture == null)
+            return;
+
         if (animate)
             tilePicture.setAttribute("class", "animateTileConfirmed");
         else

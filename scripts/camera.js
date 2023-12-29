@@ -16,9 +16,57 @@ var Camera = new function()
     window.addEventListener(EVENT_GAME_DRAG, OnGameDrag);
     window.addEventListener(EVENT_GAME_DRAG_END, OnGameDragEnd);
 
+    this.MoveCameraScreen = function(posX, posY)
+    {
+        let viewBox = GetViewBox(Game.GetGame());
+        let coef = Math.min((viewBox[2] / window.innerWidth), (viewBox[3] / window.innerHeight)); //--- I have no idea what I'm doing
+        m_TargetPos = [
+            viewBox[0] + (posX - window.innerWidth * 0.5) * coef,
+            viewBox[1] + (posY - window.innerHeight * 0.5) * coef
+        ];
+    }
+    this.MoveCameraGame = function(posX, posY)
+    {
+        const transform = new DOMPointReadOnly(posX, posY).matrixTransform(Game.GetGame().getScreenCTM());
+        Camera.MoveCameraScreen(transform.x, transform.y);
+    }
+
     function OnGameInit()
     {
         requestAnimationFrame(OnEachFrame);
+
+        Game.GetSVG().addEventListener("keydown", (ev) => {
+            if (ev.keyCode == 27)
+            {
+                //--- Escape
+                Camera.MoveCameraGame(0, 0);
+            }
+            if (ev.keyCode == 187 || ev.keyCode == 189)
+            {
+                //--- +/-
+                let zoom = 0.7;
+                if (ev.keyCode == 189)
+                    zoom = 1 / zoom;
+
+                let posW = m_ClickViewBox[2];
+                let posH = m_ClickViewBox[3];
+
+                m_ClickViewBox[2] = m_ClickViewBox[2] * zoom;
+                m_ClickViewBox[3] = m_ClickViewBox[3] * zoom;
+
+                // console.log(m_ClickViewBox[2], posW);
+                // console.log(m_ClickViewBox[3], posH);
+
+                // m_CurrentPos[0] = m_ClickViewBox[0] + (-m_ClickViewBox[2] + posW) / 2;
+                // m_CurrentPos[1] = m_ClickViewBox[1] + (-m_ClickViewBox[3] + posH) / 2;
+                // m_TargetPos[0] = m_CurrentPos[0];
+                // m_TargetPos[1] = m_CurrentPos[1];
+            }
+        });
+
+        Game.GetSVG().addEventListener("dblclick", (ev) => {
+            Camera.MoveCameraScreen(ev.clientX, ev.clientY);
+        });
     }
 
     //requestAnimationFrame(OnEachFrame);
@@ -67,6 +115,7 @@ var Camera = new function()
             m_ClickViewBox[0] + (Game.GetClickPos()[0] - ev.clientX) * coef,
             m_ClickViewBox[1] + (Game.GetClickPos()[1] - ev.clientY) * coef
         ];
+        ClampTargetPos();
 
         m_Velocity[0] = m_TargetPos[0] - m_CurrentPos[0];
         m_Velocity[1] = m_TargetPos[1] - m_CurrentPos[1];
@@ -79,12 +128,23 @@ var Camera = new function()
         if (Tile.GetSelected())
             return;
 
-        m_TargetPos[0] = m_CurrentPos[0] + m_Velocity[0] * INERTIA_DISTANCE_COEF;
-        m_TargetPos[1] = m_CurrentPos[1] + m_Velocity[1] * INERTIA_DISTANCE_COEF;
+        if (m_Velocity.length == 2)
+        {
+            m_TargetPos[0] = m_CurrentPos[0] + m_Velocity[0] * INERTIA_DISTANCE_COEF;
+            m_TargetPos[1] = m_CurrentPos[1] + m_Velocity[1] * INERTIA_DISTANCE_COEF;
+            ClampTargetPos();
+        }
+        m_Velocity = [];
 
         m_InertiaStrength = INERTIA_DEFAULT;
 
         Game.GetSVG().setAttribute("class", GAME_STATE_DEFAULT);
+    }
+
+    function ClampTargetPos()
+    {
+        m_TargetPos[0] = Clamp(m_TargetPos[0], -Game.GetViewBox()[2], 0);
+        m_TargetPos[1] = Clamp(m_TargetPos[1], -Game.GetViewBox()[3], 0);
     }
 }
 
