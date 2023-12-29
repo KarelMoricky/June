@@ -28,11 +28,11 @@ var Debug = new function()
     {
         document.title = "[DEV] " + document.title;
 
-        window.addEventListener("GameInit", function ()
+        window.addEventListener(EVENT_GAME_INIT, function ()
         {
             Game.GetSVG().addEventListener("mousedown", (ev) =>
             {
-                const transform = new DOMPointReadOnly(ev.clientX, ev.clientY).matrixTransform(m_Game.getScreenCTM().inverse());
+                const transform = new DOMPointReadOnly(ev.clientX, ev.clientY).matrixTransform(Game.GetGame().getScreenCTM().inverse());
                 m_Pos.innerHTML = "x: " + Math.round(transform.x) + "<br />y: " + Math.round(transform.y);
             });
         });

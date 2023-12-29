@@ -2,6 +2,7 @@ var Tile = new function()
 {
     const INERTIA_DEFAULT = 0.02;
 
+    const ID_TILES_ELEMENT = "tiles";
     const ID_TILE_AREA = "tileArea";
     const ID_INTRO = "intro";
     //const ID_GRID = "grid";
@@ -39,6 +40,7 @@ var Tile = new function()
     var m_Tier = 0;
     var m_TargetPos = [];
     var m_TimePrev = 0;
+    var m_TilesElement = null;
     // var m_Grid;
     // var m_GridDebug;
 
@@ -63,13 +65,15 @@ var Tile = new function()
         }
     }
     
-    window.addEventListener("GameInit", OnGameInit);
-    window.addEventListener("GameDragStart", OnGameDragStart);
-    window.addEventListener("GameDrag", OnGameDrag);
-    window.addEventListener("GameDragEnd", OnGameDragEnd);
+    window.addEventListener(EVENT_GAME_INIT, OnGameInit);
+    window.addEventListener(EVENT_GAME_DRAG_START, OnGameDragStart);
+    window.addEventListener(EVENT_GAME_DRAG, OnGameDrag);
+    window.addEventListener(EVENT_GAME_DRAG_END, OnGameDragEnd);
 
     function OnGameInit()
     {
+        m_TilesElement = Game.GetSVGDoc().getElementById(ID_TILES_ELEMENT);
+
         let i = 0;
         for (let tileID of TARGET_POSITIONS.keys())
         {
@@ -279,13 +283,13 @@ var Tile = new function()
     
         for (let i = 0; i < m_TilesZSorted.length; i++)
         {
-            Game.GetSVG().appendChild(m_TilesZSorted[i]);
+            m_TilesElement.appendChild(m_TilesZSorted[i]);
             AnimateTile(m_TilesZSorted[i], false);
         }
     
         //--- Dragged tile always on top
         if (!TILE_DRAG_SNAP && m_Selected)
-            Game.GetSVG().appendChild(m_Selected);
+        m_TilesElement.appendChild(m_Selected);
     }
     
     function UpdateTier()
@@ -319,19 +323,6 @@ var Tile = new function()
                 }
             }
         }
-    
-        //--- Reveal tier texts
-        if (REVEAL_BY_TIERS)
-        {
-            var notes = m_Notes.children;
-            for (var i = 0; i < notes.length; i++)
-            {
-                if (notes[i].getAttribute(VAR_TIER) == m_Tier)
-                    notes[i].setAttribute("class", "");
-                else
-                    notes[i].setAttribute("class", "hidden");
-            }
-        }
     }
     
     function EvaluateTile(tile, isManual)
@@ -348,6 +339,13 @@ var Tile = new function()
                 UpdateTier();
                 PlayAudio("audioTest1");
             }
+            
+            //--- #HACK
+            let tilePicture = tile.getElementById("tilePicture");
+            tilePicture.setAttribute("transform","translate(-128,-128)");
+
+            let ev = new CustomEvent(EVENT_TILE_CONFIRMED, {detail: {"tile": tile, "isManual": isManual}});
+            window.dispatchEvent(ev);
     
             if (m_ConfirmedCount == 2)
             {

@@ -11,10 +11,10 @@ var Camera = new function()
     var m_TimePrev = 0;
     var m_InertiaStrength = INERTIA_DEFAULT;
 
-    window.addEventListener("GameInit", OnGameInit);
-    window.addEventListener("GameDragStart", OnGameDragStart);
-    window.addEventListener("GameDrag", OnGameDrag);
-    window.addEventListener("GameDragEnd", OnGameDragEnd);
+    window.addEventListener(EVENT_GAME_INIT, OnGameInit);
+    window.addEventListener(EVENT_GAME_DRAG_START, OnGameDragStart);
+    window.addEventListener(EVENT_GAME_DRAG, OnGameDrag);
+    window.addEventListener(EVENT_GAME_DRAG_END, OnGameDragEnd);
 
     function OnGameInit()
     {
@@ -39,7 +39,7 @@ var Camera = new function()
                 m_ClickViewBox[2],
                 m_ClickViewBox[3]
             ];
-            SetViewBox(m_Game, viewBox);
+            SetViewBox(Game.GetGame(), viewBox);
          }
         
         requestAnimationFrame(OnEachFrame);
@@ -50,7 +50,7 @@ var Camera = new function()
         if (Tile.GetSelected())
             return;
 
-        m_ClickViewBox = GetViewBox(m_Game);
+        m_ClickViewBox = GetViewBox(Game.GetGame());
 
         m_InertiaStrength = INERTIA_DRAG;
         m_CurrentPos[0] = m_ClickViewBox[0];

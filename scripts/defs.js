@@ -41,3 +41,10 @@ const ID_TUTORIAL_VIEW = "tutorialView";
 const ID_TUTORIAL_TILE = "tutorialTile";
 const GAME_STATE_DEFAULT = "gameStateDefault";
 const GAME_STATE_MOVE = "gameStateMove";
+
+//--- Events
+const EVENT_GAME_INIT = "GameInit";
+const EVENT_GAME_DRAG_START = "GameDragStart";
+const EVENT_GAME_DRAG = "GameDrag";
+const EVENT_GAME_DRAG_END = "GameDragEnd";
+const EVENT_TILE_CONFIRMED = "TileConfirmed";

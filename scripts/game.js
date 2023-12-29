@@ -10,15 +10,10 @@ var Game = new function()
     const ID_LOADING = "loading";
     const ID_NOTES = "notes";
 
-    //--- Events
-    const EVENT_INIT = "GameInit";
-    const EVENT_DRAG_START = "GameDragStart";
-    const EVENT_DRAG = "GameDrag";
-    const EVENT_DRAG_END = "GameDragEnd";
-
     //--- Variables
     var m_SvgDoc;
     var m_Svg;
+    var m_Game;
     var m_Circle;
     var m_Cursor;
     var m_Notes;
@@ -30,6 +25,10 @@ var Game = new function()
 
     //#region Init
 
+    this.GetGame = function()
+    {
+        return m_Game;
+    }
     this.GetSVG = function()
     {
         return m_Svg;
@@ -88,7 +87,7 @@ var Game = new function()
         //--- Get game dimensions
         m_GameViewBox = GetViewBox(m_Game);
 
-        window.dispatchEvent(new Event(EVENT_INIT));
+        window.dispatchEvent(new Event(EVENT_GAME_INIT));
     }
 
     window.addEventListener("beforeunload", OnBeforeUnload);
@@ -111,12 +110,12 @@ var Game = new function()
         m_ClickPos = [ev.clientX, ev.clientY];
         m_Svg.addEventListener("pointermove", OnPointerMove);
 
-        window.dispatchEvent(new PointerEvent(EVENT_DRAG_START, ev), ev);
+        window.dispatchEvent(new PointerEvent(EVENT_GAME_DRAG_START, ev));
     }
 
     function OnPointerMove(ev)
     {
-        window.dispatchEvent(new PointerEvent(EVENT_DRAG, ev));
+        window.dispatchEvent(new PointerEvent(EVENT_GAME_DRAG, ev));
     }
 
     function OnPointerUp(ev)
@@ -124,7 +123,7 @@ var Game = new function()
         m_Click = false;
         m_Svg.removeEventListener("pointermove", OnPointerMove);
 
-        window.dispatchEvent(new PointerEvent(EVENT_DRAG_END, ev));
+        window.dispatchEvent(new PointerEvent(EVENT_GAME_DRAG_END, ev));
     }
     //#endregion
 }

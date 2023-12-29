@@ -6,6 +6,11 @@
 	font-size: 100%;
 }
 
+#tiles
+{
+	overflow: visible;
+}
+
 .gameStateDefault
 {
 	cursor: default;
@@ -68,12 +73,6 @@
 	font-size: 18px;
 }
 
-.textNote
-{
-	font-family: "Caveat", serif;
-	font-size: 28px;
-}
-
 .textTutorial
 {
 	font-family: "Roboto Slab", sans-serif;
@@ -81,17 +80,31 @@
 	font-style: italic;
 }
 
-#note0, #note1, #note2, #note3, #note4, #note5
+#note
 {
-	background-color: black;
-	width: 100%;
-	height: 100%;
-	fill: blue;
+	overflow: visible;
+}
+
+#note rect, #note polygon
+{
+	fill: black;
+}
+
+#note text
+{
+	font-family: "Caveat", serif;
+	font-size: 32px;
+	fill: white;
 }
 
 .animateTileConfirmed
 {
-	animation: 0.5s animateTileConfirm ease 1;
+	animation-name: animateTileConfirm;
+	/* animation-delay: 0.07s; */
+	animation-duration: 0.5s;
+	animation-iteration-count: 1;
+	animation-timing-function: ease;
+	animation-fill-mode: forwards;
 }
 @keyframes animateTileConfirm {
 	0% {
