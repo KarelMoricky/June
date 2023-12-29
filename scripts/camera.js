@@ -1,8 +1,16 @@
 var Camera = new function()
 {
-    var m_ClickViewBox = [];
+    const INERTIA_DEFAULT = 0.007;
+    const INERTIA_DRAG = 0.05;
+    const INERTIA_DISTANCE_COEF = 4;
 
-    window.addEventListe
+    var m_ClickViewBox = [];
+    var m_CurrentPos = [];
+    var m_TargetPos = [];
+    var m_Velocity = [];
+    var m_TimePrev = 0;
+    var m_InertiaStrength = INERTIA_DEFAULT;
+
     window.addEventListener("GameInit", OnGameInit);
     window.addEventListener("GameDragStart", OnGameDragStart);
     window.addEventListener("GameDrag", OnGameDrag);
@@ -10,14 +18,29 @@ var Camera = new function()
 
     function OnGameInit()
     {
+        requestAnimationFrame(OnEachFrame);
     }
 
     //requestAnimationFrame(OnEachFrame);
-    var m_Counter = 0;
     function OnEachFrame()
     {
-        m_Counter++;
-        console.log(m_Counter);
+        let timeNow = Date.now();
+        let timeSlice = (timeNow - m_TimePrev) * m_InertiaStrength;
+        m_TimePrev = timeNow;
+
+        if (m_ClickViewBox.length > 0 && m_TargetPos.length > 0)
+        {
+            m_CurrentPos[0] = Lerp(m_CurrentPos[0], m_TargetPos[0], timeSlice);
+            m_CurrentPos[1] = Lerp(m_CurrentPos[1], m_TargetPos[1], timeSlice);
+
+            let viewBox = [
+                m_CurrentPos[0],
+                m_CurrentPos[1],
+                m_ClickViewBox[2],
+                m_ClickViewBox[3]
+            ];
+            SetViewBox(m_Game, viewBox);
+         }
         
         requestAnimationFrame(OnEachFrame);
     }
@@ -28,21 +51,25 @@ var Camera = new function()
             return;
 
         m_ClickViewBox = GetViewBox(m_Game);
+
+        m_InertiaStrength = INERTIA_DRAG;
+        m_CurrentPos[0] = m_ClickViewBox[0];
+        m_CurrentPos[1] = m_ClickViewBox[1];
     }
     
     function OnGameDrag(ev)
     {
         if (Tile.GetSelected())
             return;
-
+        
         let coef = Math.min((m_ClickViewBox[2] / window.innerWidth), (m_ClickViewBox[3] / window.innerHeight)); //--- I have no idea what I'm doing
-        let viewBox = [
+        m_TargetPos = [
             m_ClickViewBox[0] + (Game.GetClickPos()[0] - ev.clientX) * coef,
-            m_ClickViewBox[1] + (Game.GetClickPos()[1] - ev.clientY) * coef,
-            m_ClickViewBox[2],
-            m_ClickViewBox[3]
+            m_ClickViewBox[1] + (Game.GetClickPos()[1] - ev.clientY) * coef
         ];
-        SetViewBox(m_Game, viewBox);
+
+        m_Velocity[0] = m_TargetPos[0] - m_CurrentPos[0];
+        m_Velocity[1] = m_TargetPos[1] - m_CurrentPos[1];
 
         Game.GetSVG().setAttribute("class", GAME_STATE_MOVE);
     }
@@ -51,6 +78,11 @@ var Camera = new function()
     {
         if (Tile.GetSelected())
             return;
+
+        m_TargetPos[0] = m_CurrentPos[0] + m_Velocity[0] * INERTIA_DISTANCE_COEF;
+        m_TargetPos[1] = m_CurrentPos[1] + m_Velocity[1] * INERTIA_DISTANCE_COEF;
+
+        m_InertiaStrength = INERTIA_DEFAULT;
 
         Game.GetSVG().setAttribute("class", GAME_STATE_DEFAULT);
     }

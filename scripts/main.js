@@ -27,6 +27,7 @@ const RAD2DEG = 180 / Math.PI;
 
 function Lerp(a, b, t)
 {
+    t = Clamp(t, 0, 1);
 	return a * (1 - t) + (b * t);
 }
 
