@@ -1,33 +1,40 @@
-var m_IsDev = DEV_MODE && window.location.href.startsWith("http://127.0.0.1");
-
-var m_Log = document.getElementById("log");
-var m_Pos = document.getElementById("pos");
-
-if (m_IsDev)
+var Debug = new function()
 {
-    document.title = "[DEV] " + document.title;
+    var m_IsDev = DEV_MODE && window.location.href.startsWith("http://127.0.0.1");
 
-    window.addEventListener("onGameInit", function InitDebug()
+    var m_Log = document.getElementById("log");
+    var m_Pos = document.getElementById("pos");
+
+    this.IsDev = function()
     {
-        m_Svg.addEventListener("mousedown", LogPos);
-    });
-}
-
-function Log()
-{
-    if (!m_IsDev)
-        return;
-
-    var now = new Date().toTimeString().slice(0,8);
-    let text = "<small style='color: grey;'>[" + now + "]</small>";
-    for (let i = 0; i < arguments.length; i++)
-    {
-        text += "<br />" + arguments[i];
+        return m_IsDev;
     }
-    m_Log.innerHTML = text;
-}
-function LogPos(ev)
-{
-    const transform = new DOMPointReadOnly(ev.clientX, ev.clientY).matrixTransform(m_Game.getScreenCTM().inverse());
-    m_Pos.innerHTML = "x: " + Math.round(transform.x) + "<br />y: " + Math.round(transform.y);
+
+    this.Log = function()
+    {
+        if (!m_IsDev)
+            return;
+
+        var now = new Date().toTimeString().slice(0,8);
+        let text = "<small style='color: grey;'>[" + now + "]</small>";
+        for (let i = 0; i < arguments.length; i++)
+        {
+            text += "<br />" + arguments[i];
+        }
+        m_Log.innerHTML = text;
+    }
+
+    if (m_IsDev)
+    {
+        document.title = "[DEV] " + document.title;
+
+        window.addEventListener("GameInit", function ()
+        {
+            Game.GetSVG().addEventListener("mousedown", (ev) =>
+            {
+                const transform = new DOMPointReadOnly(ev.clientX, ev.clientY).matrixTransform(m_Game.getScreenCTM().inverse());
+                m_Pos.innerHTML = "x: " + Math.round(transform.x) + "<br />y: " + Math.round(transform.y);
+            });
+        });
+    }
 }

@@ -7,10 +7,10 @@ const TILE_DRAG_SNAP = false; //--- Snap tiles to grid even when dragging the ti
 
 //--- Target positions of individual tiles. Imported from Google Sheets.
 const TARGET_POSITIONS = new Map([
-    ["tile15", [-2,2]],	["tile10", [-2,1]],	["tile16", [-2,0]],		
+    ["tile15", [-2,2]],	["tile10", [-2,1]],	["tile19", [-2,0]],		
     ["tile17", [-1,2]],	["tile06", [-1,1]],	["tile11", [-1,0]],		
     ["tile07", [0,2]],	["tile03", [0,1]],	["tile01", [0,0]],	["tile12", [0,-1]],	["tile18", [0,-2]],
-    ["tile13", [1,2]],	["tile21", [1,1]],	["tile02", [1,0]],	["tile04", [1,-1]],	["tile19", [1,-2]],
+    ["tile13", [1,2]],	["tile21", [1,1]],	["tile02", [1,0]],	["tile04", [1,-1]],	["tile16", [1,-2]],
     ["tile14", [2,2]],	["tile08", [2,1]],	["tile05", [2,0]],	["tile09", [2,-1]],	["tile20", [2,-2]],
 ]);
 
@@ -36,3 +36,8 @@ const TIERS = [
     20,
     21,
 ]
+
+const ID_TUTORIAL_VIEW = "tutorialView";
+const ID_TUTORIAL_TILE = "tutorialTile";
+const GAME_STATE_DEFAULT = "gameStateDefault";
+const GAME_STATE_MOVE = "gameStateMove";

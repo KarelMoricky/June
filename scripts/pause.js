@@ -32,7 +32,7 @@ function OnLoadPause()
 
     function OnFullScreenChange()
     {
-        m_IsPaused = !m_IsDev && !IsFullScreen();
+        m_IsPaused = !Debug.IsDev() && !IsFullScreen();
         if (m_IsPaused)
         {
             pauseElement.setAttribute("visibility", "visible");

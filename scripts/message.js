@@ -16,7 +16,7 @@ function OnLoadMessageBox()
     let playButton = document.getElementById(ID_BUTTON_PLAY);
     playButton.addEventListener("click", OnButtonPlay);
 
-    if (m_IsDev)
+    if (Debug.IsDev())
     {
         OnButtonPlay();
         //let tier0_sex = document.getElementById(ID_TIER_0_SEX);
@@ -28,7 +28,7 @@ function OnLoadMessageBox()
         m_MessageArea.setAttribute("class", "hidden");
 
         //--- Switch to fullscreen
-        if (!m_IsDev)
+        if (!Debug.IsDev())
         {
             let docElm = document.documentElement;
             if (docElm.requestFullscreen)

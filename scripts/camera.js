@@ -1,9 +1,16 @@
-window.addEventListener("onGameInit", InitCamera);
-
-function InitCamera()
+var Camera = new function()
 {
-    m_Svg.addEventListener("pointerdown", OnCameraPointerDown);
-    m_Svg.addEventListener("pointerup", OnCameraPointerUp);
+    var m_ClickViewBox = [];
+
+    window.addEventListe
+    window.addEventListener("GameInit", OnGameInit);
+    window.addEventListener("GameDragStart", OnGameDragStart);
+    window.addEventListener("GameDrag", OnGameDrag);
+    window.addEventListener("GameDragEnd", OnGameDragEnd);
+
+    function OnGameInit()
+    {
+    }
 
     //requestAnimationFrame(OnEachFrame);
     var m_Counter = 0;
@@ -15,19 +22,37 @@ function InitCamera()
         requestAnimationFrame(OnEachFrame);
     }
 
-    function OnCameraPointerDown(ev)
+    function OnGameDragStart(ev)
     {
-        console.log("Cam down");
-        m_Svg.addEventListener("pointermove", OnCameraPointerMove);
+        if (Tile.GetSelected())
+            return;
+
+        m_ClickViewBox = GetViewBox(m_Game);
     }
-    function OnCameraPointerMove(ev)
+    
+    function OnGameDrag(ev)
     {
-        console.log("Cam move");
+        if (Tile.GetSelected())
+            return;
+
+        let coef = Math.min((m_ClickViewBox[2] / window.innerWidth), (m_ClickViewBox[3] / window.innerHeight)); //--- I have no idea what I'm doing
+        let viewBox = [
+            m_ClickViewBox[0] + (Game.GetClickPos()[0] - ev.clientX) * coef,
+            m_ClickViewBox[1] + (Game.GetClickPos()[1] - ev.clientY) * coef,
+            m_ClickViewBox[2],
+            m_ClickViewBox[3]
+        ];
+        SetViewBox(m_Game, viewBox);
+
+        Game.GetSVG().setAttribute("class", GAME_STATE_MOVE);
     }
-    function OnCameraPointerUp(ev)
+
+    function OnGameDragEnd(ev)
     {
-        console.log("Cam up");
-        m_Svg.removeEventListener("pointermove", OnCameraPointerMove);
+        if (Tile.GetSelected())
+            return;
+
+        Game.GetSVG().setAttribute("class", GAME_STATE_DEFAULT);
     }
 }
 
