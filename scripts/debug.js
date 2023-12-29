@@ -1,23 +1,16 @@
-const ID_LOG = "log";
-const ID_POS = "pos";
+var m_IsDev = DEV_MODE && window.location.href.startsWith("http://127.0.0.1");
 
-var m_IsDev = false;
-var m_Log = null;
-var m_Pos = null;
+var m_Log = document.getElementById("log");
+var m_Pos = document.getElementById("pos");
 
-window.addEventListener("load", OnLoadDebug);
-function OnLoadDebug()
+if (m_IsDev)
 {
-    m_Log = document.getElementById(ID_LOG);
-    m_Pos = document.getElementById(ID_POS);
+    document.title = "[DEV] " + document.title;
 
-    m_IsDev = DEV_MODE && window.location.href.startsWith("http://127.0.0.1");
-    if (m_IsDev)
+    window.addEventListener("onGameInit", function InitDebug()
     {
-        document.title = "[DEV] " + document.title;
-
-        window.addEventListener("pointermove", OnPointerMove);
-    }
+        m_Svg.addEventListener("mousedown", LogPos);
+    });
 }
 
 function Log()
@@ -29,10 +22,7 @@ function Log()
     let text = "<small style='color: grey;'>[" + now + "]</small>";
     for (let i = 0; i < arguments.length; i++)
     {
-        //if (i > 0)
-            text += "<br />";
-
-        text += arguments[i];
+        text += "<br />" + arguments[i];
     }
     m_Log.innerHTML = text;
 }

@@ -9,22 +9,6 @@ function CreateElement(type, parent, params = [])
     }
     return element;
 }
-
-function GetViewBox(element)
-{
-    let viewBoxStr = element.getAttribute("viewBox").split(" ");
-    let viewBox = [];
-    for (let i = 0; i < viewBoxStr.length; i++)
-    {
-        viewBox[i] = parseInt(viewBoxStr[i]);
-    }
-    return viewBox;
-}
-
-function SetViewBox(element, viewBox)
-{
-    element.setAttribute("viewBox", viewBox[0] + " " + viewBox[1] + " " + viewBox[2] + " " + viewBox[3]);
-}
 //#endregion
 
 //#region Audio

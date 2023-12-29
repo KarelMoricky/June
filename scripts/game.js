@@ -41,6 +41,9 @@ const ISO_MATRIX = new DOMMatrixReadOnly()
     .skewX(-30)
     .scale(1 * ISO_SIZE, 0.8602 * ISO_SIZE);
 
+//--- Events
+const ON_GAME_INIT = new Event("onGameInit");
+
 //--- Variables
 var m_SvgDoc;
 var m_UiSvgDoc;
@@ -134,7 +137,6 @@ function OnLoad()
 
     if (m_IsDev)
     {
-        m_Svg.addEventListener("mousemove", LogPos);
         m_Svg.addEventListener("keydown", OnKeyDown);
     }
 
@@ -151,6 +153,8 @@ function OnLoad()
         let loading = document.getElementById(ID_LOADING);
         loading.setAttribute("class", "hidden");
     }
+
+    window.dispatchEvent(ON_GAME_INIT);
 
     //--- Init grid
     // m_Grid = m_SvgDoc.getElementById(ID_GRID);
