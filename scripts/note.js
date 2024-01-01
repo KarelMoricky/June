@@ -39,7 +39,7 @@ var Note = new function()
         if (!m_Note2.classList.contains("hidden"))
             m_Note2.setAttribute("class", "animateFadeOut");
 
-        if (m_Note && Tile.GetSelected())
-            m_Note.setAttribute("class", "animateFadeOut");
+        //if (m_Note && Tile.GetSelected())
+        //    m_Note.setAttribute("class", "animateFadeOut");
     }
 }

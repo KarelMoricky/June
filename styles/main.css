@@ -5,10 +5,10 @@ body, html
 
 body
 {
-	color: black;
+	color: white;
 	/* background-color: rgb(249,229,192); */
 	background: rgb(241,212,180);
-	background: radial-gradient(circle, rgba(241,212,180,1) 0%, rgba(158,133,105,1) 100%);
+	background: linear-gradient(rgb(10,22,48) 33%, rgb(68, 41, 83) 100%);
 	/* background: rgb(239,235,224);
 	background: radial-gradient(circle, #F1D4B4 0%, #334B4D 100%); */
 	overflow: hidden; /* Hide scrollbars */

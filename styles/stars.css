@@ -1,0 +1,52 @@
+/* https://codepen.io/bennettfeely/pen/vYLmYJz */
+
+:root {
+	--twinkle-duration: 4s;
+}
+
+#sky
+{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+}
+
+.stars {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	animation: twinkle var(--twinkle-duration) ease-in-out infinite;
+
+	&:nth-child(2) {
+		animation-delay: calc(var(--twinkle-duration) * -0.33);
+	}
+	&:nth-child(3) {
+		animation-delay: calc(var(--twinkle-duration) * -0.66);
+	}
+}
+
+@keyframes twinkle {
+    25% {
+        opacity: 0.5;
+    }
+}
+
+.star {
+	fill: white;
+
+	&:nth-child(3n) {
+		opacity: 0.4;
+	}
+	&:nth-child(7n) {
+		opacity: 0.3;
+	}
+	&:nth-child(13n) {
+		opacity: 0.2;
+	}
+	&:nth-child(19n) {
+		opacity: 0.1;
+	}
+}

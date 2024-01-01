@@ -1,7 +1,7 @@
 #game
 {
 	touch-action: none; /* Without it, touch dragging would be reset after a few moments by browser */
-	fill: black;
+	fill: white;
 	font-family: sans-serif;
 	font-size: 100%;
 }
