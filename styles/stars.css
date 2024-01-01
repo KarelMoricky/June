@@ -6,10 +6,22 @@
 
 #sky
 {
-	position: relative;
+	position: absolute;
 	width: 100%;
 	height: 100%;
 	pointer-events: none;
+	opacity: 0.5;
+}
+
+#haze
+{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+	background: linear-gradient(rgba(0,0,0,0) 33%, rgb(68, 41, 83) 100%);
 }
 
 .stars {
@@ -29,7 +41,7 @@
 }
 
 @keyframes twinkle {
-    25% {
+    50% {
         opacity: 0.5;
     }
 }
@@ -38,15 +50,15 @@
 	fill: white;
 
 	&:nth-child(3n) {
-		opacity: 0.4;
+		opacity: 0.8;
 	}
 	&:nth-child(7n) {
-		opacity: 0.3;
+		opacity: 0.6;
 	}
 	&:nth-child(13n) {
-		opacity: 0.2;
+		opacity: 0.3;
 	}
 	&:nth-child(19n) {
-		opacity: 0.1;
+		opacity: 0.2;
 	}
 }

@@ -95,6 +95,7 @@ var Game = new function()
         if (!Debug.IsDev())
         {
             m_Svg.addEventListener("click", (ev) => {
+                console.log(ev);
                 let docElm = document.documentElement;
                 if (docElm.requestFullscreen)
                     docElm.requestFullscreen();
