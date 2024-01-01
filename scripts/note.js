@@ -21,8 +21,8 @@ var Note = new function()
         if (!m_Note)
             m_Note = Game.GetSVGDoc().getElementById("note");
 
-        let posX = tile.getAttribute("x");
-        let posY = tile.getAttribute("y");
+        let posX = tile.getAttribute(VAR_TARGET_X);
+        let posY = tile.getAttribute(VAR_TARGET_Y);
 
         // m_Note.setAttribute("class", "animateFadeIn");
         // m_Note.setAttribute("x", posX);
@@ -31,7 +31,9 @@ var Note = new function()
         m_Note2.setAttribute("class", "animateFadeIn");
 
         if (CONFIRMATION_MOVE_DURATION > 0)
-            Camera.MoveCameraGame(posX, posY, CONFIRMATION_MOVE_DURATION);
+        {
+            Camera.SetCamera(posX, posY, 0.5, CONFIRMATION_MOVE_DURATION);
+        }
     }
 
     function OnGameDragStart()
@@ -41,5 +43,10 @@ var Note = new function()
 
         //if (m_Note && Tile.GetSelected())
         //    m_Note.setAttribute("class", "animateFadeOut");
+
+        if (CONFIRMATION_MOVE_DURATION > 0)
+        {
+            Camera.SetCamera(-1, -1, 1);
+        }
     }
 }

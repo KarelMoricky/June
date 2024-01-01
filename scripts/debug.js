@@ -30,10 +30,15 @@ var Debug = new function()
 
         window.addEventListener(EVENT_GAME_INIT, function ()
         {
-            Game.GetSVG().addEventListener("mousedown", (ev) =>
+            Game.GetSVG().addEventListener("mousemove", (ev) =>
             {
-                const transform = new DOMPointReadOnly(ev.clientX, ev.clientY).matrixTransform(Game.GetGame().getScreenCTM().inverse());
-                m_Pos.innerHTML = "x: " + Math.round(transform.x) + "<br />y: " + Math.round(transform.y);
+                let gamePos = Game.ToGameCoords(ev.clientX, ev.clientY);
+                m_Pos.innerHTML =
+                      "client.x: " + ev.clientX 
+                    + "<br />client.y: " + ev.clientY
+                    + "<br />"
+                    + "game.x: " + Math.round(gamePos.x)
+                    + "<br />game.y: " + Math.round(gamePos.y);
             });
         });
     }

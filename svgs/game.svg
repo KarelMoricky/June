@@ -21,6 +21,12 @@
     <circle id="gridDebug" class="ignoreCursor" style="fill: rgb(0,255,255);" cx="1000" cy="1000" r="1" />
   </g> -->
 
+  <!-- Debug coordinates cross -->
+  <!-- <g stroke="white" stroke-opacity="0.5" stroke-dasharray="8">
+    <line x1="-10000" x2="10000" y1="0" y2="0" />
+    <line x1="0" x2="0" y1="-10000" y2="10000" />
+  </g> -->
+
   <!-- Texts -->
   <g class="textTitle">
     <!-- Intro text -->
@@ -251,6 +257,6 @@
   </svg>
 
   <!-- Debug cursor -->
-  <!-- <circle id="cursor" class="ignoreCursor" style="fill: rgb(255,0,0);" cx="1000" cy="1000" r="10px" />
-  <circle id="circle" class="ignoreCursor" style="fill: rgb(0,0,255);" cx="1000" cy="1000" r="15px" /> -->
+  <!-- <circle id="cursor" class="ignoreCursor" style="fill: rgb(255,0,0);" cx="1000" cy="1000" r="10px" /> -->
+  <circle id="circle" class="ignoreCursor" style="fill: red;" cx="100000" cy="100000" r="15px" />
 </svg>

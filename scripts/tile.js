@@ -15,14 +15,6 @@ var Tile = new function()
     const TILE_STATE_EDITABLE = "tileStateEditable";
     const TILE_STATE_EDITING = "tileStateEditing";
     const TILE_STATE_CONFIRMED = "tileStateConfirmed";
-
-    //--- Classes
-    const VAR_GRID_X = "gX";
-    const VAR_GRID_Y = "gY";
-    const VAR_TARGET_X = "tX";
-    const VAR_TARGET_Y = "tY";
-    const VAR_TARGET_CONFIRMED = "tileConfirmed";
-    const VAR_TIER = "tileTier";
     
     //--- Grid
     const GRID_SIZE = 12;
@@ -56,7 +48,7 @@ var Tile = new function()
         let element = Game.GetSVGDoc().elementFromPoint(ev.clientX, ev.clientY);
         while (element)
         {
-            if (element.getAttribute("class") == "tile" && !element.getAttribute(VAR_TARGET_CONFIRMED))
+            if (element.getAttribute("class") == "tile" && !element.getAttribute(VAR_CONFIRMED))
             {
                 m_Selected = element;
                 break;
@@ -82,8 +74,8 @@ var Tile = new function()
     
             //--- Get target position
             let targetPosition = TARGET_POSITIONS.get(tileID);
-            tile.setAttribute(VAR_TARGET_X, targetPosition[0]);
-            tile.setAttribute(VAR_TARGET_Y, targetPosition[1]);
+            tile.setAttribute(VAR_GRID_TARGET_X, targetPosition[0]);
+            tile.setAttribute(VAR_GRID_TARGET_Y, targetPosition[1]);
     
             //--- Get origin position
             let originPosition = ORIGIN_POSITIONS.get(tileID);
@@ -95,7 +87,7 @@ var Tile = new function()
             let gridX = originPosition[0];
             let gridY = originPosition[1];
     
-            if (FORCED_START.length == 2 && !tile.getAttribute(VAR_TARGET_CONFIRMED))
+            if (FORCED_START.length == 2 && !tile.getAttribute(VAR_CONFIRMED))
             {
                 gridX = FORCED_START[0];
                 gridY = FORCED_START[1];
@@ -208,7 +200,7 @@ var Tile = new function()
             {
                 if (shownTiles[i].getAttribute("class") == CLASS_TILE_SHOWN)
                 {
-                    SetTilePos(shownTiles[i], shownTiles[i].getAttribute(VAR_TARGET_X), shownTiles[i].getAttribute(VAR_TARGET_Y));
+                    SetTilePos(shownTiles[i], shownTiles[i].getAttribute(VAR_GRID_TARGET_X), shownTiles[i].getAttribute(VAR_GRID_TARGET_Y));
                     EvaluateTile(shownTiles[i], false);
                 }
                 UpdateTier();
@@ -235,6 +227,9 @@ var Tile = new function()
         {
             m_TargetPos[0] = posX;
             m_TargetPos[1] = posY;
+            
+            //--- Dragged tile always on top
+            m_TilesElement.appendChild(m_Selected);
         }
     }
     
@@ -267,6 +262,9 @@ var Tile = new function()
         //--- Set screen position
         let gameTransform = gridTransform.matrixTransform(ISO_MATRIX);
 
+        tile.setAttribute(VAR_TARGET_X, gameTransform.x);
+        tile.setAttribute(VAR_TARGET_Y, gameTransform.y);
+
         if (tile == m_AnimatedTile)
         {
             m_TargetPos[0] = gameTransform.x;
@@ -291,10 +289,6 @@ var Tile = new function()
             m_TilesElement.appendChild(m_TilesZSorted[i]);
             AnimateTile(m_TilesZSorted[i], false);
         }
-    
-        //--- Dragged tile always on top
-        if (!TILE_DRAG_SNAP && m_Selected)
-        m_TilesElement.appendChild(m_Selected);
     }
     
     function UpdateTier()
@@ -332,10 +326,10 @@ var Tile = new function()
     
     function EvaluateTile(tile, isManual)
     {
-        let isConfirmed = tile.getAttribute(VAR_TARGET_CONFIRMED) != null;
-        if (!isConfirmed && tile.getAttribute(VAR_GRID_X) == tile.getAttribute(VAR_TARGET_X) && tile.getAttribute(VAR_GRID_Y) == tile.getAttribute(VAR_TARGET_Y))
+        let isConfirmed = tile.getAttribute(VAR_CONFIRMED) != null;
+        if (!isConfirmed && tile.getAttribute(VAR_GRID_X) == tile.getAttribute(VAR_GRID_TARGET_X) && tile.getAttribute(VAR_GRID_Y) == tile.getAttribute(VAR_GRID_TARGET_Y))
         {
-            tile.setAttribute(VAR_TARGET_CONFIRMED, true);
+            tile.setAttribute(VAR_CONFIRMED, true);
             SetTileState(tile, TILE_STATE_CONFIRMED);
             m_ConfirmedCount++;
     

@@ -4,7 +4,7 @@ const DEV_FOREVER_LOAD = false; //--- When true, loading screen will remain stuc
 
 const REVEAL_BY_TIERS = false;  //--- True to reveal tiles in batches based on unlocked tiers (see TIERS variable below)
 const FORCED_START = [];        //--- When defined, all new tiles will start on this position instead of the one configured in ORIGIN_POSITIONS
-const TILE_DRAG_SNAP = true;    //--- Snap tiles to grid even when dragging the tile
+const TILE_DRAG_SNAP = false;    //--- Snap tiles to grid even when dragging the tile
 const DEFAULT_ZOOM = 1;         //--- Default view box zoom
 
 const CONFIRMATION_MOVE_DURATION = 1.5; //--- How long will camera take to focus on confirmed tile. Use 0 to disable the effect.
@@ -28,9 +28,9 @@ const ORIGIN_POSITIONS = new Map([
         ["tile06", [-1,-2]],		
 ["tile16", [0,4]],				["tile01", [0,0]],			["tile14", [0,-3]],	
 ["tile12", [1,4]],	["tile03", [1,3]],							
-["tile07", [2,4]],			["tile02", [2,1]],					
-["tile21", [3,3]],		["tile05", [3,1]],					
-["tile11", [4,4]],	["tile09", [4,3]],	["tile19", [4,2]],	["tile08", [4,1]],	["tile13", [4,0]],	["tile18", [4,-1]],			
+["tile07", [2,4]],								
+["tile21", [3,3]],	["tile05", [3,2]],	["tile02", [3,1]],					
+["tile11", [4,4]],	["tile09", [4,3]],	["tile19", [4,2]],	["tile08", [4,1]],	["tile13", [4,0]],	["tile18", [4,-1]],					
 ]);
 
 //--- Unlock tiers. Imported from Google Sheets.
@@ -57,4 +57,15 @@ const EVENT_GAME_DRAG_START = "GameDragStart";
 const EVENT_GAME_DRAG = "GameDrag";
 const EVENT_GAME_DRAG_END = "GameDragEnd";
 const EVENT_TILE_CONFIRMED = "TileConfirmed";
+//#endregion
+
+//#region Variables
+const VAR_GRID_X = "gX";
+const VAR_GRID_Y = "gY";
+const VAR_GRID_TARGET_X = "gtX";
+const VAR_GRID_TARGET_Y = "gtY";
+const VAR_TARGET_X = "tX";
+const VAR_TARGET_Y = "tY";
+const VAR_CONFIRMED = "tileConfirmed";
+const VAR_TIER = "tileTier";
 //#endregion

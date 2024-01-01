@@ -40,6 +40,15 @@ var Game = new function()
         return m_SvgDoc;
     }
 
+    this.MoveDebugCircle = function(posX, posY)
+    {
+        if (m_Circle)
+        {
+            m_Circle.setAttribute("cx", posX);
+            m_Circle.setAttribute("cy", posY);
+        }
+    }
+
     this.GetClickPos = function()
     {
         return m_ClickPos;
@@ -64,6 +73,16 @@ var Game = new function()
     this.SetCurrentViewBox = function(viewBox)
     {
         m_Game.setAttribute("viewBox", viewBox[0] + " " + viewBox[1] + " " + viewBox[2] + " " + viewBox[3]);
+    }
+
+    this.ToGameCoords = function(posX, posY)
+    {
+        return new DOMPointReadOnly(posX, posY).matrixTransform(m_Game.getScreenCTM().inverse());
+    }
+
+    this.FromGameCoords = function(posX, posY)
+    {
+        return new DOMPointReadOnly(posX, posY).matrixTransform(m_Game.getScreenCTM());
     }
     //#endregion
 
