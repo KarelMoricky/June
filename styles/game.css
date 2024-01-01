@@ -65,12 +65,22 @@
 	stroke: white;
     stroke-width: 2px;
 	pointer-events: none;
+	display: none;
 }
 
-.textTitle
+#intro
 {
 	font-family: "Roboto Slab", sans-serif;
 	font-size: 18px;
+	filter: drop-shadow(0 0 20px rgb(108, 66, 131));
+}
+
+#outro
+{
+	font-family: "Roboto Slab", sans-serif;
+	font-size: 250px;
+	filter: drop-shadow(0 0 20px rgb(108, 66, 131));
+	opacity: 0;
 }
 
 .textTutorial
@@ -155,13 +165,21 @@
 
 .animateFadeIn
 {
-	fill-opacity: 0;
 	animation-name: animateFadeIn;
 	animation-delay: 1.5s; 
 	animation-duration: 1s;
 	animation-iteration-count: 1;
 	animation-timing-function: ease;
 	animation-fill-mode: forwards;
+}
+.animateFadeOut
+{
+	animation-name: animateFadeIn;
+	animation-duration: 0.2s;
+	animation-iteration-count: 1;
+	animation-timing-function: ease;
+	animation-fill-mode: forwards;
+	animation-direction: reverse;
 }
 @keyframes animateFadeIn {
     0% {
@@ -173,21 +191,72 @@
     }
 }
 
-.animateFadeOut
+.animateHeartIn
 {
-	fill-opacity: 1;
-	animation-name: animateFadeOut;
-	animation-duration: 0.2s;
+	animation-name: animateHeart, animateHeartBeat;
+	animation-delay: 4s, 4.5s; 
+	animation-duration: 0.5s, 1s;
+	animation-iteration-count: 1, infinite;
+	animation-timing-function: ease, ease;
+	animation-fill-mode: forwards, none;
+}
+.animateHeartOut
+{
+	animation-name: animateHeart;
+	animation-delay: 0;
+	animation-duration: 1s;
+	animation-iteration-count: 1;
+	animation-direction: reverse;
+	animation-fill-mode: none;
+}
+@keyframes animateHeart {
+    0% {
+		filter: invert(0) sepia(0) saturate(1) hue-rotate(0);
+    }
+
+    50% {
+		filter: invert(0.5) sepia(1) saturate(1) hue-rotate(-20deg);
+    }
+	
+    100% {
+		filter: invert(0.5) sepia(1) saturate(50) hue-rotate(-20deg) drop-shadow(0 0 40px rgba(255, 0, 0, 0.5));
+    }
+}
+
+@keyframes animateHeartBeat {
+    0%, 30%, 60% {
+		transform: scale(1);
+    }
+	
+    15%, 45% {
+		transform: scale(1.01);
+    }
+}
+
+.animateOutroIn
+{
+	animation-name: animateOutro;
+	animation-delay: 4.5s; 
+	animation-duration: 1.5s;
 	animation-iteration-count: 1;
 	animation-timing-function: ease;
 	animation-fill-mode: forwards;
 }
-@keyframes animateFadeOut {
+.animateOutroOut
+{
+	animation-name: animateOutro;
+	animation-duration: 0.2s;
+	animation-iteration-count: 1;
+	animation-timing-function: ease;
+	animation-fill-mode: forwards;
+	animation-direction: reverse;
+}
+@keyframes animateOutro {
     0% {
-        fill-opacity: 1;
+        opacity: 0;
     }
 	
     100% {
-        fill-opacity: 0;
+        opacity: 1;
     }
 }

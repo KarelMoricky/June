@@ -18,15 +18,12 @@ var Camera = new function()
 
     var m_TimePrev = 0;
     var m_InertiaStrength = INERTIA_DEFAULT;
-
-    window.addEventListener(EVENT_GAME_INIT, OnGameInit);
-    window.addEventListener(EVENT_GAME_DRAG_START, OnGameDragStart);
-    window.addEventListener(EVENT_GAME_DRAG, OnGameDrag);
-    window.addEventListener(EVENT_GAME_DRAG_END, OnGameDragEnd);
-
     //#region Public functions
     this.SetCamera = function(posX, posY, zoom, duration)
     {
+        if (m_Anim.playing)
+            return;
+
         if (posX != -1)
             m_Target.x = posX;
         
@@ -46,6 +43,11 @@ var Camera = new function()
             m_Anim.progress = 0;
             m_Anim.playing = true;
         }
+    }
+
+    this.IsAnimPlaying = function()
+    {
+        return m_Anim.playing;
     }
     //#endregion
 
@@ -79,9 +81,15 @@ var Camera = new function()
     //#endregion
 
     //#region Events
+
+    window.addEventListener(EVENT_GAME_INIT, OnGameInit);
+    window.addEventListener(EVENT_GAME_DRAG_START, OnGameDragStart);
+    window.addEventListener(EVENT_GAME_DRAG, OnGameDrag);
+    window.addEventListener(EVENT_GAME_DRAG_END, OnGameDragEnd);
+
     function OnGameDragStart(ev)
     {
-        if (Tile.GetSelected())
+        if (Tile.GetSelected() || m_Anim.playing)
             return;
 
         m_InertiaStrength = INERTIA_DRAG;
@@ -91,7 +99,7 @@ var Camera = new function()
 
     function OnGameDrag(ev)
     {
-        if (Tile.GetSelected())
+        if (Tile.GetSelected() || m_Anim.playing)
             return;
 
         let coef = Math.min((m_ViewBox.w / window.innerWidth), (m_ViewBox.h / window.innerHeight)); //--- I have no idea what I'm doing
@@ -113,7 +121,7 @@ var Camera = new function()
 
     function OnGameDragEnd(ev)
     {
-        if (Tile.GetSelected())
+        if (Tile.GetSelected() || m_Anim.playing)
             return;
         
         m_Target.x = m_Current.x + m_Velocity.x * INERTIA_DISTANCE_COEF;

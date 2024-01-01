@@ -28,18 +28,25 @@
   </g> -->
 
   <!-- Texts -->
-  <g class="textTitle">
-    <!-- Intro text -->
-    <svg id="intro" x="-400" y="-700" width="800" height="400">
-      <text text-anchor="middle">
-        <tspan x="50%" dy="1.5em" style="font-size: 200%; font-weight: bold;">Vera and Karel's</tspan>
-        <tspan x="50%" dy="1.2em" style="font-size: 400%; font-weight: 700;">[BOY/GIRL]</tspan>
-        <tspan x="50%" dy="1.7em" style="font-size: 150%;">was born on June ??th 2024</tspan>
-        <tspan x="50%" dy="3.2em">To find out their name,</tspan>
-        <tspan x="50%" dy="1.5em">please play a little game we designed.</tspan>
-      </text>
-    </svg>
-  </g>
+
+  <!-- Intro -->
+  <svg id="intro" x="-400" y="-700" width="800" height="400">
+    <text text-anchor="middle">
+      <tspan x="50%" dy="1.5em" style="font-size: 200%; font-weight: bold;">Vera and Karel's</tspan>
+      <tspan x="50%" dy="1.2em" style="font-size: 400%; font-weight: 700;">[BOY/GIRL]</tspan>
+      <tspan x="50%" dy="1.7em" style="font-size: 150%;">was born on June ??th 2024</tspan>
+      <tspan x="50%" dy="3.2em">To find out their name,</tspan>
+      <tspan x="50%" dy="1.5em">please play a little game we designed.</tspan>
+    </text>
+  </svg>
+
+  <!-- Outro -->
+  <svg id="outro" x="-400" y="-800" width="800" height="400">
+    <text text-anchor="middle">
+      <tspan x="50%" dy="1.5em" style="font-family: Caveat, serif;">Welcome to this world,</tspan>
+      <tspan x="60%" dy="1300px" style="font-size: 150%; font-weight: 700; letter-spacing: 0.2em;">NAME</tspan>
+    </text>
+  </svg>
 
   <g class="textTutorial">
     <!-- Tutorial: Camera -->
@@ -58,7 +65,7 @@
   </g>
 
   <!-- Tiles -->
-  <svg id="tiles">
+  <g id="tiles">
 
     <!-- Tier 0 -->
     <svg id="tile01" tileId="1" class="tile" width="256" height="256">
@@ -233,7 +240,7 @@
         <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" />
       </g>
     </svg>
-  </svg>
+  </g>
 
   <defs>
     <filter x="0" y="0" width="1" height="1" id="solid">

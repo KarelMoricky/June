@@ -45,6 +45,7 @@ const TIERS = [
 //#endregion
 
 //#region Elements
+const ID_TILES_ELEMENT = "tiles";
 const ID_TUTORIAL_VIEW = "tutorialView";
 const ID_TUTORIAL_TILE = "tutorialTile";
 const GAME_STATE_DEFAULT = "gameStateDefault";

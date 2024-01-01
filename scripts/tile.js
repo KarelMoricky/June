@@ -2,7 +2,6 @@ var Tile = new function()
 {
     const INERTIA_DEFAULT = 0.02;
 
-    const ID_TILES_ELEMENT = "tiles";
     const ID_TILE_AREA = "tileArea";
     const ID_TILE_CONTENT = "tileContent";
     const ID_INTRO = "intro";
@@ -179,32 +178,33 @@ var Tile = new function()
 
     function OnKeyDown(ev)
     {
-        if (ev.keyCode == 49)
+        if (ev.keyCode == 32)
         {
-            //--- [1] Reveal all tiles
-            m_ConfirmedCount = 1000;
-            UpdateTier();
-        }
-        else if (ev.keyCode == 50)
-        {
-            //--- [2] Move all shown tiles to target coordinates
-            let shownTiles = [];
+            //--- [Space] Auto-place next tile
             for (let i = 0; i < m_Tiles.length; i++)
             {
-                if (m_Tiles[i].getAttribute("class") == CLASS_TILE_SHOWN)
+                if (m_Tiles[i].getAttribute(VAR_CONFIRMED) == null)
                 {
-                    shownTiles.push(m_Tiles[i]);
+                    SetTilePos(m_Tiles[i], m_Tiles[i].getAttribute(VAR_GRID_TARGET_X), m_Tiles[i].getAttribute(VAR_GRID_TARGET_Y));
+                    EvaluateTile(m_Tiles[i], false);
+                    UpdateTier();
+                    break;
                 }
             }
-            for (let i = 0; i < shownTiles.length; i++)
+        }
+        else if (ev.keyCode == 192)
+        {
+            //--- [~] Skip to the last tile
+            for (let i = 0; i < m_Tiles.length - 1; i++)
             {
-                if (shownTiles[i].getAttribute("class") == CLASS_TILE_SHOWN)
+                if (m_Tiles[i].getAttribute(VAR_CONFIRMED) == null)
                 {
-                    SetTilePos(shownTiles[i], shownTiles[i].getAttribute(VAR_GRID_TARGET_X), shownTiles[i].getAttribute(VAR_GRID_TARGET_Y));
-                    EvaluateTile(shownTiles[i], false);
+                    m_Tiles[i].setAttribute("class", CLASS_TILE_SHOWN);
+                    SetTilePos(m_Tiles[i], m_Tiles[i].getAttribute(VAR_GRID_TARGET_X), m_Tiles[i].getAttribute(VAR_GRID_TARGET_Y));
+                    EvaluateTile(m_Tiles[i], false);
                 }
-                UpdateTier();
             }
+            UpdateTier();
         }
     }
 
@@ -343,7 +343,11 @@ var Tile = new function()
             let tilePicture = tile.getElementById(ID_TILE_CONTENT);
             tilePicture.setAttribute("transform","translate(-128,-128)");
 
-            let ev = new CustomEvent(EVENT_TILE_CONFIRMED, {detail: {"tile": tile, "isManual": isManual}});
+            let ev = new CustomEvent(EVENT_TILE_CONFIRMED,{detail: {
+                tile: tile,
+                isLast: tile == m_Tiles[m_Tiles.length - 1],
+                isManual: isManual
+            }});
             window.dispatchEvent(ev);
     
             if (m_ConfirmedCount == 2)
