@@ -48,7 +48,7 @@ var Note = new function()
         {
             //--- Default animation
             m_Note2.setAttribute("class", "animateFadeIn");
-            Camera.SetCamera(posX, posY, 0.5, CONFIRMATION_MOVE_DURATION);
+            Camera.SetCamera(posX, parseInt(posY) + 80, 0.5, CONFIRMATION_MOVE_DURATION); //--- #TODO: Don't hardcode
         }
     }
 

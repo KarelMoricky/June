@@ -130,12 +130,12 @@ body
 #note2
 {
 	width: min(500px, 80%);
-	max-height: 35%;
+	max-height: 35vh;
 
 	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, 80px);
+	left: 50vw;
+	top: 60vh;
+	transform: translate(-50%, 0);
 
 	background-color: white;
 	border-radius: 10px;

@@ -3,7 +3,7 @@
   class="gameStateDefault"
   x="0"
   y="0"
-  viewBox="-960 -820 1920 1080" 
+  viewBox="-960 -840 1920 1080" 
   preserveAspectRatio="xMidYMid slice"
   xmlns="http://www.w3.org/2000/svg"
   xmlns:xlink="http://www.w3.org/1999/xlink" >
@@ -41,27 +41,34 @@
   </svg> -->
 
   <!-- Outro -->
-  <svg id="outro" x="-400" y="-875" width="800" height="400">
+  <svg id="outro" x="-400" y="-875" width="800" height="400" >
     <text text-anchor="middle">
       <tspan x="50%" dy="1.5em" style="font-family: Caveat, serif;">Welcome to this world,</tspan>
       <tspan x="60%" dy="1300px" style="font-size: 150%; font-weight: 700; letter-spacing: 0.2em;">NAME</tspan>
     </text>
   </svg>
 
-  <g class="textTutorial">
-    <!-- Tutorial: Camera -->
-    <svg id="tutorialView" class="unlock hidden" minTile="1" maxTile="1" x="-200" y="-300" width="400" height="100">
-      <text text-anchor="middle">
-        <tspan x="50%" dy="3.2em">Drag in empty area to move the view 👇</tspan>
+  <!-- Tutorial -->
+  <g class="textTutorial unlock hidden" minTile="1" maxTile="1">
+
+    <!-- Drag view -->
+    <svg id="tutorialView" x="-200" y="-300" width="400" height="100">
+      <text text-anchor="middle" class="animateTutorialView">
+        <tspan x="50%" dy="3.2em">Drag to move the view 👇</tspan>
       </text>
     </svg>
 
-    <!-- Tutorial: Tile -->
-    <svg id="tutorialTile" class="unlock hidden" minTile="1" maxTile="1" x="40" y="360" width="400" height="100">
+    <!-- Move tile -->
+    <svg id="tutorialTile" x="40" y="360" width="400" height="100">
       <text text-anchor="middle">
         <tspan x="50%" dy="3.2em">🖐 Grab the tile to move it to its place</tspan>
       </text>
     </svg>
+
+    <!-- Tile indicator -->
+    <g id="grid" class="ignoreCursor" transform="translate(121.24355652982142 70) rotate(30) skewX(-30) scale(140, 120.428)">
+      <rect x="0" y="0" width="1" height="1" class="animateTutorialTarget" />
+    </g>
   </g>
 
   <!-- Tiles -->

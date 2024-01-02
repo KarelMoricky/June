@@ -55,6 +55,7 @@
 #tilePicture
 {
 	pointer-events: none;
+	/* filter: drop-shadow(0 0 20px white); */
 }
 
 #tileNumber
@@ -258,5 +259,48 @@
 	
     100% {
         opacity: 1;
+    }
+}
+
+.animateTutorialView
+{
+	animation-name: animateTutorialView;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease;
+	animation-direction: alternate;
+}
+@keyframes animateTutorialView {
+    0% {
+        transform: translate(0, 0);
+    }
+	
+    100% {
+        transform: translate(0, 30px);
+    }
+}
+
+.animateTutorialTarget
+{
+	fill: rgb(207, 119, 255);
+	stroke: rgb(207, 119, 255);
+	stroke-width: 0.04;
+
+	animation-name: animateTutorialTarget;
+	animation-duration: 1.5s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-out;
+}
+@keyframes animateTutorialTarget {
+    0% {
+        transform: scale(1);
+		fill-opacity: 0.2;
+		stroke-opacity: 1;
+    }
+	
+    100% {
+        transform: scale(1.2);
+		fill-opacity: 0;
+		stroke-opacity: 0;
     }
 }
