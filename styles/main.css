@@ -1,3 +1,7 @@
+:root {
+    --viewport-height: 100vh;
+}
+
 body, html
 {
 	height: 100%;
@@ -18,7 +22,6 @@ body
 #messageBox
 {
 	position: absolute;
-	/* top: max(40%, 300px); */
 	top: 40vh;
 	left: 50%;
 	transform: translate(-50%, -50%);
@@ -43,7 +46,6 @@ body
 }
 #messageBox h2
 {
-	/* font-size: 140%; */
 	font-size: min(3vh, 140%);
 	font-weight: normal;
 	margin: 0;
@@ -57,15 +59,15 @@ body
 #messageBox button
 {
 	margin-top: 5vh;
-	margin-bottom: 1.4em;
-	padding: 0.2em 1em 0.2em 1em;
-	width: 200px;
-	height: 70px;
+	margin-bottom: auto;
+	padding: 0;
+	width: min(200px, 40vh, 90%);
+	height: min(70px, 11vh);
 	font-family: Nunito, sans-serif;
-	font-size: 200%;
+	font-size: min(200%, 5vh);
 	font-weight: bold;
 	color: rgb(119, 114, 100);
-	border-radius: 20px;
+	border-radius: min(20px, 3vh);
 	border: none;
 }
 
@@ -81,7 +83,7 @@ body
 
 #messageBox #noScript
 {
-	width: 300px;
+	width: min(300px, 90%);
 	margin: auto;
 	margin-top: 1.4em;
 	padding: 10px;
@@ -92,32 +94,32 @@ body
 	border: 1px solid black;
 }
 
+#loading
+{
+	position: relative;
+}
+
 #loadingText, #playText
 {
-	position: relative; 
-	font-size: 100%;
 	font-family: "Roboto Slab", sans-serif;
 	text-align: center;
 	color: rgb(10,22,48);
 }
 
-#loadingText
-{
-	top: -50px;
-}
-
 /* https://www.w3schools.com/howto/howto_css_loader.asp */
 #loadingSpinner
 {
-	position: relative;
-	margin: auto;
-	border: 11px solid rgba(255, 255, 255, 0.3);
-	border-top: 11px solid white;
-	border-right: 11px solid white;
+	position: absolute;
+	left: min(75px, 16vh);
+	top: max(-6px, -1vh);
+	border: min(70px, 1vh) solid rgba(255, 255, 255, 0.3);
+	border-top: min(70px, 1vh) solid white;
+	border-right: min(70px, 1vh) solid white;
 	border-radius: 50%;
-	width: 35px;
-	height: 35px;
+	width: min(40px, 7vh);
+	height: min(40px, 7vh);
 	animation: loadingSpin 2s linear infinite;
+	z-index: -1;
 }
 @keyframes loadingSpin
 {
