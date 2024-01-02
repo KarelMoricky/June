@@ -186,6 +186,9 @@ var Camera = new function()
 
         m_Current.x = m_ViewBox.x + m_ViewBox.w * 0.5;
         m_Current.y = m_ViewBox.y + m_ViewBox.h * 0.5;
+
+        m_Target.x = m_Current.x;
+        m_Target.y = m_Current.y;
         
         Game.GetSVG().addEventListener("keydown", (ev) => {
             if (ev.keyCode == 27)

@@ -29,7 +29,7 @@ var Tile = new function()
     var m_TilesZSorted = [];
     var m_ClickTilePos = [];
     var m_ConfirmedCount = 0;
-    var m_Tier = 0;
+    //var m_Tier = 0;
     var m_TargetPos = [];
     var m_TimePrev = 0;
     var m_TilesElement = null;
@@ -61,6 +61,7 @@ var Tile = new function()
     window.addEventListener(EVENT_GAME_DRAG_START, OnGameDragStart);
     window.addEventListener(EVENT_GAME_DRAG, OnGameDrag);
     window.addEventListener(EVENT_GAME_DRAG_END, OnGameDragEnd);
+    window.addEventListener(EVENT_PAUSE, OnPause);
 
     function OnGameInit()
     {
@@ -91,7 +92,10 @@ var Tile = new function()
                 gridX = FORCED_START[0];
                 gridY = FORCED_START[1];
             }
-    
+
+            if (tile.getAttribute(VAR_CONFIRMED))
+                SetTileVisible(tile, true);
+
             SetTilePos(tile, gridX, gridY);
             EvaluateTile(tile, false);
     
@@ -100,7 +104,6 @@ var Tile = new function()
             i++;
         }
         m_Tiles.sort((a, b) => parseInt(a.getAttribute("tileId")) - parseInt(b.getAttribute("tileId")));
-        UpdateTier();
 
         if (Debug.IsDev())
         {
@@ -120,6 +123,15 @@ var Tile = new function()
         //         CreateElement("circle", m_Grid, [["cx", x], ["cy", y], ["r", 0.01], ["fill", "black"]]);
         //     }
         // }
+    }
+
+    function OnPause(ev)
+    {
+        if (ev.detail.isPaused)
+            return;
+        
+        RevealNextTile();
+        window.removeEventListener(EVENT_PAUSE, OnPause);
     }
 
     function OnEachFrame()
@@ -282,7 +294,7 @@ var Tile = new function()
     
     function UpdateTiles()
     {
-        m_TilesZSorted.sort((a, b) => parseInt(a.getAttribute("y")) - parseInt(b.getAttribute("y")));
+        m_TilesZSorted.sort((a, b) => parseInt(a.getAttribute(VAR_TARGET_Y)) - parseInt(b.getAttribute(VAR_TARGET_Y)));
     
         for (let i = 0; i < m_TilesZSorted.length; i++)
         {
@@ -291,38 +303,38 @@ var Tile = new function()
         }
     }
     
-    function UpdateTier()
-    {
-        m_Tier = 0;
-        for (let i = 0; i < TIERS.length; i++)
-        {
-            if (m_ConfirmedCount < TIERS[i])
-                break;
+    // function UpdateTier()
+    // {
+    //     m_Tier = 0;
+    //     for (let i = 0; i < TIERS.length; i++)
+    //     {
+    //         if (m_ConfirmedCount < TIERS[i])
+    //             break;
     
-            m_Tier = i + 1;
-        }
+    //         m_Tier = i + 1;
+    //     }
     
-        for (let i = 0; i < m_Tiles.length; i++)
-        {
-            if (REVEAL_BY_TIERS)
-            {
-                //--- Reveal multiple tiles according to their tier
-                if (m_Tiles[i].getAttribute(VAR_TIER) <= m_Tier)
-                    m_Tiles[i].setAttribute("class", CLASS_TILE_SHOWN);
-                else
-                    m_Tiles[i].setAttribute("class", CLASS_TILE_HIDDEN);
-            }
-            else
-            {
-                //--- Reveal the next tile in line, one by one
-                if (m_Tiles[i].getAttribute("class") == CLASS_TILE_HIDDEN)
-                {
-                    m_Tiles[i].setAttribute("class", CLASS_TILE_SHOWN);
-                    break;
-                }
-            }
-        }
-    }
+    //     for (let i = 0; i < m_Tiles.length; i++)
+    //     {
+    //         if (REVEAL_BY_TIERS)
+    //         {
+    //             //--- Reveal multiple tiles according to their tier
+    //             if (m_Tiles[i].getAttribute(VAR_TIER) <= m_Tier)
+    //                 m_Tiles[i].setAttribute("class", CLASS_TILE_SHOWN);
+    //             else
+    //                 m_Tiles[i].setAttribute("class", CLASS_TILE_HIDDEN);
+    //         }
+    //         else
+    //         {
+    //             //--- Reveal the next tile in line, one by one
+    //             if (m_Tiles[i].getAttribute("class") == CLASS_TILE_HIDDEN)
+    //             {
+    //                 m_Tiles[i].setAttribute("class", CLASS_TILE_SHOWN);
+    //                 break;
+    //             }
+    //         }
+    //     }
+    // }
     
     function EvaluateTile(tile, isManual)
     {
@@ -331,11 +343,10 @@ var Tile = new function()
         {
             tile.setAttribute(VAR_CONFIRMED, true);
             SetTileState(tile, TILE_STATE_CONFIRMED);
-            m_ConfirmedCount++;
     
             if (isManual)
             {
-                UpdateTier();
+                RevealNextTile();
                 PlayAudio("tileMove");
             }
             
@@ -343,25 +354,15 @@ var Tile = new function()
             let tilePicture = tile.getElementById(ID_TILE_CONTENT);
             tilePicture.setAttribute("transform","translate(-128,-128)");
 
+            //--- Send custom event
             let ev = new CustomEvent(EVENT_TILE_CONFIRMED,{detail: {
                 tile: tile,
                 isLast: tile == m_Tiles[m_Tiles.length - 1],
                 isManual: isManual
             }});
             window.dispatchEvent(ev);
-    
-            if (m_ConfirmedCount == 2)
-            {
-                //--- Hide tutorial
-                let intro = Game.GetSVGDoc().getElementById(ID_INTRO);
-                intro.setAttribute("class", "hidden");
-    
-                let tutorialView = Game.GetSVGDoc().getElementById(ID_TUTORIAL_VIEW);
-                tutorialView.setAttribute("class", "hidden");
-            
-                let tutorialTile = Game.GetSVGDoc().getElementById(ID_TUTORIAL_TILE);
-                tutorialTile.setAttribute("class", "hidden");
-            }
+
+            //m_ConfirmedCount++;
             return true;
         }
         else
@@ -387,5 +388,44 @@ var Tile = new function()
     {
         let tileArea = tile.getElementById(ID_TILE_AREA);
         tileArea.setAttribute("class", state);
+    }
+
+    function SetTileVisible(tile, isVisible)
+    {
+        if (isVisible)
+            tile.setAttribute("class", CLASS_TILE_SHOWN);
+        else
+            tile.setAttribute("class", CLASS_TILE_HIDDEN);
+    }
+
+    function RevealNextTile()
+    {
+        //--- Show tile
+        let index = 0;;
+        for (let i = 0; i < m_Tiles.length; i++)
+        {
+            //--- Reveal the next tile in line, one by one
+            if (m_Tiles[i].getAttribute("class") == CLASS_TILE_HIDDEN)
+            {
+                index = i;
+                m_Tiles[i].setAttribute("class", CLASS_TILE_SHOWN);
+                break;
+            }
+        }
+
+        console.log(index);
+
+        //--- Lock/unlock elements
+        let elements = Game.GetSVGDoc().getElementsByClassName("unlock");
+        for (let i = 0; i < elements.length; i++)
+        {
+            let min = elements[i].getAttribute(VAR_TILE_MIN);
+            let max = elements[i].getAttribute(VAR_TILE_MAX);
+
+            if ((min == null || index >= min) && (max == null || index <= max))
+                elements[i].classList.remove("hidden");
+            else
+                elements[i].classList.add("hidden");
+        }
     }
 }

@@ -224,7 +224,7 @@
 }
 
 @keyframes animateHeartBeat {
-    0%, 30%, 60% {
+    0%, 30%, 60%, 100% {
 		transform: scale(1);
     }
 	

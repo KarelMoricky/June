@@ -14,21 +14,6 @@
 		<!-- <script src="scripts/pause.js"></script>
 		<object id="pauseObject" class="fullScreen" type="image/svg+xml" data="svgs/pause.svg"></object> -->
 
-		<!-- <script src="scripts/message.js"></script>
-		<div id="messageArea" class="fullScreen">
-			<div id="messageBox">
-				<div id="tier0">
-					<p class="tier0_large">Vera and Karel's</p>
-					<p id="tier0_sex">YONGER SON</p>
-					<p class="tier0_large">was born on June XXth 2024</p>
-					<br />
-					<p>To find out their name, please play<br />a little game we designed.</p>
-					<button id="playButton" type="button" autofocus>PLAY</button>
-					<p>(for best experience turn on sound 🔊)</p>
-				</div>
-			</div>
-		</div> -->
-
 		<!-- Starry sky -->
 		<div id="sky"></div>
 		<div id="haze"></div>
@@ -41,17 +26,45 @@
 		</div>
 		
 		<!-- Loading screen -->
-		<div id="loading" class="fullScreen hidden">
+		<!-- <div id="loading" class="fullScreen hidden">
 			<div id="loadingBox">
 				<div id="loadingText">LOADING</div>
 				<div id="loadingSpinner"></div>
 			</div>
-		</div>
+		</div> -->
 
-		<!-- Info about disabled JavaScript -->
-		<noscript class="fullScreen">
-			<p id="noScript">Please <a href="https://www.enablejavascript.io">enable JavaScript</a> in your browser to play the game.</p>
-		</noscript>
+		<!-- Pause menu -->
+		<div id="messageArea" class="fullScreen">
+			<div id="messageBox">
+				<div id="title">
+					<p class="tier0_large">Vera and Karel's</p>
+					<p id="tier0_sex">YONGER SON</p>
+					<p class="tier0_large">was born on June XXth 2024</p>
+				</div>
+				<div>
+					<p>To find out their name, please play<br />a little game we designed.</p>
+
+					<div id="play" class="hidden">
+						<p><em>(for the best experience turn the sound on 🔊)</em></p>
+
+						<!-- Button -->
+						<button id="playButton" type="button" autofocus disabled>
+							<div id="playText" class="hidden">PLAY</div>
+						
+							<div id="loading">
+								<div id="loadingSpinner"></div>
+								<div id="loadingText">LOADING</div>
+							</div>
+						</button>
+					</div>
+
+					<!-- Info about disabled JavaScript -->
+					<noscript>
+						<p id="noScript">Please <a href="https://www.enablejavascript.io" target="_blank">enable JavaScript</a> in your browser to play the game.</p>
+					</noscript>
+				</div>
+			</div>
+		</div>
 
 		<!-- Dev tools -->
 		<div id="log" class="ignoreCursor"></div>
@@ -71,5 +84,6 @@
 		<script src="scripts/tile.js"></script>
 		<script src="scripts/note.js"></script>
 		<script src="scripts/stars.js"></script>
+		<script src="scripts/message.js"></script>
 	</body>
 </html>

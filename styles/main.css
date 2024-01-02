@@ -15,70 +15,14 @@ body
 	overscroll-behavior-y: contain !important; /* https://stackoverflow.com/questions/24081699/why-onbeforeunload-event-is-not-firing */
 }
 
-#loading
-{
-	pointer-events: none;
-}
-#loadingBox, #noScript
-{
-	position: absolute;
-	left: 50%;
-	top: 70%;
-	transform: translate(-50%, -50%);
-	width: 300px;
-	height: 280px;
-	/* background-color: #efebe0cc; */
-}
-#loadingText
-{
-	margin-top: 8%;
-	font-size: 160%;
-	font-family: "Roboto Slab", sans-serif;
-	text-align: center;
-	color: rgb(108, 66, 131);
-}
-/* https://www.w3schools.com/howto/howto_css_loader.asp */
-#loadingSpinner
-{
-	margin: auto;
-	border: 16px solid rgb(10,22,48);
-	border-top: 16px solid rgb(108, 66, 131);
-	border-radius: 50%;
-	width: 60px;
-	height: 60px;
-	animation: loadingSpin 2s linear infinite;
-}
-@keyframes loadingSpin
-{
-	0% { transform: rotate(0deg); }
-	100% { transform: rotate(360deg); }
-}
-
-#noScript
-{
-	height: auto;
-	top: 60%;
-	padding: 10px;
-	font-family: "Roboto Slab", sans-serif;
-	text-align: center;
-	color: black;
-	background-color: darkorange;
-	border: 1px solid black;
-}
-
-/* #messageArea
-{
-	background-color: rgba(239, 235, 224, 0.5);
-}
-
 #messageBox
 {
 	position: absolute;
-	top: 50%;
+	top: 40%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+	width: 90%;
 	padding: 20px;
-	background-color: rgb(119, 114, 100);
 	font-family: "Roboto Slab", sans-serif;
 	color: white;
 	text-align: center;
@@ -91,13 +35,79 @@ body
 
 #messageBox button
 {
-	margin-top: 0.4em;
+	margin-top: 3em;
+	margin-bottom: 1.4em;
 	padding: 0.2em 1em 0.2em 1em;
+	width: 200px;
+	height: 70px;
 	font-family: Nunito, sans-serif;
 	font-size: 200%;
 	font-weight: bold;
 	color: rgb(119, 114, 100);
-} */
+	border-radius: 20px;
+	border: none;
+}
+
+#messageBox button:enabled
+{
+	animation: animPulseButton 3s ease infinite;
+}
+@keyframes animPulseButton
+{
+	0% { box-shadow: 0 0 0 0px rgba(255, 255, 255, 0.7); }
+	50%, 100% { box-shadow: 0 0 0 20px rgba(255, 255, 255, 0); }
+}
+
+#messageBox #noScript
+{
+	width: 300px;
+	margin: auto;
+	margin-top: 1.4em;
+	padding: 10px;
+	font-family: "Roboto Slab", sans-serif;
+	text-align: center;
+	color: black;
+	background-color: darkorange;
+	border: 1px solid black;
+}
+
+#loadingText, #playText
+{
+	position: relative; 
+	font-size: 100%;
+	font-family: "Roboto Slab", sans-serif;
+	text-align: center;
+	color: rgb(10,22,48);
+}
+
+#loadingText
+{
+	top: -50px;
+}
+
+/* https://www.w3schools.com/howto/howto_css_loader.asp */
+#loadingSpinner
+{
+	position: relative;
+	margin: auto;
+	border: 11px solid rgba(255, 255, 255, 0.3);
+	border-top: 11px solid white;
+	border-right: 11px solid white;
+	border-radius: 50%;
+	width: 35px;
+	height: 35px;
+	animation: loadingSpin 2s linear infinite;
+}
+@keyframes loadingSpin
+{
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+
+#title
+{
+	margin-bottom: 3em;
+}
 
 #tier0_sex
 {
@@ -107,7 +117,7 @@ body
 }
 .tier0_large
 {
-	font-size: 150%;
+	font-size: 140%;
 }
 
 #note2

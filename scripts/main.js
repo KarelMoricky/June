@@ -9,6 +9,15 @@ function CreateElement(type, parent, params = [])
     }
     return element;
 }
+
+function SetElementVisible(element, isVisible)
+{
+    if (isVisible)
+        element.classList.remove("hidden");
+    else
+        element.classList.add("hidden");
+}
+
 //#endregion
 
 //#region Audio

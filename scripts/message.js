@@ -18,17 +18,19 @@ function OnLoadMessageBox()
 
     if (Debug.IsDev())
     {
-        OnButtonPlay();
-        //let tier0_sex = document.getElementById(ID_TIER_0_SEX);
-        //tier0_sex.addEventListener("click", OnTier0Sex);
+        if (!DEV_FOREVER_LOAD)
+            OnButtonPlay();
+
+        let tier0_sex = document.getElementById(ID_TIER_0_SEX);
+        tier0_sex.addEventListener("click", OnTier0Sex);
     }
 
     function OnButtonPlay()
     {
-        m_MessageArea.setAttribute("class", "hidden");
+        SetElementVisible(m_MessageArea, false);
 
         //--- Switch to fullscreen
-        if (!Debug.IsDev())
+        if (!Debug.IsDev() || DEV_FOREVER_LOAD)
         {
             let docElm = document.documentElement;
             if (docElm.requestFullscreen)
@@ -40,6 +42,11 @@ function OnLoadMessageBox()
             else if (docElm.msRequestFullscreen)
                 docElm.msRequestFullscreen();
         }
+            
+        let ev = new CustomEvent(EVENT_PAUSE,{detail: {
+            isPaused: false
+        }});
+        window.dispatchEvent(ev);
     }
 
     function OnTier0Sex(ev)

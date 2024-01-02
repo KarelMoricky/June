@@ -87,9 +87,13 @@ var Game = new function()
     //#endregion
 
     //#region Init
+
     //--- Show loading screen (hidden by default so it's not shown if JavaScript is disabled)
-    let loadingBox = document.getElementById(ID_LOADING);
-    loading.setAttribute("class", "fullScreen");
+    let loading = document.getElementById(ID_LOADING);
+    loading.setAttribute("class", "");
+
+    let playText = document.getElementById("play");
+    playText.setAttribute("class", "");
 
     window.addEventListener("load", OnLoad);
     function OnLoad()
@@ -111,40 +115,31 @@ var Game = new function()
         m_Svg.addEventListener("pointerdown", OnPointerDown);
         m_Svg.addEventListener("pointerup", OnPointerUp);
 
-        if (!Debug.IsDev())
-        {
-            m_Svg.addEventListener("click", (ev) => {
-                console.log(ev);
-                let docElm = document.documentElement;
-                if (docElm.requestFullscreen)
-                    docElm.requestFullscreen();
-                else if (docElm.mozRequestFullScreen)
-                    docElm.mozRequestFullScreen();
-                else if (docElm.webkitRequestFullScreen)
-                    docElm.webkitRequestFullScreen();
-                else if (docElm.msRequestFullscreen)
-                    docElm.msRequestFullscreen();
-            });
-        }
-
         if (!Debug.IsDev() || !DEV_FOREVER_LOAD)
         {
-            //--- Show tutorial
-            let tutorialView = m_SvgDoc.getElementById(ID_TUTORIAL_VIEW);
-            tutorialView.setAttribute("class", "");
-
-            let tutorialTile = m_SvgDoc.getElementById(ID_TUTORIAL_TILE);
-            tutorialTile.setAttribute("class", "");
-
             //--- Hide loading
+            OnLoadFinished();
+        }
+
+        if (DEV_FOREVER_LOAD)
+        {
             let loading = document.getElementById(ID_LOADING);
-            loading.setAttribute("class", "hidden");
+            loading.addEventListener("click", OnLoadFinished);
         }
 
         //--- Get game dimensions
         m_DefaultViewBox = Game.GetCurrentViewBox();
 
         window.dispatchEvent(new Event(EVENT_GAME_INIT));
+    }
+
+    function OnLoadFinished()
+    {
+        SetElementVisible(document.getElementById("playText"), true);
+        SetElementVisible(document.getElementById(ID_LOADING), false);
+
+        let play = document.getElementById("playButton");
+        play.disabled = false;
     }
 
     window.addEventListener("beforeunload", OnBeforeUnload);
