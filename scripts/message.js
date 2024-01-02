@@ -1,7 +1,7 @@
 const ID_MESSAGE_AREA = "messageArea";
 const ID_MESSAGE_BOX = "messageBox";
 const ID_BUTTON_PLAY = "playButton";
-const ID_TIER_0_SEX = "tier0_sex";
+const ID_TIER_0_SEX = "titleBaby";
 
 var m_MessageArea = null;
 var m_MessageBox = null;

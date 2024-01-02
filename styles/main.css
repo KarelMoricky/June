@@ -18,10 +18,11 @@ body
 #messageBox
 {
 	position: absolute;
-	top: 40%;
+	/* top: max(40%, 300px); */
+	top: 40vh;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	width: 90%;
+	width: 95%;
 	padding: 20px;
 	font-family: "Roboto Slab", sans-serif;
 	color: white;
@@ -31,11 +32,31 @@ body
 #messageBox p
 {
 	margin: 0.2em;
+	font-size: min(2vh, 100%);
+}
+
+#messageBox h1
+{
+	font-size: min(6vh, 350%);
+	font-weight: bold;
+	margin: 0;
+}
+#messageBox h2
+{
+	/* font-size: 140%; */
+	font-size: min(3vh, 140%);
+	font-weight: normal;
+	margin: 0;
+}
+
+#title
+{
+	margin-bottom: 5vh;
 }
 
 #messageBox button
 {
-	margin-top: 3em;
+	margin-top: 5vh;
 	margin-bottom: 1.4em;
 	padding: 0.2em 1em 0.2em 1em;
 	width: 200px;
@@ -102,22 +123,6 @@ body
 {
 	0% { transform: rotate(0deg); }
 	100% { transform: rotate(360deg); }
-}
-
-#title
-{
-	margin-bottom: 3em;
-}
-
-#tier0_sex
-{
-	font-size: 300%;
-	font-weight: bold;
-	cursor: pointer;
-}
-.tier0_large
-{
-	font-size: 140%;
 }
 
 #note2
