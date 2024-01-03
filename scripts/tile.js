@@ -4,7 +4,6 @@ var Tile = new function()
 
     const ID_TILE_AREA = "tileArea";
     const ID_TILE_CONTENT = "tileContent";
-    const ID_INTRO = "intro";
     //const ID_GRID = "grid";
     
     const CLASS_TILE_SHOWN = "tile";

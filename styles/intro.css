@@ -1,0 +1,107 @@
+#introBox
+{
+	position: absolute;
+	top: 40vh;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 95%;
+	padding: 20px;
+	font-family: "Roboto Slab", sans-serif;
+	color: white;
+	text-align: center;
+}
+
+#introBox p
+{
+	margin: 0.2em;
+	font-size: min(2vh, 100%);
+}
+
+#introBox h1
+{
+	font-size: min(6vh, 350%);
+	font-weight: bold;
+	margin: 0;
+}
+#introBox h2
+{
+	font-size: min(3vh, 140%);
+	font-weight: normal;
+	margin: 0;
+}
+
+#title
+{
+	margin-bottom: 5vh;
+}
+
+#introBox button
+{
+	margin-top: 5vh;
+	margin-bottom: auto;
+	padding: 0;
+	width: min(200px, 40vh, 90%);
+	height: min(70px, 11vh);
+	font-family: Nunito, sans-serif;
+	font-size: min(200%, 5vh);
+	font-weight: bold;
+	color: rgb(119, 114, 100);
+	border-radius: min(20px, 3vh);
+	border: none;
+}
+
+#introBox button:enabled
+{
+	animation: animPulseButton 3s ease infinite;
+}
+@keyframes animPulseButton
+{
+	0% { box-shadow: 0 0 0 0px rgba(255, 255, 255, 0.7); }
+	50%, 100% { box-shadow: 0 0 0 20px rgba(255, 255, 255, 0); }
+}
+
+#introBox #noScript
+{
+	width: min(300px, 90%);
+	margin: auto;
+	margin-top: 1.4em;
+	padding: 10px;
+	font-family: "Roboto Slab", sans-serif;
+	text-align: center;
+	color: black;
+	background-color: darkorange;
+	border: 1px solid black;
+}
+
+#loading
+{
+	position: relative;
+}
+
+#loadingText, #playText
+{
+	font-family: "Roboto Slab", sans-serif;
+	text-align: center;
+	color: rgb(10,22,48);
+}
+
+/* https://www.w3schools.com/howto/howto_css_loader.asp */
+#loadingSpinner
+{
+	position: absolute;
+	left: min(75px, 16vh);
+	top: max(-6px, -1vh);
+	border: min(70px, 1vh) solid rgba(255, 255, 255, 0.3);
+	border-top: min(70px, 1vh) solid white;
+	border-right: min(70px, 1vh) solid white;
+	border-radius: 50%;
+	width: min(40px, 7vh);
+	height: min(40px, 7vh);
+	animation: loadingSpin 2s linear infinite;
+	z-index: -1;
+}
+@keyframes loadingSpin
+{
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}

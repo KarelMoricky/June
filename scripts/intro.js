@@ -1,17 +1,17 @@
-const ID_MESSAGE_AREA = "messageArea";
-const ID_MESSAGE_BOX = "messageBox";
+const ID_INTRO_AREA = "introArea";
+const ID_INTRO_BOX = "introBox";
 const ID_BUTTON_PLAY = "playButton";
 const ID_TIER_0_SEX = "titleBaby";
 
-var m_MessageArea = null;
-var m_MessageBox = null;
-var m_MessageBox = null;
+var m_IntroArea = null;
+var m_IntroBox = null;
+var m_IntroBox = null;
 
-window.addEventListener("load", OnLoadMessageBox);
-function OnLoadMessageBox()
+window.addEventListener("load", OnLoadIntroBox);
+function OnLoadIntroBox()
 {
-    m_MessageArea = document.getElementById(ID_MESSAGE_AREA);
-    m_MessageBox = document.getElementById(ID_MESSAGE_BOX);
+    m_IntroArea = document.getElementById(ID_INTRO_AREA);
+    m_IntroBox = document.getElementById(ID_INTRO_BOX);
 
     let playButton = document.getElementById(ID_BUTTON_PLAY);
     playButton.addEventListener("click", OnButtonPlay);
@@ -27,7 +27,7 @@ function OnLoadMessageBox()
 
     function OnButtonPlay()
     {
-        SetElementVisible(m_MessageArea, false);
+        SetElementVisible(m_IntroArea, false);
 
         //--- Switch to fullscreen
         if (!Debug.IsDev() || DEV_FOREVER_LOAD)

@@ -1,6 +1,6 @@
 //#region Constants
 const DEV_MODE = true;          //--- When true and when running locally, dev mode will be active
-const DEV_FOREVER_LOAD = false; //--- When true, loading screen will remain stuck forever
+const DEV_FOREVER_LOAD = true; //--- When true, loading screen will remain stuck forever
 
 const REVEAL_BY_TIERS = false;  //--- True to reveal tiles in batches based on unlocked tiers (see TIERS variable below)
 const FORCED_START = [];        //--- When defined, all new tiles will start on this position instead of the one configured in ORIGIN_POSITIONS
