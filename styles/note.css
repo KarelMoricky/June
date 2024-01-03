@@ -17,6 +17,7 @@
 	font-size: 24px;
 
 	pointer-events: none;
+	opacity: 0;
 }
 
 #note:before /* https://codepen.io/run-time/pen/VNRBJd */
@@ -33,7 +34,6 @@
 
 .animateNoteIn, .animateNoteOut
 {
-	opacity: 0;
 	animation-name: animateNote;
 	animation-duration: 1s;
 	animation-iteration-count: 1;
@@ -42,12 +42,14 @@
 }
 .animateNoteIn
 {
+	opacity: 0;
 	animation-delay: 1.5s; 
 }
 .animateNoteOut
 {
 	opacity: 1;
 	animation-direction: reverse;
+	animation-fill-mode: backwards;
 }
 @keyframes animateNote {
     0% {

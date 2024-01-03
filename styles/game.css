@@ -26,9 +26,14 @@
 	overflow: visible;
 }
 
-.tileHidden
+.tileHiddenx
 {
 	display: none;
+}
+
+.tileCurrent
+{
+	filter: drop-shadow(0 0 20px white);
 }
 
 #tileArea
@@ -55,7 +60,6 @@
 #tilePicture
 {
 	pointer-events: none;
-	/* filter: drop-shadow(0 0 20px white); */
 }
 
 #tileNumber

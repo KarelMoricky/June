@@ -8,11 +8,14 @@ var Tile = new function()
     
     const CLASS_TILE_SHOWN = "tile";
     const CLASS_TILE_HIDDEN = "tileHidden";
+    const CLASS_TILE_CURRENT = "tileCurrent";
     const CLASS_TILE_CONFIRMED = "tileConfirmed";
     
     const TILE_STATE_EDITABLE = "tileStateEditable";
     const TILE_STATE_EDITING = "tileStateEditing";
     const TILE_STATE_CONFIRMED = "tileStateConfirmed";
+
+    const TILE_PICTURE_CURRENT = "tilePictureCurrent";
     
     //--- Grid
     const GRID_SIZE = 12;
@@ -46,7 +49,7 @@ var Tile = new function()
         let element = Game.GetSVGDoc().elementFromPoint(ev.clientX, ev.clientY);
         while (element)
         {
-            if (element.getAttribute("class") == "tile" && !element.getAttribute(VAR_CONFIRMED))
+            if (element.classList.contains("tile") && !element.getAttribute(VAR_CONFIRMED))
             {
                 m_Selected = element;
                 break;
@@ -93,7 +96,7 @@ var Tile = new function()
             }
 
             if (tile.getAttribute(VAR_CONFIRMED))
-                SetTileVisible(tile, true);
+                SetElementVisible(tile, true);
 
             SetTilePos(tile, gridX, gridY);
             EvaluateTile(tile, false);
@@ -198,7 +201,6 @@ var Tile = new function()
                 {
                     SetTilePos(m_Tiles[i], m_Tiles[i].getAttribute(VAR_GRID_TARGET_X), m_Tiles[i].getAttribute(VAR_GRID_TARGET_Y));
                     EvaluateTile(m_Tiles[i], false);
-                    UpdateTier();
                     break;
                 }
             }
@@ -210,7 +212,7 @@ var Tile = new function()
             {
                 if (m_Tiles[i].getAttribute(VAR_CONFIRMED) == null)
                 {
-                    m_Tiles[i].setAttribute("class", CLASS_TILE_SHOWN);
+                    SetElementVisible(m_Tiles[i], true);
                     SetTilePos(m_Tiles[i], m_Tiles[i].getAttribute(VAR_GRID_TARGET_X), m_Tiles[i].getAttribute(VAR_GRID_TARGET_Y));
                     EvaluateTile(m_Tiles[i], false);
                 }
@@ -254,7 +256,7 @@ var Tile = new function()
         //--- Check if some tile (including itself) already occupies the coordinates
         for (let i = 0; i < m_Tiles.length; i++)
         {
-            if (m_Tiles[i].getAttribute("class") == CLASS_TILE_SHOWN && m_Tiles[i].getAttribute(VAR_GRID_X) == gridTransform.x && m_Tiles[i].getAttribute(VAR_GRID_Y) == gridTransform.y)
+            if (IsElementVisible(m_Tiles[i]) && m_Tiles[i].getAttribute(VAR_GRID_X) == gridTransform.x && m_Tiles[i].getAttribute(VAR_GRID_Y) == gridTransform.y)
             {
                 //--- Return back to original position in case of collision with existing tile
                 gridTransform.x = tile.getAttribute(VAR_GRID_X);
@@ -301,39 +303,6 @@ var Tile = new function()
             AnimateTile(m_TilesZSorted[i], false);
         }
     }
-    
-    // function UpdateTier()
-    // {
-    //     m_Tier = 0;
-    //     for (let i = 0; i < TIERS.length; i++)
-    //     {
-    //         if (m_ConfirmedCount < TIERS[i])
-    //             break;
-    
-    //         m_Tier = i + 1;
-    //     }
-    
-    //     for (let i = 0; i < m_Tiles.length; i++)
-    //     {
-    //         if (REVEAL_BY_TIERS)
-    //         {
-    //             //--- Reveal multiple tiles according to their tier
-    //             if (m_Tiles[i].getAttribute(VAR_TIER) <= m_Tier)
-    //                 m_Tiles[i].setAttribute("class", CLASS_TILE_SHOWN);
-    //             else
-    //                 m_Tiles[i].setAttribute("class", CLASS_TILE_HIDDEN);
-    //         }
-    //         else
-    //         {
-    //             //--- Reveal the next tile in line, one by one
-    //             if (m_Tiles[i].getAttribute("class") == CLASS_TILE_HIDDEN)
-    //             {
-    //                 m_Tiles[i].setAttribute("class", CLASS_TILE_SHOWN);
-    //                 break;
-    //             }
-    //         }
-    //     }
-    // }
     
     function EvaluateTile(tile, isManual)
     {
@@ -389,14 +358,6 @@ var Tile = new function()
         tileArea.setAttribute("class", state);
     }
 
-    function SetTileVisible(tile, isVisible)
-    {
-        if (isVisible)
-            tile.setAttribute("class", CLASS_TILE_SHOWN);
-        else
-            tile.setAttribute("class", CLASS_TILE_HIDDEN);
-    }
-
     function RevealNextTile()
     {
         //--- Show tile
@@ -404,10 +365,11 @@ var Tile = new function()
         for (let i = 0; i < m_Tiles.length; i++)
         {
             //--- Reveal the next tile in line, one by one
-            if (m_Tiles[i].getAttribute("class") == CLASS_TILE_HIDDEN)
+            if (!IsElementVisible(m_Tiles[i]))
             {
                 index = i;
-                m_Tiles[i].setAttribute("class", CLASS_TILE_SHOWN);
+                SetElementVisible(m_Tiles[i], true);
+                m_Tiles[i].classList.add(TILE_PICTURE_CURRENT);
                 break;
             }
         }

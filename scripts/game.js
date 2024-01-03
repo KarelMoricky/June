@@ -87,11 +87,9 @@ var Game = new function()
     //#region Init
 
     //--- Show loading screen (hidden by default so it's not shown if JavaScript is disabled)
-    let loading = document.getElementById(ID_LOADING);
-    loading.setAttribute("class", "");
 
-    let playText = document.getElementById("play");
-    playText.setAttribute("class", "");
+    SetElementVisible(document.getElementById(ID_LOADING), true);
+    SetElementVisible(document.getElementById("play"), true);
 
     window.addEventListener("load", OnLoad);
     function OnLoad()

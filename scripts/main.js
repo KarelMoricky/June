@@ -18,6 +18,11 @@ function SetElementVisible(element, isVisible)
         element.classList.add("hidden");
 }
 
+function IsElementVisible(element)
+{
+    return !element.classList.contains("hidden");
+}
+
 //#endregion
 
 //#region Audio
