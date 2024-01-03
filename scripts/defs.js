@@ -1,10 +1,10 @@
 //#region Constants
-const DEV_MODE = true;          //--- When true and when running locally, dev mode will be active
-const DEV_FOREVER_LOAD = false; //--- When true, loading screen will remain stuck forever
+const DEV_MODE = 1;             //--- When true and when running locally, dev mode will be active
+const DEV_FOREVER_LOAD = 0;     //--- When true, loading screen will remain stuck forever
 
-const REVEAL_BY_TIERS = false;  //--- True to reveal tiles in batches based on unlocked tiers (see TIERS variable below)
+const REVEAL_BY_TIERS = 0;      //--- True to reveal tiles in batches based on unlocked tiers (see TIERS variable below)
 const FORCED_START = [];        //--- When defined, all new tiles will start on this position instead of the one configured in ORIGIN_POSITIONS
-const TILE_DRAG_SNAP = false;    //--- Snap tiles to grid even when dragging the tile
+const TILE_DRAG_SNAP = 0;       //--- Snap tiles to grid even when dragging the tile
 const DEFAULT_ZOOM = 1;         //--- Default view box zoom
 
 const CONFIRMATION_MOVE_DURATION = 1.5; //--- How long will camera take to focus on confirmed tile. Use 0 to disable the effect.
@@ -27,7 +27,7 @@ const ORIGIN_POSITIONS = new Map([
 ["tile07", [0,3]],			["tile01", [0,0]],			
 ["tile03", [1,3]],						
 ["tile04", [2,3]],	["tile12", [2,2]],					
-["tile06", [3,2]],	["tile02", [3,1]],	["tile11", [3,0]],													
+["tile06", [3,2]],	["tile02", [3,2]],	["tile11", [3,0]],													
 ]);
 
 //--- Unlock tiers. Imported from Google Sheets.

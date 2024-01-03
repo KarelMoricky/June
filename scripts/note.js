@@ -33,13 +33,13 @@ var Note = new function()
             let tiles = Game.GetSVGDoc().getElementById(ID_TILES_ELEMENT);
             tiles.classList.add("animateHeartIn");
 
-            let outro = Game.GetSVGDoc().getElementById("outro");
+            let outro = document.getElementById("outroBox");
             outro.classList.add("animateOutroIn");
+            console.log(outro);
         }
         else
         {
             //--- Default animation
-            console.log(m_Note);
             m_Note.setAttribute("class", "animateNoteIn");
             Camera.SetCamera(posX, parseInt(posY) + 80, 0.5, CONFIRMATION_MOVE_DURATION); //--- #TODO: Don't hardcode
         }
@@ -61,7 +61,7 @@ var Note = new function()
                 tiles.classList.remove("animateHeartIn");
                 tiles.classList.add("animateHeartOut");
 
-                let outro = Game.GetSVGDoc().getElementById("outro");
+                let outro = document.getElementById("outroBox");
                 outro.classList.add("animateOutroOut");
             }
             else

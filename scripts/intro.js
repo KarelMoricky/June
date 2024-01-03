@@ -5,7 +5,6 @@ const ID_TIER_0_SEX = "titleBaby";
 
 var m_IntroArea = null;
 var m_IntroBox = null;
-var m_IntroBox = null;
 
 window.addEventListener("load", OnLoadIntroBox);
 function OnLoadIntroBox()

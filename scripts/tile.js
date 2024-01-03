@@ -215,7 +215,7 @@ var Tile = new function()
                     EvaluateTile(m_Tiles[i], false);
                 }
             }
-            UpdateTier();
+            RevealNextTile();
         }
     }
 

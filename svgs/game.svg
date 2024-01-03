@@ -27,30 +27,21 @@
     <line x1="0" x2="0" y1="-10000" y2="10000" />
   </g> -->
 
-  <!-- Texts -->
-
-  <!-- Outro -->
-  <svg id="outro" x="-400" y="-875" width="800" height="400" >
-    <text text-anchor="middle">
-      <tspan x="50%" dy="1.5em" style="font-family: Caveat, serif;">Welcome to this world,</tspan>
-      <tspan x="60%" dy="1300px" style="font-size: 150%; font-weight: 700; letter-spacing: 0.2em;">NAME</tspan>
-    </text>
-  </svg>
-
   <!-- Tutorial -->
   <g class="textTutorial unlock hidden" minTile="1" maxTile="1">
 
     <!-- Drag view -->
-    <svg id="tutorialView" x="-300" y="-300" width="600" height="200">
+    <svg id="tutorialView" x="-300" y="-650" width="600" height="200">
       <text text-anchor="middle" class="animateTutorialView">
-        <tspan x="50%" dy="3.2em">Drag to move the view 👇</tspan>
+        <tspan x="50%" dy="3.2em">Drag to move the view</tspan>
       </text>
     </svg>
 
     <!-- Move tile -->
-    <svg id="tutorialTile" x="00" y="360" width="600" height="200">
+    <svg id="tutorialTile" x="-180" y="480" width="600" height="200">
       <text text-anchor="middle">
-        <tspan x="50%" dy="3.2em">🖐 Grab the tile to move it to its place</tspan>
+        <tspan x="50%" dy="1.2em">Grab the tile</tspan>
+        <tspan x="50%" dy="1.2em">to move it to its place</tspan>
       </text>
     </svg>
 
@@ -238,16 +229,6 @@
       </g>
     </svg>
   </g>
-
-  <defs>
-    <filter x="0" y="0" width="1" height="1" id="solid">
-      <feFlood flood-color="black" result="bg" />
-      <feMerge>
-        <feMergeNode in="bg"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
-  </defs>
 
   <!-- Debug cursor -->
   <!-- <circle id="cursor" class="ignoreCursor" style="fill: rgb(255,0,0);" cx="1000" cy="1000" r="10px" /> -->

@@ -14,13 +14,13 @@
 
 	color: black;
 	font-family: Caveat, serif;
-	font-size: 22px;
+	font-size: 24px;
 
 	pointer-events: none;
 }
 
-/* #note:before /* https://codepen.io/run-time/pen/VNRBJd */
-/* {
+#note:before /* https://codepen.io/run-time/pen/VNRBJd */
+{
 	content: "";
 	position: absolute;
 	border-left: 30px solid white;
@@ -29,7 +29,7 @@
 	border-top: 30px solid transparent;
 	left: 60%;
 	top: -48px;
-} */
+}
 
 .animateNoteIn, .animateNoteOut
 {

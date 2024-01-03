@@ -181,34 +181,6 @@
     }
 }
 
-.animateOutroIn
-{
-	animation-name: animateOutro;
-	animation-delay: 4.5s; 
-	animation-duration: 1.5s;
-	animation-iteration-count: 1;
-	animation-timing-function: ease;
-	animation-fill-mode: forwards;
-}
-.animateOutroOut
-{
-	animation-name: animateOutro;
-	animation-duration: 0.2s;
-	animation-iteration-count: 1;
-	animation-timing-function: ease;
-	animation-fill-mode: forwards;
-	animation-direction: reverse;
-}
-@keyframes animateOutro {
-    0% {
-        opacity: 0;
-    }
-	
-    100% {
-        opacity: 1;
-    }
-}
-
 .animateTutorialView
 {
 	animation-name: animateTutorialView;
