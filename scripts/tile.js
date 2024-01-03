@@ -412,8 +412,6 @@ var Tile = new function()
             }
         }
 
-        console.log(index);
-
         //--- Lock/unlock elements
         let elements = Game.GetSVGDoc().getElementsByClassName("unlock");
         for (let i = 0; i < elements.length; i++)

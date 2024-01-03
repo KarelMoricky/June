@@ -1,7 +1,6 @@
 var Note = new function()
 {
-    var m_Note = null;
-    var m_Note2 = document.getElementById("note2");
+    var m_Note = document.getElementById("note");
     var m_InDetail = false;
     var m_IsLast = false;
 
@@ -20,15 +19,8 @@ var Note = new function()
 
         let tile = ev.detail.tile;
 
-        if (!m_Note)
-            m_Note = Game.GetSVGDoc().getElementById("note");
-
         let posX = tile.getAttribute(VAR_TARGET_X);
         let posY = tile.getAttribute(VAR_TARGET_Y);
-
-        // m_Note.setAttribute("class", "animateFadeIn");
-        // m_Note.setAttribute("x", posX);
-        // m_Note.setAttribute("y", posY);
 
         m_InDetail = true;
         m_IsLast = ev.detail.isLast;
@@ -47,7 +39,8 @@ var Note = new function()
         else
         {
             //--- Default animation
-            m_Note2.setAttribute("class", "animateFadeIn");
+            console.log(m_Note);
+            m_Note.setAttribute("class", "animateNoteIn");
             Camera.SetCamera(posX, parseInt(posY) + 80, 0.5, CONFIRMATION_MOVE_DURATION); //--- #TODO: Don't hardcode
         }
     }
@@ -56,10 +49,6 @@ var Note = new function()
     {
         if (m_InDetail && !Camera.IsAnimPlaying())
         {
-            m_Note2.setAttribute("class", "animateFadeOut");
-
-            //if (m_Note && Tile.GetSelected())
-            //    m_Note.setAttribute("class", "animateFadeOut");
 
             m_InDetail = false;
 
@@ -74,6 +63,10 @@ var Note = new function()
 
                 let outro = Game.GetSVGDoc().getElementById("outro");
                 outro.classList.add("animateOutroOut");
+            }
+            else
+            {
+                m_Note.setAttribute("class", "animateNoteOut");
             }
         }
     }

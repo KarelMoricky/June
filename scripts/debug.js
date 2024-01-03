@@ -1,10 +1,6 @@
 var Debug = new function()
 {
     var m_IsDev = DEV_MODE && window.location.href.startsWith("http://127.0.0.1");
-    var m_StartTime = new Date();
-
-    var m_Log = document.getElementById("log");
-    var m_Pos = document.getElementById("pos");
 
     this.IsDev = function()
     {
@@ -13,7 +9,7 @@ var Debug = new function()
 
     this.Log = function()
     {
-        if (!m_IsDev)
+        if (!m_IsDev || !m_Log)
             return;
 
         var now = new Date().toTimeString().slice(0,8);
@@ -28,6 +24,13 @@ var Debug = new function()
     if (m_IsDev)
     {
         document.title = "[DEV] " + document.title;
+
+        var m_StartTime = new Date();
+
+        var m_Log = document.getElementById("log");
+        var m_Pos = document.getElementById("pos");
+
+        SetElementVisible(document.getElementById("disclaimer"), false);
 
         window.addEventListener(EVENT_GAME_INIT, OnGameInit);
         function OnGameInit()

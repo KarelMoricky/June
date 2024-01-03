@@ -8,8 +8,9 @@
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Caveat|Roboto+Slab">
 		<link rel="stylesheet" type="text/css" href="styles/common.css" />
 		<link rel="stylesheet" type="text/css" href="styles/main.css" />
-		<link rel="stylesheet" type="text/css" href="styles/intro.css" />
 		<link rel="stylesheet" type="text/css" href="styles/stars.css" />
+		<link rel="stylesheet" type="text/css" href="styles/intro.css" />
+		<link rel="stylesheet" type="text/css" href="styles/note.css" />
 	</head>
 	<body>
 		<!-- Starry sky -->
@@ -19,19 +20,12 @@
 		<!-- Game -->
 		<object id="gameObject" class="fullScreen" type="image/svg+xml" data="svgs/game.svg"></object>
 
+		<!-- Note -->
 		<div class="fullScreen ignoreCursor"></div>
-			<div id="note2" class="hidden">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras congue elit nec porttitor tincidunt. Vivamus sollicitudin, odio eu commodo lacinia, est massa congue sapien, nec dapibus est justo non eros. </div>
+			<div id="note" class="hidden">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras congue elit nec porttitor tincidunt. Vivamus sollicitudin, odio eu commodo lacinia, est massa congue sapien, nec dapibus est justo non eros. </div>
 		</div>
-		
-		<!-- Loading screen -->
-		<!-- <div id="loading" class="fullScreen hidden">
-			<div id="loadingBox">
-				<div id="loadingText">LOADING</div>
-				<div id="loadingSpinner"></div>
-			</div>
-		</div> -->
 
-		<!-- Pause menu -->
+		<!-- Intro -->
 		<div id="introArea" class="fullScreen">
 			<div id="introBox">
 				<div id="title">
@@ -75,8 +69,8 @@
 
 		<!-- Scripts -->
 		<script src="scripts/defs.js"></script>
-		<script src="scripts/debug.js"></script>
 		<script src="scripts/main.js"></script>
+		<script src="scripts/debug.js"></script>
 		<script src="scripts/game.js"></script>
 		<script src="scripts/camera.js"></script>
 		<script src="scripts/tile.js"></script>

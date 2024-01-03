@@ -8,7 +8,6 @@ var Game = new function()
     const ID_CURSOR = "cursor";
     const ID_CIRCLE = "circle";
     const ID_LOADING = "loading";
-    const ID_NOTES = "notes";
 
     //--- Variables
     var m_SvgDoc;
@@ -16,7 +15,6 @@ var Game = new function()
     var m_Game;
     var m_Circle;
     var m_Cursor;
-    var m_Notes;
 
     var m_Click = -1;
     var m_ClickPos = [];
@@ -110,7 +108,6 @@ var Game = new function()
         m_Game = m_SvgDoc.getElementById(ID_GAME);
         m_Circle = m_SvgDoc.getElementById(ID_CIRCLE);
         m_Cursor = m_SvgDoc.getElementById(ID_CURSOR);
-        m_Notes = m_SvgDoc.getElementById(ID_NOTES);
 
         m_Svg.addEventListener("pointerdown", OnPointerDown);
         m_Svg.addEventListener("pointerup", OnPointerUp);
