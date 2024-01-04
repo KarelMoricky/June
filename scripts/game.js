@@ -109,6 +109,7 @@ var Game = new function()
 
         m_Svg.addEventListener("pointerdown", OnPointerDown);
         m_Svg.addEventListener("pointerup", OnPointerUp);
+        document.addEventListener("fullscreenchange", OnFullScreenChange);
 
         if (!Debug.IsDev() || !DEV_FOREVER_LOAD)
         {
@@ -181,6 +182,15 @@ var Game = new function()
         m_Svg.removeEventListener("pointermove", OnPointerMove);
 
         window.dispatchEvent(new PointerEvent(EVENT_GAME_DRAG_END, ev));
+    }
+
+    function OnFullScreenChange(ev)
+    {
+        //--- #HACK: When exiting full-screen by dragging from right on Android,
+        //--- OnPointerDown is called, but OnPointerUp is not, leaving m_Click stuck.
+        //--- This resets the value.
+        m_Click = -1;
+        m_Svg.removeEventListener("pointermove", OnPointerMove);
     }
     //#endregion
 }
