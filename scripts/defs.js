@@ -68,3 +68,10 @@ const VAR_TIER = "tileTier";
 const VAR_TILE_MIN = "minTile";
 const VAR_TILE_MAX = "maxTile";
 //#endregion
+
+//#region Vibrations
+const VIBRATION_PLAY = [150, 50,20];
+const VIBRATION_TILE_DRAG_START = [10];
+const VIBRATION_TILE_DRAG_END = [10];
+const VIBRATION_TILE_CONFIRMED = [100, 50,50, 50,30, 50,10];
+//#endregion

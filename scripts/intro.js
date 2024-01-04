@@ -31,6 +31,8 @@ function OnLoadIntroBox()
         //--- Switch to fullscreen
         if (!Debug.IsDev() || DEV_FOREVER_LOAD)
         {
+            navigator.vibrate(VIBRATION_PLAY);
+
             let docElm = document.documentElement;
             if (docElm.requestFullscreen)
                 docElm.requestFullscreen();

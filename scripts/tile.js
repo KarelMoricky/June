@@ -164,6 +164,8 @@ var Tile = new function()
 
         m_ClickTilePos = [parseInt(m_Selected.getAttribute("x")), parseInt(m_Selected.getAttribute("y"))];
         SetTileState(m_Selected, TILE_STATE_EDITING);
+
+        navigator.vibrate(VIBRATION_TILE_DRAG_START);
     }
 
     function OnGameDrag(ev)
@@ -187,7 +189,14 @@ var Tile = new function()
         UpdateTiles();
 
         if (isConfirmed)
+        {
             AnimateTile(tile, true);
+            navigator.vibrate(VIBRATION_TILE_CONFIRMED);
+        }
+        else
+        {
+            navigator.vibrate(VIBRATION_TILE_DRAG_END);
+        }
     }
 
     function OnKeyDown(ev)
