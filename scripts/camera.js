@@ -196,14 +196,6 @@ var Camera = new function()
                 //--- Escape
                 Camera.SetCamera(0, 0, 1);
             }
-            if (ev.keyCode == 187 || ev.keyCode == 189)
-            {
-                //--- +/-
-                if (ev.keyCode == 189)
-                    m_Target.zoom *= 2;
-                else
-                    m_Target.zoom /= 2;
-            }
         });
 
         requestAnimationFrame(OnEachFrame);
