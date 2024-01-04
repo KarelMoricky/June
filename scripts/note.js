@@ -67,6 +67,8 @@ var Note = new function()
             else
             {
                 m_Note.setAttribute("class", "animateNoteOut");
+
+                Tile.RevealNextTile();
             }
         }
     }

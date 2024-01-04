@@ -58,6 +58,11 @@ var Tile = new function()
             element = element.parentElement;
         }
     }
+
+    this.RevealNextTile = function()
+    {
+        RevealNextTile();
+    }
     
     window.addEventListener(EVENT_GAME_INIT, OnGameInit);
     window.addEventListener(EVENT_GAME_DRAG_START, OnGameDragStart);
@@ -323,7 +328,7 @@ var Tile = new function()
     
             if (isManual)
             {
-                RevealNextTile();
+                //RevealNextTile();
                 PlayAudio("tileMove");
             }
             

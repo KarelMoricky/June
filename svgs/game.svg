@@ -33,7 +33,7 @@
     <!-- Drag view -->
     <svg id="tutorialView" x="-300" y="-650" width="600" height="200">
       <text text-anchor="middle" class="animateTutorialView">
-        <tspan x="50%" dy="3.2em">Drag to move the view</tspan>
+        <tspan x="50%" dy="3.2em">Drag the view down</tspan>
       </text>
     </svg>
 
@@ -41,7 +41,7 @@
     <svg id="tutorialTile" x="-180" y="480" width="600" height="200">
       <text text-anchor="middle">
         <tspan x="50%" dy="1.2em">Grab the tile</tspan>
-        <tspan x="50%" dy="1.2em">to move it to its place</tspan>
+        <tspan x="50%" dy="1.2em">to its place</tspan>
       </text>
     </svg>
 
