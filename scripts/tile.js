@@ -170,7 +170,7 @@ var Tile = new function()
         m_ClickTilePos = [parseInt(m_Selected.getAttribute("x")), parseInt(m_Selected.getAttribute("y"))];
         SetTileState(m_Selected, TILE_STATE_EDITING);
 
-        navigator.vibrate(VIBRATION_TILE_DRAG_START);
+        Vibrate(VIBRATION_TILE_DRAG_START);
     }
 
     function OnGameDrag(ev)
@@ -196,11 +196,11 @@ var Tile = new function()
         if (isConfirmed)
         {
             AnimateTile(tile, true);
-            navigator.vibrate(VIBRATION_TILE_CONFIRMED);
+            Vibrate(VIBRATION_TILE_CONFIRMED);
         }
         else
         {
-            navigator.vibrate(VIBRATION_TILE_DRAG_END);
+            Vibrate(VIBRATION_TILE_DRAG_END);
         }
     }
 
@@ -303,7 +303,7 @@ var Tile = new function()
             tile.setAttribute("y", gameTransform.y);
         }
     
-        Debug.Log(tile.id, gridTransform.x, gridTransform.y);
+        //Debug.Log(tile.id, gridTransform.x, gridTransform.y);
         UpdateTiles();
     }
     

@@ -111,16 +111,15 @@ var Game = new function()
         m_Svg.addEventListener("pointerup", OnPointerUp);
         document.addEventListener("fullscreenchange", OnFullScreenChange);
 
-        if (!Debug.IsDev() || !DEV_FOREVER_LOAD)
-        {
-            //--- Hide loading
-            OnLoadFinished();
-        }
-
-        if (DEV_FOREVER_LOAD)
+        if (Debug.IsOffline())
         {
             let loading = document.getElementById(ID_LOADING);
             loading.addEventListener("click", OnLoadFinished);
+        }
+        else
+        {
+            //--- Hide loading
+            OnLoadFinished();
         }
 
         //--- Get game dimensions

@@ -1,10 +1,22 @@
 var Debug = new function()
 {
-    var m_IsDev = DEV_MODE && window.location.href.startsWith("http://127.0.0.1");
+    var m_IsOffline = window.location.href.startsWith("http://127.0.0.1");
+    var m_IsDev = DEV_MODE == 2 || (DEV_MODE == 1 && m_IsOffline);
+    var m_SkipIntro = DEV_SKIP_INTRO && m_IsOffline;
+
+    this.IsOffline = function()
+    {
+        return m_IsOffline;
+    }
 
     this.IsDev = function()
     {
         return m_IsDev;
+    }
+
+    this.SkipIntro = function()
+    {
+        return m_SkipIntro;
     }
 
     this.Log = function()
@@ -12,18 +24,33 @@ var Debug = new function()
         if (!m_IsDev || !m_Log)
             return;
 
-        var now = new Date().toTimeString().slice(0,8);
-        let text = "<small style='color: grey;'>[" + now + "]</small>";
+        m_Log.innerHTML = GetLogText(arguments);
+    }
+
+    this.AddLog = function()
+    {
+        if (!m_IsDev || !m_Log)
+            return;
+
+        if (m_Log.innerHTML != "")
+            m_Log.innerHTML+= "<br />";
+        
+        m_Log.innerHTML += GetLogText(arguments);
+    }
+
+    function GetLogText(arguments)
+    {
+        let text = "<small style='color: grey;'>[" + new Date().toTimeString().slice(0,8) + "]</small>";
         for (let i = 0; i < arguments.length; i++)
         {
             text += "<br />" + arguments[i];
         }
-        m_Log.innerHTML = text;
+        return text;
     }
 
     if (m_IsDev)
     {
-        document.title = "[DEV] " + document.title;
+        document.title = "DEV|" + document.title;
 
         var m_StartTime = new Date();
 
@@ -52,14 +79,15 @@ var Debug = new function()
                 requestAnimationFrame(OnEachFrame);
             }
 
-            window.addEventListener(EVENT_GAME_INIT, function ()
+            Game.GetSVG().addEventListener("mousemove", (ev) =>
             {
-                Game.GetSVG().addEventListener("mousemove", (ev) =>
-                {
-                    m_Client.x = ev.clientX;
-                    m_Client.y = ev.clientY;
-                });
+                m_Client.x = ev.clientX;
+                m_Client.y = ev.clientY;
             });
         }
+    }
+    if (m_IsOffline)
+    {
+        document.title = "OFF|" + document.title;
     }
 }

@@ -23,6 +23,13 @@ function IsElementVisible(element)
     return !element.classList.contains("hidden");
 }
 
+function Vibrate(pattern)
+{
+    const canVibrate = window.navigator.vibrate;
+    if (canVibrate)
+        window.navigator.vibrate(pattern);
+}
+
 //#endregion
 
 //#region Audio

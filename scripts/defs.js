@@ -1,6 +1,6 @@
 //#region Constants
-const DEV_MODE = 1;             //--- When true and when running locally, dev mode will be active
-const DEV_FOREVER_LOAD = 0;     //--- When true, loading screen will remain stuck forever
+const DEV_MODE = 1;             //--- 0: disabled, 1: offline, 2: offline & online
+const DEV_SKIP_INTRO = 1;       //--- When true, intro screen will be skipped. Valid only in offline mode.
 
 const REVEAL_BY_TIERS = 0;      //--- True to reveal tiles in batches based on unlocked tiers (see TIERS variable below)
 const FORCED_START = [];        //--- When defined, all new tiles will start on this position instead of the one configured in ORIGIN_POSITIONS

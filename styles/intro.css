@@ -49,8 +49,15 @@
 	border: none;
 }
 
+#introBox button:disabled
+{
+	background-color: rgba(255, 255, 255, 0.3);
+}
+
 #introBox button:enabled
 {
+	background-color: white;
+	cursor: pointer;
 	animation: animPulseButton 3s ease infinite;
 }
 @keyframes animPulseButton
@@ -90,7 +97,7 @@
 	position: absolute;
 	left: min(75px, 16vh);
 	top: max(-6px, -1vh);
-	border: min(70px, 1vh) solid rgba(255, 255, 255, 0.3);
+	border: min(70px, 1vh) solid rgba(225, 225, 225, 0.3);
 	border-top: min(70px, 1vh) solid white;
 	border-right: min(70px, 1vh) solid white;
 	border-radius: 50%;

@@ -17,7 +17,8 @@ function OnLoadIntroBox()
 
     if (Debug.IsDev())
     {
-        if (!DEV_FOREVER_LOAD)
+        //--- Instantly skip the loading screen
+        if (Debug.SkipIntro())
             OnButtonPlay();
 
         let tier0_sex = document.getElementById(ID_TIER_0_SEX);
@@ -29,9 +30,9 @@ function OnLoadIntroBox()
         SetElementVisible(m_IntroArea, false);
 
         //--- Switch to fullscreen
-        if (!Debug.IsDev() || DEV_FOREVER_LOAD)
+        if (!Debug.SkipIntro())
         {
-            navigator.vibrate(VIBRATION_PLAY);
+            Vibrate(VIBRATION_PLAY);
 
             let docElm = document.documentElement;
             if (docElm.requestFullscreen)
@@ -43,7 +44,7 @@ function OnLoadIntroBox()
             else if (docElm.msRequestFullscreen)
                 docElm.msRequestFullscreen();
         }
-            
+
         let ev = new CustomEvent(EVENT_PAUSE,{detail: {
             isPaused: false
         }});
