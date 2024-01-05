@@ -15,7 +15,6 @@ var Tile = new function()
     const TILE_STATE_EDITING = "tileStateEditing";
     const TILE_STATE_CONFIRMED = "tileStateConfirmed";
 
-    const TILE_PICTURE_CURRENT = "tilePictureCurrent";
     
     //--- Grid
     const GRID_SIZE = 12;
@@ -25,8 +24,8 @@ var Tile = new function()
         .skewX(-30)
         .scale(1 * ISO_SIZE, 0.8602 * ISO_SIZE);
 
-    var m_Selected;
-    var m_AnimatedTile;
+    var m_CurrentTile = null;
+    var m_SelectedTile = null;
     var m_Tiles = [];
     var m_TilesZSorted = [];
     var m_ClickTilePos = [];
@@ -40,18 +39,18 @@ var Tile = new function()
 
     this.GetSelected = function()
     {
-        return m_Selected;
+        return m_SelectedTile;
     }
 
     this.SetSelected = function(ev)
     {
-        m_Selected = null;
+        m_SelectedTile = null;
         let element = Game.GetSVGDoc().elementFromPoint(ev.clientX, ev.clientY);
         while (element)
         {
             if (element.classList.contains("tile") && !element.getAttribute(VAR_CONFIRMED))
             {
-                m_Selected = element;
+                m_SelectedTile = element;
                 break;
             }
     
@@ -141,69 +140,6 @@ var Tile = new function()
         window.removeEventListener(EVENT_PAUSE, OnPause);
     }
 
-    function OnEachFrame()
-    {
-        let timeNow = Date.now();
-        let timeSlice = (timeNow - m_TimePrev) * INERTIA_DEFAULT;
-        m_TimePrev = timeNow;
-
-        if (m_AnimatedTile && m_TargetPos.length > 0 && m_AnimatedTile.getAttribute("x") != null)
-        {
-            let posX = Lerp(m_AnimatedTile.getAttribute("x"), m_TargetPos[0], timeSlice);
-            let posY = Lerp(m_AnimatedTile.getAttribute("y"), m_TargetPos[1], timeSlice);
-
-            m_AnimatedTile.setAttribute("x", posX);
-            m_AnimatedTile.setAttribute("y", posY);
-         }
-         
-         requestAnimationFrame(OnEachFrame);
-    }
-
-    function OnGameDragStart(ev)
-    {
-        if (!m_Selected)
-            return;
-
-        m_TargetPos = [];
-        m_AnimatedTile = m_Selected;
-
-        m_ClickTilePos = [parseInt(m_Selected.getAttribute("x")), parseInt(m_Selected.getAttribute("y"))];
-        SetTileState(m_Selected, TILE_STATE_EDITING);
-
-        Vibrate(VIBRATION_TILE_DRAG_START);
-    }
-
-    function OnGameDrag(ev)
-    {
-        if (!m_Selected)
-            return;
-
-        DragTile(ev, TILE_DRAG_SNAP);
-    }
-
-    function OnGameDragEnd(ev)
-    {
-        if (!m_Selected)
-            return;
-
-        DragTile(ev, true);
-        let tile = m_Selected;
-        m_Selected = null;
-        
-        let isConfirmed = EvaluateTile(tile, true);
-        UpdateTiles();
-
-        if (isConfirmed)
-        {
-            AnimateTile(tile, true);
-            Vibrate(VIBRATION_TILE_CONFIRMED);
-        }
-        else
-        {
-            Vibrate(VIBRATION_TILE_DRAG_END);
-        }
-    }
-
     function OnKeyDown(ev)
     {
         if (ev.keyCode == 32)
@@ -222,6 +158,7 @@ var Tile = new function()
         else if (ev.keyCode == 192)
         {
             //--- [~] Skip to the last tile
+            SetCurrentTile(null); //--- Prevent position lerping of the current tile
             for (let i = 0; i < m_Tiles.length - 1; i++)
             {
                 if (m_Tiles[i].getAttribute(VAR_CONFIRMED) == null)
@@ -232,6 +169,71 @@ var Tile = new function()
                 }
             }
             RevealNextTile();
+        }
+    }
+
+    function OnEachFrame()
+    {
+        let timeNow = Date.now();
+        let timeSlice = (timeNow - m_TimePrev) * INERTIA_DEFAULT;
+        m_TimePrev = timeNow;
+
+        if (m_CurrentTile && m_TargetPos.length > 0 && m_CurrentTile.getAttribute("x") != null)
+        {
+            let posX = Lerp(m_CurrentTile.getAttribute("x"), m_TargetPos[0], timeSlice);
+            let posY = Lerp(m_CurrentTile.getAttribute("y"), m_TargetPos[1], timeSlice);
+
+            m_CurrentTile.setAttribute("x", posX);
+            m_CurrentTile.setAttribute("y", posY);
+         }
+         
+         requestAnimationFrame(OnEachFrame);
+    }
+
+    function OnGameDragStart(ev)
+    {
+        if (!m_SelectedTile)
+            return;
+
+        m_TargetPos = [];
+
+        m_ClickTilePos = [parseInt(m_SelectedTile.getAttribute("x")), parseInt(m_SelectedTile.getAttribute("y"))];
+        SetTileState(m_SelectedTile, TILE_STATE_EDITING);
+
+        Vibrate(VIBRATION_TILE_DRAG_START);
+            
+        //--- Dragged tile always on top
+        m_TilesElement.appendChild(m_SelectedTile);
+    }
+
+    function OnGameDrag(ev)
+    {
+        if (!m_SelectedTile)
+            return;
+
+        DragTile(ev, TILE_DRAG_SNAP);
+    }
+
+    function OnGameDragEnd(ev)
+    {
+        if (!m_SelectedTile)
+            return;
+
+        DragTile(ev, true);
+        let tile = m_SelectedTile;
+        m_SelectedTile = null;
+        
+        let isConfirmed = EvaluateTile(tile, true);
+        UpdateTiles();
+
+        if (isConfirmed)
+        {
+            AnimateTile(tile, true);
+            Vibrate(VIBRATION_TILE_CONFIRMED);
+        }
+        else
+        {
+            Vibrate(VIBRATION_TILE_DRAG_END);
         }
     }
 
@@ -248,15 +250,12 @@ var Tile = new function()
             var gridTransform = new DOMPointReadOnly(posX, posY).matrixTransform(ISO_MATRIX.inverse());
             gridTransform.x = Math.round(gridTransform.x);
             gridTransform.y = Math.round(gridTransform.y);
-            SetTileTransform(m_Selected, gridTransform);
+            SetTileTransform(m_SelectedTile, gridTransform);
         }
         else
         {
             m_TargetPos[0] = posX;
             m_TargetPos[1] = posY;
-            
-            //--- Dragged tile always on top
-            m_TilesElement.appendChild(m_Selected);
         }
     }
     
@@ -292,7 +291,7 @@ var Tile = new function()
         tile.setAttribute(VAR_TARGET_X, gameTransform.x);
         tile.setAttribute(VAR_TARGET_Y, gameTransform.y);
 
-        if (tile == m_AnimatedTile)
+        if (tile == m_CurrentTile)
         {
             m_TargetPos[0] = gameTransform.x;
             m_TargetPos[1] = gameTransform.y;
@@ -372,18 +371,36 @@ var Tile = new function()
         tileArea.setAttribute("class", state);
     }
 
+    function SetCurrentTile(tile)
+    {
+        //--- Unmark the previous current tile
+        if (m_CurrentTile)
+        {
+            m_CurrentTile.classList.remove(CLASS_TILE_CURRENT);
+            m_CurrentTile = null;
+        }
+        
+        m_CurrentTile = tile;
+        m_TargetPos = [];
+
+        if (m_CurrentTile)
+        {
+            SetElementVisible(m_CurrentTile, true);
+            m_CurrentTile.classList.add(CLASS_TILE_CURRENT);
+        }
+    }
+
     function RevealNextTile()
     {
         //--- Show tile
-        let index = 0;;
+        let index = 0;
         for (let i = 0; i < m_Tiles.length; i++)
         {
             //--- Reveal the next tile in line, one by one
             if (!IsElementVisible(m_Tiles[i]))
             {
                 index = i;
-                SetElementVisible(m_Tiles[i], true);
-                m_Tiles[i].classList.add(TILE_PICTURE_CURRENT);
+                SetCurrentTile(m_Tiles[i]);
                 break;
             }
         }

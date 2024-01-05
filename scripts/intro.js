@@ -1,28 +1,50 @@
+const ID_LOADING = "loading";
 const ID_INTRO_AREA = "introArea";
-const ID_INTRO_BOX = "introBox";
 const ID_BUTTON_PLAY = "playButton";
-const ID_TIER_0_SEX = "titleBaby";
+const ID_TITLE_BABY = "titleBaby";
 
-var m_IntroArea = null;
-var m_IntroBox = null;
+let m_ButtonPlay = document.getElementById(ID_BUTTON_PLAY);
+m_ButtonPlay.disabled = true; //--- Force disable it even though it has HTML tag; some browsers (e.g., Android Firefox) ignore it for some reason
+
+//--- Show loading screen (hidden by default so it's not shown if JavaScript is disabled)
+SetElementVisible(document.getElementById(ID_LOADING), true);
+SetElementVisible(document.getElementById("play"), true);
 
 window.addEventListener("load", OnLoadIntroBox);
 function OnLoadIntroBox()
 {
-    m_IntroArea = document.getElementById(ID_INTRO_AREA);
-    m_IntroBox = document.getElementById(ID_INTRO_BOX);
+    let m_IntroArea = document.getElementById(ID_INTRO_AREA);
 
-    let playButton = document.getElementById(ID_BUTTON_PLAY);
-    playButton.addEventListener("click", OnButtonPlay);
+    m_ButtonPlay.addEventListener("click", OnButtonPlay);
+
+    if (Debug.IsManualLoad())
+    {
+        //--- Init manual hiding
+        let loading = document.getElementById(ID_LOADING);
+        loading.addEventListener("click", OnLoadFinished);
+    }
+    else
+    {
+        //--- Hide loading
+        OnLoadFinished();
+    }
 
     if (Debug.IsDev())
     {
         //--- Instantly skip the loading screen
         if (Debug.SkipIntro())
             OnButtonPlay();
+        else
+            document.getElementById(ID_TITLE_BABY).addEventListener("click", OnTitleBaby);
+    }
 
-        let tier0_sex = document.getElementById(ID_TIER_0_SEX);
-        tier0_sex.addEventListener("click", OnTier0Sex);
+    function OnLoadFinished()
+    {
+        SetElementVisible(document.getElementById("playText"), true);
+        SetElementVisible(document.getElementById(ID_LOADING), false);
+
+        let play = document.getElementById("playButton");
+        play.disabled = false;
     }
 
     function OnButtonPlay()
@@ -51,12 +73,12 @@ function OnLoadIntroBox()
         window.dispatchEvent(ev);
     }
 
-    function OnTier0Sex(ev)
+    function OnTitleBaby(ev)
     {
-        let tier0_sex = document.getElementById(ID_TIER_0_SEX);
-        if (tier0_sex.innerHTML == "DAUGHTER")
-            tier0_sex.innerHTML = "YOUNGER SON";
+        let titleBaby = document.getElementById(ID_TITLE_BABY);
+        if (titleBaby.innerHTML == "DAUGHTER")
+            titleBaby.innerHTML = "YOUNGER SON";
         else
-          tier0_sex.innerHTML = "DAUGHTER";
+            titleBaby.innerHTML = "DAUGHTER";
     }
 }

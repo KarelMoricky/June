@@ -198,6 +198,12 @@ var Camera = new function()
             }
         });
 
+        if (Debug.SkipIntro())
+        {
+            m_Target.x = 0;
+            m_Target.y = 200;
+        }
+
         requestAnimationFrame(OnEachFrame);
     }
     //#endregion

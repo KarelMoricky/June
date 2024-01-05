@@ -7,7 +7,6 @@ var Game = new function()
     const ID_GAME = "game";
     const ID_CURSOR = "cursor";
     const ID_CIRCLE = "circle";
-    const ID_LOADING = "loading";
 
     //--- Variables
     var m_SvgDoc;
@@ -86,11 +85,6 @@ var Game = new function()
 
     //#region Init
 
-    //--- Show loading screen (hidden by default so it's not shown if JavaScript is disabled)
-
-    SetElementVisible(document.getElementById(ID_LOADING), true);
-    SetElementVisible(document.getElementById("play"), true);
-
     window.addEventListener("load", OnLoad);
     function OnLoad()
     {
@@ -111,30 +105,10 @@ var Game = new function()
         m_Svg.addEventListener("pointerup", OnPointerUp);
         document.addEventListener("fullscreenchange", OnFullScreenChange);
 
-        if (Debug.IsOffline())
-        {
-            let loading = document.getElementById(ID_LOADING);
-            loading.addEventListener("click", OnLoadFinished);
-        }
-        else
-        {
-            //--- Hide loading
-            OnLoadFinished();
-        }
-
         //--- Get game dimensions
         m_DefaultViewBox = Game.GetCurrentViewBox();
 
         window.dispatchEvent(new Event(EVENT_GAME_INIT));
-    }
-
-    function OnLoadFinished()
-    {
-        SetElementVisible(document.getElementById("playText"), true);
-        SetElementVisible(document.getElementById(ID_LOADING), false);
-
-        let play = document.getElementById("playButton");
-        play.disabled = false;
     }
 
     window.addEventListener("beforeunload", OnBeforeUnload);
