@@ -55,6 +55,10 @@
 
 #tutorialViewTouch
 {
+	fill: rgb(207, 119, 255);
+	fill-opacity: 0.9;
+	stroke: rgb(207, 119, 255);
+	stroke-width: 4px;
 	animation-name: animatetutorialViewTouch;
 	animation-duration: 2.5s;
 	animation-iteration-count: infinite;
