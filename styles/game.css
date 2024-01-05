@@ -65,21 +65,19 @@
     0%
 	{
 		opacity: 0;
+		r: 0;
     }
-
 	30%
 	{
 		opacity: 0;
-		r: 20px;
+		r: 0;
 	}
-
     50%
 	{
         transform: translate(0, 0);
 		opacity: 0.5;
 		r: 30px;
     }
-	
     90%
 	{
         transform: translate(0, -130px);
