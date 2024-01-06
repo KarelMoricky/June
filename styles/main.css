@@ -10,11 +10,7 @@ body, html
 body
 {
 	color: white;
-	/* background-color: rgb(249,229,192); */
 	background: rgb(10,22,48);
-	/* background: linear-gradient(rgb(10,22,48) 33%, rgb(68, 41, 83) 100%); */
-	/* background: rgb(239,235,224);
-	background: radial-gradient(circle, #F1D4B4 0%, #334B4D 100%); */
 	overflow: hidden; /* Hide scrollbars */
 	overscroll-behavior-y: contain !important; /* https://stackoverflow.com/questions/24081699/why-onbeforeunload-event-is-not-firing */
 }
@@ -52,5 +48,3 @@ body
 	left: 0;
 	top: 0;
 }
-
-

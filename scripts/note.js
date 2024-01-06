@@ -34,8 +34,10 @@ var Note = new function()
             //--- Last animation
             Camera.SetCamera(posX, posY, 3.5, OUTRO_ZOOM_LENGTH);
 
-            let tiles = Game.GetSVGDoc().getElementById(ID_TILES_ELEMENT);
-            tiles.classList.add("animateHeartIn");
+            //let tiles = Game.GetSVGDoc().getElementById(ID_TILES_ELEMENT);
+            //tiles.classList.add("animateHeartIn");
+            let heart = Game.GetSVGDoc().getElementById("heart");
+            heart.classList.add("animateHeartIn");
 
             let outro = document.getElementById("outroBox");
             SetElementVisible(outro, true);
@@ -60,10 +62,12 @@ var Note = new function()
             //--- Reset the last animation
             if (m_IsLast)
             {
-                let tiles = Game.GetSVGDoc().getElementById(ID_TILES_ELEMENT);
-                console.log(tiles.classList);
-                tiles.classList.remove("animateHeartIn");
-                tiles.classList.add("animateHeartOut");
+                //let tiles = Game.GetSVGDoc().getElementById(ID_TILES_ELEMENT);
+                //tiles.classList.remove("animateHeartIn");
+                //tiles.classList.add("animateHeartOut");
+                let heart = Game.GetSVGDoc().getElementById("heart");
+                heart.classList.remove("animateHeartIn");
+                heart.classList.add("animateHeartOut");
 
                 let outro = document.getElementById("outroBox");
                 outro.classList.remove("animateOutroIn");
