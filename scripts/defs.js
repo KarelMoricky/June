@@ -27,16 +27,6 @@ const ORIGIN_POSITIONS = new Map([
 ["tile04", [2,3]],	["tile12", [2,2]],					
 ["tile06", [3,2]],	["tile02", [3,2]],	["tile11", [3,0]],													
 ]);
-
-//--- Unlock tiers. Imported from Google Sheets.
-const TIERS = [
-    2,
-    5,
-    9,
-    14,
-    20,
-    21,
-]
 //#endregion
 
 //#region Elements

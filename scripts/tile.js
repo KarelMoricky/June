@@ -430,9 +430,9 @@ var Tile = new function()
         //--- Update tile hint's position
         const targetX = m_CurrentTile.getAttribute(VAR_GRID_TARGET_X);
         const targetY = m_CurrentTile.getAttribute(VAR_GRID_TARGET_Y);
-        var gridTransform = new DOMPointReadOnly(targetX, targetY).matrixTransform(ISO_MATRIX);
-
-        m_TileHint.setAttribute("transform", `translate(${gridTransform.x} ${gridTransform.y}) rotate(30) skewX(-30) scale(140, 120.428)`);
+ 
+        var hintTransform = new DOMMatrix(ISO_MATRIX).translateSelf(targetX, targetY, 0);
+        m_TileHint.setAttribute("transform", hintTransform);
         SetElementVisible(m_TileHint, true);
 
         //--- Show tile hint for subsequent tiles only after a delay
