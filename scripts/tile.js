@@ -4,8 +4,7 @@ var Tile = new function()
 
     const ID_TILE_AREA = "tileArea";
     const ID_TILE_CONTENT = "tileContent";
-    const ID_TILE_OVERLAY = "tileOverlay";
-    //const ID_GRID = "grid";
+    const ID_TILE_TARGET = "tileHint";
     
     const CLASS_TILE_SHOWN = "tile";
     const CLASS_TILE_HIDDEN = "tileHidden";
@@ -34,7 +33,7 @@ var Tile = new function()
     var m_TargetPos = [];
     var m_TimePrev = 0;
     var m_TilesElement = null;
-    var m_TileOverlay = null;
+    var m_TileHint = null;
     // var m_Grid;
     // var m_GridDebug;
 
@@ -73,7 +72,7 @@ var Tile = new function()
     function OnGameInit()
     {
         m_TilesElement = Game.GetSVGDoc().getElementById(ID_TILES_ELEMENT);
-        m_TileOverlay = Game.GetSVGDoc().getElementById(ID_TILE_OVERLAY);
+        m_TileHint = Game.GetSVGDoc().getElementById(ID_TILE_TARGET);
 
         let i = 0;
         for (let tileID of TARGET_POSITIONS.keys())
@@ -344,6 +343,10 @@ var Tile = new function()
             let tilePicture = tile.getElementById(ID_TILE_CONTENT);
             tilePicture.setAttribute("transform","translate(-128,-128)");
 
+            //--- Hide tile hint (and remove its animation, so it will be restarted once it's added again)
+            SetElementVisible(m_TileHint, false);
+            m_TileHint.classList.remove("animTileHintDelayed");
+
             //--- Send custom event
             let ev = new CustomEvent(EVENT_TILE_CONFIRMED,{detail: {
                 tile: tile,
@@ -423,5 +426,17 @@ var Tile = new function()
 
             SetElementVisible(elements[i], (min == null || index >= min) && (max == null || index <= max));
         }
+
+        //--- Update tile hint's position
+        const targetX = m_CurrentTile.getAttribute(VAR_GRID_TARGET_X);
+        const targetY = m_CurrentTile.getAttribute(VAR_GRID_TARGET_Y);
+        var gridTransform = new DOMPointReadOnly(targetX, targetY).matrixTransform(ISO_MATRIX);
+
+        m_TileHint.setAttribute("transform", `translate(${gridTransform.x} ${gridTransform.y}) rotate(30) skewX(-30) scale(140, 120.428)`);
+        SetElementVisible(m_TileHint, true);
+
+        //--- Show tile hint for subsequent tiles only after a delay
+        if (index > 1)
+            m_TileHint.classList.add("animTileHintDelayed");
     }
 }

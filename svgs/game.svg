@@ -47,12 +47,12 @@
         <tspan x="50%" dy="1.2em">to its place</tspan>
       </text>
     </svg>
+  </g>
 
-    <!-- Tile indicator -->
-    <g id="grid" class="ignoreCursor" transform="translate(121.24355652982142 70) rotate(30) skewX(-30) scale(140, 120.428)">
-      <rect x="0" y="0" width="1" height="1" class="tutorialTarget" />
-      <rect x="0" y="0" width="1" height="1" class="tutorialTarget animTutorialTarget" />
-    </g>
+  <!-- Tile indicator -->
+  <g id="tileHint" class="ignoreCursor">
+    <rect x="0" y="0" width="1" height="1" />
+    <rect x="0" y="0" width="1" height="1" class="animTileHint" />
   </g>
 
   <!-- Tiles -->

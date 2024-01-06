@@ -1,3 +1,6 @@
+:root {
+	--tile-hint-delay: 30s;
+}
 #game
 {
 	touch-action: none; /* Without it, touch dragging would be reset after a few moments by browser */
@@ -63,7 +66,7 @@
     100% { transform: translate(0, 30px); }
 }
 
-.tutorialTarget
+#tileHint
 {
 	fill: rgb(207, 119, 255);
 	fill-opacity: 0.05;
@@ -72,16 +75,22 @@
 	stroke-width: 0.04;
 	stroke-opacity: 0.3;
 }
-.animTutorialTarget
+.animTileHintDelayed
 {
-	animation-name: animTutorialTarget;
+	opacity: 0;
+	animation: animFadeIn 0.5s var(--tile-hint-delay) forwards;
+}
+.animTileHint
+{
+	fill-opacity: 0;
+	animation-name: animTileHint;
 	animation-duration: 1.5s;
 	animation-iteration-count: infinite;
 	animation-timing-function: ease-out;
 
 	transform-origin: 0.025% 0.045%;
 }
-@keyframes animTutorialTarget
+@keyframes animTileHint
 {
     0%
 	{
