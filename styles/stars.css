@@ -55,7 +55,7 @@
 @keyframes twinkle
 {
     50% {
-        opacity: 0.05;
+        opacity: 0.5;
     }
 }
 
