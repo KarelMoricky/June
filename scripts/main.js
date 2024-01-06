@@ -23,6 +23,12 @@ function IsElementVisible(element)
     return !element.classList.contains("hidden");
 }
 
+function SetStyleVariable(name, value)
+{
+    document.querySelector(":root").style.setProperty(name, value);
+    Game.GetSVGDoc().querySelector(":root").style.setProperty(name, value);
+}
+
 function Vibrate(pattern)
 {
     const canVibrate = window.navigator.vibrate;

@@ -324,6 +324,7 @@ var Tile = new function()
         {
             tile.setAttribute(VAR_CONFIRMED, true);
             SetTileState(tile, TILE_STATE_CONFIRMED);
+            tile.classList.add(CLASS_TILE_CONFIRMED);
     
             if (isManual)
             {
@@ -412,10 +413,7 @@ var Tile = new function()
             let min = elements[i].getAttribute(VAR_TILE_MIN);
             let max = elements[i].getAttribute(VAR_TILE_MAX);
 
-            if ((min == null || index >= min) && (max == null || index <= max))
-                elements[i].classList.remove("hidden");
-            else
-                elements[i].classList.add("hidden");
+            SetElementVisible(elements[i], (min == null || index >= min) && (max == null || index <= max));
         }
     }
 }

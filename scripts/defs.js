@@ -6,8 +6,6 @@ const DEV_MANUAL_LOAD = 1;      //--- When true, loading screen has to be progre
 const FORCED_START = [];        //--- When defined, all new tiles will start on this position instead of the one configured in ORIGIN_POSITIONS
 const TILE_DRAG_SNAP = 0;       //--- Snap tiles to grid even when dragging the tile
 const DEFAULT_ZOOM = 1;         //--- Default view box zoom
-
-const CONFIRMATION_MOVE_DURATION = 1.5; //--- How long will camera take to focus on confirmed tile. Use 0 to disable the effect.
 //#endregion
 
 //#region Tiles

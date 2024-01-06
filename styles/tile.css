@@ -52,6 +52,11 @@
     }
 }
 
+.tileConfirmed
+{
+	filter: none !important; /* Remove tile highlight */
+}
+
 #tileArea
 {
 	fill: rgba(0, 255, 0, 0);
