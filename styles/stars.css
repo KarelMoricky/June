@@ -32,7 +32,7 @@
 	width: 100%;
 	height: 100%;
 	pointer-events: none;
-	background: linear-gradient(rgba(0,0,0,0) 33%, rgb(108, 66, 131) 100%);
+	background: linear-gradient(rgba(0,0,0,0) 33%, var(--color-light) 100%);
 }
 
 .stars

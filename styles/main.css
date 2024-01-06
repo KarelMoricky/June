@@ -10,7 +10,7 @@ body, html
 body
 {
 	color: white;
-	background: rgb(10,22,48);
+	background: var(--color-dark);
 	overflow: hidden; /* Hide scrollbars */
 	overscroll-behavior-y: contain !important; /* https://stackoverflow.com/questions/24081699/why-onbeforeunload-event-is-not-firing */
 }

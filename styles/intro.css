@@ -88,7 +88,7 @@
 {
 	font-family: "Roboto Slab", sans-serif;
 	text-align: center;
-	color: rgb(10,22,48);
+	color: var(--color-dark);
 }
 
 /* https://www.w3schools.com/howto/howto_css_loader.asp */

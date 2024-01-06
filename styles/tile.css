@@ -29,7 +29,7 @@
 
 .tileCurrent
 {
-    filter: drop-shadow(0 15px 20px rgb(207, 119, 255));
+    filter: drop-shadow(0 15px 20px var(--color-highlight));
 
 	animation-name: animTileCurrent;
 	animation-duration: 1.5s;
@@ -47,12 +47,12 @@
 {
     0%
 	{
-        filter: drop-shadow(0 15px 20px rgb(207, 119, 255));
+        filter: drop-shadow(0 15px 20px var(--color-highlight));
     }
 	
     100%
 	{
-        filter: drop-shadow(0 15px 10px rgb(207, 119, 255));
+        filter: drop-shadow(0 15px 10px var(--color-highlight));
     }
 }
 
@@ -102,7 +102,7 @@
 {
 	font-family: "Roboto Slab", sans-serif;
 	font-size: 250px;
-	filter: drop-shadow(0 0 20px rgb(108, 66, 131));
+	filter: drop-shadow(0 0 20px var(--color-light));
 	opacity: 0;
 }
 
