@@ -1,7 +1,9 @@
 var Note = new function()
 {
     const CONFIRMATION_MOVE_LENGTH = 1.5; //--- How long will camera take to focus on confirmed tile. Use 0 to disable the effect.
-    const OUTRO_ZOOM_LENGTH = 5; //--- TIme for camera to zoom out during outro
+    
+    const OUTRO_ZOOM_LENGTH = 5; //--- Time for camera to zoom out during outro
+    const OUTRO_ZOOM_VALUE = 3.5; //--- Camera zoom factor
 
     var m_Note = document.getElementById("note");
     var m_InDetail = false;
@@ -32,7 +34,7 @@ var Note = new function()
         if (ev.detail.isLast)
         {
             //--- Last animation
-            Camera.SetCamera(posX, posY, 3.5, OUTRO_ZOOM_LENGTH);
+            Camera.SetCamera(posX, posY, OUTRO_ZOOM_VALUE, OUTRO_ZOOM_LENGTH);
 
             let tiles = Game.GetSVGDoc().getElementById(ID_TILES_ELEMENT);
             tiles.classList.add("animTilesOut");

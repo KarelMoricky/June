@@ -111,10 +111,7 @@ var Tile = new function()
         }
         m_Tiles.sort((a, b) => parseInt(a.getAttribute("tileId")) - parseInt(b.getAttribute("tileId")));
 
-        if (Debug.IsDev())
-        {
-            Game.GetSVG().addEventListener("keydown", OnKeyDown);
-        }
+        Game.GetSVG().addEventListener("keydown", OnKeyDown);
 
         requestAnimationFrame(OnEachFrame);
         
@@ -142,6 +139,10 @@ var Tile = new function()
 
     function OnKeyDown(ev)
     {
+        //--- Cheat combination
+        if (!ev.ctrlKey || !ev.shiftKey)
+            return;
+
         if (ev.keyCode == 32)
         {
             //--- [Space] Auto-place next tile
@@ -150,7 +151,7 @@ var Tile = new function()
                 if (m_Tiles[i].getAttribute(VAR_CONFIRMED) == null)
                 {
                     SetTilePos(m_Tiles[i], m_Tiles[i].getAttribute(VAR_GRID_TARGET_X), m_Tiles[i].getAttribute(VAR_GRID_TARGET_Y));
-                    EvaluateTile(m_Tiles[i], false);
+                    EvaluateTile(m_Tiles[i], true);
                     break;
                 }
             }
