@@ -11,11 +11,16 @@ var Note = new function()
 
     window.addEventListener(EVENT_GAME_INIT, OnGameInit);
     window.addEventListener(EVENT_TILE_CONFIRMED, OnTileConfirmed);
-    window.addEventListener(EVENT_GAME_DRAG_START, OnGameDragStart);
+    window.addEventListener(EVENT_GAME_DRAG_START, CloseNote);
 
     function OnGameInit()
     {
         SetStyleVariable("--outro-zoom-out", OUTRO_ZOOM_LENGTH + "s");
+        
+        Game.GetSVG().addEventListener("keydown", (ev) => {
+            if (ev.key == "Escape")
+                CloseNote()
+        });
     }
 
     function OnTileConfirmed(ev)
@@ -53,11 +58,10 @@ var Note = new function()
         }
     }
 
-    function OnGameDragStart()
+    function CloseNote()
     {
         if (m_InDetail && !Camera.IsAnimPlaying())
         {
-
             m_InDetail = false;
 
             Camera.SetCamera(-1, -1, 1, 0.25);

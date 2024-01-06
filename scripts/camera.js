@@ -191,11 +191,8 @@ var Camera = new function()
         m_Target.y = m_Current.y;
         
         Game.GetSVG().addEventListener("keydown", (ev) => {
-            if (ev.keyCode == 27)
-            {
-                //--- Escape
+            if (ev.key == "Escape" && !m_Anim.playing && m_Target.zoom == 1)
                 Camera.SetCamera(0, 0, 1);
-            }
         });
 
         if (Debug.SkipIntro())

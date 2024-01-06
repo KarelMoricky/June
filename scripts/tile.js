@@ -4,6 +4,7 @@ var Tile = new function()
 
     const ID_TILE_AREA = "tileArea";
     const ID_TILE_CONTENT = "tileContent";
+    const ID_TILE_OVERLAY = "tileOverlay";
     //const ID_GRID = "grid";
     
     const CLASS_TILE_SHOWN = "tile";
@@ -15,7 +16,6 @@ var Tile = new function()
     const TILE_STATE_EDITING = "tileStateEditing";
     const TILE_STATE_CONFIRMED = "tileStateConfirmed";
 
-    
     //--- Grid
     const GRID_SIZE = 12;
     const ISO_SIZE = 140;
@@ -34,6 +34,7 @@ var Tile = new function()
     var m_TargetPos = [];
     var m_TimePrev = 0;
     var m_TilesElement = null;
+    var m_TileOverlay = null;
     // var m_Grid;
     // var m_GridDebug;
 
@@ -72,6 +73,7 @@ var Tile = new function()
     function OnGameInit()
     {
         m_TilesElement = Game.GetSVGDoc().getElementById(ID_TILES_ELEMENT);
+        m_TileOverlay = Game.GetSVGDoc().getElementById(ID_TILE_OVERLAY);
 
         let i = 0;
         for (let tileID of TARGET_POSITIONS.keys())
