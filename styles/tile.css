@@ -1,3 +1,7 @@
+:root {
+	--display-numbers: none;
+}
+
 #tiles
 {
 	overflow: visible;
@@ -91,7 +95,7 @@
 	stroke: white;
     stroke-width: 2px;
 	pointer-events: none;
-	display: none;
+	display: var(--display-numbers);
 }
 
 #outro

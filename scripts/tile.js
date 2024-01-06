@@ -143,7 +143,7 @@ var Tile = new function()
         if (!ev.ctrlKey || !ev.shiftKey)
             return;
 
-        if (ev.keyCode == 32)
+        if (ev.key == " ")
         {
             //--- [Space] Auto-place next tile
             for (let i = 0; i < m_Tiles.length; i++)
@@ -156,7 +156,7 @@ var Tile = new function()
                 }
             }
         }
-        else if (ev.keyCode == 192)
+        else if (ev.key == "~")
         {
             //--- [~] Skip to the last tile
             SetCurrentTile(null); //--- Prevent position lerping of the current tile
@@ -170,6 +170,11 @@ var Tile = new function()
                 }
             }
             RevealNextTile();
+        }
+        else if (ev.key == "X")
+        {
+            //--- [X] Toggle numbers
+            SetStyleVariable("--display-numbers", "block");
         }
     }
 
