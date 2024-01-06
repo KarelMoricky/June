@@ -15,7 +15,7 @@
 	stroke-width: 0.01;
 	/* stroke-dasharray: 0.3 0.7;
 	stroke-dashoffset: 0.15; */
-	opacity: 0.5;
+	stroke-opacity: 0.5;
     filter: drop-shadow(0 0 5px var(--color-highlight));
 }
 

@@ -44,6 +44,9 @@ var Note = new function()
             let tiles = Game.GetSVGDoc().getElementById(ID_TILES_ELEMENT);
             tiles.classList.add("animTilesOut");
 
+            let grid = Game.GetSVGDoc().getElementById("grid");
+            grid.classList.add("animTilesOut");
+
             let heart = Game.GetSVGDoc().getElementById("heart");
             SetElementVisible(heart, true);
 
@@ -72,6 +75,10 @@ var Note = new function()
                 let tiles = Game.GetSVGDoc().getElementById(ID_TILES_ELEMENT);
                 tiles.classList.remove("animTilesOut");
                 tiles.classList.add("animTilesIn");
+
+                let grid = Game.GetSVGDoc().getElementById("grid");
+                grid.classList.remove("animTilesOut");
+                grid.classList.add("animTilesIn");
                 
                 let heart = Game.GetSVGDoc().getElementById("heart");
                 heart.classList.remove("animHeartIn");
