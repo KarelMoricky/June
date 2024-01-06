@@ -34,10 +34,11 @@ var Note = new function()
             //--- Last animation
             Camera.SetCamera(posX, posY, 3.5, OUTRO_ZOOM_LENGTH);
 
-            //let tiles = Game.GetSVGDoc().getElementById(ID_TILES_ELEMENT);
-            //tiles.classList.add("animateHeartIn");
+            let tiles = Game.GetSVGDoc().getElementById(ID_TILES_ELEMENT);
+            tiles.classList.add("animTilesOut");
+
             let heart = Game.GetSVGDoc().getElementById("heart");
-            heart.classList.add("animateHeartIn");
+            SetElementVisible(heart, true);
 
             let outro = document.getElementById("outroBox");
             SetElementVisible(outro, true);
@@ -45,7 +46,7 @@ var Note = new function()
         else
         {
             //--- Default animation
-            m_Note.setAttribute("class", "animateNoteIn");
+            m_Note.setAttribute("class", "animNoteIn");
             Camera.SetCamera(posX, parseInt(posY) + 80, 0.5, CONFIRMATION_MOVE_LENGTH); //--- #TODO: Don't hardcode
         }
     }
@@ -62,20 +63,21 @@ var Note = new function()
             //--- Reset the last animation
             if (m_IsLast)
             {
-                //let tiles = Game.GetSVGDoc().getElementById(ID_TILES_ELEMENT);
-                //tiles.classList.remove("animateHeartIn");
-                //tiles.classList.add("animateHeartOut");
+                let tiles = Game.GetSVGDoc().getElementById(ID_TILES_ELEMENT);
+                tiles.classList.remove("animTilesOut");
+                tiles.classList.add("animTilesIn");
+                
                 let heart = Game.GetSVGDoc().getElementById("heart");
-                heart.classList.remove("animateHeartIn");
-                heart.classList.add("animateHeartOut");
+                heart.classList.remove("animHeartIn");
+                heart.classList.add("animHeartOut");
 
                 let outro = document.getElementById("outroBox");
-                outro.classList.remove("animateOutroIn");
-                outro.classList.add("animateOutroOut");
+                outro.classList.remove("animOutroIn");
+                outro.classList.add("animOutroOut");
             }
             else
             {
-                m_Note.setAttribute("class", "animateNoteOut");
+                m_Note.setAttribute("class", "animNoteOut");
 
                 Tile.RevealNextTile();
             }

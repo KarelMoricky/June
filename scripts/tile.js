@@ -361,7 +361,7 @@ var Tile = new function()
             return;
 
         if (animate)
-            tilePicture.setAttribute("class", "animateTileConfirmed");
+            tilePicture.setAttribute("class", "animTileConfirmed");
         else
             tilePicture.setAttribute("class", "");
     }

@@ -35,7 +35,7 @@
     <!-- Drag view -->
     <circle id="tutorialViewTouch" class="ignoreCursor" cx="0" cy="-500" />
     <svg id="tutorialView" x="-300" y="-650" width="600" height="200">
-      <text text-anchor="middle" class="animateTutorialViewx">
+      <text text-anchor="middle" class="animTutorialViewx">
         <tspan x="50%" dy="3.2em">Drag the view down</tspan>
       </text>
     </svg>
@@ -51,7 +51,7 @@
     <!-- Tile indicator -->
     <g id="grid" class="ignoreCursor" transform="translate(121.24355652982142 70) rotate(30) skewX(-30) scale(140, 120.428)">
       <rect x="0" y="0" width="1" height="1" class="tutorialTarget" />
-      <rect x="0" y="0" width="1" height="1" class="tutorialTarget animateTutorialTarget" />
+      <rect x="0" y="0" width="1" height="1" class="tutorialTarget animTutorialTarget" />
     </g>
   </g>
 
@@ -234,7 +234,7 @@
   </g>
 
   <!-- Outro heart -->
-  <image id="heart" class="ignoreCursor" href="../data/images/heart.png" width="960" x="-480" y="-210" />
+  <image id="heart" class="ignoreCursor hidden animHeartIn" href="../data/images/heart.png" width="960" x="-480" y="-210" />
 
   <!-- Debug cursor -->
   <!-- <circle id="cursor" class="ignoreCursor" style="fill: rgb(255,0,0);" cx="1000" cy="1000" r="10px" /> -->

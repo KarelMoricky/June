@@ -27,7 +27,7 @@
 {
     filter: drop-shadow(0 15px 20px rgb(207, 119, 255));
 
-	animation-name: animateTileCurrent;
+	animation-name: animTileCurrent;
 	animation-duration: 1.5s;
 	animation-iteration-count: infinite;
     animation-direction: alternate;
@@ -39,7 +39,7 @@
 	animation-direction: reverse;
 	animation-fill-mode: backwards;
 } */
-@keyframes animateTileCurrent
+@keyframes animTileCurrent
 {
     0%
 	{
@@ -109,16 +109,16 @@
 	font-style: italic;
 }
 
-.animateTileConfirmed
+.animTileConfirmed
 {
-	animation-name: animateTileConfirm;
+	animation-name: animTileConfirm;
 	/* animation-delay: 0.07s; */
 	animation-duration: 0.5s;
 	animation-iteration-count: 1;
 	animation-timing-function: ease;
 	animation-fill-mode: forwards;
 }
-@keyframes animateTileConfirm
+@keyframes animTileConfirm
 {
 	0%
 	{

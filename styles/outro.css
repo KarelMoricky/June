@@ -25,18 +25,18 @@
     margin-top: 20vh;
 	font-family: "Roboto Slab", sans-serif;
 	font-size: 10vh;
-	animation: animateName 6s var(--outro-zoom-out) ease forwards;
+	animation: animName 6s var(--outro-zoom-out) ease forwards;
 }
 
-.animateOutroIn
+.animOutroIn
 {
-	animation: animateOutroIn 1.5s var(--outro-zoom-out) ease forwards;
+	animation: animOutroIn 1.5s var(--outro-zoom-out) ease forwards;
 }
-.animateOutroOut
+.animOutroOut
 {
-	animation: animateOutroOut 0.2s ease forwards;
+	animation: animOutroOut 0.2s ease forwards;
 }
-@keyframes animateOutroIn {
+@keyframes animOutroIn {
     0%
 	{
         opacity: 0;
@@ -47,7 +47,7 @@
         opacity: 1;
     }
 }
-@keyframes animateOutroOut {
+@keyframes animOutroOut {
     0%
 	{
         opacity: 1;
@@ -59,7 +59,7 @@
     }
 }
 
-@keyframes animateName {
+@keyframes animName {
     0%
 	{
         letter-spacing: normal;
@@ -71,29 +71,22 @@
     }
 }
 
-#heart
+.animHeartIn
 {
 	opacity: 0;
-}
-.animateHeartIn
-{
-	animation-name: animFadeIn, animateHeartBeat;
+	animation-name: animFadeIn, animHeartBeat;
 	animation-delay: calc(var(--outro-zoom-out) - 2s), var(--outro-zoom-out); 
 	animation-duration: 1.5s, 1s;
 	animation-iteration-count: 1, infinite;
 	animation-timing-function: ease, ease;
 	animation-fill-mode: forwards, none;
 }
-.animateHeartOut
+.animHeartOut
 {
-	animation-name: animFadeOut;
-	animation-delay: 0;
-	animation-duration: 0.5s;
-	animation-iteration-count: 1;
-	animation-fill-mode: forwards;
+	animation: animFadeOut 0.4s 0.2s ease-out forwards;
 }
 
-@keyframes animateHeartBeat {
+@keyframes animHeartBeat {
     0%, 30%, 60%, 100%
 	{
 		transform: scale(1);
@@ -103,4 +96,14 @@
 	{
 		transform: scale(1.01);
     }
+}
+
+
+.animTilesIn
+{
+	animation: animFadeIn 0.2s ease forwards;
+}
+.animTilesOut
+{
+	animation: animFadeOut 0.2s calc(var(--outro-zoom-out)) ease forwards;
 }

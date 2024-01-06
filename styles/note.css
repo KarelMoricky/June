@@ -31,20 +31,20 @@
 	top: -48px;
 }
 
-.animateNoteIn, .animateNoteOut
+.animNoteIn, .animNoteOut
 {
 	animation-iteration-count: 1;
 	animation-timing-function: ease;
 	animation-fill-mode: forwards;
 }
-.animateNoteIn
+.animNoteIn
 {
 	opacity: 0;
 	animation-name: animFadeIn;
 	animation-duration: 1s;
 	animation-delay: 1.5s; 
 }
-.animateNoteOut
+.animNoteOut
 {
 	opacity: 1;
 	animation-name: animFadeOut; /* Simply reverting "in" animation does't work */
