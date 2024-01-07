@@ -85,6 +85,8 @@
 #tilePicture
 {
 	pointer-events: none;
+	transform: scale(0.5);
+	/*transform: translate(12px, 44px) scale(0.45); /* Guessed values */
 }
 
 #tileNumber

@@ -12,20 +12,21 @@ const DEFAULT_ZOOM = 1;         //--- Default view box zoom
 //--- Target positions of individual tiles. Imported from Google Sheets.
 const TARGET_POSITIONS = new Map([
     ["tile10", [-2,1]],	["tile07", [-2,0]],		
-    ["tile04", [-1,1]],	["tile05", [-1,0]],		
+    ["tile04", [-1,1]],	["tile06", [-1,0]],		
     ["tile03", [0,1]],	["tile01", [0,0]],	["tile11", [0,-1]],	["tile09", [0,-2]],
-    ["tile12", [1,1]],	["tile02", [1,0]],	["tile06", [1,-1]],	["tile08", [1,-2]],
+    ["tile12", [1,1]],	["tile02", [1,0]],	["tile05", [1,-1]],	["tile08", [1,-2]],
 ]);
 
 //--- Starting positions of individual tiles. Imported from Google Sheets.
 const ORIGIN_POSITIONS = new Map([								
-    ["tile10", [-3,-2]],	["tile09", [-3,-3]],
-    ["tile05", [-2,-2]],	["tile08", [-2,-3]],
-        
+    ["tile10", [-4,4]],							
+    ["tile09", [-3,-3]],
+["tile06", [-2,-2]],	["tile08", [-2,-3]],
+    
 ["tile07", [0,3]],			["tile01", [0,0]],			
 ["tile03", [1,3]],						
 ["tile04", [2,3]],	["tile12", [2,2]],					
-["tile06", [3,2]],	["tile02", [3,2]],	["tile11", [3,0]],													
+["tile02", [3,2]],	["tile05", [3,1]],	["tile11", [3,0]],															
 ]);
 //#endregion
 

@@ -1,7 +1,7 @@
 :root {
     --color-dark: rgb(10,22,48);
     --color-light: rgb(108, 66, 131);
-    --color-highlight: rgb(207, 119, 255)
+    --color-highlight: rgb(207, 119, 255);
 }
 
 /* Disable blue highlight of clickable elements on Android */
