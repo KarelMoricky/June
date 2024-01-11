@@ -94,13 +94,11 @@
 	border-radius: min(20px, 3vh);
 	border: none;
 }
-
 #introBox button:disabled
 {
 	background-color: rgba(255, 255, 255, 0.3);
 	color: var(--color-dark);
 }
-
 #introBox button:enabled
 {
 	/* background: linear-gradient(rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 100%); */
@@ -110,11 +108,12 @@
 	border: 0.4vh solid white;
 	background: none;
 }
-#introBox button:hover
+#introBox button:hover:not([disabled])
 {
 	background-color: white;
 	color: var(--color-dark);
 }
+
 @keyframes animPulseButton
 {
 	0% { box-shadow: 0 0 0 0px rgba(255, 255, 255, 0.7); }
