@@ -15,8 +15,7 @@ var Game = new function()
     var m_Circle;
     var m_Cursor;
 
-    var m_Click = -1;
-    var m_ClickPos = [];
+    var m_Click = {id: -1, isActive: false, pos: []};
     var m_DefaultViewBox = [];
     //#endregion
 
@@ -48,7 +47,7 @@ var Game = new function()
 
     this.GetClickPos = function()
     {
-        return m_ClickPos;
+        return m_Click.pos;
     }
 
     this.GetDefaultViewBox = function()
@@ -114,7 +113,6 @@ var Game = new function()
     window.addEventListener("beforeunload", OnBeforeUnload);
     function OnBeforeUnload(ev)
     {
-        console.log(Intro.IsVisible());
         if (Debug.IsDev() || Intro.IsVisible())
             return;
 
@@ -127,13 +125,14 @@ var Game = new function()
 
     function OnPointerDown(ev)
     {
-        if (m_Click != -1)
+        if (m_Click.isActive && m_Click.id != -1)
             return;
 
         Tile.SetSelected(ev);
 
-        m_Click = ev.pointerId;
-        m_ClickPos = [ev.clientX, ev.clientY];
+        m_Click.isActive = true;
+        m_Click.id = ev.pointerId;
+        m_Click.pos = [ev.clientX, ev.clientY];
         m_Svg.addEventListener("pointermove", OnPointerMove);
 
         window.dispatchEvent(new PointerEvent(EVENT_GAME_DRAG_START, ev));
@@ -141,7 +140,7 @@ var Game = new function()
 
     function OnPointerMove(ev)
     {
-        if (ev.pointerId != m_Click)
+        if (!m_Click.isActive || ev.pointerId != m_Click.id)
             return;
 
         window.dispatchEvent(new PointerEvent(EVENT_GAME_DRAG, ev));
@@ -149,13 +148,12 @@ var Game = new function()
 
     function OnPointerUp(ev)
     {
-        if (ev.pointerId != m_Click)
+        if (!m_Click.isActive || ev.pointerId != m_Click.id)
             return;
 
-        m_Click = -1;
-        m_Svg.removeEventListener("pointermove", OnPointerMove);
-
         window.dispatchEvent(new PointerEvent(EVENT_GAME_DRAG_END, ev));
+
+        ClearClick();
     }
 
     function OnFullScreenChange(ev)
@@ -163,7 +161,14 @@ var Game = new function()
         //--- #HACK: When exiting full-screen by dragging from right on Android,
         //--- OnPointerDown is called, but OnPointerUp is not, leaving m_Click stuck.
         //--- This resets the value.
-        m_Click = -1;
+        ClearClick();
+    }
+
+    function ClearClick()
+    {
+        m_Click.isActive = false;
+        m_Click.id = -1;
+        m_Click.pos = [];
         m_Svg.removeEventListener("pointermove", OnPointerMove);
     }
     //#endregion

@@ -208,9 +208,6 @@ var Tile = new function()
         SetTileState(m_SelectedTile, TILE_STATE_EDITING);
 
         Vibrate(VIBRATION_TILE_DRAG_START);
-            
-        //--- Dragged tile always on top
-        m_TilesElement.appendChild(m_SelectedTile);
     }
 
     function OnGameDrag(ev)
@@ -219,6 +216,10 @@ var Tile = new function()
             return;
 
         DragTile(ev, TILE_DRAG_SNAP);
+            
+        //--- Dragged tile always on top (can't be in OnGameDragStart, it prevents Drand and DragEnd events from firing in Android Firefox)
+        if (!TILE_DRAG_SNAP)
+            m_TilesElement.appendChild(m_SelectedTile);
     }
 
     function OnGameDragEnd(ev)
