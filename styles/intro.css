@@ -104,7 +104,7 @@
 	/* background: linear-gradient(rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 100%); */
 	cursor: pointer;
 	color: white;
-	animation: animPulseButton 3s ease infinite;
+	animation: animPulseButton 2s ease infinite;
 	border: 0.4vh solid white;
 	background: none;
 }
@@ -117,7 +117,7 @@
 @keyframes animPulseButton
 {
 	0% { box-shadow: 0 0 0 0px rgba(255, 255, 255, 0.7); }
-	50%, 100% { box-shadow: 0 0 0 20px rgba(255, 255, 255, 0); }
+	80%, 100% { box-shadow: 0 0 0 20px rgba(255, 255, 255, 0); }
 }
 
 #introBox #noScript

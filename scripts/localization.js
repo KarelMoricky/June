@@ -6,50 +6,43 @@ var Localization = new function()
             id: "locIntroTitle1",
             "en": "Vera and Karel's",
             "cs": "Veřin a Karlův",
-            "ru": "Веры и Карела",
-            "nl": ""
+            "ru": "Веры и Карела"
         },
         {
             id: "titleBaby",
             "en": "YOUNGER SON",
             "cs": "MLADŠÍ SYN",
-            "ru": "МЛАДШИЙ СЫН",
-            "nl": ""
+            "ru": "МЛАДШИЙ СЫН"
         },
         {
             id: "locIntroTitle2",
             "en": "was born on June XXth 2024",
             "cs": "se narodil XX. června 2024",
-            "ru": "был рождён XX июня 2024 года",
-            "nl": ""
+            "ru": "был рождён XX июня 2024 года"
         },
         {
             id: "locIntroGame",
             "en": "To find out his name, please play<br />a little game we designed.",
             "cs": "Chete-li se dozvědět jeho jméno,<br />zahrajte si prosím krátkou hru,<br />kterou jsme pro něj připravili",
-            "ru": "",
-            "nl": ""
+            "ru": ""
         },
         {
             id: "locIntroSound",
             "en": "(with the sound on)",
             "cs": "(hrajte se zapnutým zvukem)",
-            "ru": "",
-            "nl": ""
+            "ru": ""
         },
         {
             id: "loadingText",
             "en": "LOADING",
             "cs": "NAČÍTÁM",
-            "ru": "",
-            "nl": ""
+            "ru": ""
         },
         {
             id: "playText",
             "en": "PLAY",
             "cs": "HRAJTE",
-            "ru": "",
-            "nl": ""
+            "ru": ""
         },
         //#endregion
 
@@ -172,8 +165,7 @@ var Localization = new function()
             id: "",
             "en": "",
             "cs": "",
-            "ru": "",
-            "nl": ""
+            "ru": ""
         },
         */
     ]
