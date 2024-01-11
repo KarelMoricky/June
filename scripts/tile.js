@@ -77,7 +77,7 @@ var Tile = new function()
         let i = 0;
         for (let tileID of TARGET_POSITIONS.keys())
         {
-            let tile = Game.GetSVGDoc().getElementById(tileID)
+            let tile = Game.GetSVGDoc().getElementById(tileID);
     
             //--- Get target position
             let targetPosition = TARGET_POSITIONS.get(tileID);
@@ -112,7 +112,9 @@ var Tile = new function()
         }
         m_Tiles.sort((a, b) => parseInt(a.getAttribute("tileId")) - parseInt(b.getAttribute("tileId")));
 
+        //--- Cheats
         Game.GetSVG().addEventListener("keydown", OnKeyDown);
+        Game.GetSVG().getElementById("cheatRevealAll").addEventListener("click", CheatRevealAll);
 
         requestAnimationFrame(OnEachFrame);
         
@@ -160,17 +162,7 @@ var Tile = new function()
         else if (ev.key == "~")
         {
             //--- [~] Skip to the last tile
-            SetCurrentTile(null); //--- Prevent position lerping of the current tile
-            for (let i = 0; i < m_Tiles.length - 1; i++)
-            {
-                if (m_Tiles[i].getAttribute(VAR_CONFIRMED) == null)
-                {
-                    SetElementVisible(m_Tiles[i], true);
-                    SetTilePos(m_Tiles[i], m_Tiles[i].getAttribute(VAR_GRID_TARGET_X), m_Tiles[i].getAttribute(VAR_GRID_TARGET_Y));
-                    EvaluateTile(m_Tiles[i], false);
-                }
-            }
-            RevealNextTile();
+            CheatRevealAll();
         }
         else if (ev.key == "X")
         {
@@ -439,5 +431,20 @@ var Tile = new function()
         //--- Show tile hint for subsequent tiles only after a delay
         if (index > 1)
             m_TileHint.classList.add("animTileHintDelayed");
+    }
+
+    function CheatRevealAll()
+    {
+        SetCurrentTile(null); //--- Prevent position lerping of the current tile
+        for (let i = 0; i < m_Tiles.length - 1; i++)
+        {
+            if (m_Tiles[i].getAttribute(VAR_CONFIRMED) == null)
+            {
+                SetElementVisible(m_Tiles[i], true);
+                SetTilePos(m_Tiles[i], m_Tiles[i].getAttribute(VAR_GRID_TARGET_X), m_Tiles[i].getAttribute(VAR_GRID_TARGET_Y));
+                EvaluateTile(m_Tiles[i], false);
+            }
+        }
+        RevealNextTile();
     }
 }

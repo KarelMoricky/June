@@ -22,7 +22,7 @@ var Localization = new function()
         },
         {
             id: "locIntroGame",
-            "en": "To find out his name, please play<br />a little game we designed.",
+            "en": "To find out his name, please play<br />a little game we designed for him.",
             "cs": "Chete-li se dozvědět jeho jméno,<br />zahrajte si prosím krátkou hru,<br />kterou jsme pro něj připravili",
             "ru": ""
         },
@@ -63,15 +63,8 @@ var Localization = new function()
         },
         {
             id: "locTutorialTile2",
-            "en": "na své místo",
-            "cs": "",
-            "ru": "",
-            "nl": ""
-        },
-        {
-            id: "locTutorialTile2",
-            "en": "na své místo",
-            "cs": "",
+            "en": "to its place",
+            "cs": "na své místo",
             "ru": "",
             "nl": ""
         },

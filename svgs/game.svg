@@ -247,9 +247,10 @@
   </g>
 
   <!-- Outro heart -->
-  <image id="heart" class="ignoreCursor hidden animHeartIn" href="../data/images/heart.png" width="960" x="-480" y="-210" />
+  <polygon id="heart" class="ignoreCursor hidden animHeartIn" points="256,76 384,2 512,76 512,108 256,254 0,108 0,76 128,2" transform="scale(1.86) translate(-256,-113)" />
 
   <!-- Debug cursor -->
   <!-- <circle id="cursor" class="ignoreCursor" style="fill: rgb(255,0,0);" cx="1000" cy="1000" r="10px" /> -->
   <circle id="circle" class="ignoreCursor" style="fill: red;" cx="100000" cy="100000" r="15px" />
+  <circle id="cheatRevealAll" class="hiddenx" style="fill: rgba(255, 255, 255, 0);" cx="0" cy="1050" r="30px" />
 </svg>

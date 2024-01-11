@@ -71,6 +71,10 @@
     }
 }
 
+#heart
+{
+	fill: red;
+}
 .animHeartIn
 {
 	opacity: 0;
@@ -89,12 +93,12 @@
 @keyframes animHeartBeat {
     0%, 30%, 60%, 100%
 	{
-		transform: scale(1);
+		transform: scale(1.86) translate(-256px,-113px);
     }
 	
     15%, 45%
 	{
-		transform: scale(1.01);
+		transform: scale(1.88) translate(-256px,-113px);
     }
 }
 
