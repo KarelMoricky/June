@@ -1,4 +1,4 @@
-#note
+.note
 {
 	width: min(500px, 80%);
 	max-height: 35vh;
@@ -19,7 +19,7 @@
 	pointer-events: none;
 }
 
-#note:before /* https://codepen.io/run-time/pen/VNRBJd */
+.note:before /* https://codepen.io/run-time/pen/VNRBJd */
 {
 	content: "";
 	position: absolute;

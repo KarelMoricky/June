@@ -6,6 +6,8 @@ const DEV_MANUAL_LOAD = 1;      //--- When true, loading screen has to be progre
 const FORCED_START = [];        //--- When defined, all new tiles will start on this position instead of the one configured in ORIGIN_POSITIONS
 const TILE_DRAG_SNAP = 0;       //--- Snap tiles to grid even when dragging the tile
 const DEFAULT_ZOOM = 1;         //--- Default view box zoom
+
+const DEFAULT_LANGUAGE = "en";  //--- Default localization language
 //#endregion
 
 //#region Tiles

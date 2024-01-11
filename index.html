@@ -27,24 +27,19 @@
 		<!-- Game -->
 		<object id="gameObject" class="fullScreen" type="image/svg+xml" data="svgs/game.svg"></object>
 
-		<!-- Note -->
-		<div class="fullScreen ignoreCursor"></div>
-			<div id="note" class="hidden">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras congue elit nec porttitor tincidunt. Vivamus sollicitudin, odio eu commodo lacinia, est massa congue sapien, nec dapibus est justo non eros. </div>
-		</div>
-
 		<!-- Intro -->
 		<div id="introArea" class="fullScreen">
 			<div id="introBox">
 				<div id="title">
-					<h2>Vera and Karel's</h2>
+					<h2 id="locIntroTitle1">Vera and Karel's</h2>
 					<h1 id="titleBaby">YOUNGER SON</h1>
-					<h2>was born on June XXth 2024</h2>
+					<h2 id="locIntroTitle2">was born on June XXth 2024</h2>
 				</div>
 				<div>
-					<p>To find out their name, please play<br />a little game we designed.</p>
+					<p id="locIntroGame">To find out their name, please play<br />a little game we designed.</p>
 
 					<div id="play" class="hidden">
-						<p><em>(turn the sound on)</em></p>
+						<p><em id="locIntroSound">(turn the sound on)</em></p>
 
 						<!-- Button -->
 						<button id="playButton" type="button" autofocus disabled>
@@ -59,16 +54,32 @@
 
 					<!-- Info about disabled JavaScript -->
 					<noscript>
-						<p id="noScript">The game requires JavaScript. Follow <a href="https://www.enablejavascript.io" target="_blank">this guide</a> to enable it in your browser.</p>
+						<p id="noScript">
+							The game requires JavaScript. Follow <a href="https://www.enablejavascript.io" target="_blank">this guide</a> to enable it in your browser.
+							<br /><br />
+							Hra vyžaduje JavaScript. Zapnout ho můžete pomocí <a href="https://www.enablejavascript.io" target="_blank">tohoto návodu</a>.
+						</p>
 					</noscript>
 				</div>
 			</div>
 		</div>
 
+		<!-- Notes -->
+		<div id="note_tile02" class="note hidden">Note 02</div>
+		<div id="note_tile03" class="note hidden">Note 03</div>
+		<div id="note_tile04" class="note hidden">Note 04</div>
+		<div id="note_tile05" class="note hidden">Note 05</div>
+		<div id="note_tile06" class="note hidden">Note 06</div>
+		<div id="note_tile07" class="note hidden">Note 07</div>
+		<div id="note_tile08" class="note hidden">Note 08</div>
+		<div id="note_tile09" class="note hidden">Note 09</div>
+		<div id="note_tile10" class="note hidden">Note 10</div>
+		<div id="note_tile11" class="note hidden">Note 11</div>
+
 		<!-- Outro -->
 		<div id="outroArea" class="fullScreen ignoreCursor">
 			<div id="outroBox" class="hidden animOutroIn">
-				<p>Welcome to this world,</p>
+				<p id="locOutro">Welcome to this world,</p>
 				<h1>&nbsp;NAME</h1>
 			</div>
 		</div>
@@ -92,5 +103,6 @@
 		<script src="scripts/note.js"></script>
 		<!-- <script src="scripts/stars.js"></script> -->
 		<script src="scripts/intro.js"></script>
+		<script src="scripts/localization.js"></script>
 	</body>
 </html>

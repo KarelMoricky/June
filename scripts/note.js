@@ -5,7 +5,7 @@ var Note = new function()
     const OUTRO_ZOOM_LENGTH = 5; //--- Time for camera to zoom out during outro
     const OUTRO_ZOOM_VALUE = 3.5; //--- Camera zoom factor
 
-    var m_Note = document.getElementById("note");
+    var m_Note;
     var m_InDetail = false;
     var m_IsLast = false;
 
@@ -56,7 +56,9 @@ var Note = new function()
         else
         {
             //--- Default animation
-            m_Note.setAttribute("class", "animNoteIn");
+            m_Note = document.getElementById("note_" + tile.id);
+            SetElementVisible(m_Note, true);
+            m_Note.classList.add("animNoteIn");
             Camera.SetCamera(posX, parseInt(posY) + 80, 0.5, CONFIRMATION_MOVE_LENGTH); //--- #TODO: Don't hardcode
         }
     }
@@ -90,7 +92,9 @@ var Note = new function()
             }
             else
             {
-                m_Note.setAttribute("class", "animNoteOut");
+                m_Note.classList.remove("animNoteIn");
+                m_Note.classList.add("animNoteOut");
+                m_Note = null;
 
                 Tile.RevealNextTile();
             }
