@@ -1,84 +1,93 @@
-const ID_LOADING = "loading";
-const ID_INTRO_AREA = "introArea";
-const ID_BUTTON_PLAY = "playButton";
-const ID_TITLE_BABY = "titleBaby";
-
-let m_ButtonPlay = document.getElementById(ID_BUTTON_PLAY);
-m_ButtonPlay.disabled = true; //--- Force disable it even though it has HTML tag; some browsers (e.g., Android Firefox) ignore it for some reason
-
-//--- Show loading screen (hidden by default so it's not shown if JavaScript is disabled)
-SetElementVisible(document.getElementById(ID_LOADING), true);
-SetElementVisible(document.getElementById("play"), true);
-
-window.addEventListener("load", OnLoadIntroBox);
-function OnLoadIntroBox()
+var Intro = new function()
 {
-    let m_IntroArea = document.getElementById(ID_INTRO_AREA);
+    const ID_LOADING = "loading";
+    const ID_INTRO_AREA = "introArea";
+    const ID_BUTTON_PLAY = "playButton";
+    const ID_TITLE_BABY = "titleBaby";
 
-    m_ButtonPlay.addEventListener("click", OnButtonPlay);
+    const m_IntroArea = document.getElementById(ID_INTRO_AREA);
 
-    if (Debug.IsManualLoad())
+    this.IsVisible = function()
     {
-        //--- Init manual hiding
-        let loading = document.getElementById(ID_LOADING);
-        loading.addEventListener("click", OnLoadFinished);
-    }
-    else
-    {
-        //--- Hide loading
-        OnLoadFinished();
+        return IsElementVisible(m_IntroArea);
     }
 
-    if (Debug.IsDev())
+    let m_ButtonPlay = document.getElementById(ID_BUTTON_PLAY);
+    m_ButtonPlay.disabled = true; //--- Force disable it even though it has HTML tag; some browsers (e.g., Android Firefox) ignore it for some reason
+
+    //--- Show loading screen (hidden by default so it's not shown if JavaScript is disabled)
+    SetElementVisible(document.getElementById(ID_LOADING), true);
+    SetElementVisible(document.getElementById("play"), true);
+
+    window.addEventListener("load", OnLoadIntroBox);
+    function OnLoadIntroBox()
     {
-        //--- Instantly skip the loading screen
-        if (Debug.SkipIntro())
-            OnButtonPlay();
-        else
-            document.getElementById(ID_TITLE_BABY).addEventListener("click", OnTitleBaby);
-    }
 
-    function OnLoadFinished()
-    {
-        SetElementVisible(document.getElementById("playText"), true);
-        SetElementVisible(document.getElementById(ID_LOADING), false);
+        m_ButtonPlay.addEventListener("click", OnButtonPlay);
 
-        let play = document.getElementById("playButton");
-        play.disabled = false;
-    }
-
-    function OnButtonPlay()
-    {
-        SetElementVisible(m_IntroArea, false);
-
-        //--- Switch to fullscreen
-        if (!Debug.SkipIntro())
+        if (Debug.IsManualLoad())
         {
-            Vibrate(VIBRATION_PLAY);
-
-            let docElm = document.documentElement;
-            if (docElm.requestFullscreen)
-                docElm.requestFullscreen();
-            else if (docElm.mozRequestFullScreen)
-                docElm.mozRequestFullScreen();
-            else if (docElm.webkitRequestFullScreen)
-                docElm.webkitRequestFullScreen();
-            else if (docElm.msRequestFullscreen)
-                docElm.msRequestFullscreen();
+            //--- Init manual hiding
+            let loading = document.getElementById(ID_LOADING);
+            loading.addEventListener("click", OnLoadFinished);
+        }
+        else
+        {
+            //--- Hide loading
+            OnLoadFinished();
         }
 
-        let ev = new CustomEvent(EVENT_PAUSE,{detail: {
-            isPaused: false
-        }});
-        window.dispatchEvent(ev);
-    }
+        if (Debug.IsDev())
+        {
+            //--- Instantly skip the loading screen
+            if (Debug.SkipIntro())
+                OnButtonPlay();
+            else
+                document.getElementById(ID_TITLE_BABY).addEventListener("click", OnTitleBaby);
+        }
 
-    function OnTitleBaby(ev)
-    {
-        let titleBaby = document.getElementById(ID_TITLE_BABY);
-        if (titleBaby.innerHTML == "DAUGHTER")
-            titleBaby.innerHTML = "YOUNGER SON";
-        else
-            titleBaby.innerHTML = "DAUGHTER";
+        function OnLoadFinished()
+        {
+            SetElementVisible(document.getElementById("playText"), true);
+            SetElementVisible(document.getElementById(ID_LOADING), false);
+
+            let play = document.getElementById("playButton");
+            play.disabled = false;
+        }
+
+        function OnButtonPlay()
+        {
+            SetElementVisible(m_IntroArea, false);
+
+            //--- Switch to fullscreen
+            if (!Debug.SkipIntro())
+            {
+                Vibrate(VIBRATION_PLAY);
+
+                let docElm = document.documentElement;
+                if (docElm.requestFullscreen)
+                    docElm.requestFullscreen();
+                else if (docElm.mozRequestFullScreen)
+                    docElm.mozRequestFullScreen();
+                else if (docElm.webkitRequestFullScreen)
+                    docElm.webkitRequestFullScreen();
+                else if (docElm.msRequestFullscreen)
+                    docElm.msRequestFullscreen();
+            }
+
+            let ev = new CustomEvent(EVENT_PAUSE,{detail: {
+                isPaused: false
+            }});
+            window.dispatchEvent(ev);
+        }
+
+        function OnTitleBaby(ev)
+        {
+            let titleBaby = document.getElementById(ID_TITLE_BABY);
+            if (titleBaby.innerHTML == "DAUGHTER")
+                titleBaby.innerHTML = "YOUNGER SON";
+            else
+                titleBaby.innerHTML = "DAUGHTER";
+        }
     }
 }

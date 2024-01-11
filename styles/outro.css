@@ -23,7 +23,7 @@
 #outroBox h1
 {
     margin-top: 20vh;
-	font-family: "Roboto Slab", sans-serif;
+	font-family: "Roboto Slab", serif;
 	font-size: 10vh;
 	animation: animName 6s var(--outro-zoom-out) ease forwards;
 }

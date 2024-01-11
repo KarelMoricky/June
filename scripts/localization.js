@@ -26,13 +26,13 @@ var Localization = new function()
         {
             id: "locIntroGame",
             "en": "To find out his name, please play<br />a little game we designed.",
-            "cs": "Chete-li se dozvědět jeho jméno, zahrajte si prosím krátkou hru,<br />kterou jsme pro něj připravili",
+            "cs": "Chete-li se dozvědět jeho jméno,<br />zahrajte si prosím krátkou hru,<br />kterou jsme pro něj připravili",
             "ru": "",
             "nl": ""
         },
         {
             id: "locIntroSound",
-            "en": "(turn the sound on)",
+            "en": "(with the sound on)",
             "cs": "(hrajte se zapnutým zvukem)",
             "ru": "",
             "nl": ""
@@ -179,7 +179,7 @@ var Localization = new function()
     ]
 
     //#region System
-    this.SetLanguage = function(language = "", refreshAll = true)
+    this.SetLanguage = function(language = "", refreshAll = false)
     {
         if (language == "")
         {
@@ -190,6 +190,17 @@ var Localization = new function()
         }
 
         m_Language = language;
+
+        if (refreshAll)
+        {
+            RefreshDocument(document);
+            RefreshDocument(Game.GetSVGDoc());
+        }
+
+        //--- Refresh buttons
+        document.getElementById("languageEN").disabled = m_Language == "en";
+        document.getElementById("languageCS").disabled = m_Language == "cs";
+        document.getElementById("languageRU").disabled = m_Language == "ru";
     }
 
     // this.RefreshElement = function(element, id = "")
@@ -231,12 +242,6 @@ var Localization = new function()
         element.innerHTML = text;
     }
 
-    function RefreshAllDocuments()
-    {
-        RefreshDocument(document);
-        RefreshDocument(Game.GetSVGDoc());
-    }
-
     //--- Init
     let m_Language = "";
 
@@ -245,6 +250,18 @@ var Localization = new function()
     
     window.addEventListener(EVENT_GAME_INIT,() => {
         RefreshDocument(Game.GetSVGDoc());
+    });
+
+    //--- Buttons
+    SetElementVisible(document.getElementById("languageBox"), true);
+    document.getElementById("languageEN").addEventListener("click", () => {
+        this.SetLanguage("en", true);
+    });
+    document.getElementById("languageCS").addEventListener("click", () => {
+        this.SetLanguage("cs", true);
+    });
+    document.getElementById("languageRU").addEventListener("click", () => {
+        this.SetLanguage("ru", true);
     });
 
     //#endregion

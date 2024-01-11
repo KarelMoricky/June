@@ -114,7 +114,8 @@ var Game = new function()
     window.addEventListener("beforeunload", OnBeforeUnload);
     function OnBeforeUnload(ev)
     {
-        if (Debug.IsDev())
+        console.log(Intro.IsVisible());
+        if (Debug.IsDev() || Intro.IsVisible())
             return;
 
         ev.preventDefault();

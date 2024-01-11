@@ -102,7 +102,7 @@
 
 #outro
 {
-	font-family: "Roboto Slab", sans-serif;
+	font-family: "Roboto Slab", serif;
 	font-size: 250px;
 	filter: drop-shadow(0 0 20px var(--color-light));
 	opacity: 0;
@@ -110,7 +110,7 @@
 
 .textTutorial
 {
-	font-family: "Roboto Slab", sans-serif;
+	font-family: "Roboto Slab", serif;
 	font-size: 200%;
 	font-style: italic;
 }
