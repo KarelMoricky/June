@@ -6,8 +6,6 @@ var Tile = new function()
     const ID_TILE_CONTENT = "tileContent";
     const ID_TILE_TARGET = "tileHint";
     
-    const CLASS_TILE_SHOWN = "tile";
-    const CLASS_TILE_HIDDEN = "tileHidden";
     const CLASS_TILE_CURRENT = "tileCurrent";
     const CLASS_TILE_CONFIRMED = "tileConfirmed";
     
@@ -198,6 +196,8 @@ var Tile = new function()
 
         m_ClickTilePos = [parseInt(m_SelectedTile.getAttribute("x")), parseInt(m_SelectedTile.getAttribute("y"))];
         SetTileState(m_SelectedTile, TILE_STATE_EDITING);
+
+        m_SelectedTile.querySelector("#tileContent").classList.remove("tileFadeIn");
 
         Vibrate(VIBRATION_TILE_DRAG_START);
     }
@@ -392,6 +392,7 @@ var Tile = new function()
         {
             SetElementVisible(m_CurrentTile, true);
             m_CurrentTile.classList.add(CLASS_TILE_CURRENT);
+            m_CurrentTile.querySelector("#tileContent").classList.add("tileFadeIn");
         }
     }
 

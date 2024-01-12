@@ -17,14 +17,9 @@
 	cursor: move;
 }
 
-.tile, .tileHidden
+.tile
 {
 	overflow: visible;
-}
-
-.tileHiddenx
-{
-	display: none;
 }
 
 .tileCurrent
@@ -81,6 +76,26 @@
 {
 	cursor: not-allowed;
 } */
+
+.tileFadeIn
+{
+	opacity: 0;
+	animation: animTileFadeIn 0.4s 0.6s ease forwards;
+}
+
+@keyframes animTileFadeIn
+{
+	0%
+	{
+		opacity: 0;
+		transform: translate(calc(-128px * 2), calc(-152px * 2)) scale(2);
+	}
+    100%
+	{
+		opacity: 1;
+		transform: translate(-128px, -152px);
+	}
+}
 
 #tilePicture
 {

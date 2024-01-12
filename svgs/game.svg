@@ -71,7 +71,6 @@
   <!-- Tiles -->
   <g id="tiles">
 
-    <!-- Tier 0 -->
     <svg id="tile01" tileId="1" class="tile" width="256" height="256">
       <g id="tileContent" transform="translate(-128,-152)">
         <image id="tilePicture" href="../data/images/tiles/tile01.png" />
@@ -113,7 +112,6 @@
       </g>
     </svg>
 
-    <!-- Tier 2 -->
     <svg id="tile06" tileId="6" class="tile hidden" width="256" height="256" tileTier="2">
       <g id="tileContent" transform="translate(-128,-152)">
         <image id="tilePicture" href="../data/images/tiles/tile06.png" />
@@ -146,7 +144,6 @@
       </g>
     </svg>
 
-    <!-- Tier 3 -->
     <svg id="tile10" tileId="10" class="tile hidden" width="256" height="256" tileTier="3">
       <g id="tileContent" transform="translate(-128,-152)">
         <image id="tilePicture" href="../data/images/tiles/tile10.png" />
@@ -187,7 +184,6 @@
       </g>
     </svg>
 
-    <!-- Tier 4 -->
     <svg id="tile15" tileId="15" class="tile hidden" width="256" height="256" tileTier="4">
       <g id="tileContent" transform="translate(-128,-152)">
         <image id="tilePicture" href="../data/images/tiles/tile15.png" />
@@ -236,7 +232,6 @@
       </g>
     </svg>
 
-    <!-- Tier 5 -->
     <svg id="tile21" tileId="21" class="tile hidden" width="256" height="256" tileTier="5">
       <g id="tileContent" transform="translate(-128,-152)">
         <image id="tilePicture" href="../data/images/tiles/tile21.png" />
