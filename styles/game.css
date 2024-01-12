@@ -16,7 +16,6 @@
 	/* stroke-dasharray: 0.3 0.7;
 	stroke-dashoffset: 0.15; */
 	stroke-opacity: 0.5;
-    filter: drop-shadow(0 0 5px var(--color-highlight));
 }
 
 #tutorialViewTouch

@@ -107,7 +107,13 @@
 {
 	animation: animFadeIn 0.2s ease;
 }
+
 .animTilesOut
 {
 	animation: animFadeOut 1s calc(var(--outro-zoom-out) - 1.5s) ease forwards;
+}
+
+.animGridOut
+{
+	animation: animFadeOut 1s 1s ease forwards;
 }

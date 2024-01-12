@@ -46,7 +46,7 @@ var Note = new function()
             tiles.classList.add("animTilesOut");
 
             let grid = Game.GetSVGDoc().getElementById("grid");
-            grid.classList.add("animTilesOut");
+            grid.classList.add("animGridOut");
 
             let heart = Game.GetSVGDoc().getElementById("heart");
             SetElementVisible(heart, true);
