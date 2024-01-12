@@ -1,5 +1,6 @@
 var Note = new function()
 {
+    const CONFIRMATION_MOVE_DELAY = 0.25; //--- How long before camera animation starts
     const CONFIRMATION_MOVE_LENGTH = 1.5; //--- How long will camera take to focus on confirmed tile. Use 0 to disable the effect.
     
     const OUTRO_ZOOM_LENGTH = 5; //--- Time for camera to zoom out during outro
@@ -39,7 +40,7 @@ var Note = new function()
         if (ev.detail.isLast)
         {
             //--- Last animation
-            Camera.SetCamera(posX, posY, OUTRO_ZOOM_VALUE, OUTRO_ZOOM_LENGTH);
+            Camera.SetCamera(posX, posY, OUTRO_ZOOM_VALUE, OUTRO_ZOOM_LENGTH, CONFIRMATION_MOVE_DELAY);
 
             let tiles = Game.GetSVGDoc().getElementById(ID_TILES_ELEMENT);
             tiles.classList.add("animTilesOut");
@@ -56,10 +57,11 @@ var Note = new function()
         else
         {
             //--- Default animation
+            Camera.SetCamera(posX, parseInt(posY) + 80, 0.5, CONFIRMATION_MOVE_LENGTH, CONFIRMATION_MOVE_DELAY); //--- #TODO: Don't hardcode
+
             m_Note = document.getElementById("note_" + tile.id);
             SetElementVisible(m_Note, true);
             m_Note.classList.add("animNoteIn");
-            Camera.SetCamera(posX, parseInt(posY) + 80, 0.5, CONFIRMATION_MOVE_LENGTH); //--- #TODO: Don't hardcode
         }
     }
 
@@ -69,7 +71,7 @@ var Note = new function()
         {
             m_InDetail = false;
 
-            Camera.SetCamera(-1, -1, 1, 0.25);
+            Camera.SetCamera(-1, -1, 1, 0.5);
 
             //--- Reset the last animation
             if (m_IsLast)

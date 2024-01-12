@@ -21,14 +21,14 @@ const TARGET_POSITIONS = new Map([
 
 //--- Starting positions of individual tiles. Imported from Google Sheets.
 const ORIGIN_POSITIONS = new Map([								
-    ["tile10", [-4,3]],						
-    ["tile06", [-3,-2]],	["tile09", [-3,-3]],
-        ["tile08", [-2,-3]],
-        
-["tile07", [0,3]],			["tile01", [0,0]],			
-["tile03", [1,3]],						
-["tile04", [2,3]],	["tile12", [2,2]],					
-["tile02", [3,2]],	["tile05", [3,1]],	["tile11", [3,0]],																	
+    ["tile10", [-4,3]],							
+    ["tile06", [-3,-2]],	["tile09", [-3,-3]],	
+        ["tile08", [-2,-3]],	["tile10", [-2,-4]],
+            
+["tile07", [0,3]],			["tile01", [0,0]],				
+["tile03", [1,3]],							
+["tile04", [2,3]],	["tile12", [2,2]],						
+["tile02", [3,2]],	["tile05", [3,1]],	["tile11", [3,0]],																				
 ]);
 //#endregion
 

@@ -19,7 +19,7 @@ var Camera = new function()
     var m_TimePrev = 0;
     var m_InertiaStrength = INERTIA_DEFAULT;
     //#region Public functions
-    this.SetCamera = function(posX, posY, zoom, duration)
+    this.SetCamera = function(posX, posY, zoom, duration = 0, delay = 0)
     {
         if (m_Anim.playing)
             return;
@@ -40,7 +40,7 @@ var Camera = new function()
             m_Anim.zoom = m_Current.zoom;
 
             m_Anim.duration = duration;
-            m_Anim.progress = 0;
+            m_Anim.progress = -delay / duration;
             m_Anim.playing = true;
         }
     }
@@ -146,7 +146,7 @@ var Camera = new function()
             let progress = 1;
             if (m_Anim.progress < 1)
             {
-                progress = SmoothStep(m_Anim.progress);
+                progress = EaseInOutCubic(Math.max(m_Anim.progress, 0));
                 m_Anim.progress += timeSlice * 0.001 / m_Anim.duration;
             }
             else

@@ -62,14 +62,40 @@ function InvLerp(a, b, v)
 {
 	return Math.min(Math.max((v - a) / (b - a), 0), 1);
 }
+function Clamp(value, min, max)
+{
+    return Math.max(min, Math.min(max, value));
+}
 
 function SmoothStep(x)
 {
 	return x * x * (3 - 2 * x);
 }
 
-function Clamp(value, min, max)
+//--- https://easings.net/
+function EaseInOutQuad(x)
 {
-    return Math.max(min, Math.min(max, value));
+    return x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2;
 }
+
+function EaseInOutCubic(x)
+{
+    return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+}
+
+function EaseInOutQuint(x)
+{
+    return x < 0.5 ? 16 * x * x * x * x * x : 1 - Math.pow(-2 * x + 2, 5) / 2;
+}
+
+function EaseInOutBack(x)
+{
+    const c1 = 1.70158;
+    const c2 = c1 * 1.525;
+    
+    return x < 0.5
+      ? (Math.pow(2 * x, 2) * ((c2 + 1) * 2 * x - c2)) / 2
+      : (Math.pow(2 * x - 2, 2) * ((c2 + 1) * (x * 2 - 2) + c2) + 2) / 2;
+}
+
 //#endregion
