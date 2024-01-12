@@ -25,7 +25,8 @@
     margin-top: 20vh;
 	font-family: "Roboto Slab", serif;
 	font-size: 10vh;
-	animation: animName 6s var(--outro-zoom-out) ease forwards;
+	opacity: 0;
+	animation: animName 6s calc(var(--outro-zoom-out) + 2s) ease forwards;
 }
 
 .animOutroIn
@@ -36,7 +37,8 @@
 {
 	animation: animOutroOut 0.2s ease forwards;
 }
-@keyframes animOutroIn {
+@keyframes animOutroIn
+{
     0%
 	{
         opacity: 0;
@@ -47,7 +49,8 @@
         opacity: 1;
     }
 }
-@keyframes animOutroOut {
+@keyframes animOutroOut
+{
     0%
 	{
         opacity: 1;
@@ -59,15 +62,20 @@
     }
 }
 
-@keyframes animName {
+@keyframes animName
+{
     0%
 	{
+        opacity: 0;
         letter-spacing: normal;
+        filter: drop-shadow(0 0 20px white);
     }
 	
     100%
 	{
-        letter-spacing: 0.4em;
+        opacity: 1;
+        letter-spacing: 0.2em;
+        filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
     }
 }
 
