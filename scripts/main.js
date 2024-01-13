@@ -1,7 +1,8 @@
 //#region Misc
-function CreateElement(type, parent, params = [])
+function CreateElement(type, parent, params = [], isSVG = false)
 {
-    let element = document.createElementNS("http://www.w3.org/2000/svg", type);
+    let nameSpace = isSVG ? "http://www.w3.org/2000/svg" : "http://www.w3.org/1999/xhtml";
+    let element = document.createElementNS(nameSpace, type);
     parent.appendChild(element);
     for (let i = 0; i < params.length; i++)
     {

@@ -5,22 +5,32 @@
 
 	position: absolute;
 	left: 50vw;
-	top: 60vh;
+	bottom: 70vh;
 	transform: translate(-50%, 0);
 
-	background-color: white;
-	border-radius: 10px;
-	padding: 10px;
+	background-color: var(--color-dark);
+	border: 1px solid var(--color-highlight);
+	/* border-radius: 3vh; */
+	padding: 3vh;
 
-	color: black;
-	font-family: Caveat, serif;
-	font-size: 24px;
+	color: white;
+	font-family: "Caveat", serif;
+	font-size: 4vh;
 
 	pointer-events: none;
+	
+	/* filter: drop-shadow(0 0 30px var(--color-highlight)); */
 }
 
-.note:before /* https://codepen.io/run-time/pen/VNRBJd */
+.animatedText
 {
+	display: inline-block;
+	opacity: 0;
+	animation: animFadeIn 0.5s ease-out forwards;
+}
+
+/* .note:before /* https://codepen.io/run-time/pen/VNRBJd */
+/*{
 	content: "";
 	position: absolute;
 	border-left: 30px solid white;
@@ -29,7 +39,7 @@
 	border-top: 30px solid transparent;
 	left: 60%;
 	top: -48px;
-}
+} */
 
 .animNoteIn, .animNoteOut
 {

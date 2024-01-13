@@ -2,6 +2,10 @@
     --color-dark: rgb(10,22,48);
     --color-light: rgb(108, 66, 131);
     --color-highlight: rgb(207, 119, 255);
+
+    /* --color-dark: rgb(10,22,48);
+    --color-light: rgb(66, 131, 120);
+    --color-highlight: rgb(119, 255, 244); */
 }
 
 /* Disable blue highlight of clickable elements on Android */

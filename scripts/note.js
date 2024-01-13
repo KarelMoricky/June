@@ -57,11 +57,13 @@ var Note = new function()
         else
         {
             //--- Default animation
-            Camera.SetCamera(posX, parseInt(posY) + 80, 0.5, CONFIRMATION_MOVE_LENGTH, CONFIRMATION_MOVE_DELAY); //--- #TODO: Don't hardcode
+            Camera.SetCamera(posX, parseInt(posY) - 20, 0.5, CONFIRMATION_MOVE_LENGTH, CONFIRMATION_MOVE_DELAY); //--- #TODO: Don't hardcode
 
             m_Note = document.getElementById("note_" + tile.id);
             SetElementVisible(m_Note, true);
             m_Note.classList.add("animNoteIn");
+
+            AnimateText(m_Note);
         }
     }
 
@@ -100,6 +102,17 @@ var Note = new function()
 
                 Tile.RevealNextTile();
             }
+        }
+    }
+
+    function AnimateText(element)
+    {
+        const segments = element.innerHTML.split(" ");
+        element.innerHTML = "";
+        for (let i = 0; i < segments.length; i++)
+        {
+            const segment = CreateElement("span", element, [["class", "animatedText"], ["style", `animation-delay: ${2.1 + 0.1 * i}s`]]); //--- #TODO: Delay as param
+            segment.innerHTML = segments[i] + "&nbsp;";
         }
     }
 }

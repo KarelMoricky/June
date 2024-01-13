@@ -58,88 +58,76 @@ var Localization = new function()
             id: "locTutorialTile1",
             "en": "Grab the tile",
             "cs": "Přetáhněte výřez",
-            "ru": "",
-            "nl": ""
+            "ru": ""
         },
         {
             id: "locTutorialTile2",
             "en": "to its place",
             "cs": "na své místo",
-            "ru": "",
-            "nl": ""
+            "ru": ""
         },
         //#endregion
 
         //#region Notes
         {
             id: "note_tile02",
-            "en": "Placeholder: Hello little one, we are your parents. Who are you? Wo will you be?",
+            "en": "Placeholder: Hello little one, we are your parents. Who are you? Who will you be?",
             "cs": "",
-            "ru": "",
-            "nl": ""
+            "ru": ""
         },
         {
             id: "note_tile03",
             "en": "Placeholder: Maybe you will make games like dad.",
             "cs": "",
-            "ru": "",
-            "nl": ""
+            "ru": ""
         },
         {
             id: "note_tile04",
             "en": "Placeholder: Or you will sing beautifully like mom.",
             "cs": "",
-            "ru": "",
-            "nl": ""
+            "ru": ""
         },
         {
             id: "note_tile05",
             "en": "Placeholder: Perhaps you will become a fotballer.",
             "cs": "",
-            "ru": "",
-            "nl": ""
+            "ru": ""
         },
         {
             id: "note_tile06",
             "en": "Placeholder: You could navigate space junk as an astronaut.",
             "cs": "",
-            "ru": "",
-            "nl": ""
+            "ru": ""
         },
         {
             id: "note_tile07",
             "en": "Placeholder: Or Earth junk as a gabage collector.",
             "cs": "",
-            "ru": "",
-            "nl": ""
+            "ru": ""
         },
         {
             id: "note_tile08",
             "en": "Placeholder: Maybe you will follow the path of your grandparents and become and engineer.",
             "cs": "",
-            "ru": "",
-            "nl": ""
+            "ru": ""
         },
         {
             id: "note_tile09",
             "en": "Placeholder: Or dive deep to research oceans as a marine biologist.",
             "cs": "",
-            "ru": "",
-            "nl": ""
+            "ru": ""
         },
         {
             id: "note_tile10",
-            "en": "Placeholder: You could be hedring sheep together with Marcy.",
+            "en": "Placeholder: You could be herding sheep together with Marcy.",
             "cs": "",
-            "ru": "",
-            "nl": ""
+            "ru": ""
         },
         {
             id: "note_tile11",
             "en": "Placeholder: Or become a barista to prepare the best coffee.",
             "cs": "",
-            "ru": "",
-            "nl": ""
+            "ru": ""
         },
         //#endregion
 

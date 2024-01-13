@@ -26,7 +26,7 @@
 	font-family: "Roboto Slab", serif;
 	font-size: 10vh;
 	opacity: 0;
-	animation: animName 6s calc(var(--outro-zoom-out) + 2s) ease forwards;
+	animation: animName 6s calc(var(--outro-zoom-out) + 2s) ease-out forwards;
 }
 
 .animOutroIn
@@ -67,14 +67,14 @@
     0%
 	{
         opacity: 0;
-        letter-spacing: normal;
+        letter-spacing: 0.2em;
         filter: drop-shadow(0 0 20px white);
     }
 	
     100%
 	{
         opacity: 1;
-        letter-spacing: 0.2em;
+        letter-spacing: normal;
         filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
     }
 }
