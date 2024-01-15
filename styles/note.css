@@ -5,13 +5,13 @@
 
 	position: absolute;
 	left: 50vw;
-	bottom: 70vh;
+	bottom: 75vh;
 	transform: translate(-50%, 0);
 
-	background-color: var(--color-dark);
-	border: 1px solid var(--color-highlight);
-	/* border-radius: 3vh; */
 	padding: 3vh;
+	/* background-color: var(--color-dark); */
+	/* border: 1px solid var(--color-highlight); */
+	/* border-radius: 3vh; */
 
 	color: white;
 	font-family: "Caveat", serif;

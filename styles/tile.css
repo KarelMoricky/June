@@ -115,13 +115,6 @@
 	display: var(--display-numbers);
 }
 
-.textTutorial
-{
-	font-family: "Roboto Slab", serif;
-	font-size: 200%;
-	font-style: italic;
-}
-
 .animTileConfirmed
 {
 	animation-name: animTileConfirm;

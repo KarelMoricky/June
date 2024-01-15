@@ -56,14 +56,14 @@ var Localization = new function()
         },
         {
             id: "locTutorialTile1",
-            "en": "Grab the tile",
-            "cs": "Přetáhněte výřez",
+            "en": "Bring the baby",
+            "cs": "Přetáhněte miminko",
             "ru": ""
         },
         {
             id: "locTutorialTile2",
-            "en": "to its place",
-            "cs": "na své místo",
+            "en": "to us",
+            "cs": "k nám",
             "ru": ""
         },
         //#endregion

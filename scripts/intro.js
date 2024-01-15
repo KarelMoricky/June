@@ -22,7 +22,6 @@ var Intro = new function()
     window.addEventListener("load", OnLoadIntroBox);
     function OnLoadIntroBox()
     {
-
         m_ButtonPlay.addEventListener("click", OnButtonPlay);
 
         if (Debug.IsManualLoad())

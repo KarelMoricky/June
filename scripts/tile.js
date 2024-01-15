@@ -65,7 +65,6 @@ var Tile = new function()
     window.addEventListener(EVENT_GAME_DRAG_START, OnGameDragStart);
     window.addEventListener(EVENT_GAME_DRAG, OnGameDrag);
     window.addEventListener(EVENT_GAME_DRAG_END, OnGameDragEnd);
-    window.addEventListener(EVENT_PAUSE, OnPause);
 
     function OnGameInit()
     {
@@ -115,27 +114,8 @@ var Tile = new function()
         Game.GetSVG().getElementById("cheatRevealAll").addEventListener("click", CheatRevealAll);
 
         requestAnimationFrame(OnEachFrame);
-        
-        //--- Init grid
-        // m_Grid = m_SvgDoc.getElementById(ID_GRID);
-        // m_GridDebug = m_SvgDoc.getElementById("gridDebug");
-        // CreateElement("circle", m_Game, [["r", 0.1], ["fill", "blue"]]);
-        // for (let x = -GRID_SIZE / 2; x <= GRID_SIZE / 2; x++)
-        // {
-        //     for (let y = -GRID_SIZE / 2; y <= GRID_SIZE / 2; y++)
-        //     {
-        //         CreateElement("circle", m_Grid, [["cx", x], ["cy", y], ["r", 0.01], ["fill", "black"]]);
-        //     }
-        // }
-    }
 
-    function OnPause(ev)
-    {
-        if (ev.detail.isPaused)
-            return;
-        
         RevealNextTile();
-        window.removeEventListener(EVENT_PAUSE, OnPause);
     }
 
     function OnKeyDown(ev)
@@ -339,6 +319,13 @@ var Tile = new function()
             //--- Hide tile hint (and remove its animation, so it will be restarted once it's added again)
             SetElementVisible(m_TileHint, false);
             m_TileHint.classList.remove("animTileHintDelayed");
+            
+            //--- Hide tile-specific elements
+            let elements = Game.GetSVGDoc().getElementsByClassName("unlock");
+            for (let i = 0; i < elements.length; i++)
+            {
+                SetElementVisible(elements[i], false);
+            }
 
             //--- Send custom event
             let ev = new CustomEvent(EVENT_TILE_CONFIRMED,{detail: {
@@ -392,7 +379,6 @@ var Tile = new function()
         {
             SetElementVisible(m_CurrentTile, true);
             m_CurrentTile.classList.add(CLASS_TILE_CURRENT);
-            m_CurrentTile.querySelector("#tileContent").classList.add("tileFadeIn");
         }
     }
 
@@ -411,7 +397,7 @@ var Tile = new function()
             }
         }
 
-        //--- Lock/unlock elements
+        //--- Show tile-specific elements
         let elements = Game.GetSVGDoc().getElementsByClassName("unlock");
         for (let i = 0; i < elements.length; i++)
         {
@@ -429,9 +415,14 @@ var Tile = new function()
         m_TileHint.setAttribute("transform", hintTransform);
         SetElementVisible(m_TileHint, true);
 
-        //--- Show tile hint for subsequent tiles only after a delay
         if (index > 1)
+        {
+            //--- Show tile hint for subsequent tiles only after a delay
             m_TileHint.classList.add("animTileHintDelayed");
+
+            //--- Fade in the tile (not for the first one)
+            m_CurrentTile.querySelector("#tileContent").classList.add("tileFadeIn");
+        }
     }
 
     function CheatRevealAll()

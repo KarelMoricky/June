@@ -84,8 +84,7 @@ var Game = new function()
 
     //#region Init
 
-    window.addEventListener("load", OnLoad);
-    function OnLoad()
+    window.addEventListener("load", () =>
     {
         let object = document.getElementById(ID_OBJECT);
         m_SvgDoc = object.contentDocument;
@@ -108,17 +107,26 @@ var Game = new function()
         m_DefaultViewBox = Game.GetCurrentViewBox();
 
         window.dispatchEvent(new Event(EVENT_GAME_INIT));
-    }
+    });
 
-    window.addEventListener("beforeunload", OnBeforeUnload);
-    function OnBeforeUnload(ev)
+    window.addEventListener("beforeunload", (ev) =>
     {
         if (Debug.IsDev() || Intro.IsVisible())
             return;
 
         ev.preventDefault();
         ev.returnValue = 'Game progress will not be saved. Are you sure you want to leave?';
-    }
+    });
+
+    window.addEventListener(EVENT_PAUSE, () =>
+    {
+        SetElementVisible(m_SvgDoc.getElementById("tutorial"), true);
+    });
+    
+    window.addEventListener(EVENT_TILE_CONFIRMED, () =>
+    {
+        SetElementVisible(m_SvgDoc.getElementById("tutorial"), false);
+    });
     //#endregion
 
     //#region Events

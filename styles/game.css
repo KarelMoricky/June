@@ -19,6 +19,13 @@
 	fill: none;
 }
 
+#tutorial
+{
+	font-family: "Roboto Slab", serif;
+	font-size: 200%;
+	font-style: italic;
+}
+
 #tutorialViewTouch
 {
 	fill: var(--color-highlight);

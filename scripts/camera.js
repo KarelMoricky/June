@@ -182,7 +182,7 @@ var Camera = new function()
         m_ViewBox.h = m_ViewBoxDef.h = viewBox[3];
 
         m_ViewBoxDef.limitW = m_ViewBoxDef.w * 0.5;
-        m_ViewBoxDef.limitH = m_ViewBoxDef.h * 0.5;
+        m_ViewBoxDef.limitH = Math.max(m_ViewBoxDef.h * 0.5, Math.abs(m_ViewBox.y * 0.5));
 
         m_Current.x = m_ViewBox.x + m_ViewBox.w * 0.5;
         m_Current.y = m_ViewBox.y + m_ViewBox.h * 0.5;
@@ -198,7 +198,7 @@ var Camera = new function()
         if (Debug.SkipIntro())
         {
             m_Target.x = 0;
-            m_Target.y = 200;
+            m_Target.y = 0;
         }
 
         requestAnimationFrame(OnEachFrame);

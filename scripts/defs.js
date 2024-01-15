@@ -1,6 +1,6 @@
 //#region Constants
 const DEV_MODE = 1;             //--- 0: disabled, 1: offline, 2: offline & online
-const DEV_SKIP_INTRO = 1;       //--- When true, intro screen will be skipped. Offline mode only.
+const DEV_SKIP_INTRO = 0;       //--- When true, intro screen will be skipped. Offline mode only.
 const DEV_MANUAL_LOAD = 1;      //--- When true, loading screen has to be progressed manually by clicking on play button. Dev mode only.
 
 const FORCED_START = [];        //--- When defined, all new tiles will start on this position instead of the one configured in ORIGIN_POSITIONS
@@ -15,8 +15,8 @@ const DEFAULT_LANGUAGE = "en";  //--- Default localization language
 const TARGET_POSITIONS = new Map([
     ["tile08", [-2,1]],	["tile10", [-2,0]],		
     ["tile04", [-1,1]],	["tile07", [-1,0]],		
-    ["tile03", [0,1]],	["tile01", [0,0]],	["tile05", [0,-1]],	["tile11", [0,-2]],
-    ["tile12", [1,1]],	["tile02", [1,0]],	["tile06", [1,-1]],	["tile09", [1,-2]],
+    ["tile03", [0,1]],	["tile01", [1,0]],	["tile05", [0,-1]],	["tile11", [0,-2]],
+    ["tile12", [1,1]],	["tile02", [0,0]],	["tile06", [1,-1]],	["tile09", [1,-2]],
 ]);
 
 //--- Starting positions of individual tiles. Imported from Google Sheets.
@@ -25,10 +25,10 @@ const ORIGIN_POSITIONS = new Map([
     ["tile08", [-3,-3]],	
         ["tile06", [-2,-4]],
         ["tile10", [-1,-4]],
-["tile01", [0,0]],				
+["tile01", [1,0]],				
         
 ["tile04", [2,3]],	["tile12", [2,2]],						
-["tile05", [3,3]],	["tile02", [3,2]],	["tile07", [3,1]],					
+["tile05", [3,3]],	["tile02", [-2,-2]],	["tile07", [3,1]],					
 ["tile03", [4,2]],						
 ]);
 //#endregion
