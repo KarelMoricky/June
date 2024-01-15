@@ -13,23 +13,22 @@ const DEFAULT_LANGUAGE = "en";  //--- Default localization language
 //#region Tiles
 //--- Target positions of individual tiles. Imported from Google Sheets.
 const TARGET_POSITIONS = new Map([
-    ["tile08", [-2,1]],	["tile10", [-2,0]],		
-    ["tile04", [-1,1]],	["tile07", [-1,0]],		
-    ["tile03", [0,1]],	["tile01", [1,0]],	["tile05", [0,-1]],	["tile11", [0,-2]],
-    ["tile12", [1,1]],	["tile02", [0,0]],	["tile06", [1,-1]],	["tile09", [1,-2]],
+    ["tile11", [-2,1]],	["tile07", [-2,0]],		
+    ["tile08", [-1,1]],	["tile04", [-1,0]],		
+    ["tile03", [0,1]],	["tile02", [0,0]],	["tile06", [0,-1]],	["tile10", [0,-2]],
+    ["tile12", [1,1]],	["tile01", [1,0]],	["tile05", [1,-1]],	["tile09", [1,-2]],
 ]);
 
 //--- Starting positions of individual tiles. Imported from Google Sheets.
 const ORIGIN_POSITIONS = new Map([								
-    ["tile09", [-4,-2]],	["tile11", [-4,-3]],	
-    ["tile08", [-3,-3]],	
-        ["tile06", [-2,-4]],
-        ["tile10", [-1,-4]],
-["tile01", [1,0]],				
-        
-["tile04", [2,3]],	["tile12", [2,2]],						
-["tile05", [3,3]],	["tile02", [-2,-2]],	["tile07", [3,1]],					
-["tile03", [4,2]],						
+    ["tile05", [-4,-3]],	["tile07", [-4,-4]],
+    ["tile11", [-3,-4]],
+["tile02", [-2,-2]],		["tile10", [-2,-4]],
+["tile08", [-1,3]],							
+    
+["tile04", [1,3]],			["tile01", [1,0]],				
+["tile03", [2,3]],	["tile12", [2,2]],						
+["tile09", [3,3]],		["tile06", [3,1]],					
 ]);
 //#endregion
 
