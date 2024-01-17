@@ -13,10 +13,10 @@ const DEFAULT_LANGUAGE = "en";  //--- Default localization language
 //#region Tiles
 //--- Target positions of individual tiles. Imported from Google Sheets.
 const TARGET_POSITIONS = new Map([
-    ["tile09", [-2,1]],	["tile08", [-2,0]],		
-    ["tile07", [-1,1]],	["tile05", [-1,0]],		
-    ["tile03", [0,1]],	["tile02", [0,0]],	["tile06", [0,-1]],	["tile11", [0,-2]],
-    ["tile12", [1,1]],	["tile01", [1,0]],	["tile04", [1,-1]],	["tile10", [1,-2]],
+    ["tile09", [-2,1]],	["tile07", [-2,0]],		
+    ["tile06", [-1,1]],	["tile05", [-1,0]],		
+    ["tile03", [0,1]],	["tile02", [0,0]],	["tile10", [0,-1]],	["tile11", [0,-2]],
+    ["tile12", [1,1]],	["tile01", [1,0]],	["tile04", [1,-1]],	["tile08", [1,-2]],
 ]);
 
 //--- Starting positions of individual tiles. Imported from Google Sheets.

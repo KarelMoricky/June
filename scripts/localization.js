@@ -101,13 +101,13 @@ var Localization = new function()
         },
         {
             id: "note_tile07",
-            "en": "Placeholder: We'll explore the natural world.",
+            "en": "Placeholder: We'll explore the digital world.",
             "cs": "",
             "ru": ""
         },
         {
             id: "note_tile08",
-            "en": "Placeholder: As well as the digital one.",
+            "en": "Placeholder: As well as the natural one.",
             "cs": "",
             "ru": ""
         },

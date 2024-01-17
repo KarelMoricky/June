@@ -79,7 +79,7 @@
       </g>
     </svg>
 
-    <svg id="tile02" tileId="2" class="tile hidden" width="256" height="256">
+    <svg id="tile02" tileId="2" class="tile" width="256" height="256" x="-1.63" y="-279.06">
       <g id="tileContent" transform="translate(-128,-152)">
         <image id="tilePicture" href="../data/images/tiles/tile02.png" />
         <text id="tileNumber" x="50%" y="50%">2</text>

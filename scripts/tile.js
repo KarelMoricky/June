@@ -102,6 +102,9 @@ var Tile = new function()
 
             SetTilePos(tile, gridX, gridY);
             EvaluateTile(tile, false);
+
+            if (tile.id == "tile02") //--- #TODO: Don't hardcode
+                SetCurrentTile(tile);
     
             m_Tiles[i] = tile; //--- Must be called after SetTilePos(), otherwise the tile will think it's already occupied
             m_TilesZSorted[i] = tile;
@@ -115,7 +118,7 @@ var Tile = new function()
 
         requestAnimationFrame(OnEachFrame);
 
-        RevealNextTile();
+        //RevealNextTile();
     }
 
     function OnKeyDown(ev)
