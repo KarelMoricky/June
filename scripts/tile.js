@@ -421,8 +421,7 @@ var Tile = new function()
         if (index > 1)
         {
             //--- Show tile hint for subsequent tiles only after a delay
-            console.log(index);
-            if (index == 11)
+            if (index == m_Tiles.length - 1)
                 m_TileHint.classList.add("animTileHintLast");
             else
                 m_TileHint.classList.add("animTileHintDelayed");

@@ -18,6 +18,7 @@ var Camera = new function()
 
     var m_TimePrev = 0;
     var m_InertiaStrength = INERTIA_DEFAULT;
+    var m_IsManualInput = true;
     //#region Public functions
     this.SetCamera = function(posX, posY, zoom, duration = 0, delay = 0)
     {
@@ -48,6 +49,15 @@ var Camera = new function()
     this.IsAnimPlaying = function()
     {
         return m_Anim.playing;
+    }
+
+    this.EnableManualInput = function(enable)
+    {
+        if (!enable && enable != m_IsManualInput && Game.GetSVG().getAttribute("class") == GAME_STATE_MOVE)
+        {
+            OnGameDragEnd();
+        }
+        m_IsManualInput = enable
     }
     //#endregion
 
@@ -89,7 +99,7 @@ var Camera = new function()
 
     function OnGameDragStart(ev)
     {
-        if (Tile.GetSelected() || m_Anim.playing)
+        if (Tile.GetSelected() || m_Anim.playing || !m_IsManualInput)
             return;
 
         m_InertiaStrength = INERTIA_DRAG;
@@ -99,7 +109,7 @@ var Camera = new function()
 
     function OnGameDrag(ev)
     {
-        if (Tile.GetSelected() || m_Anim.playing)
+        if (Tile.GetSelected() || m_Anim.playing || !m_IsManualInput)
             return;
 
         let coef = Math.min((m_ViewBox.w / window.innerWidth), (m_ViewBox.h / window.innerHeight)); //--- I have no idea what I'm doing
@@ -121,7 +131,7 @@ var Camera = new function()
 
     function OnGameDragEnd(ev)
     {
-        if (Tile.GetSelected() || m_Anim.playing)
+        if (Tile.GetSelected() || m_Anim.playing || !m_IsManualInput)
             return;
         
         m_Target.x = m_Current.x + m_Velocity.x * INERTIA_DISTANCE_COEF;
