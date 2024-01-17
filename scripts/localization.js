@@ -176,18 +176,18 @@ var Localization = new function()
         document.getElementById("languageRU").disabled = m_Language == "ru";
     }
 
-    // this.RefreshElement = function(element, id = "")
-    // {
-    //     if (id == "")
-    //         id = element.id;
+    this.Localize = function(element, id = "")
+    {
+        if (id == "")
+            id = element.id;
 
-    //     for (let i = 0; i < TEXTS.length; i++)
-    //     {
-    //         let container = TEXTS[i];
-    //         if (container.id == id)
-    //             SetText(element, container);
-    //     }
-    // }
+        for (let i = 0; i < TEXTS.length; i++)
+        {
+            let container = TEXTS[i];
+            if (container.id == id)
+                SetText(element, container);
+        }
+    }
 
     function RefreshDocument(parent)
     {

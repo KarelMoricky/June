@@ -4,7 +4,7 @@ var Note = new function()
     const CONFIRMATION_MOVE_LENGTH = 1.5; //--- How long will camera take to focus on confirmed tile. Use 0 to disable the effect.
     
     const OUTRO_ZOOM_LENGTH = 5; //--- Time for camera to zoom out during outro
-    const OUTRO_ZOOM_VALUE = 3.5; //--- Camera zoom factor
+    const OUTRO_ZOOM_VALUE = 3; //--- Camera zoom factor
 
     var m_Note;
     var m_InDetail = false;
@@ -59,8 +59,10 @@ var Note = new function()
             //--- Default animation
             Camera.SetCamera(posX, parseInt(posY) - 20, 0.5, CONFIRMATION_MOVE_LENGTH, CONFIRMATION_MOVE_DELAY); //--- #TODO: Don't hardcode
 
-            m_Note = document.getElementById("note_" + tile.id);
+            m_Note = document.getElementById("note");
+            Localization.Localize(m_Note, "note_" + tile.id);
             SetElementVisible(m_Note, true);
+            m_Note.classList.remove("animNoteOut");
             m_Note.classList.add("animNoteIn");
 
             AnimateText(m_Note);

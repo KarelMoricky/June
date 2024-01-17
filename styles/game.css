@@ -97,6 +97,14 @@
 	opacity: 0;
 	animation: animFadeIn 0.5s var(--tile-hint-delay) forwards;
 }
+.animTileHintLast
+{
+	opacity: 0;
+	animation: animFadeIn 0.5s 1s forwards;
+	fill: yellow !important;
+	stroke: yellow !important;
+	stroke-opacity: 1 !important;
+}
 .animTileHint
 {
 	fill-opacity: 0;

@@ -421,7 +421,11 @@ var Tile = new function()
         if (index > 1)
         {
             //--- Show tile hint for subsequent tiles only after a delay
-            m_TileHint.classList.add("animTileHintDelayed");
+            console.log(index);
+            if (index == 11)
+                m_TileHint.classList.add("animTileHintLast");
+            else
+                m_TileHint.classList.add("animTileHintDelayed");
 
             //--- Fade in the tile (not for the first one)
             m_CurrentTile.querySelector("#tileContent").classList.add("tileFadeIn");
