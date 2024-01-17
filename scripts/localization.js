@@ -71,61 +71,61 @@ var Localization = new function()
         //#region Notes
         {
             id: "note_tile02",
-            "en": "Placeholder: Hello little one, we are your parents. Who are you? Who will you be?",
+            "en": "Placeholder: Hello little one, we are your family. There are so many things we'll do together!",
             "cs": "",
             "ru": ""
         },
         {
             id: "note_tile03",
-            "en": "Placeholder: Maybe you will make games like dad.",
+            "en": "Placeholder: We'll hike through forests and hills.",
             "cs": "",
             "ru": ""
         },
         {
             id: "note_tile04",
-            "en": "Placeholder: Or you will sing beautifully like mom.",
+            "en": "Placeholder: And build castles by the sea.",
             "cs": "",
             "ru": ""
         },
         {
             id: "note_tile05",
-            "en": "Placeholder: Perhaps you will become a fotballer.",
+            "en": "Placeholder: We'll travel tot he cold North and watch the polar lights.",
             "cs": "",
             "ru": ""
         },
         {
             id: "note_tile06",
-            "en": "Placeholder: You could navigate space junk as an astronaut.",
+            "en": "Placeholder: Or stay warm in dunes while flying the kites.",
             "cs": "",
             "ru": ""
         },
         {
             id: "note_tile07",
-            "en": "Placeholder: Or Earth junk as a gabage collector.",
+            "en": "Placeholder: We'll explore the natural world.",
             "cs": "",
             "ru": ""
         },
         {
             id: "note_tile08",
-            "en": "Placeholder: Maybe you will follow the path of your grandparents and become and engineer.",
+            "en": "Placeholder: As well as the digital one.",
             "cs": "",
             "ru": ""
         },
         {
             id: "note_tile09",
-            "en": "Placeholder: Or dive deep to research oceans as a marine biologist.",
+            "en": "Placeholder: We'll see rockets imagined,",
             "cs": "",
             "ru": ""
         },
         {
             id: "note_tile10",
-            "en": "Placeholder: You could be herding sheep together with Marcy.",
+            "en": "Placeholder: And rockets that are real.",
             "cs": "",
             "ru": ""
         },
         {
             id: "note_tile11",
-            "en": "Placeholder: Or become a barista to prepare the best coffee.",
+            "en": "Placeholder: And at the end of the day, we'll come home and rest.",
             "cs": "",
             "ru": ""
         },
