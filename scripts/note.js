@@ -44,7 +44,7 @@ var Note = new function()
 
         if (ev.detail.isLast)
         {
-            //--- Last animation
+            //--- Outro
             Camera.SetCamera(posX, posY, OUTRO_ZOOM_VALUE, OUTRO_ZOOM_LENGTH, CONFIRMATION_MOVE_DELAY);
 
             let tiles = Game.GetSVGDoc().getElementById(ID_TILES_ELEMENT);
@@ -59,11 +59,14 @@ var Note = new function()
             let outro = document.getElementById("outroBox");
             SetElementVisible(outro, true);
 
-            m_CanClose = true;
+            m_CanClose = false;
+            new Promise((resolve) => setTimeout(resolve, 10000)).then(() => {
+                m_CanClose = true;
+            });
         }
         else
         {
-            //--- Default animation
+            //--- Note
             Camera.SetCamera(posX, parseInt(posY) - 20, NOTE_ZOOM_VALUE, CONFIRMATION_MOVE_LENGTH, CONFIRMATION_MOVE_DELAY); //--- #TODO: Don't hardcode
 
             m_Note = document.getElementById("note");
@@ -85,7 +88,7 @@ var Note = new function()
 
             Camera.SetCamera(-1, -1, 1, 0.5);
 
-            //--- Reset the last animation
+            //--- Reset outro
             if (m_IsLast)
             {
                 let tiles = Game.GetSVGDoc().getElementById(ID_TILES_ELEMENT);
@@ -103,9 +106,15 @@ var Note = new function()
                 let outro = document.getElementById("outroBox");
                 outro.classList.remove("animOutroIn");
                 outro.classList.add("animOutroOut");
+
+                let thanks = document.getElementById("thanks");
+                SetElementVisible(thanks, true);
+
+                Game.SetFinished();
             }
             else
             {
+                //--- Reset note
                 m_Note.classList.remove("animNoteIn");
                 m_Note.classList.add("animNoteOut");
                 m_Note = null;

@@ -89,43 +89,43 @@ var Localization = new function()
         },
         {
             id: "note_tile05",
-            "en": "Placeholder: We'll travel tot he cold North and watch the polar lights.",
+            "en": "Placeholder: We'll explore the natural world.",
             "cs": "",
             "ru": ""
         },
         {
             id: "note_tile06",
-            "en": "Placeholder: Or stay warm in dunes while flying the kites.",
+            "en": "Placeholder: As well as the digital one.",
             "cs": "",
             "ru": ""
         },
         {
             id: "note_tile07",
-            "en": "Placeholder: We'll explore the digital world.",
+            "en": "Placeholder: We'll travel to the cold North and watch the polar lights.",
             "cs": "",
             "ru": ""
         },
         {
             id: "note_tile08",
-            "en": "Placeholder: As well as the natural one.",
+            "en": "Placeholder: Or stay warm in dunes while flying the kites.",
             "cs": "",
             "ru": ""
         },
         {
             id: "note_tile09",
-            "en": "Placeholder: We'll see rockets imagined,",
+            "en": "Placeholder: We'll see towers that look like rockets,",
             "cs": "",
             "ru": ""
         },
         {
             id: "note_tile10",
-            "en": "Placeholder: And rockets that are real.",
+            "en": "Placeholder: And rockets as tall as towers.",
             "cs": "",
             "ru": ""
         },
         {
             id: "note_tile11",
-            "en": "Placeholder: And at the end of the day, we'll come home and rest.",
+            "en": "Placeholder: And at the end of the day, we'll sip a tea and rest with our friends.",
             "cs": "",
             "ru": ""
         },

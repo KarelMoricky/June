@@ -14,6 +14,7 @@ var Game = new function()
     var m_Game;
     var m_Circle;
     var m_Cursor;
+    var m_IsFinished;
 
     var m_Click = {id: -1, isActive: false, pos: []};
     var m_DefaultViewBox = [];
@@ -80,6 +81,11 @@ var Game = new function()
     {
         return new DOMPointReadOnly(posX, posY).matrixTransform(m_Game.getScreenCTM());
     }
+
+    this.SetFinished = function()
+    {
+        m_IsFinished = true;
+    }
     //#endregion
 
     //#region Init
@@ -111,7 +117,7 @@ var Game = new function()
 
     window.addEventListener("beforeunload", (ev) =>
     {
-        if (Debug.IsDev() || Intro.IsVisible())
+        if (Debug.IsDev() || m_IsFinished || Intro.IsVisible())
             return;
 
         ev.preventDefault();

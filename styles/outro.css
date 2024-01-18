@@ -22,7 +22,7 @@
 }
 #outroBox h1
 {
-    margin-top: 20vh;
+    margin-top: 30vh;
 	font-family: "Roboto Slab", serif;
 	font-size: 10vh;
 	opacity: 0;
@@ -74,7 +74,7 @@
     100%
 	{
         opacity: 1;
-        letter-spacing: normal;
+        letter-spacing: 0.1em;
         filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
     }
 }
@@ -110,7 +110,6 @@
     }
 }
 
-
 .animTilesIn
 {
 	animation: animFadeIn 0.2s ease;
@@ -124,4 +123,19 @@
 .animGridOut
 {
 	animation: animFadeOut 1s 1s ease forwards;
+}
+
+#thanks
+{
+	position: absolute;
+	background-color: rgba(0, 0, 0, 0.7);
+	font-family: "Caveat", sans-serif;
+	font-size: 4vh;
+	text-align: center;
+	padding: 2vh;
+	bottom: 10vh;
+	left: 0;
+	width: 100%;
+	opacity: 0;
+	animation: animFadeIn 2s 0.5s ease forwards;
 }

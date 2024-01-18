@@ -1,24 +1,31 @@
-#note
+#noteArea
 {
-	width: min(500px, 80%);
-	max-height: 35vh;
+	width: min(80vw, 70vh);
+	height: 20vh;
 
 	position: absolute;
 	left: 50vw;
-	bottom: 75vh;
+	top: 5vh;
 	transform: translate(-50%, 0);
+}
 
-	padding: 3vh;
-	/* background-color: var(--color-dark); */
-	/* border: 1px solid var(--color-highlight); */
-	/* border-radius: 3vh; */
+#note
+{
+	position: absolute;
+	top: auto;
+	bottom: 0;
+	max-height: 20vh;
 
 	color: white;
 	font-family: "Caveat", serif;
 	font-size: 4vh;
+	padding: 2vh;
 
-	pointer-events: none;
-	
+	background-color: rgba(10, 22, 48, 0.5);
+	/* backdrop-filter: blur(10px); */
+	/* border: 1px solid var(--color-highlight); */
+	/* border-radius: 3vh; */
+
 	/* filter: drop-shadow(0 0 30px var(--color-highlight)); */
 }
 
@@ -28,18 +35,6 @@
 	opacity: 0;
 	animation: animFadeIn 0.5s ease-out forwards;
 }
-
-/* #note:before /* https://codepen.io/run-time/pen/VNRBJd */
-/*{
-	content: "";
-	position: absolute;
-	border-left: 30px solid white;
-	border-right: 30px solid transparent;
-	border-bottom: 30px solid white;
-	border-top: 30px solid transparent;
-	left: 60%;
-	top: -48px;
-} */
 
 .animNoteIn, .animNoteOut
 {
