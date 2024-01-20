@@ -30,6 +30,12 @@ const ORIGIN_POSITIONS = new Map([
 ["tile03", [2,3]],							
 ["tile12", [3,3]],	["tile04", [3,2]],	["tile11", [3,1]],					
 ]);
+
+const ISO_SIZE = 140;
+const ISO_MATRIX = new DOMMatrixReadOnly()
+    .rotate(30)
+    .skewX(-30)
+    .scale(1 * ISO_SIZE, 0.8602 * ISO_SIZE);
 //#endregion
 
 //#region Elements
@@ -45,6 +51,7 @@ const EVENT_GAME_DRAG = "GameDrag";
 const EVENT_GAME_DRAG_END = "GameDragEnd";
 const EVENT_TILE_CONFIRMED = "TileConfirmed";
 const EVENT_PAUSE = "Pause";
+const EVENT_OUTRO = "Outro";
 //#endregion
 
 //#region Variables
@@ -62,7 +69,13 @@ const VAR_TILE_MAX = "maxTile";
 
 //#region Vibrations
 const VIBRATION_PLAY = [150, 50,20];
+
 const VIBRATION_TILE_DRAG_START = [10];
 const VIBRATION_TILE_DRAG_END = [10];
 const VIBRATION_TILE_CONFIRMED = [100, 50,50, 50,30, 50,10];
+
+const VIBRATION_OUTRO_DRAG_START = [10];
+const VIBRATION_OUTRO_DRAG_END = [10];
+const VIBRATION_OUTRO_CONFIRMED = [10,100, 50,200, 50,200, 50];
+const VIBRATION_OUTRO_LETTER = [20];
 //#endregion

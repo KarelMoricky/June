@@ -13,6 +13,12 @@ function CreateElement(type, parent, params = [], isSVG = false)
 
 function SetElementVisible(element, isVisible)
 {
+    if (element == null)
+    {
+        console.warn("Attempting to set visibility to null element!");
+        return;
+    }
+    
     if (isVisible)
         element.classList.remove("hidden");
     else
@@ -35,6 +41,39 @@ function Vibrate(pattern)
     const canVibrate = window.navigator.vibrate;
     if (canVibrate)
         window.navigator.vibrate(pattern);
+}
+
+function AnimateWords(element, delay = 0, interval = 0.1, className = "animatedText")
+{
+    let result = [];
+    const segments = element.innerHTML.split(" ");
+    let segment = null;
+    element.innerHTML = "";
+    for (let i = 0; i < segments.length; i++)
+    {
+        segment = CreateElement("span", element, [["class", className], ["style", `animation-delay: ${delay + interval * i}s`]]); //--- #TODO: Delay as param
+        segment.innerHTML = segments[i] + "&nbsp;";
+        result.push(segment);
+    }
+    return result;
+}
+function AnimateLetters(element, delay = 0, interval = 0.03, className = "animatedText")
+{
+    let result = [];
+    let segment = null;
+    const text = element.innerHTML;
+    element.innerHTML = "";
+    for (let i = 0; i < text.length; i++)
+    {
+        let style = `animation-delay: ${delay + interval * i}s;`;
+        if (text[i] == " ")
+            style += "padding-left: 0.3em;" //--- As whitespace is trimmed by default, add left padding to emulate it
+
+        segment = CreateElement("span", element, [["class", className], ["style", style]]);
+        segment.innerHTML = text[i];
+        result.push(segment);
+    }
+    return result;
 }
 
 //#endregion

@@ -113,7 +113,8 @@
 	animation-iteration-count: infinite;
 	animation-timing-function: ease-out;
 
-	transform-origin: 0.025% 0.045%;
+	/* transform-origin: 0.025% 0.045%; */
+	transform-origin: 0.5px 0.5px;
 }
 @keyframes animTileHint
 {
