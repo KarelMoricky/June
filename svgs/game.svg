@@ -241,7 +241,7 @@
   </svg>
 
   <!-- Outro heart -->
-  <svg id="heart" class="hidden" transform="scale(1.86) translate(-256,-113)">
+  <svg id="heart" class="hidden heartDraggable" transform="scale(1.86) translate(-256,-113)">
     <polygon id="heartHighlight1" class="hidden" points="256,76 384,2 512,76 512,108 256,254 0,108 0,76 128,2" />
     <polygon id="heartHighlight2" class="hidden" points="256,76 384,2 512,76 512,108 256,254 0,108 0,76 128,2" />
     <polygon id="heartHighlight3" class="hidden" points="256,76 384,2 512,76 512,108 256,254 0,108 0,76 128,2" />

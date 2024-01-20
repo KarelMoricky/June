@@ -164,6 +164,8 @@ var Outro = new function()
             m_TargetPos.y = m_FinalPos.y;
 
             m_Heart.classList.add("animHeartIn");
+            m_Heart.classList.add("ignoreCursor");
+            m_Heart.classList.remove("heartDraggable");
 
             m_HeartHint.classList.remove("animHeartHintIn");
             m_HeartHint.classList.add("animHeartOut");
@@ -189,7 +191,12 @@ var Outro = new function()
                 });
             }
 
-            m_CanClose = true;
+            m_CanClose = false;
+            segments[segments.length - 1].addEventListener("animationend", (event) =>
+            {
+                m_CanClose = true;
+            });
+
             window.removeEventListener(EVENT_GAME_DRAG, OnGameDrag);
             window.removeEventListener(EVENT_GAME_DRAG_END, OnGameDragEnd);
 

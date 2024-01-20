@@ -129,8 +129,12 @@
 #heart
 {
 	fill: red;
-	cursor: grab;
 	opacity: 0;
+}
+
+.heartDraggable
+{
+	cursor: grab;
 }
 
 .animHeartIn
