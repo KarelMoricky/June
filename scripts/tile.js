@@ -14,7 +14,6 @@ var Tile = new function()
     const TILE_STATE_CONFIRMED = "tileStateConfirmed";
 
     //--- Grid
-    const GRID_SIZE = 12;
     const ISO_SIZE = 140;
     const ISO_MATRIX = new DOMMatrixReadOnly()
         .rotate(30)
@@ -140,7 +139,12 @@ var Tile = new function()
         else if (ev.key == "~")
         {
             //--- [~] Skip to the last tile
-            CheatRevealAll();
+            CheatRevealAll(true);
+        }
+        else if (ev.key == "E")
+        {
+            //--- [E] Skip to outro
+            CheatRevealAll(false);
         }
         else if (ev.key == "X")
         {
@@ -427,16 +431,20 @@ var Tile = new function()
         }
     }
 
-    function CheatRevealAll()
+    function CheatRevealAll(leaveLast = false)
     {
+        let maxIndex = m_Tiles.length;
+        if (leaveLast)
+            maxIndex--;
+
         SetCurrentTile(null); //--- Prevent position lerping of the current tile
-        for (let i = 0; i < m_Tiles.length - 1; i++)
+        for (let i = 0; i < maxIndex; i++)
         {
             if (m_Tiles[i].getAttribute(VAR_CONFIRMED) == null)
             {
                 SetElementVisible(m_Tiles[i], true);
                 SetTilePos(m_Tiles[i], m_Tiles[i].getAttribute(VAR_GRID_TARGET_X), m_Tiles[i].getAttribute(VAR_GRID_TARGET_Y));
-                EvaluateTile(m_Tiles[i], false);
+                EvaluateTile(m_Tiles[i], i == m_Tiles.length - 1);
             }
         }
         RevealNextTile();

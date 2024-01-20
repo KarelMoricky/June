@@ -79,23 +79,52 @@
     }
 }
 
+#heart, #heartTarget
+{
+	overflow: visible;
+}
+
 #heart
 {
 	fill: red;
+	cursor: grab;
+
+	opacity: 0;
+	animation: animFadeIn 1.5s calc(var(--outro-zoom-out) - 2s) ease forwards;
 }
+
+#heartTarget
+{
+	fill: rgba(0, 0, 0, 0);
+	stroke: white;
+	stroke-dasharray: 10;
+}
+
 .animHeartIn
 {
 	opacity: 0;
-	animation-name: animFadeIn, animHeartBeat;
-	animation-delay: calc(var(--outro-zoom-out) - 2s), var(--outro-zoom-out); 
-	animation-duration: 1.5s, 1s;
-	animation-iteration-count: 1, infinite;
-	animation-timing-function: ease, ease;
-	animation-fill-mode: forwards, none;
+	/* animation: animFadeIn 1.5s calc(var(--outro-zoom-out) - 2s) ease forwards; */
+	animation-name: animFadeIn;
+	animation-delay: var(--outro-zoom-out); 
+	animation-duration: 1.5s;
+	animation-iteration-count: 1;
+	animation-timing-function: ease;
+	animation-fill-mode: forwards;
 }
+.animTargetHeartIn
+{
+	opacity: 0;
+	animation: animFadeIn 1.5s calc(var(--outro-zoom-out) + 1s) ease forwards;
+}
+
 .animHeartOut
 {
 	animation: animFadeOut 0.4s 0.2s ease-out forwards;
+}
+
+.animHeartBeat
+{
+	animation: animHeartBeat 1s infinite ease;
 }
 
 @keyframes animHeartBeat {

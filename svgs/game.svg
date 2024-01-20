@@ -242,7 +242,15 @@
   </g>
 
   <!-- Outro heart -->
-  <polygon id="heart" class="ignoreCursor hidden animHeartIn" points="256,76 384,2 512,76 512,108 256,254 0,108 0,76 128,2" transform="scale(1.86) translate(-256,-113)" />
+  <g id="outro" class="hidden">
+    <svg id="heartTarget" class="animTargetHeartIn ignoreCursor" x="0" y="600">
+      <polygon points="256,76 384,2 512,76 512,108 256,254 0,108 0,76 128,2" transform="scale(1.86) translate(-256,-113)" />
+    </svg>
+
+    <svg id="heart" class="animHeartIn">
+      <polygon class="animHeartBeat" points="256,76 384,2 512,76 512,108 256,254 0,108 0,76 128,2" transform="scale(1.86) translate(-256,-113)" />
+    </svg>
+  </g>
 
   <!-- Debug cursor -->
   <!-- <circle id="cursor" class="ignoreCursor" style="fill: rgb(255,0,0);" cx="1000" cy="1000" r="10px" /> -->
