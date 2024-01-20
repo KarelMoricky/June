@@ -53,7 +53,7 @@ function AnimateWords(element, delay = 0, interval = 0.1, className = "animatedT
         segment = CreateElement("span", element, [["class", className], ["style", `animation-delay: ${delay + interval * i}s`]]); //--- #TODO: Delay as param
         segment.innerHTML = segments[i] + "&nbsp;";
     }
-    return segments;
+    return segment;
 }
 function AnimateLetters(element, delay = 0, interval = 0.03, className = "animatedText")
 {
