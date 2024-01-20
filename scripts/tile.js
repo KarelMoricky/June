@@ -26,14 +26,10 @@ var Tile = new function()
     var m_Tiles = [];
     var m_TilesZSorted = [];
     var m_ClickTilePos = [];
-    var m_ConfirmedCount = 0;
-    //var m_Tier = 0;
     var m_TargetPos = [];
     var m_TimePrev = 0;
     var m_TilesElement = null;
     var m_TileHint = null;
-    // var m_Grid;
-    // var m_GridDebug;
 
     this.GetSelected = function()
     {
@@ -118,6 +114,7 @@ var Tile = new function()
 
         requestAnimationFrame(OnEachFrame);
 
+        SetElementVisible(m_TileHint, true);
         //RevealNextTile();
     }
 
@@ -378,28 +375,20 @@ var Tile = new function()
         m_CurrentTile = tile;
         m_TargetPos = [];
 
-        if (m_CurrentTile)
-        {
-            SetElementVisible(m_CurrentTile, true);
-            m_CurrentTile.classList.add(CLASS_TILE_CURRENT);
-        }
-    }
+        if (!m_CurrentTile)
+            return;
+        
+        SetElementVisible(m_CurrentTile, true);
+        m_CurrentTile.classList.add(CLASS_TILE_CURRENT);
+        
+        //--- Update tile hint's position
+        const targetX = m_CurrentTile.getAttribute(VAR_GRID_TARGET_X);
+        const targetY = m_CurrentTile.getAttribute(VAR_GRID_TARGET_Y);
 
-    function RevealNextTile()
-    {
-        //--- Show tile
-        let index = 0;
-        for (let i = 0; i < m_Tiles.length; i++)
-        {
-            //--- Reveal the next tile in line, one by one
-            if (!IsElementVisible(m_Tiles[i]))
-            {
-                index = i;
-                SetCurrentTile(m_Tiles[i]);
-                break;
-            }
-        }
-
+        var hintTransform = new DOMMatrix(ISO_MATRIX).translateSelf(targetX, targetY, 0);
+        m_TileHint.setAttribute("transform", hintTransform);
+        SetElementVisible(m_TileHint, true);
+        
         //--- Show tile-specific elements
         let elements = Game.GetSVGDoc().getElementsByClassName("unlock");
         for (let i = 0; i < elements.length; i++)
@@ -410,24 +399,31 @@ var Tile = new function()
             SetElementVisible(elements[i], (min == null || index >= min) && (max == null || index <= max));
         }
 
-        //--- Update tile hint's position
-        const targetX = m_CurrentTile.getAttribute(VAR_GRID_TARGET_X);
-        const targetY = m_CurrentTile.getAttribute(VAR_GRID_TARGET_Y);
- 
-        var hintTransform = new DOMMatrix(ISO_MATRIX).translateSelf(targetX, targetY, 0);
-        m_TileHint.setAttribute("transform", hintTransform);
-        SetElementVisible(m_TileHint, true);
-
-        if (index > 1)
+        const id = m_Tiles.indexOf(m_CurrentTile);
+        if (id != -1) //--- Don't delay the first tile (this function is called before it's registered)
         {
             //--- Show tile hint for subsequent tiles only after a delay
-            if (index == m_Tiles.length - 1)
+            if (id == m_Tiles.length - 1)
                 m_TileHint.classList.add("animTileHintLast");
             else
                 m_TileHint.classList.add("animTileHintDelayed");
 
             //--- Fade in the tile (not for the first one)
             m_CurrentTile.querySelector("#tileContent").classList.add("tileFadeIn");
+        }
+    }
+
+    function RevealNextTile()
+    {
+        //--- Show tile
+        for (let i = 0; i < m_Tiles.length; i++)
+        {
+            //--- Reveal the next tile in line, one by one
+            if (!IsElementVisible(m_Tiles[i]))
+            {
+                SetCurrentTile(m_Tiles[i]);
+                break;
+            }
         }
     }
 
