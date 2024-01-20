@@ -33,10 +33,6 @@ var Outro = new function()
 
     window.addEventListener(EVENT_OUTRO, (ev) =>
     {
-        console.log(EVENT_OUTRO);
-        //if (!ev.detail.isManual || !ev.detail.isLast)
-        //    return;
-        
         //--- Reveal
         Camera.EnableManualInput(false);
         Camera.SetCamera(m_FinalPos.x, m_FinalPos.y, OUTRO_ZOOM_VALUE, OUTRO_ZOOM_LENGTH, OUTRO_MOVE_DELAY);
@@ -138,6 +134,8 @@ var Outro = new function()
             
             m_TargetPos.x = m_Drag.x;
             m_TargetPos.y = m_Drag.y;
+
+            Vibrate(VIBRATION_OUTRO_DRAG_START);
         }
     }
     
@@ -182,16 +180,26 @@ var Outro = new function()
 
             const outroName = document.getElementById("outroName");
             SetElementVisible(outroName, true);
-            AnimateLetters(outroName, 4.5, 0.7, "outroNameLetter");
+            const segments = AnimateLetters(outroName, 5, 0.7, "outroNameLetter");
+            for (let segment of segments)
+            {
+                segment.addEventListener("animationstart", (event) =>
+                {
+                    Vibrate(VIBRATION_OUTRO_LETTER);
+                });
+            }
 
             m_CanClose = true;
             window.removeEventListener(EVENT_GAME_DRAG, OnGameDrag);
             window.removeEventListener(EVENT_GAME_DRAG_END, OnGameDragEnd);
+
+            Vibrate(VIBRATION_OUTRO_CONFIRMED);
         }
         else
         {
             m_TargetPos.x = 0;
             m_TargetPos.y = 0;
+            Vibrate(VIBRATION_OUTRO_DRAG_END);
         }
     }
 }

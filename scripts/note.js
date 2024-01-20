@@ -43,12 +43,12 @@ var Note = new function()
         m_Note.classList.remove("animNoteOut");
         m_Note.classList.add("animNoteIn");
 
-        let segment = AnimateWords(m_Note, 2.1);
+        let segments = AnimateWords(m_Note, 2.1);
 
         if (!Debug.IsDev())
         {
             m_CanClose = false;
-            segment.addEventListener("animationend", (event) =>
+            segments[segments.length - 1].addEventListener("animationend", (event) =>
             {
                 m_CanClose = true;
             });

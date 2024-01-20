@@ -45,6 +45,7 @@ function Vibrate(pattern)
 
 function AnimateWords(element, delay = 0, interval = 0.1, className = "animatedText")
 {
+    let result = [];
     const segments = element.innerHTML.split(" ");
     let segment = null;
     element.innerHTML = "";
@@ -52,12 +53,13 @@ function AnimateWords(element, delay = 0, interval = 0.1, className = "animatedT
     {
         segment = CreateElement("span", element, [["class", className], ["style", `animation-delay: ${delay + interval * i}s`]]); //--- #TODO: Delay as param
         segment.innerHTML = segments[i] + "&nbsp;";
+        result.push(segment);
     }
-    return segment;
+    return result;
 }
 function AnimateLetters(element, delay = 0, interval = 0.03, className = "animatedText")
 {
-    //const segments = element.innerHTML.split(" ");
+    let result = [];
     let segment = null;
     const text = element.innerHTML;
     element.innerHTML = "";
@@ -69,8 +71,9 @@ function AnimateLetters(element, delay = 0, interval = 0.03, className = "animat
 
         segment = CreateElement("span", element, [["class", className], ["style", style]]);
         segment.innerHTML = text[i];
+        result.push(segment);
     }
-    return segment;
+    return result;
 }
 
 //#endregion

@@ -140,7 +140,7 @@ var Localization = new function()
         //#region Outro
         {
             id: "outroNote",
-            "en": "No matter what will you become, we will always love you. You are our...",
+            "en": "Placeholder: No matter what will you become, we will always love you. You are our...",
             "cs": "",
             "ru": "",
             "nl": ""
