@@ -8,6 +8,7 @@ var Note = new function()
     const m_Note = document.getElementById("note");
     var m_InDetail = false;
     let m_CanClose = true;
+    let m_IsLast = false;
 
     window.addEventListener(EVENT_GAME_INIT, OnGameInit);
     window.addEventListener(EVENT_TILE_CONFIRMED, OnTileConfirmed);
@@ -23,7 +24,7 @@ var Note = new function()
 
     function OnTileConfirmed(ev)
     {
-        if (!ev.detail.isManual || ev.detail.isLast)
+        if (!ev.detail.isManual)// || ev.detail.isLast)
             return;
 
         let tile = ev.detail.tile;
@@ -32,6 +33,7 @@ var Note = new function()
         let posY = tile.getAttribute(VAR_TARGET_Y);
 
         m_InDetail = true;
+        m_IsLast = ev.detail.isLast;
 
         Camera.EnableManualInput(false);
         Camera.SetCamera(posX, parseInt(posY) - 20, NOTE_ZOOM_VALUE, CONFIRMATION_MOVE_LENGTH, CONFIRMATION_MOVE_DELAY); //--- #TODO: Don't hardcode
@@ -41,7 +43,7 @@ var Note = new function()
         m_Note.classList.remove("animNoteOut");
         m_Note.classList.add("animNoteIn");
 
-        let segment = AnimateLetters(m_Note, 2.1);
+        let segment = AnimateWords(m_Note, 2.1);
 
         if (!Debug.IsDev())
         {
@@ -59,12 +61,20 @@ var Note = new function()
             return;
 
         m_InDetail = false;
-        Camera.EnableManualInput(true);
-        Camera.SetCamera(-1, -1, 1, 0.5);
 
         m_Note.classList.remove("animNoteIn");
         m_Note.classList.add("animNoteOut");
 
-        Tile.RevealNextTile();
+        if (m_IsLast)
+        {
+            const ev = new CustomEvent(EVENT_OUTRO);
+            window.dispatchEvent(ev);
+        }
+        else
+        {
+            Camera.EnableManualInput(true);
+            Camera.SetCamera(-1, -1, 1, 0.5);
+            Tile.RevealNextTile();
+        }
     }
 }

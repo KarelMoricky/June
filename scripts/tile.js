@@ -13,13 +13,6 @@ var Tile = new function()
     const TILE_STATE_EDITING = "tileStateEditing";
     const TILE_STATE_CONFIRMED = "tileStateConfirmed";
 
-    //--- Grid
-    const ISO_SIZE = 140;
-    const ISO_MATRIX = new DOMMatrixReadOnly()
-        .rotate(30)
-        .skewX(-30)
-        .scale(1 * ISO_SIZE, 0.8602 * ISO_SIZE);
-
     var m_CurrentTile = null;
     var m_SelectedTile = null;
     var m_Tiles = [];

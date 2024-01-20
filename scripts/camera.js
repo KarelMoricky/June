@@ -73,8 +73,11 @@ var Camera = new function()
     //#region Calculation
     function Apply()
     {
-        m_Current.x = Clamp(m_Current.x, -m_ViewBoxDef.limitW, m_ViewBoxDef.limitW);
-        m_Current.y = Clamp(m_Current.y, -m_ViewBoxDef.limitH, m_ViewBoxDef.limitH);
+        if (!m_Anim.playing)
+        {
+            m_Current.x = Clamp(m_Current.x, -m_ViewBoxDef.limitW, m_ViewBoxDef.limitW);
+            m_Current.y = Clamp(m_Current.y, -m_ViewBoxDef.limitH, m_ViewBoxDef.limitH);
+        }
 
         //--- Size
         m_ViewBox.w = m_Current.zoom * m_ViewBoxDef.w;
@@ -202,8 +205,6 @@ var Camera = new function()
 
         m_ViewBoxDef.limitW = Math.min(m_ViewBoxDef.w * 0.5, LIMIT_W_MAX);
         m_ViewBoxDef.limitH = Math.max(m_ViewBoxDef.h * 0.5, Math.abs(m_ViewBox.y * 0.5));
-
-        console.log(m_ViewBoxDef, LIMIT_W_MAX);
 
         m_Current.x = m_ViewBox.x + m_ViewBox.w * 0.5;
         m_Current.y = m_ViewBox.y + m_ViewBox.h * 0.5;

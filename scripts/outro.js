@@ -3,7 +3,7 @@ var Outro = new function()
     const INERTIA_DEFAULT = 0.02;
     
     const OUTRO_MOVE_DELAY = 0.25; //--- How long before camera animation starts
-    const OUTRO_ZOOM_LENGTH = 5*0; //--- Time for camera to zoom out during outro
+    const OUTRO_ZOOM_LENGTH = 5; //--- Time for camera to zoom out during outro
     const OUTRO_ZOOM_VALUE = 3.5; //--- Camera zoom factor
 
     let m_CanClose = false;
@@ -25,13 +25,19 @@ var Outro = new function()
 
         m_FinalPos.x = parseInt(m_HeartHint.getAttribute("x"));
         m_FinalPos.y = parseInt(m_HeartHint.getAttribute("y"));
+
+        var hintTransform = new DOMMatrix(ISO_MATRIX);
+        hintTransform.f = m_HeartHint.getAttribute("y");
+        m_HeartHint.setAttribute("transform", hintTransform);
     });
 
-    window.addEventListener(EVENT_TILE_CONFIRMED, (ev) =>
+    window.addEventListener(EVENT_OUTRO, (ev) =>
     {
-        if (!ev.detail.isManual || !ev.detail.isLast)
-            return;
+        console.log(EVENT_OUTRO);
+        //if (!ev.detail.isManual || !ev.detail.isLast)
+        //    return;
         
+        //--- Reveal
         Camera.EnableManualInput(false);
         Camera.SetCamera(m_FinalPos.x, m_FinalPos.y, OUTRO_ZOOM_VALUE, OUTRO_ZOOM_LENGTH, OUTRO_MOVE_DELAY);
 
@@ -166,15 +172,17 @@ var Outro = new function()
 
             m_Tiles.classList.add("animTilesOut");
 
-            SetElementVisible(Game.GetSVGDoc().getElementById("heartHighlight"), true);
+            SetElementVisible(Game.GetSVGDoc().getElementById("heartHighlight1"), true);
+            SetElementVisible(Game.GetSVGDoc().getElementById("heartHighlight2"), true);
+            SetElementVisible(Game.GetSVGDoc().getElementById("heartHighlight3"), true);
 
             const outroNote = document.getElementById("outroNote");
             SetElementVisible(outroNote, true);
-            AnimateLetters(outroNote, 1);
+            AnimateWords(outroNote, 1.5);
 
             const outroName = document.getElementById("outroName");
             SetElementVisible(outroName, true);
-            AnimateLetters(outroName, 4, 0.7, "outroNameLetter");
+            AnimateLetters(outroName, 4.5, 0.7, "outroNameLetter");
 
             m_CanClose = true;
             window.removeEventListener(EVENT_GAME_DRAG, OnGameDrag);

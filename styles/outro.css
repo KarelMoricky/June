@@ -142,7 +142,7 @@
 .animHeartOut
 {
 	opacity: 1;
-	animation: animFadeOut 0.4s ease-out forwards;
+	animation: animFadeOut 0.7s ease-out forwards;
 }
 
 .animHeartBeat
@@ -164,28 +164,31 @@
 
 #heartHint
 {
-	/* fill: rgba(0, 0, 0, 0);
-	stroke: white;
-	stroke-dasharray: 10; */
-
-	fill: var(--color-highlight);
+	/* fill: var(--color-highlight);
 	fill-opacity: 0.05;
 
 	stroke: var(--color-highlight);
 	stroke-width: 7px;
+	stroke-opacity: 0.5;*/
+	
+	fill: var(--color-highlight);
+	fill-opacity: 0.05;
+
+	stroke: var(--color-highlight);
+	stroke-width: 0.14;
 	stroke-opacity: 0.5;
 }
 
 .animHeartHintIn
 {
 	opacity: 0;
-	animation: animFadeIn 1.5s var(--outro-zoom-out) ease forwards;
+	animation: animFadeIn 1.5s calc(var(--outro-zoom-out) + 0.5s) ease forwards;
 }
 
 .animHeartHintPulse
 {
 	fill-opacity: 0;
-	stroke-width: 10px;
+	transform-origin: 1px 1px;
 
 	animation-name: animHeartHintPulse;
 	animation-duration: 1.5s;
@@ -193,6 +196,24 @@
 	animation-timing-function: ease-out;
 }
 @keyframes animHeartHintPulse
+{
+    0%
+	{
+        transform: scale(1);
+		fill-opacity: 0.2;
+		stroke-opacity: 0.5;
+		stroke-width: 0.14;
+    }
+	
+    100%
+	{
+        transform: scale(1.2);
+		fill-opacity: 0;
+		stroke-opacity: 0;
+		stroke-width: 0.8;
+    }
+}
+/* @keyframes animHeartHintPulse
 {
     0%
 	{
@@ -207,24 +228,32 @@
 		fill-opacity: 0;
 		stroke-opacity: 0;
     }
-}
+} */
 
-#heartHighlight
+#heartHighlight1, #heartHighlight2, #heartHighlight3
 {
-	animation: animHeartHighlight 1.5s ease-out forwards;
+	opacity: 0;
 	transform-origin: 256px 128px;
+	animation: animHeartHighlight 1.5s 0s ease-out forwards;
+}
+#heartHighlight2
+{
+	animation-delay: 0.3s;
+}
+#heartHighlight3
+{
+	animation-delay: 0.6s;
 }
 @keyframes animHeartHighlight
 {
     0%
 	{
         transform: translate(-256px, -112px) scale(1.86);
-		opacity: 0.7;
+		opacity: 0.5;
     }
 	
     20%
 	{
-		opacity: 0.7;
     }
 	
     100%

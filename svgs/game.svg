@@ -63,10 +63,10 @@
   </g>
 
   <!-- Outro heart indicator -->
-  <svg id="heartHint" class="animHeartHintIn hidden ignoreCursor" x="0" y="600">
-    <polygon points="256,76 384,2 512,76 512,108 256,254 0,108 0,76 128,2" transform="scale(1.86) translate(-256,-113)" />
-    <polygon points="256,76 384,2 512,76 512,108 256,254 0,108 0,76 128,2" transform="scale(1.86) translate(-256,-113)" class="animHeartHintPulse" />
-  </svg>
+  <g id="heartHint" class="animHeartHintIn hidden ignoreCursor" x="0" y="590">
+    <polygon points="2,2 -2,2 -2,0 0,0 0,-2 2,-2" />
+    <polygon points="2,2 -2,2 -2,0 0,0 0,-2 2,-2" class="animHeartHintPulse" />
+  </g>
 
   <!-- Tiles -->
   <svg id="tiles">
@@ -242,7 +242,9 @@
 
   <!-- Outro heart -->
   <svg id="heart" class="hidden" transform="scale(1.86) translate(-256,-113)">
-    <polygon id="heartHighlight" class="hidden" points="256,76 384,2 512,76 512,108 256,254 0,108 0,76 128,2" />
+    <polygon id="heartHighlight1" class="hidden" points="256,76 384,2 512,76 512,108 256,254 0,108 0,76 128,2" />
+    <polygon id="heartHighlight2" class="hidden" points="256,76 384,2 512,76 512,108 256,254 0,108 0,76 128,2" />
+    <polygon id="heartHighlight3" class="hidden" points="256,76 384,2 512,76 512,108 256,254 0,108 0,76 128,2" />
     <polygon class="animHeartBeat" points="256,76 384,2 512,76 512,108 256,254 0,108 0,76 128,2" />
   </svg>
 
