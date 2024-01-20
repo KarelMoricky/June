@@ -4,6 +4,8 @@ var Camera = new function()
     const INERTIA_DRAG = 0.05;
     const INERTIA_DISTANCE_COEF = 4;
 
+    const LIMIT_W_MAX = 1920 * 0.5;
+
     var m_Current = {x: 0, y: 0, zoom: 1};
     var m_Target = {x: 0, y: 0, zoom: 1};
 
@@ -20,7 +22,7 @@ var Camera = new function()
     var m_InertiaStrength = INERTIA_DEFAULT;
     var m_IsManualInput = true;
     //#region Public functions
-    this.SetCamera = function(posX, posY, zoom, duration = 0, delay = 0)
+    this.SetCamera = function(posX, posY, zoom, duration = -1, delay = 0)
     {
         if (m_Anim.playing)
             return;
@@ -43,6 +45,13 @@ var Camera = new function()
             m_Anim.duration = duration;
             m_Anim.progress = -delay / duration;
             m_Anim.playing = true;
+        }
+        else if (duration == 0)
+        {
+            m_Current.x = m_Target.x;
+            m_Current.y = m_Target.y;
+            m_Current.zoom = m_Target.zoom;
+            Apply();
         }
     }
 
@@ -191,8 +200,10 @@ var Camera = new function()
         m_ViewBox.w = m_ViewBoxDef.w = viewBox[2];
         m_ViewBox.h = m_ViewBoxDef.h = viewBox[3];
 
-        m_ViewBoxDef.limitW = m_ViewBoxDef.w * 0.5;
+        m_ViewBoxDef.limitW = Math.min(m_ViewBoxDef.w * 0.5, LIMIT_W_MAX);
         m_ViewBoxDef.limitH = Math.max(m_ViewBoxDef.h * 0.5, Math.abs(m_ViewBox.y * 0.5));
+
+        console.log(m_ViewBoxDef, LIMIT_W_MAX);
 
         m_Current.x = m_ViewBox.x + m_ViewBox.w * 0.5;
         m_Current.y = m_ViewBox.y + m_ViewBox.h * 0.5;

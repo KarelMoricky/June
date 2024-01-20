@@ -56,7 +56,7 @@ var Debug = new function()
 
     if (m_IsDev)
     {
-        document.title = "DEV|" + document.title;
+        document.title += "|DEV";
 
         var m_StartTime = new Date();
 
@@ -94,6 +94,6 @@ var Debug = new function()
     }
     if (m_IsOffline)
     {
-        document.title = "OFF|" + document.title;
+        document.title += "|LOC";
     }
 }

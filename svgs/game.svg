@@ -3,7 +3,7 @@
   class="gameStateDefault"
   x="0"
   y="0"
-  viewBox="-960 -1180 1920 1080" 
+  viewBox="-960 -1180 3840 1080" 
   preserveAspectRatio="xMidYMid slice"
   xmlns="http://www.w3.org/2000/svg"
   xmlns:xlink="http://www.w3.org/1999/xlink" >
@@ -62,14 +62,14 @@
     </svg>
   </g>
 
-  <!-- Debug coordinates cross -->
-  <!-- <g stroke="white" stroke-opacity="0.5" stroke-dasharray="8">
-    <line x1="-10000" x2="10000" y1="0" y2="0" />
-    <line x1="0" x2="0" y1="-10000" y2="10000" />
-  </g> -->
+  <!-- Outro heart indicator -->
+  <svg id="heartHint" class="animHeartHintIn hidden ignoreCursor" x="0" y="600">
+    <polygon points="256,76 384,2 512,76 512,108 256,254 0,108 0,76 128,2" transform="scale(1.86) translate(-256,-113)" />
+    <polygon points="256,76 384,2 512,76 512,108 256,254 0,108 0,76 128,2" transform="scale(1.86) translate(-256,-113)" class="animHeartHintPulse" />
+  </svg>
 
   <!-- Tiles -->
-  <g id="tiles">
+  <svg id="tiles">
 
     <svg id="tile01" tileId="1" class="tile" width="256" height="256">
       <g id="tileContent" transform="translate(-128,-152)">
@@ -87,7 +87,6 @@
       </g>
     </svg>
 
-    <!-- Tier 1 -->
     <svg id="tile03" tileId="3" class="tile hidden" width="256" height="256" tileTier="1">
       <g id="tileContent" transform="translate(-128,-152)">
         <image id="tilePicture" href="../data/images/tiles/tile03.png" />
@@ -239,18 +238,13 @@
         <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" />
       </g>
     </svg>
-  </g>
+  </svg>
 
   <!-- Outro heart -->
-  <g id="outro" class="hidden">
-    <svg id="heartTarget" class="animTargetHeartIn ignoreCursor" x="0" y="600">
-      <polygon points="256,76 384,2 512,76 512,108 256,254 0,108 0,76 128,2" transform="scale(1.86) translate(-256,-113)" />
-    </svg>
-
-    <svg id="heart" class="animHeartIn">
-      <polygon class="animHeartBeat" points="256,76 384,2 512,76 512,108 256,254 0,108 0,76 128,2" transform="scale(1.86) translate(-256,-113)" />
-    </svg>
-  </g>
+  <svg id="heart" class="hidden" transform="scale(1.86) translate(-256,-113)">
+    <polygon id="heartHighlight" class="hidden" points="256,76 384,2 512,76 512,108 256,254 0,108 0,76 128,2" />
+    <polygon class="animHeartBeat" points="256,76 384,2 512,76 512,108 256,254 0,108 0,76 128,2" />
+  </svg>
 
   <!-- Debug cursor -->
   <!-- <circle id="cursor" class="ignoreCursor" style="fill: rgb(255,0,0);" cx="1000" cy="1000" r="10px" /> -->

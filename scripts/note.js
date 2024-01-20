@@ -5,7 +5,7 @@ var Note = new function()
     
     const NOTE_ZOOM_VALUE = 0.5; //--- Camera zoom factor
 
-    var m_Note;
+    const m_Note = document.getElementById("note");
     var m_InDetail = false;
     let m_CanClose = true;
 
@@ -36,13 +36,21 @@ var Note = new function()
         Camera.EnableManualInput(false);
         Camera.SetCamera(posX, parseInt(posY) - 20, NOTE_ZOOM_VALUE, CONFIRMATION_MOVE_LENGTH, CONFIRMATION_MOVE_DELAY); //--- #TODO: Don't hardcode
 
-        m_Note = document.getElementById("note");
         Localization.Localize(m_Note, "note_" + tile.id);
         SetElementVisible(m_Note, true);
         m_Note.classList.remove("animNoteOut");
         m_Note.classList.add("animNoteIn");
 
-        AnimateText(m_Note);
+        let segment = AnimateLetters(m_Note, 2.1);
+
+        if (!Debug.IsDev())
+        {
+            m_CanClose = false;
+            segment.addEventListener("animationend", (event) =>
+            {
+                m_CanClose = true;
+            });
+        }
     }
 
     function CloseNote()
@@ -56,29 +64,7 @@ var Note = new function()
 
         m_Note.classList.remove("animNoteIn");
         m_Note.classList.add("animNoteOut");
-        m_Note = null;
 
         Tile.RevealNextTile();
-    }
-
-    function AnimateText(element)
-    {
-        const segments = element.innerHTML.split(" ");
-        let segment = null;
-        element.innerHTML = "";
-        for (let i = 0; i < segments.length; i++)
-        {
-            segment = CreateElement("span", element, [["class", "animatedText"], ["style", `animation-delay: ${2.1 + 0.1 * i}s`]]); //--- #TODO: Delay as param
-            segment.innerHTML = segments[i] + "&nbsp;";
-        }
-
-        if (!Debug.IsDev())
-        {
-            m_CanClose = false;
-            segment.addEventListener("animationend", (event) =>
-            {
-                m_CanClose = true;
-            });
-        }
     }
 }
