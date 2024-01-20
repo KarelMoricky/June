@@ -125,13 +125,13 @@ var Localization = new function()
         },
         {
             id: "note_tile11",
-            "en": "Placeholder: At the end of the day, we'll sip a tea,",
+            "en": "Placeholder: At the end of the day, we'll sip a tea,...",
             "cs": "",
             "ru": ""
         },
         {
             id: "note_tile12",
-            "en": "Placeholder: And be with out friends.",
+            "en": "Placeholder: ...and be with our friends.",
             "cs": "",
             "ru": ""
         },
