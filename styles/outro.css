@@ -328,7 +328,7 @@
 	font-family: "Caveat", sans-serif;
 	font-size: 4vh;
 	text-align: center;
-	padding: 2vh;
+	padding: 1vh;
 	width: 100%;
 }
 #credits
@@ -339,7 +339,7 @@
 	width: 90%;
 	margin-left: 5%;
 	font-family: "Tahoma", sans-serif;
-	font-size: 2vh;
+	font-size: 1.6vh;
 	color: var(--color-highlight);
 	opacity: 0.8;
 	letter-spacing: 0.1vh;
@@ -347,4 +347,5 @@
 #credits a
 {
 	color: var(--color-highlight);
+	font-weight: bold;
 }
