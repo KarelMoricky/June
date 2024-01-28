@@ -22,18 +22,18 @@
   <g id="grid" class="ignoreCursor" transform="rotate(30) skewX(-30) scale(140, 120.428)">
 
     <!-- X -->
-    <line x1="-2" x2="2" y1="-2" y2="-2" />
-    <line x1="-2" x2="2" y1="-1" y2="-1" />
-    <line x1="-2" x2="2" y1="0" y2="0" />
-    <line x1="-2" x2="2" y1="1" y2="1" />
-    <line x1="-2" x2="2" y1="2" y2="2" />
+    <!-- <line id="lineY-2" x1="-2" x2="2" y1="-2" y2="-2" />
+    <line id="lineY-1" x1="-2" x2="2" y1="-1" y2="-1" />
+    <line id="lineY0" x1="-2" x2="2" y1="0" y2="0" />
+    <line id="lineY1" x1="-2" x2="2" y1="1" y2="1" />
+    <line id="lineY2" x1="-2" x2="2" y1="2" y2="2" /> -->
 
     <!-- Y -->
-    <line x1="-2" x2="-2" y1="-2" y2="2" />
-    <line x1="-1" x2="-1" y1="-2" y2="2" />
-    <line x1="0" x2="0" y1="-2" y2="2" />
-    <line x1="1" x2="1" y1="-2" y2="2" />
-    <line x1="2" x2="2" y1="-2" y2="2" />
+    <!-- <line id="lineX-2" x1="-2" x2="-2" y1="-2" y2="2" />
+    <line id="lineX-1" x1="-1" x2="-1" y1="-2" y2="2" />
+    <line id="lineX0" x1="0" x2="0" y1="-2" y2="2" />
+    <line id="lineX1" x1="1" x2="1" y1="-2" y2="2" />
+    <line id="lineX2" x1="2" x2="2" y1="-2" y2="2" /> -->
   </g>
 
   <!-- Tile indicator -->

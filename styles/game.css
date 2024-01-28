@@ -13,10 +13,16 @@
 {
 	stroke: var(--color-highlight);
 	stroke-width: 0.01;
+	/* stroke-opacity: 0.5; */
 	/* stroke-dasharray: 0.3 0.7;
 	stroke-dashoffset: 0.15; */
-	stroke-opacity: 0.5;
 	fill: none;
+	opacity: 0.5;
+}
+
+.gridTile
+{
+	animation: animFadeIn 0.5s forwards;
 }
 
 #tutorial
@@ -86,7 +92,7 @@
 #tileHint
 {
 	fill: var(--color-highlight);
-	fill-opacity: 0.05;
+	fill-opacity: 0.2;
 
 	stroke: var(--color-highlight);
 	stroke-width: 0.04;
@@ -101,9 +107,9 @@
 {
 	opacity: 0;
 	animation: animFadeIn 0.5s 1s forwards;
-	fill: yellow !important;
+	/* fill: yellow !important;
 	stroke: yellow !important;
-	stroke-opacity: 1 !important;
+	stroke-opacity: 1 !important; */
 }
 .animTileHint
 {

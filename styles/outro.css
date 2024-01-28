@@ -302,7 +302,12 @@
 
 .animGridOut
 {
-	animation: animFadeOut 1s 1s ease forwards;
+	animation: animGridOut 1s 1s ease forwards;
+}
+@keyframes animGridOut
+{
+	0% {opacity: 0.5;}
+    100% {opacity: 0;}
 }
 
 #thanks

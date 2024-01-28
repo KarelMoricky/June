@@ -18,6 +18,8 @@ var Tile = new function()
     var m_Tiles = [];
     var m_TilesZSorted = [];
     var m_ClickTilePos = [];
+    var m_OccupiedCoords = [];
+    var m_CoordRange = {minX: 0, maxX: 0, minY: 0, maxY: 0};
     var m_TargetPos = [];
     var m_TimePrev = 0;
     var m_TilesElement = null;
@@ -58,6 +60,7 @@ var Tile = new function()
     {
         m_TilesElement = Game.GetSVGDoc().getElementById(ID_TILES_ELEMENT);
         m_TileHint = Game.GetSVGDoc().getElementById(ID_TILE_TARGET);
+        const gridElement = Game.GetSVGDoc().getElementById("grid");
 
         let i = 0;
         for (let tileID of TARGET_POSITIONS.keys())
@@ -68,6 +71,11 @@ var Tile = new function()
             let targetPosition = TARGET_POSITIONS.get(tileID);
             tile.setAttribute(VAR_GRID_TARGET_X, targetPosition[0]);
             tile.setAttribute(VAR_GRID_TARGET_Y, targetPosition[1]);
+
+            m_CoordRange.minX = Math.min(m_CoordRange.minX, targetPosition[0]);
+            m_CoordRange.maxX = Math.max(m_CoordRange.maxX, targetPosition[0]);
+            m_CoordRange.minY = Math.min(m_CoordRange.minY, targetPosition[1]);
+            m_CoordRange.maxY = Math.max(m_CoordRange.maxY, targetPosition[1]);
     
             //--- Get origin position
             let originPosition = ORIGIN_POSITIONS.get(tileID);
@@ -91,14 +99,25 @@ var Tile = new function()
             SetTilePos(tile, gridX, gridY);
             EvaluateTile(tile, false);
 
-            if (tile.id == "tile02") //--- #TODO: Don't hardcode
-                SetCurrentTile(tile);
+            //if (tile.id == "tile02") //--- #TODO: Don't hardcode
+            //    SetCurrentTile(tile);
+            const gridTile = CreateElement("rect", gridElement, [
+                ["id", "grid_" + targetPosition],
+                ["x", targetPosition[0]],
+                ["y", targetPosition[1]],
+                ["width", 1],
+                ["height", 1],
+                ["class", "hidden gridTile"]
+            ], true);
     
             m_Tiles[i] = tile; //--- Must be called after SetTilePos(), otherwise the tile will think it's already occupied
             m_TilesZSorted[i] = tile;
             i++;
         }
         m_Tiles.sort((a, b) => parseInt(a.getAttribute("tileId")) - parseInt(b.getAttribute("tileId")));
+
+        let currentTile = Game.GetSVGDoc().getElementById("tile02"); //--- #TODO: Don't hardcode
+        SetCurrentTile(currentTile);
 
         //--- Cheats
         Game.GetSVG().addEventListener("keydown", OnKeyDown);
@@ -302,6 +321,7 @@ var Tile = new function()
             tile.setAttribute(VAR_CONFIRMED, true);
             SetTileState(tile, TILE_STATE_CONFIRMED);
             tile.classList.add(CLASS_TILE_CONFIRMED);
+            m_OccupiedCoords.push([parseInt(tile.getAttribute(VAR_GRID_TARGET_X)), parseInt(tile.getAttribute(VAR_GRID_TARGET_Y))]);
     
             if (isManual)
             {
@@ -397,7 +417,7 @@ var Tile = new function()
         }
 
         const id = m_Tiles.indexOf(m_CurrentTile);
-        if (id != -1) //--- Don't delay the first tile (this function is called before it's registered)
+        if (id != 1) //--- Don't delay the first tile
         {
             //--- Show tile hint for subsequent tiles only after a delay
             if (id == m_Tiles.length - 1)
@@ -407,6 +427,27 @@ var Tile = new function()
 
             //--- Fade in the tile (not for the first one)
             m_CurrentTile.querySelector("#tileContent").classList.add("tileFadeIn");
+        }
+
+        //--- Update grid
+        for (let x = m_CoordRange.minX; x <= m_CoordRange.maxX; x++)
+        {
+            for (let y = m_CoordRange.minY; y <= m_CoordRange.maxY; y++)
+            {
+                for (let i = 0; i < m_OccupiedCoords.length; i++)
+                {
+                    const disX = Math.abs(x - m_OccupiedCoords[i][0]);
+                    const disY = Math.abs(y - m_OccupiedCoords[i][1]);
+                    if (disX + disY < 2)
+                    {
+                        const gridTile = Game.GetSVGDoc().getElementById("grid_" + [x, y]);
+                        if (gridTile)
+                            SetElementVisible(gridTile, true);
+
+                        break;
+                    }
+                }
+            }
         }
     }
 
