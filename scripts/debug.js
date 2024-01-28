@@ -69,7 +69,7 @@ var Debug = new function()
         function OnGameInit()
         {
             var m_Client = {x: 0, y: 0};
-            requestAnimationFrame(OnEachFrame);
+            //requestAnimationFrame(OnEachFrame);
             function OnEachFrame()
             {
                 var duration = Math.round((new Date() - m_StartTime) / 1000);

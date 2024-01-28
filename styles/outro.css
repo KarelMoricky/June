@@ -310,17 +310,41 @@
     100% {opacity: 0;}
 }
 
-#thanks
+
+#creditsArea
 {
 	position: absolute;
+	width: 100%;
+	left: 0;
+	right: 0;
+	bottom: 10vh;
 	background-color: rgba(0, 0, 0, 0.7);
+	animation: animFadeIn 2s 1s ease forwards;
+	opacity: 0;
+}
+
+#thanks
+{
 	font-family: "Caveat", sans-serif;
 	font-size: 4vh;
 	text-align: center;
 	padding: 2vh;
-	bottom: 10vh;
-	left: 0;
 	width: 100%;
-	opacity: 0;
-	animation: animFadeIn 2s 1s ease forwards;
+}
+#credits
+{
+	font-size: 4vh;
+	text-align: center;
+	padding-bottom: 2vh;
+	width: 90%;
+	margin-left: 5%;
+	font-family: "Tahoma", sans-serif;
+	font-size: 2vh;
+	color: var(--color-highlight);
+	opacity: 0.8;
+	letter-spacing: 0.1vh;
+}
+#credits a
+{
+	color: var(--color-highlight);
 }

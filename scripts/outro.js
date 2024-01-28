@@ -103,7 +103,7 @@ var Outro = new function()
             m_Heart.classList.remove("animHeartIn");
             m_Heart.classList.add("animHeartOut");
 
-            SetElementVisible(document.getElementById("thanks"), true);
+            SetElementVisible(document.getElementById("creditsArea"), true);
 
             m_TimePrev = -1;
             m_TargetPos.x = 0;
