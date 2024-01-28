@@ -25,6 +25,7 @@
 	background: none;
 
 	font-family: "Roboto Slab", serif;
+	font-size: 1.5vh;
 }
 #languageBox button:hover, #languageBox button:disabled
 {
