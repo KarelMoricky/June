@@ -3,7 +3,6 @@ var Intro = new function()
     const ID_LOADING = "loading";
     const ID_INTRO_AREA = "introArea";
     const ID_BUTTON_PLAY = "playButton";
-    const ID_TITLE_BABY = "titleBaby";
 
     const m_IntroArea = document.getElementById(ID_INTRO_AREA);
 
@@ -41,8 +40,6 @@ var Intro = new function()
             //--- Instantly skip the loading screen
             if (Debug.SkipIntro())
                 OnButtonPlay();
-            else
-                document.getElementById(ID_TITLE_BABY).addEventListener("click", OnTitleBaby);
         }
 
         function OnLoadFinished()
@@ -78,15 +75,6 @@ var Intro = new function()
                 isPaused: false
             }});
             window.dispatchEvent(ev);
-        }
-
-        function OnTitleBaby(ev)
-        {
-            let titleBaby = document.getElementById(ID_TITLE_BABY);
-            if (titleBaby.innerHTML == "DAUGHTER")
-                titleBaby.innerHTML = "YOUNGER SON";
-            else
-                titleBaby.innerHTML = "DAUGHTER";
         }
     }
 }

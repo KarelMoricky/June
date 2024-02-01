@@ -10,9 +10,9 @@ var Localization = new function()
         },
         {
             id: "titleBaby",
-            "en": "YOUNGER SON",
-            "cs": "MLADŠÍ SYN",
-            "ru": "МЛАДШИЙ СЫН"
+            "en": "DAUGHTER",
+            "cs": "DCERA",
+            "ru": "ДОЧЬ"
         },
         {
             id: "locIntroTitle2",
