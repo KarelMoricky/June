@@ -73,7 +73,7 @@
 
     <svg id="tile01" tileId="1" class="tile" width="256" height="256">
       <g id="tileContent" transform="translate(-128,-152)">
-        <image id="tilePicture" href="../data/images/tiles/tile01.png" />
+        <image id="tilePicture" href="../data/images/tile01.png" />
         <text id="tileNumber" x="50%" y="50%">1</text>
         <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" />
       </g>
@@ -81,7 +81,7 @@
 
     <svg id="tile02" tileId="2" class="tile" width="256" height="256" x="-1.63" y="-279.06">
       <g id="tileContent" transform="translate(-128,-152)">
-        <image id="tilePicture" href="../data/images/tiles/tile02.png" />
+        <image id="tilePicture" href="../data/images/tile02.png" />
         <text id="tileNumber" x="50%" y="50%">2</text>
         <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" />
       </g>
@@ -89,7 +89,7 @@
 
     <svg id="tile03" tileId="3" class="tile hidden" width="256" height="256" tileTier="1">
       <g id="tileContent" transform="translate(-128,-152)">
-        <image id="tilePicture" href="../data/images/tiles/tile03.png" />
+        <image id="tilePicture" href="../data/images/tile03.png" />
         <text id="tileNumber" x="50%" y="50%">3</text>
         <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" />
       </g>
@@ -97,7 +97,7 @@
 
     <svg id="tile04" tileId="4" class="tile hidden" width="256" height="256" tileTier="1">
       <g id="tileContent" transform="translate(-128,-152)">
-        <image id="tilePicture" href="../data/images/tiles/tile04.png" />
+        <image id="tilePicture" href="../data/images/tile04.png" />
         <text id="tileNumber" x="50%" y="50%">4</text>
         <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" />
       </g>
@@ -105,7 +105,7 @@
 
     <svg id="tile05" tileId="5" class="tile hidden" width="256" height="256" tileTier="1">
       <g id="tileContent" transform="translate(-128,-152)">
-        <image id="tilePicture" href="../data/images/tiles/tile05.png" />
+        <image id="tilePicture" href="../data/images/tile05.png" />
         <text id="tileNumber" x="50%" y="50%">5</text>
         <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" />
       </g>
@@ -113,7 +113,7 @@
 
     <svg id="tile06" tileId="6" class="tile hidden" width="256" height="256" tileTier="2">
       <g id="tileContent" transform="translate(-128,-152)">
-        <image id="tilePicture" href="../data/images/tiles/tile06.png" />
+        <image id="tilePicture" href="../data/images/tile06.png" />
         <text id="tileNumber" x="50%" y="50%">6</text>
         <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" />
       </g>
@@ -121,7 +121,7 @@
 
     <svg id="tile07" tileId="7" class="tile hidden" width="256" height="256" tileTier="2">
       <g id="tileContent" transform="translate(-128,-152)">
-        <image id="tilePicture" href="../data/images/tiles/tile07.png" />
+        <image id="tilePicture" href="../data/images/tile07.png" />
         <text id="tileNumber" x="50%" y="50%">7</text>
         <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" />
       </g>
@@ -129,7 +129,7 @@
 
     <svg id="tile08" tileId="8" class="tile hidden" width="256" height="256" tileTier="2">
       <g id="tileContent" transform="translate(-128,-152)">
-        <image id="tilePicture" href="../data/images/tiles/tile08.png" />
+        <image id="tilePicture" href="../data/images/tile08.png" />
         <text id="tileNumber" x="50%" y="50%">8</text>
         <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" />
       </g>
@@ -137,7 +137,7 @@
 
     <svg id="tile09" tileId="9" class="tile hidden" width="256" height="256" tileTier="2">
       <g id="tileContent" transform="translate(-128,-152)">
-        <image id="tilePicture" href="../data/images/tiles/tile09.png" />
+        <image id="tilePicture" href="../data/images/tile09.png" />
         <text id="tileNumber" x="50%" y="50%">9</text>
         <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" />
       </g>
@@ -145,7 +145,7 @@
 
     <svg id="tile10" tileId="10" class="tile hidden" width="256" height="256" tileTier="3">
       <g id="tileContent" transform="translate(-128,-152)">
-        <image id="tilePicture" href="../data/images/tiles/tile10.png" />
+        <image id="tilePicture" href="../data/images/tile10.png" />
         <text id="tileNumber" x="50%" y="50%">10</text>
         <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" />
       </g>
@@ -153,7 +153,7 @@
 
     <svg id="tile11" tileId="11" class="tile hidden" width="256" height="256" tileTier="3">
       <g id="tileContent" transform="translate(-128,-152)">
-        <image id="tilePicture" href="../data/images/tiles/tile11.png" />
+        <image id="tilePicture" href="../data/images/tile11.png" />
         <text id="tileNumber" x="50%" y="50%">11</text>
         <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" />
       </g>
@@ -161,7 +161,7 @@
 
     <svg id="tile12" tileId="12" class="tile hidden" width="256" height="256" tileTier="3">
       <g id="tileContent" transform="translate(-128,-152)">
-        <image id="tilePicture" href="../data/images/tiles/tile12.png" />
+        <image id="tilePicture" href="../data/images/tile12.png" />
         <text id="tileNumber" x="50%" y="50%">12</text>
         <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" />
       </g>
@@ -169,7 +169,7 @@
 
     <svg id="tile13" tileId="13" class="tile hidden" width="256" height="256" tileTier="3">
       <g id="tileContent" transform="translate(-128,-152)">
-        <image id="tilePicture" href="../data/images/tiles/tile13.png" />
+        <image id="tilePicture" href="../data/images/tile13.png" />
         <text id="tileNumber" x="50%" y="50%">13</text>
         <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" />
       </g>
@@ -177,7 +177,7 @@
 
     <svg id="tile14" tileId="14" class="tile hidden" width="256" height="256" tileTier="3">
       <g id="tileContent" transform="translate(-128,-152)">
-        <image id="tilePicture" href="../data/images/tiles/tile14.png" />
+        <image id="tilePicture" href="../data/images/tile14.png" />
         <text id="tileNumber" x="50%" y="50%">14</text>
         <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" />
       </g>
@@ -185,7 +185,7 @@
 
     <svg id="tile15" tileId="15" class="tile hidden" width="256" height="256" tileTier="4">
       <g id="tileContent" transform="translate(-128,-152)">
-        <image id="tilePicture" href="../data/images/tiles/tile15.png" />
+        <image id="tilePicture" href="../data/images/tile15.png" />
         <text id="tileNumber" x="50%" y="50%">15</text>
         <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" />
       </g>
@@ -193,7 +193,7 @@
 
     <svg id="tile16" tileId="16" class="tile hidden" width="256" height="256" tileTier="4">
       <g id="tileContent" transform="translate(-128,-152)">
-        <image id="tilePicture" href="../data/images/tiles/tile16.png" />
+        <image id="tilePicture" href="../data/images/tile16.png" />
         <text id="tileNumber" x="50%" y="50%">16</text>
         <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" />
       </g>
@@ -201,7 +201,7 @@
 
     <svg id="tile17" tileId="17" class="tile hidden" width="256" height="256" tileTier="4">
       <g id="tileContent" transform="translate(-128,-152)">
-        <image id="tilePicture" href="../data/images/tiles/tile17.png" />
+        <image id="tilePicture" href="../data/images/tile17.png" />
         <text id="tileNumber" x="50%" y="50%">17</text>
         <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" />
       </g>
@@ -209,7 +209,7 @@
 
     <svg id="tile18" tileId="18" class="tile hidden" width="256" height="256" tileTier="4">
       <g id="tileContent" transform="translate(-128,-152)">
-        <image id="tilePicture" href="../data/images/tiles/tile18.png" />
+        <image id="tilePicture" href="../data/images/tile18.png" />
         <text id="tileNumber" x="50%" y="50%">18</text>
         <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" />
       </g>
@@ -217,7 +217,7 @@
 
     <svg id="tile19" tileId="19" class="tile hidden" width="256" height="256" tileTier="4">
       <g id="tileContent" transform="translate(-128,-152)">
-        <image id="tilePicture" href="../data/images/tiles/tile19.png" />
+        <image id="tilePicture" href="../data/images/tile19.png" />
         <text id="tileNumber" x="50%" y="50%">19</text>
         <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" />
       </g>
@@ -225,7 +225,7 @@
 
     <svg id="tile20" tileId="20" class="tile hidden" width="256" height="256" tileTier="4">
       <g id="tileContent" transform="translate(-128,-152)">
-        <image id="tilePicture" href="../data/images/tiles/tile20.png" />
+        <image id="tilePicture" href="../data/images/tile20.png" />
         <text id="tileNumber" x="50%" y="50%">20</text>
         <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" />
       </g>
@@ -233,7 +233,7 @@
 
     <svg id="tile21" tileId="21" class="tile hidden" width="256" height="256" tileTier="5">
       <g id="tileContent" transform="translate(-128,-152)">
-        <image id="tilePicture" href="../data/images/tiles/tile21.png" />
+        <image id="tilePicture" href="../data/images/tile21.png" />
         <text id="tileNumber" x="50%" y="50%">21</text>
         <polygon id="tileArea" points="128,62 240,128 240,190 128,255 16,190 16,128" />
       </g>
