@@ -150,6 +150,12 @@ var Outro = new function()
         let coef = Math.min((viewBox[2] / window.innerWidth), (viewBox[3] / window.innerHeight)); //--- I have no idea what I'm doing
         m_TargetPos.x = m_Drag.x - (Game.GetClickPos()[0] - ev.clientX) * coef;
         m_TargetPos.y = m_Drag.y - (Game.GetClickPos()[1] - ev.clientY) * coef;
+        
+        if (CanSnapHeart())
+        {
+            m_TargetPos.x = m_FinalPos.x;
+            m_TargetPos.y = m_FinalPos.y;
+        }
     }
     
     function OnGameDragEnd(ev)
@@ -159,7 +165,7 @@ var Outro = new function()
 
         m_Drag.isActive = false;
 
-        if (Math.abs(m_TargetPos.x - m_FinalPos.x) < 150 && Math.abs(m_TargetPos.y - m_FinalPos.y) < 150)
+        if (CanSnapHeart())
         {
             //--- Confirm
             m_TargetPos.x = m_FinalPos.x;
@@ -212,6 +218,11 @@ var Outro = new function()
             m_TargetPos.y = 0;
             Vibrate(VIBRATION_OUTRO_DRAG_END);
         }
+    }
+
+    function CanSnapHeart()
+    {
+        return Math.abs(m_TargetPos.x - m_FinalPos.x) < 150 && Math.abs(m_TargetPos.y - m_FinalPos.y) < 150;
     }
 
     function EnableControlTiles()
