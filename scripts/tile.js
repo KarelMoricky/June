@@ -204,10 +204,6 @@ var Tile = new function()
             return;
 
         DragTile(ev, TILE_DRAG_SNAP);
-            
-        //--- Dragged tile always on top (can't be in OnGameDragStart, it prevents Drand and DragEnd events from firing in Android Firefox)
-        if (!TILE_DRAG_SNAP)
-            m_TilesElement.appendChild(m_SelectedTile);
     }
 
     function OnGameDragEnd(ev)
@@ -239,19 +235,38 @@ var Tile = new function()
         let coef = Math.min((viewBox[2] / window.innerWidth), (viewBox[3] / window.innerHeight)); //--- I have no idea what I'm doing
         let posX = m_ClickTilePos[0] - (Game.GetClickPos()[0] - ev.clientX) * coef;
         let posY = m_ClickTilePos[1] - (Game.GetClickPos()[1] - ev.clientY) * coef;
-    
+
+        var gridTransform = new DOMPointReadOnly(posX, posY).matrixTransform(ISO_MATRIX.inverse());
+        gridTransform.x = Math.round(gridTransform.x);
+        gridTransform.y = Math.round(gridTransform.y);
+
         //--- Snap to grid
-        if (snap)
+        if (snap > 0)
         {
-            var gridTransform = new DOMPointReadOnly(posX, posY).matrixTransform(ISO_MATRIX.inverse());
-            gridTransform.x = Math.round(gridTransform.x);
-            gridTransform.y = Math.round(gridTransform.y);
-            SetTileTransform(m_SelectedTile, gridTransform);
+            const gridTile = snap == 2 ? Game.GetSVGDoc().getElementById("grid_" + [gridTransform.x, gridTransform.y]) : null;
+            if (snap == 1 || (gridTile && IsElementVisible(gridTile)))
+            {
+                SetTileTransform(m_SelectedTile, gridTransform);
+                return;
+            }
+        }
+
+        //--- Free transform
+        m_TargetPos[0] = posX;
+        m_TargetPos[1] = posY;
+
+        //--- Save grid coords, so we can snap back to them when hovering over occupied tile
+        m_SelectedTile.setAttribute(VAR_GRID_X, gridTransform.x);
+        m_SelectedTile.setAttribute(VAR_GRID_Y, gridTransform.y);
+
+        if (snap == 0)
+        {
+            //--- Dragged tile always on top (can't be in OnGameDragStart, it prevents Drand and DragEnd events from firing in Android Firefox)
+            m_TilesElement.appendChild(m_SelectedTile);
         }
         else
         {
-            m_TargetPos[0] = posX;
-            m_TargetPos[1] = posY;
+            UpdateTiles();
         }
     }
     
@@ -304,7 +319,8 @@ var Tile = new function()
     
     function UpdateTiles()
     {
-        m_TilesZSorted.sort((a, b) => parseInt(a.getAttribute(VAR_TARGET_Y)) - parseInt(b.getAttribute(VAR_TARGET_Y)));
+        //m_TilesZSorted.sort((a, b) => parseInt(a.getAttribute(VAR_TARGET_Y)) - parseInt(b.getAttribute(VAR_TARGET_Y)));
+        m_TilesZSorted.sort((a, b) => parseInt(a.getAttribute("y")) - parseInt(b.getAttribute("y")));
     
         for (let i = 0; i < m_TilesZSorted.length; i++)
         {
