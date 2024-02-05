@@ -17,6 +17,11 @@
 	cursor: move;
 }
 
+.gameStateDisabled
+{
+	cursor: progress;
+}
+
 .tile
 {
 	overflow: visible;

@@ -37,6 +37,16 @@ var Game = new function()
         return m_SvgDoc;
     }
 
+    this.GetState = function(state)
+    {
+        return m_Svg.getAttribute("class");
+    }
+    
+    this.SetState = function(state)
+    {
+        m_Svg.setAttribute("class", state);
+    }
+
     this.MoveDebugCircle = function(posX, posY)
     {
         if (m_Circle)

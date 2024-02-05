@@ -36,11 +36,13 @@ var Outro = new function()
         //--- Reveal
         Camera.EnableManualInput(false);
         Camera.SetCamera(m_FinalPos.x, m_FinalPos.y, OUTRO_ZOOM_VALUE, OUTRO_ZOOM_LENGTH, OUTRO_MOVE_DELAY);
+        Game.SetState(GAME_STATE_DISABLED);
 
         const grid = Game.GetSVGDoc().getElementById("grid");
         grid.classList.add("animGridOut");
 
         m_Tiles.classList.add("animTilesCurrent");
+        m_Tiles.addEventListener("animationstart", EnableControlTiles);
 
         SetElementVisible(m_Heart, true);
         SetElementVisible(m_HeartHint, true);
@@ -192,9 +194,11 @@ var Outro = new function()
             }
 
             m_CanClose = false;
+            Game.SetState(GAME_STATE_DISABLED);
             segments[segments.length - 1].addEventListener("animationend", (event) =>
             {
                 m_CanClose = true;
+                Game.SetState(GAME_STATE_DEFAULT);
             });
 
             window.removeEventListener(EVENT_GAME_DRAG, OnGameDrag);
@@ -208,5 +212,11 @@ var Outro = new function()
             m_TargetPos.y = 0;
             Vibrate(VIBRATION_OUTRO_DRAG_END);
         }
+    }
+
+    function EnableControlTiles()
+    {
+        Game.SetState(GAME_STATE_DEFAULT);
+        m_Tiles.removeEventListener("animationstart", EnableControlTiles);
     }
 }

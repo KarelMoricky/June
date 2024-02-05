@@ -62,11 +62,11 @@ var Camera = new function()
 
     this.EnableManualInput = function(enable)
     {
-        if (!enable && enable != m_IsManualInput && Game.GetSVG().getAttribute("class") == GAME_STATE_MOVE)
+        if (!enable && enable != m_IsManualInput && Game.GetState() == GAME_STATE_MOVE)
         {
             OnGameDragEnd();
         }
-        m_IsManualInput = enable
+        m_IsManualInput = enable;
     }
     //#endregion
 
@@ -138,7 +138,7 @@ var Camera = new function()
         m_Velocity.x = m_Target.x - m_Current.x;
         m_Velocity.y = m_Target.y - m_Current.y;
 
-        Game.GetSVG().setAttribute("class", GAME_STATE_MOVE);
+        Game.SetState(GAME_STATE_MOVE);
     }
 
     function OnGameDragEnd(ev)
@@ -152,7 +152,7 @@ var Camera = new function()
 
         m_InertiaStrength = INERTIA_DEFAULT;
 
-        Game.GetSVG().setAttribute("class", GAME_STATE_DEFAULT);
+        Game.SetState(GAME_STATE_DEFAULT);
     }
 
     function OnEachFrame()

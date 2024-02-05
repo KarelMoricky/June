@@ -45,14 +45,22 @@ var Note = new function()
 
         let segments = AnimateWords(m_Note, 2.1);
 
-        if (!Debug.IsDev())
+        Game.SetState(GAME_STATE_DISABLED);
+        if (Debug.IsDev())
+        {
+            AllowClosingNote();
+        }
+        else
         {
             m_CanClose = false;
-            segments[segments.length - 1].addEventListener("animationend", (event) =>
-            {
-                m_CanClose = true;
-            });
+            segments[segments.length - 1].addEventListener("animationend", AllowClosingNote);
         }
+    }
+
+    function AllowClosingNote()
+    {
+        m_CanClose = true;
+        Game.SetState(GAME_STATE_DEFAULT);
     }
 
     function CloseNote()
