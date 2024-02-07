@@ -45,6 +45,8 @@ var Note = new function()
 
         let segments = AnimateWords(m_Note, 2.1);
 
+        PlayAudio("audioNoteStart");
+
         Game.SetState(GAME_STATE_DISABLED);
         if (Debug.IsDev())
         {
@@ -83,6 +85,8 @@ var Note = new function()
             Camera.EnableManualInput(true);
             Camera.SetCamera(-1, -1, 1, 0.5);
             Tile.RevealNextTile();
+
+            PlayAudio("audioNoteEnd");
         }
     }
 }

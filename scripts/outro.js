@@ -4,7 +4,8 @@ var Outro = new function()
     
     const OUTRO_MOVE_DELAY = 0.25; //--- How long before camera animation starts
     const OUTRO_ZOOM_LENGTH = 5; //--- Time for camera to zoom out during outro
-    const OUTRO_ZOOM_VALUE = 3.5; //--- Camera zoom factor
+    const OUTRO_ZOOM_VALUE = 3.5; //--- Camera zoom in outro
+    const CREDITS_ZOOM_VALUE = 0.5; //--- Camera zoom at the end of the game
 
     let m_CanClose = false;
     let m_Tiles = null;
@@ -14,6 +15,7 @@ var Outro = new function()
     let m_TargetPos = {x: 0, y: 0};
     let m_FinalPos = {x: 0, y: 0};
     let m_TimePrev = 0;
+    let m_Snapped = false;
 
     window.addEventListener(EVENT_GAME_INIT, (ev) =>
     {
@@ -54,6 +56,8 @@ var Outro = new function()
         });
         */
        
+        PlayAudio("audioOutroStart");
+       
         window.addEventListener(EVENT_GAME_DRAG_START, OnGameDragStart);
         window.addEventListener(EVENT_GAME_DRAG, OnGameDrag);
         window.addEventListener(EVENT_GAME_DRAG_END, OnGameDragEnd);
@@ -90,7 +94,7 @@ var Outro = new function()
             //--- Close
             Camera.EnableManualInput(true);
             Camera.SetCamera(0, 0, OUTRO_ZOOM_VALUE, 0);
-            Camera.SetCamera(0, 0, 1, 0.5);
+            Camera.SetCamera(0, 0, CREDITS_ZOOM_VALUE, 0.5);
             
             m_Tiles.classList.remove("animTilesOut");
             m_Tiles.classList.add("animTilesIn");
@@ -111,11 +115,14 @@ var Outro = new function()
             m_TargetPos.x = 0;
             m_TargetPos.y = 0;
 
+            PlayAudio("audioOutroEnd");
+
             window.removeEventListener(EVENT_GAME_DRAG_START, OnGameDragStart);
             Game.SetFinished();
         }
         else
         {
+            //--- Drag heart
             let onHeart = false;
             let element = Game.GetSVGDoc().elementFromPoint(ev.clientX, ev.clientY);
             while (element)
@@ -137,6 +144,7 @@ var Outro = new function()
             m_TargetPos.x = m_Drag.x;
             m_TargetPos.y = m_Drag.y;
 
+            PlayAudio("audioTileDragStart");
             Vibrate(VIBRATION_OUTRO_DRAG_START);
         }
     }
@@ -155,6 +163,17 @@ var Outro = new function()
         {
             m_TargetPos.x = m_FinalPos.x;
             m_TargetPos.y = m_FinalPos.y;
+
+            if (!m_Snapped)
+            {
+                m_Snapped = true;
+                PlayAudio("audioTileSnapStart");
+            }
+        }
+        else if (m_Snapped)
+        {
+            m_Snapped = false;
+            PlayAudio("audioTileSnapEnd");
         }
     }
     
@@ -210,12 +229,15 @@ var Outro = new function()
             window.removeEventListener(EVENT_GAME_DRAG, OnGameDrag);
             window.removeEventListener(EVENT_GAME_DRAG_END, OnGameDragEnd);
 
+            PlayAudio("audioOutroName");
             Vibrate(VIBRATION_OUTRO_CONFIRMED);
         }
         else
         {
             m_TargetPos.x = 0;
             m_TargetPos.y = 0;
+
+            PlayAudio("audioTileDragEnd");
             Vibrate(VIBRATION_OUTRO_DRAG_END);
         }
     }

@@ -75,6 +75,9 @@ var Intro = new function()
                 isPaused: false
             }});
             window.dispatchEvent(ev);
+
+            if (!Debug.SkipIntro())
+                PlayAudio("audioPlay");
         }
     }
 }

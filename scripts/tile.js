@@ -24,6 +24,7 @@ var Tile = new function()
     var m_TimePrev = 0;
     var m_TilesElement = null;
     var m_TileHint = null;
+    var m_Snapped = false;
 
     this.GetSelected = function()
     {
@@ -173,11 +174,19 @@ var Tile = new function()
 
         if (m_CurrentTile && m_TargetPos.length > 0 && m_CurrentTile.getAttribute("x") != null)
         {
-            let posX = Lerp(m_CurrentTile.getAttribute("x"), m_TargetPos[0], timeSlice);
-            let posY = Lerp(m_CurrentTile.getAttribute("y"), m_TargetPos[1], timeSlice);
+            let posX = m_CurrentTile.getAttribute("x");
+            let posY = m_CurrentTile.getAttribute("y");
 
-            m_CurrentTile.setAttribute("x", posX);
-            m_CurrentTile.setAttribute("y", posY);
+            if (Math.abs(posX - m_TargetPos[0]) > 0.001 || Math.abs(posY - m_TargetPos[1]) > 0.001)
+            {
+                posX = Lerp(posX, m_TargetPos[0], timeSlice);
+                posY = Lerp(posY, m_TargetPos[1], timeSlice);
+
+                m_CurrentTile.setAttribute("x", posX);
+                m_CurrentTile.setAttribute("y", posY);
+
+                UpdateTiles();
+            }
          }
          
          requestAnimationFrame(OnEachFrame);
@@ -195,6 +204,7 @@ var Tile = new function()
 
         m_SelectedTile.querySelector("#tileContent").classList.remove("tileFadeIn");
 
+        PlayAudio("audioTileDragStart");
         Vibrate(VIBRATION_TILE_DRAG_START);
     }
 
@@ -221,10 +231,12 @@ var Tile = new function()
         if (isConfirmed)
         {
             AnimateTile(tile, true);
+
             Vibrate(VIBRATION_TILE_CONFIRMED);
         }
         else
         {
+            PlayAudio("audioTileDragEnd");
             Vibrate(VIBRATION_TILE_DRAG_END);
         }
     }
@@ -246,8 +258,18 @@ var Tile = new function()
             const gridTile = snap == 2 ? Game.GetSVGDoc().getElementById("grid_" + [gridTransform.x, gridTransform.y]) : null;
             if (snap == 1 || (gridTile && IsElementVisible(gridTile)))
             {
-                SetTileTransform(m_SelectedTile, gridTransform);
+                if (SetTileTransform(m_SelectedTile, gridTransform))
+                {
+                    PlayAudio("audioTileSnapStart");
+                    m_Snapped = true;
+                }
                 return;
+            } 
+
+            if (m_Snapped)
+            {
+                PlayAudio("audioTileSnapEnd");
+                m_Snapped = false;
             }
         }
 
@@ -289,8 +311,9 @@ var Tile = new function()
             }
         }
 
-        //if (tile.getAttribute(VAR_GRID_X) == gridTransform.x && tile.getAttribute(VAR_GRID_Y) == gridTransform.y)
-        //    return;
+        //--- Exit if the position did not change
+        if (tile.getAttribute(VAR_GRID_X) == gridTransform.x && tile.getAttribute(VAR_GRID_Y) == gridTransform.y)
+            return false;
     
         //--- Save grid position
         tile.setAttribute(VAR_GRID_X, gridTransform.x);
@@ -314,7 +337,9 @@ var Tile = new function()
         }
     
         //Debug.Log(tile.id, gridTransform.x, gridTransform.y);
-        UpdateTiles();
+        //UpdateTiles();
+
+        return true;
     }
     
     function UpdateTiles()
@@ -338,12 +363,6 @@ var Tile = new function()
             SetTileState(tile, TILE_STATE_CONFIRMED);
             tile.classList.add(CLASS_TILE_CONFIRMED);
             m_OccupiedCoords.push([parseInt(tile.getAttribute(VAR_GRID_TARGET_X)), parseInt(tile.getAttribute(VAR_GRID_TARGET_Y))]);
-    
-            if (isManual)
-            {
-                //RevealNextTile();
-                PlayAudio("tileMove");
-            }
             
             //--- #HACK
             let tilePicture = tile.getElementById(ID_TILE_CONTENT);
@@ -368,7 +387,7 @@ var Tile = new function()
             }});
             window.dispatchEvent(ev);
 
-            //m_ConfirmedCount++;
+            m_Snapped = false;
             return true;
         }
         else
@@ -498,5 +517,6 @@ var Tile = new function()
             }
         }
         RevealNextTile();
+        UpdateTiles();
     }
 }

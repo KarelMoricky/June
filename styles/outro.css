@@ -319,6 +319,7 @@
 	right: 0;
 	bottom: 10vh;
 	background-color: rgba(0, 0, 0, 0.7);
+	backdrop-filter: blur(10px);
 	animation: animFadeIn 2s 1s ease forwards;
 	opacity: 0;
 }

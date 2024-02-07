@@ -83,8 +83,15 @@ function PlayAudio(name)
 {
     //--- https://www.w3schools.com/JSREF/dom_obj_audio.asp
     let audioObject = document.getElementById(name);
-    audioObject.load();
-    audioObject.play();
+    if (audioObject)
+    {
+        audioObject.load();
+        audioObject.play();
+    }
+    else
+    {
+        console.error(`Audio ${name} not found!`);
+    }
 }
 //#endregion
 
