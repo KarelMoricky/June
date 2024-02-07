@@ -5,7 +5,7 @@ var Localization = new function()
         {
             id: "locIntroTitle1",
             "en": "Vera and Karel's",
-            "cs": "Veřin a Karlův",
+            "cs": "Veřina a Karlova",
             "ru": "Веры и Карела"
         },
         {
@@ -17,13 +17,13 @@ var Localization = new function()
         {
             id: "locIntroTitle2",
             "en": "was born on June XXth 2024",
-            "cs": "se narodil XX. června 2024",
+            "cs": "se narodila XX. června 2024",
             "ru": "был рождён XX июня 2024 года"
         },
         {
             id: "locIntroGame",
-            "en": "To find out his name, please play<br />a little game we designed for him.",
-            "cs": "Chete-li se dozvědět jeho jméno,<br />zahrajte si prosím krátkou hru,<br />kterou jsme pro něj připravili",
+            "en": "To find out her name, please play<br />a little game we designed for her.",
+            "cs": "Chete-li se dozvědět její jméno,<br />zahrajte si prosím krátkou hru,<br />kterou jsme pro ni připravili",
             "ru": ""
         },
         {
