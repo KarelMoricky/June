@@ -9,6 +9,7 @@ var Outro = new function()
 
     let m_CanClose = false;
     let m_Tiles = null;
+    let m_TileComposition = null;
     let m_Heart = null;
     let m_HeartHint = null;
     let m_Drag = {x: 0, y: 0, isActive: false};
@@ -22,6 +23,7 @@ var Outro = new function()
         SetStyleVariable("--outro-zoom-out", OUTRO_ZOOM_LENGTH + "s");
 
         m_Tiles = Game.GetSVGDoc().getElementById("tiles");
+        m_TileComposition = Game.GetSVGDoc().getElementById(ID_TILES_ELEMENT);
         m_Heart = Game.GetSVGDoc().getElementById("heart");
         m_HeartHint = Game.GetSVGDoc().getElementById("heartHint");
 
@@ -198,6 +200,7 @@ var Outro = new function()
             m_HeartHint.classList.add("animHeartOut");
 
             m_Tiles.classList.add("animTilesOut");
+            m_TileComposition.classList.add("animTilesSettle");
 
             SetElementVisible(Game.GetSVGDoc().getElementById("heartHighlight1"), true);
             SetElementVisible(Game.GetSVGDoc().getElementById("heartHighlight2"), true);

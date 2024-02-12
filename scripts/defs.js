@@ -44,7 +44,7 @@ const ISO_MATRIX = new DOMMatrixReadOnly()
 //#endregion
 
 //#region Elements
-const ID_TILES_ELEMENT = "tiles";
+const ID_TILES_ELEMENT = "tileComposition";
 const GAME_STATE_DEFAULT = "gameStateDefault";
 const GAME_STATE_MOVE = "gameStateMove";
 const GAME_STATE_DISABLED = "gameStateDisabled";
