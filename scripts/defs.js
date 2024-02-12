@@ -33,6 +33,11 @@ const ORIGIN_POSITIONS = new Map([
 
 const ISO_SIZE = 140;
 const ISO_MATRIX = new DOMMatrixReadOnly()
+    //--- Art-mandated grid
+    // .rotate(26.565)
+    // .skewX(-36.87)
+    // .scale(ISO_SIZE, ISO_SIZE * 0.8);
+    //--- Pure isometric grid
     .rotate(30)
     .skewX(-30)
     .scale(1 * ISO_SIZE, 0.8602 * ISO_SIZE);

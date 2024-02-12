@@ -18,29 +18,21 @@
   <!-- Debug background -->
   <!-- <rect x="-960" y="-540" width="100%" height="100%" style="fill: rgb(220,220,220);" /> -->
 
-  <!-- Grid, inspired by https://www.jointjs.com/blog/isometric-diagrams, size must be multiply of (1, 0.8602) -->
-  <g id="grid" class="ignoreCursor" transform="rotate(30) skewX(-30) scale(140, 120.428)">
+  <!-- Grid -->
 
-    <!-- X -->
-    <!-- <line id="lineY-2" x1="-2" x2="2" y1="-2" y2="-2" />
-    <line id="lineY-1" x1="-2" x2="2" y1="-1" y2="-1" />
-    <line id="lineY0" x1="-2" x2="2" y1="0" y2="0" />
-    <line id="lineY1" x1="-2" x2="2" y1="1" y2="1" />
-    <line id="lineY2" x1="-2" x2="2" y1="2" y2="2" /> -->
+  <g id="grid" class="ignoreCursor gridTransform">
 
-    <!-- Y -->
-    <!-- <line id="lineX-2" x1="-2" x2="-2" y1="-2" y2="2" />
-    <line id="lineX-1" x1="-1" x2="-1" y1="-2" y2="2" />
-    <line id="lineX0" x1="0" x2="0" y1="-2" y2="2" />
-    <line id="lineX1" x1="1" x2="1" y1="-2" y2="2" />
-    <line id="lineX2" x1="2" x2="2" y1="-2" y2="2" /> -->
+    <!-- Container for script-generated grid squares -->
+    <g id="gridLines">
+    </g>
+
+    <!-- Tile indicator -->
+    <g id="tileHint" class="ignoreCursor">
+      <rect x="0.1" y="0.1" width="0.8" height="0.8" />
+      <rect x="0.1" y="0.1" width="0.8" height="0.8" class="animTileHint" />
+    </g>
   </g>
 
-  <!-- Tile indicator -->
-  <g id="tileHint" class="ignoreCursor">
-    <rect x="0.1" y="0.1" width="0.8" height="0.8" />
-    <rect x="0.1" y="0.1" width="0.8" height="0.8" class="animTileHint" />
-  </g>
 
   <!-- Tutorial -->
   <g id="tutorial" class="hidden">

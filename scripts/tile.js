@@ -61,7 +61,9 @@ var Tile = new function()
     {
         m_TilesElement = Game.GetSVGDoc().getElementById(ID_TILES_ELEMENT);
         m_TileHint = Game.GetSVGDoc().getElementById(ID_TILE_TARGET);
-        const gridElement = Game.GetSVGDoc().getElementById("grid");
+
+        const gridLines = Game.GetSVGDoc().getElementById("gridLines");
+        gridLines.setAttribute("transform", ISO_MATRIX);
 
         let i = 0;
         for (let tileID of TARGET_POSITIONS.keys())
@@ -102,7 +104,7 @@ var Tile = new function()
 
             //if (tile.id == "tile02") //--- #TODO: Don't hardcode
             //    SetCurrentTile(tile);
-            const gridTile = CreateElement("rect", gridElement, [
+            const gridTile = CreateElement("rect", gridLines, [
                 ["id", "grid_" + targetPosition],
                 ["x", targetPosition[0]],
                 ["y", targetPosition[1]],
@@ -436,9 +438,8 @@ var Tile = new function()
         //--- Update tile hint's position
         const targetX = m_CurrentTile.getAttribute(VAR_GRID_TARGET_X);
         const targetY = m_CurrentTile.getAttribute(VAR_GRID_TARGET_Y);
-
-        var hintTransform = new DOMMatrix(ISO_MATRIX).translateSelf(targetX, targetY, 0);
-        m_TileHint.setAttribute("transform", hintTransform);
+        m_TileHint.setAttribute("x", targetX);
+        m_TileHint.setAttribute("y", targetY);
         SetElementVisible(m_TileHint, true);
         
         //--- Show tile-specific elements

@@ -9,7 +9,7 @@
 	font-size: 100%;
 }
 
-#grid
+#gridLines
 {
 	stroke: var(--color-highlight);
 	stroke-width: 0.01;
