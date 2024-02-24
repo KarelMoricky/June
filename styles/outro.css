@@ -1,7 +1,3 @@
-:root {
-	--outro-zoom-out: 0;
-}
-
 #outroNote
 {
 	position: absolute;
@@ -186,7 +182,7 @@
 .animHeartHintIn
 {
 	opacity: 0;
-	animation: animFadeIn 1.5s calc(var(--outro-zoom-out) + 0.5s) ease forwards;
+	animation: animFadeIn 1.5s ease forwards;
 }
 
 .animHeartHintPulse
@@ -271,7 +267,6 @@
 {
 	animation-name: animTilesCurrent;
 	animation-duration: 1.5s;
-	/* animation-delay: var(--outro-zoom-out); */
 	animation-iteration-count: infinite;
     animation-direction: alternate;
 	animation-timing-function: ease-out;

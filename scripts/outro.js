@@ -29,16 +29,14 @@ var Outro = new function()
 
                 const grid = Game.GetSVGDoc().getElementById("grid");
                 grid.classList.add("animGridOut");
-        
-                SetElementVisible(m_Heart, true);
-                SetElementVisible(m_HeartHint, true);
             }
         },
         {
-            //--- Animation ended
+            //--- Make tiles editable
             time: OUTRO_ZOOM_LENGTH,
             function: function()
             {
+                SetElementVisible(m_Heart, true);
                 m_Tiles.classList.add("animTilesCurrent");
                 EnableControlTiles();
    
@@ -48,13 +46,21 @@ var Outro = new function()
                 
                 requestAnimationFrame(OnEachFrame);
             }
+        },
+        {
+            //--- Show hint
+            time: OUTRO_ZOOM_LENGTH + 1.5,
+            function: function()
+            {
+                SetElementVisible(m_HeartHint, true);
+            }
         }
     ];
 
     //--- Animation when the player places the heart and the name is revealed
     const m_TimelineRevealName = [
         {
-            //--- Animation started
+            //--- Heart
             time: 0,
             function: function()
             {
@@ -71,14 +77,27 @@ var Outro = new function()
                 SetElementVisible(Game.GetSVGDoc().getElementById("heartHighlight1"), true);
                 SetElementVisible(Game.GetSVGDoc().getElementById("heartHighlight2"), true);
                 SetElementVisible(Game.GetSVGDoc().getElementById("heartHighlight3"), true);
-    
+            }
+        },
+        {
+            //--- Handwriting
+            time: 1.5,
+            function: function()
+            {
                 const outroNote = document.getElementById("outroNote");
                 SetElementVisible(outroNote, true);
-                AnimateWords(outroNote, 1.5);
-    
+                AnimateWords(outroNote);
+            }
+        },
+        {
+            //--- Name
+            time: 5,
+            function: function()
+            {
                 const outroName = document.getElementById("outroName");
                 SetElementVisible(outroName, true);
-                const segments = AnimateLetters(outroName, 5, 0.7, "outroNameLetter");
+
+                const segments = AnimateLetters(outroName, 0, 0.7, "outroNameLetter");
                 for (let segment of segments)
                 {
                     segment.addEventListener("animationstart", (event) =>
@@ -93,13 +112,11 @@ var Outro = new function()
                     Game.SetState(GAME_STATE_DEFAULT);
                 });
             }
-        },
+        }
     ];
 
     window.addEventListener(EVENT_GAME_INIT, (ev) =>
     {
-        SetStyleVariable("--outro-zoom-out", OUTRO_ZOOM_LENGTH + "s");
-
         m_Tiles = Game.GetSVGDoc().getElementById("tiles");
         m_TileComposition = Game.GetSVGDoc().getElementById(ID_TILES_ELEMENT);
         m_Heart = Game.GetSVGDoc().getElementById("heart");
