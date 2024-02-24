@@ -56,8 +56,15 @@ var Note = new function()
                     m_Note.classList.remove("animNoteOut");
                     m_Note.classList.add("animNoteIn");
 
-                    let segments = AnimateWords(m_Note);
-                    segments[segments.length - 1].addEventListener("animationend", AllowClosingNote);
+                    AnimateWords(m_Note);
+                }
+            },
+            //--- End
+            {
+                time: 4.75,
+                function: function()
+                {
+                    AllowClosingNote();
                 }
             }
         ]);

@@ -3,7 +3,6 @@ var Outro = new function()
     const INERTIA_DEFAULT = 0.02;
     
     const OUTRO_MOVE_DELAY = 0.25; //--- How long before camera animation starts
-    const OUTRO_ZOOM_LENGTH = 5; //--- Time for camera to zoom out during outro
     const OUTRO_ZOOM_VALUE = 3.5; //--- Camera zoom in outro
     const CREDITS_ZOOM_VALUE = 0.5; //--- Camera zoom at the end of the game
 
@@ -17,15 +16,16 @@ var Outro = new function()
     let m_FinalPos = {x: 0, y: 0};
     let m_TimePrev = 0;
     let m_Snapped = false;
+    let m_NameLetters = [];
 
     //--- Animation when outro begins
-    const m_TimelineStartOutro = [
+    const m_TimelineOutroStart = [
         {
             //--- Animation started
             time: 0,
             function: function()
             {
-                Camera.SetCamera(m_FinalPos.x, m_FinalPos.y, OUTRO_ZOOM_VALUE, OUTRO_ZOOM_LENGTH, OUTRO_MOVE_DELAY);
+                Camera.SetCamera(m_FinalPos.x, m_FinalPos.y, OUTRO_ZOOM_VALUE, 5, OUTRO_MOVE_DELAY);
 
                 const grid = Game.GetSVGDoc().getElementById("grid");
                 grid.classList.add("animGridOut");
@@ -33,7 +33,7 @@ var Outro = new function()
         },
         {
             //--- Make tiles editable
-            time: OUTRO_ZOOM_LENGTH,
+            time: 5,
             function: function()
             {
                 SetElementVisible(m_Heart, true);
@@ -49,7 +49,7 @@ var Outro = new function()
         },
         {
             //--- Show hint
-            time: OUTRO_ZOOM_LENGTH + 1.5,
+            time: 5.5,
             function: function()
             {
                 SetElementVisible(m_HeartHint, true);
@@ -58,7 +58,7 @@ var Outro = new function()
     ];
 
     //--- Animation when the player places the heart and the name is revealed
-    const m_TimelineRevealName = [
+    const m_TimelineOutroName = [
         {
             //--- Heart
             time: 0,
@@ -90,27 +90,50 @@ var Outro = new function()
             }
         },
         {
-            //--- Name
+            //--- Letter 1
             time: 5,
             function: function()
             {
                 const outroName = document.getElementById("outroName");
                 SetElementVisible(outroName, true);
 
-                const segments = AnimateLetters(outroName, 0, 0.7, "outroNameLetter");
-                for (let segment of segments)
-                {
-                    segment.addEventListener("animationstart", (event) =>
-                    {
-                        Vibrate(VIBRATION_OUTRO_LETTER);
-                    });
-                }
+                const text = outroName.innerHTML;
+                outroName.innerHTML = "";
                 
-                segments[segments.length - 1].addEventListener("animationend", (event) =>
+                let segment = null;
+                for (let i = 0; i < text.length; i++)
                 {
-                    m_CanClose = true;
-                    Game.SetState(GAME_STATE_DEFAULT);
-                });
+                    segment = CreateElement("span", outroName);
+                    segment.innerHTML = text[i];
+                    segment.classList.add("outroNameLetter");
+                    m_NameLetters.push(segment);
+                }
+
+                ShowLetter(0);
+            }
+        },
+        {
+            //--- Letter 2
+            time: 5.7,
+            function: function() {ShowLetter(1);}
+        },
+        {
+            //--- Letter 3
+            time: 6.4,
+            function: function() {ShowLetter(2);}
+        },
+        {
+            //--- Letter 4
+            time: 7.1,
+            function: function() {ShowLetter(3);}
+        },
+        {
+            //--- End
+            time: 7.9,
+            function: function()
+            {
+                m_CanClose = true;
+                Game.SetState(GAME_STATE_DEFAULT);
             }
         }
     ];
@@ -138,7 +161,7 @@ var Outro = new function()
 
         m_CanClose = false;
        
-        ProcessAudio(PlayAudio("audioOutroStart"), m_TimelineStartOutro);
+        ProcessAudio(PlayAudio("audioOutroStart"), m_TimelineOutroStart);
     });
 
     function OnEachFrame()
@@ -273,7 +296,7 @@ var Outro = new function()
             window.removeEventListener(EVENT_GAME_DRAG, OnGameDrag);
             window.removeEventListener(EVENT_GAME_DRAG_END, OnGameDragEnd);
 
-            ProcessAudio(PlayAudio("audioOutroName"), m_TimelineRevealName);
+            ProcessAudio(PlayAudio("audioOutroName"), m_TimelineOutroName);
             Vibrate(VIBRATION_OUTRO_CONFIRMED);
         }
         else
@@ -295,5 +318,12 @@ var Outro = new function()
     {
         Game.SetState(GAME_STATE_DEFAULT);
         m_Tiles.removeEventListener("animationstart", EnableControlTiles);
+    }
+
+    function ShowLetter(index)
+    {
+        m_NameLetters[index].classList.add("animOutroNameLetter");
+        SetElementVisible(m_NameLetters[index], true);
+        Vibrate(VIBRATION_OUTRO_LETTER);
     }
 }
