@@ -1,8 +1,5 @@
 var Note = new function()
 {
-    const CONFIRMATION_MOVE_DELAY = 0.25; //--- How long before camera animation starts
-    const CONFIRMATION_MOVE_LENGTH = 1.5; //--- How long will camera take to focus on confirmed tile. Use 0 to disable the effect.
-    
     const NOTE_ZOOM_VALUE = 0.5; //--- Camera zoom factor
 
     const m_Note = document.getElementById("note");
@@ -33,25 +30,24 @@ var Note = new function()
         Camera.EnableManualInput(false);
 
         ProcessAudio(PlayAudio("audioNoteStart"), [
-            //--- Animation started
             {
-                time: 0,
+                //--- Zoom camera
+                time: 0.25,
                 function: function()
                 {
                     let tile = ev.detail.tile;
                     let posX = tile.getAttribute(VAR_TARGET_X);
                     let posY = tile.getAttribute(VAR_TARGET_Y);
 
-                    Camera.SetCamera(posX, parseInt(posY) - 20, NOTE_ZOOM_VALUE, CONFIRMATION_MOVE_LENGTH, CONFIRMATION_MOVE_DELAY);
-            
-                    Localization.Localize(m_Note, "note_" + tile.id);
+                    Camera.SetCamera(posX, parseInt(posY) - 20, NOTE_ZOOM_VALUE, 1.5);
                 }
             },
-            //--- Write text
             {
+                //--- Write text
                 time: 1.75,
                 function: function()
                 {
+                    Localization.Localize(m_Note, "note_" + ev.detail.tile.id);
                     SetElementVisible(m_Note, true);
                     m_Note.classList.remove("animNoteOut");
                     m_Note.classList.add("animNoteIn");
@@ -59,8 +55,8 @@ var Note = new function()
                     AnimateWords(m_Note);
                 }
             },
-            //--- End
             {
+                //--- End
                 time: 4.75,
                 function: function()
                 {
