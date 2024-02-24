@@ -85,13 +85,47 @@ function PlayAudio(name)
     let audioObject = document.getElementById(name);
     if (audioObject)
     {
-        audioObject.load();
+        //audioObject.load(); //--- Don't use, would force reload before each play
+        audioObject.currentTime = 0;
         audioObject.play();
+        return audioObject;
     }
     else
     {
         console.error(`Audio ${name} not found!`);
+        return null;
     }
+}
+
+function ProcessAudio(audio, timeline, step = 10)
+{
+    //--- Save indexes of timeline entries
+    let indexes = [];
+    for (let i = 0; i < timeline.length; i++)
+    {
+        indexes.push(i);
+        if (timeline[i].time >= audio.duration)
+            console.warn(`ProcessAudio: Event has time ${timeline[i].time} s, but audio duration is only ${audio.duration} s!`);
+    }
+
+    function Tick()
+    {
+        //--- Process entries
+        for (let i = indexes.length - 1; i >= 0; i--)
+        {
+            const entry = timeline[indexes[i]];
+            if (audio.currentTime > entry.time)
+            {
+                entry.function(audio.currentTime);
+                indexes.splice(i, 1);
+            }
+        }
+
+        //--- Stop when the sound stops or when there are no more entries to process
+        if (!audio.paused && indexes.length > 0)
+            setTimeout(Tick, step);
+    }
+    Tick();
 }
 //#endregion
 

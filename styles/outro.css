@@ -271,7 +271,7 @@
 {
 	animation-name: animTilesCurrent;
 	animation-duration: 1.5s;
-	animation-delay: var(--outro-zoom-out);
+	/* animation-delay: var(--outro-zoom-out); */
 	animation-iteration-count: infinite;
     animation-direction: alternate;
 	animation-timing-function: ease-out;

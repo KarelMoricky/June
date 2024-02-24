@@ -352,7 +352,6 @@ var Tile = new function()
         for (let i = 0; i < m_TilesZSorted.length; i++)
         {
             m_TilesElement.appendChild(m_TilesZSorted[i]);
-            AnimateTile(m_TilesZSorted[i], false);
         }
     }
     
@@ -406,9 +405,9 @@ var Tile = new function()
             return;
 
         if (animate)
-            tilePicture.setAttribute("class", "animTileConfirmed");
+            tilePicture.classList.add("animTileConfirmed");
         else
-            tilePicture.setAttribute("class", "");
+            tilePicture.classList.remove("animTileConfirmed");
     }
     
     function SetTileState(tile, state)
@@ -422,6 +421,7 @@ var Tile = new function()
         //--- Unmark the previous current tile
         if (m_CurrentTile)
         {
+            AnimateTile(m_CurrentTile, false);
             m_CurrentTile.classList.remove(CLASS_TILE_CURRENT);
             m_CurrentTile = null;
         }

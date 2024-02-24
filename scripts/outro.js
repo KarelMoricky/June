@@ -18,6 +18,84 @@ var Outro = new function()
     let m_TimePrev = 0;
     let m_Snapped = false;
 
+    //--- Animation when outro begins
+    const m_TimelineStartOutro = [
+        {
+            //--- Animation started
+            time: 0,
+            function: function()
+            {
+                Camera.SetCamera(m_FinalPos.x, m_FinalPos.y, OUTRO_ZOOM_VALUE, OUTRO_ZOOM_LENGTH, OUTRO_MOVE_DELAY);
+
+                const grid = Game.GetSVGDoc().getElementById("grid");
+                grid.classList.add("animGridOut");
+        
+                SetElementVisible(m_Heart, true);
+                SetElementVisible(m_HeartHint, true);
+            }
+        },
+        {
+            //--- Animation ended
+            time: OUTRO_ZOOM_LENGTH,
+            function: function()
+            {
+                m_Tiles.classList.add("animTilesCurrent");
+                EnableControlTiles();
+   
+                window.addEventListener(EVENT_GAME_DRAG_START, OnGameDragStart);
+                window.addEventListener(EVENT_GAME_DRAG, OnGameDrag);
+                window.addEventListener(EVENT_GAME_DRAG_END, OnGameDragEnd);
+                
+                requestAnimationFrame(OnEachFrame);
+            }
+        }
+    ];
+
+    //--- Animation when the player places the heart and the name is revealed
+    const m_TimelineRevealName = [
+        {
+            //--- Animation started
+            time: 0,
+            function: function()
+            {
+                m_Heart.classList.add("animHeartIn");
+                m_Heart.classList.add("ignoreCursor");
+                m_Heart.classList.remove("heartDraggable");
+    
+                m_HeartHint.classList.remove("animHeartHintIn");
+                m_HeartHint.classList.add("animHeartOut");
+    
+                m_Tiles.classList.add("animTilesOut");
+                m_TileComposition.classList.add("animTilesSettle");
+    
+                SetElementVisible(Game.GetSVGDoc().getElementById("heartHighlight1"), true);
+                SetElementVisible(Game.GetSVGDoc().getElementById("heartHighlight2"), true);
+                SetElementVisible(Game.GetSVGDoc().getElementById("heartHighlight3"), true);
+    
+                const outroNote = document.getElementById("outroNote");
+                SetElementVisible(outroNote, true);
+                AnimateWords(outroNote, 1.5);
+    
+                const outroName = document.getElementById("outroName");
+                SetElementVisible(outroName, true);
+                const segments = AnimateLetters(outroName, 5, 0.7, "outroNameLetter");
+                for (let segment of segments)
+                {
+                    segment.addEventListener("animationstart", (event) =>
+                    {
+                        Vibrate(VIBRATION_OUTRO_LETTER);
+                    });
+                }
+                
+                segments[segments.length - 1].addEventListener("animationend", (event) =>
+                {
+                    m_CanClose = true;
+                    Game.SetState(GAME_STATE_DEFAULT);
+                });
+            }
+        },
+    ];
+
     window.addEventListener(EVENT_GAME_INIT, (ev) =>
     {
         SetStyleVariable("--outro-zoom-out", OUTRO_ZOOM_LENGTH + "s");
@@ -39,31 +117,11 @@ var Outro = new function()
     {
         //--- Reveal
         Camera.EnableManualInput(false);
-        Camera.SetCamera(m_FinalPos.x, m_FinalPos.y, OUTRO_ZOOM_VALUE, OUTRO_ZOOM_LENGTH, OUTRO_MOVE_DELAY);
         Game.SetState(GAME_STATE_DISABLED);
 
-        const grid = Game.GetSVGDoc().getElementById("grid");
-        grid.classList.add("animGridOut");
-
-        m_Tiles.classList.add("animTilesCurrent");
-        m_Tiles.addEventListener("animationstart", EnableControlTiles);
-
-        SetElementVisible(m_Heart, true);
-        SetElementVisible(m_HeartHint, true);
-
         m_CanClose = false;
-        /*
-        new Promise((resolve) => setTimeout(resolve, 10000)).then(() => {
-            m_CanClose = true;
-        });
-        */
        
-        PlayAudio("audioOutroStart");
-       
-        window.addEventListener(EVENT_GAME_DRAG_START, OnGameDragStart);
-        window.addEventListener(EVENT_GAME_DRAG, OnGameDrag);
-        window.addEventListener(EVENT_GAME_DRAG_END, OnGameDragEnd);
-        requestAnimationFrame(OnEachFrame);
+        ProcessAudio(PlayAudio("audioOutroStart"), m_TimelineStartOutro);
     });
 
     function OnEachFrame()
@@ -192,47 +250,13 @@ var Outro = new function()
             m_TargetPos.x = m_FinalPos.x;
             m_TargetPos.y = m_FinalPos.y;
 
-            m_Heart.classList.add("animHeartIn");
-            m_Heart.classList.add("ignoreCursor");
-            m_Heart.classList.remove("heartDraggable");
-
-            m_HeartHint.classList.remove("animHeartHintIn");
-            m_HeartHint.classList.add("animHeartOut");
-
-            m_Tiles.classList.add("animTilesOut");
-            m_TileComposition.classList.add("animTilesSettle");
-
-            SetElementVisible(Game.GetSVGDoc().getElementById("heartHighlight1"), true);
-            SetElementVisible(Game.GetSVGDoc().getElementById("heartHighlight2"), true);
-            SetElementVisible(Game.GetSVGDoc().getElementById("heartHighlight3"), true);
-
-            const outroNote = document.getElementById("outroNote");
-            SetElementVisible(outroNote, true);
-            AnimateWords(outroNote, 1.5);
-
-            const outroName = document.getElementById("outroName");
-            SetElementVisible(outroName, true);
-            const segments = AnimateLetters(outroName, 5, 0.7, "outroNameLetter");
-            for (let segment of segments)
-            {
-                segment.addEventListener("animationstart", (event) =>
-                {
-                    Vibrate(VIBRATION_OUTRO_LETTER);
-                });
-            }
-
             m_CanClose = false;
             Game.SetState(GAME_STATE_DISABLED);
-            segments[segments.length - 1].addEventListener("animationend", (event) =>
-            {
-                m_CanClose = true;
-                Game.SetState(GAME_STATE_DEFAULT);
-            });
 
             window.removeEventListener(EVENT_GAME_DRAG, OnGameDrag);
             window.removeEventListener(EVENT_GAME_DRAG_END, OnGameDragEnd);
 
-            PlayAudio("audioOutroName");
+            ProcessAudio(PlayAudio("audioOutroName"), m_TimelineRevealName);
             Vibrate(VIBRATION_OUTRO_CONFIRMED);
         }
         else
