@@ -16,12 +16,12 @@
     transform: translate(-13px, -15px);
 	animation: animFadeIn 1s ease forwards;
 }
-#constStarHighlight_alf { animation-delay: 0.4s !important; transform: translate(-22px, -25px) !important; }
-#constStarHighlight_eps { animation-delay: 0.6s !important; }
-#constStarHighlight_zet { animation-delay: 0.8s !important; }
-#constStarHighlight_bet { animation-delay: 1.0s !important; }
-#constStarHighlight_del { animation-delay: 1.2s !important; }
-#constStarHighlight_gam { animation-delay: 1.4s !important; }
+#constStarHighlight_alf { animation-delay: 0.0s !important; transform: translate(-22px, -25px) !important; }
+#constStarHighlight_eps { animation-delay: 0.2s !important; }
+#constStarHighlight_zet { animation-delay: 0.4s !important; }
+#constStarHighlight_bet { animation-delay: 0.6s !important; }
+#constStarHighlight_del { animation-delay: 0.8s !important; }
+#constStarHighlight_gam { animation-delay: 1.0s !important; }
 
 /* Lines */
 #constLines
@@ -35,10 +35,10 @@
     opacity: 0;
 	animation: animFadeIn 1s ease forwards;
 }
-#constLine_alf_eps { animation-delay: 0.4s !important; }
-#constLine_zet_alf { animation-delay: 0.6s !important; }
-#constLine_zet_eps { animation-delay: 0.8s !important; }
-#constLine_zet_bet { animation-delay: 1.0s !important; }
-#constLine_zet_del { animation-delay: 1.2s !important; }
-#constLine_bet_gam { animation-delay: 1.4s !important; }
-#constLine_del_gam { animation-delay: 1.6s !important; }
+#constLine_alf_eps { animation-delay: 0.0s !important; }
+#constLine_zet_alf { animation-delay: 0.2s !important; }
+#constLine_zet_eps { animation-delay: 0.4s !important; }
+#constLine_zet_bet { animation-delay: 0.6s !important; }
+#constLine_zet_del { animation-delay: 0.8s !important; }
+#constLine_bet_gam { animation-delay: 1.0s !important; }
+#constLine_del_gam { animation-delay: 1.2s !important; }

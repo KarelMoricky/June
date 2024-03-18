@@ -25,6 +25,7 @@ var Tile = new function()
     var m_TilesElement = null;
     var m_TileHint = null;
     var m_Snapped = false;
+    var m_First = false;
 
     this.GetSelected = function()
     {
@@ -34,6 +35,14 @@ var Tile = new function()
     this.SetSelected = function(ev)
     {
         m_SelectedTile = null;
+
+        //--- Ignore the first drag, we assume that the player wanted to drag the camera
+        if (!m_First && !Debug.IsDev())
+        {
+            m_First = true;
+            return;
+        }
+
         let element = Game.GetSVGDoc().elementFromPoint(ev.clientX, ev.clientY);
         while (element)
         {

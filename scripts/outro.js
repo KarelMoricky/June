@@ -130,12 +130,18 @@ var Outro = new function()
             function: function() {ShowLetter(3);}
         },
         {
-            //--- Constellation
-            time: 7.8,
+            //--- Fade out note
+            time: 8.0,
             function: function()
             {
                 outroNote.classList.add("animOutroNoteOut");
-
+            }
+        },
+        {
+            //--- Constellation
+            time: 8.5,
+            function: function()
+            {
                 const object = document.getElementById("constellationObject");
                 const constellationSvg = object.contentDocument.firstElementChild;
                 SetElementVisible(constellationSvg.getElementById("constLines"), true, true);
@@ -144,7 +150,7 @@ var Outro = new function()
         },
         {
             //--- End
-            time: 7.9,
+            time: 10,
             function: function()
             {
                 m_CanClose = true;
