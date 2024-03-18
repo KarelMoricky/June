@@ -29,17 +29,18 @@ var Note = new function()
 
         Camera.EnableManualInput(false);
 
-        ProcessAudio(PlayAudio("audioNoteStart"), [
+        const audio = PlayAudio("audioNoteStart")
+        ProcessAudio(audio, [
             {
                 //--- Zoom camera
                 time: 0.25,
-                function: function()
+                function: function(currentTime)
                 {
                     let tile = ev.detail.tile;
                     let posX = tile.getAttribute(VAR_TARGET_X);
                     let posY = tile.getAttribute(VAR_TARGET_Y);
 
-                    Camera.SetCamera(posX, parseInt(posY) - 20, NOTE_ZOOM_VALUE, 1.5);
+                    Camera.SetCamera(posX, parseInt(posY) - 20, NOTE_ZOOM_VALUE, 1.5 - currentTime);
                 }
             },
             {
@@ -52,7 +53,8 @@ var Note = new function()
                     m_Note.classList.remove("animNoteOut");
                     m_Note.classList.add("animNoteIn");
 
-                    AnimateWords(m_Note);
+                    if (!SKIP_NOTE_ANIM || !Debug.IsDev())
+                        AnimateWords(m_Note);
                 }
             },
             {
@@ -64,6 +66,9 @@ var Note = new function()
                 }
             }
         ]);
+
+        if (SKIP_NOTE_ANIM && Debug.IsDev())
+            audio.currentTime = audio.duration - 0.1;
 
         Game.SetState(GAME_STATE_DISABLED);
         if (Debug.IsDev())

@@ -11,7 +11,7 @@ function CreateElement(type, parent, params = [], isSVG = false)
     return element;
 }
 
-function SetElementVisible(element, isVisible)
+function SetElementVisible(element, isVisible, isRecursive = false)
 {
     if (element == null)
     {
@@ -23,6 +23,15 @@ function SetElementVisible(element, isVisible)
         element.classList.remove("hidden");
     else
         element.classList.add("hidden");
+
+    if (isRecursive)
+    {
+        var children = element.children;
+        for (var i = 0; i < children.length; i++)
+        {
+            SetElementVisible(children[i], isVisible, isRecursive);
+        }
+    }
 }
 
 function IsElementVisible(element)

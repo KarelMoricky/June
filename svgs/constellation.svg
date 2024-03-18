@@ -1,0 +1,59 @@
+<svg class="ignoreCursor" preserveAspectRatio="xMidYMid slice" viewBox="-3000 -1000 6000 1000" xmlns="http://www.w3.org/2000/svg">
+
+    <!-- Styles -->
+    <link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../styles/common.css" />
+    <link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../styles/constellation.css" />
+
+    <g transform="translate(50,-800) scale(0.75) rotate(0)">
+
+        <!-- Lines -->
+        <g id="constLines" class="hidden">
+            <!-- Alpha-Epsilon -->
+            <line id="constLine_alf_eps" class="hidden" x1="74" y1="-60" x2="2" y2="-98" />
+            <!-- Zeta-Alpha -->
+            <line id="constLine_zet_alf" class="hidden" x1="0" y1="0" x2="74" y2="-60" />
+            <!-- Zeta-Epsilon -->
+            <line id="constLine_zet_eps" class="hidden" x1="0" y1="0" x2="2" y2="-98" />
+            <!-- Zeta-Beta -->
+            <line id="constLine_zet_bet" class="hidden" x1="0" y1="0" x2="-49" y2="203" />
+            <!-- Zeta-Delta -->
+            <line id="constLine_zet_del" class="hidden" x1="0" y1="0" x2="-92" y2="33" />
+            <!-- Beta-Gamma -->
+            <line id="constLine_bet_gam" class="hidden" x1="-49" y1="203" x2="-138" y2="233" />
+            <!-- Delta-Gamma -->
+            <line id="constLine_del_gam" class="hidden" x1="-92" y1="33" x2="-138" y2="233" />
+        </g>
+
+        <!-- Stars -->
+        <g id="constStars">
+            <!-- Alpha -->
+            <circle id="constStar_alf" cx="74" cy="-60" r="6px" />
+            <!-- Epsilon -->
+            <circle id="constStar_eps" cx="2" cy="-98" r="4px" />
+            <!-- Zeta -->
+            <circle id="constStar_zet" cx="0" cy="0" r="4px" />
+            <!-- Beta -->
+            <circle id="constStar_bet" cx="-49" cy="203" r="4px" />
+            <!-- Delta -->
+            <circle id="constStar_del" cx="-92" cy="33" r="4px" />
+            <!-- Gamma -->
+            <circle id="constStar_gam" cx="-138" cy="233" r="4px" />
+        </g>
+
+        <!-- Highlighted Stars -->
+        <g id="constStarHighlights" class="hidden">
+            <!-- Alpha -->
+            <image id="constStarHighlight_alf" class="hidden" href="../svgs/constellationStar.svg" x="74" y="-60" width="44" height="50" />
+            <!-- Epsilon -->
+            <image id="constStarHighlight_eps" class="hidden" href="../svgs/constellationStar.svg" x="2" y="-98" width="26" height="30" />
+            <!-- Zeta -->
+            <image id="constStarHighlight_zet" class="hidden" href="../svgs/constellationStar.svg" x="0" y="0" width="26" height="30" />
+            <!-- Beta -->
+            <image id="constStarHighlight_bet" class="hidden" href="../svgs/constellationStar.svg" x="-49" y="203" width="26" height="30" />
+            <!-- Delta -->
+            <image id="constStarHighlight_del" class="hidden" href="../svgs/constellationStar.svg" x="-92" y="33" width="26" height="30" />
+            <!-- Gamma -->
+            <image id="constStarHighlight_gam" class="hidden" href="../svgs/constellationStar.svg" x="-138" y="233" width="26" height="30" />
+        </g>
+    </g>
+</svg>

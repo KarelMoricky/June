@@ -23,9 +23,9 @@ var Outro = new function()
         {
             //--- Animation started
             time: 0,
-            function: function()
+            function: function(currentTime)
             {
-                Camera.SetCamera(m_FinalPos.x, m_FinalPos.y, OUTRO_ZOOM_VALUE, 5, OUTRO_MOVE_DELAY);
+                Camera.SetCamera(m_FinalPos.x, m_FinalPos.y, OUTRO_ZOOM_VALUE, 5 - currentTime, OUTRO_MOVE_DELAY);
 
                 const grid = Game.GetSVGDoc().getElementById("grid");
                 grid.classList.add("animGridOut");
@@ -86,7 +86,9 @@ var Outro = new function()
             {
                 const outroNote = document.getElementById("outroNote");
                 SetElementVisible(outroNote, true);
-                AnimateWords(outroNote);
+
+                if (SKIP_OUTRO_ANIM || !Debug.IsDev())
+                    AnimateWords(outroNote);
             }
         },
         {
@@ -128,6 +130,19 @@ var Outro = new function()
             function: function() {ShowLetter(3);}
         },
         {
+            //--- Constellation
+            time: 7.8,
+            function: function()
+            {
+                outroNote.classList.add("animOutroNoteOut");
+
+                const object = document.getElementById("constellationObject");
+                const constellationSvg = object.contentDocument.firstElementChild;
+                SetElementVisible(constellationSvg.getElementById("constLines"), true, true);
+                SetElementVisible(constellationSvg.getElementById("constStarHighlights"), true, true);
+            }
+        },
+        {
             //--- End
             time: 7.9,
             function: function()
@@ -161,7 +176,11 @@ var Outro = new function()
 
         m_CanClose = false;
        
-        ProcessAudio(PlayAudio("audioOutroStart"), m_TimelineOutroStart);
+        const audio = PlayAudio("audioOutroStart");
+        ProcessAudio(audio, m_TimelineOutroStart);
+
+        if (SKIP_OUTRO_ANIM && Debug.IsDev())
+            audio.currentTime = audio.duration - 0.1;
     });
 
     function OnEachFrame()
