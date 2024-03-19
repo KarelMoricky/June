@@ -167,7 +167,7 @@
 	100% { transform: rotate(360deg); }
 }
 
-#locIntroTitle1, #locIntroTitle2, #locIntroTitle3, #locIntroGame, #locIntroSound, #playButton
+#locIntroTitle1, #locIntroTitle2, #locIntroTitle3, #locIntroGame, #locIntroSound, #play
 {
 	opacity: 0;
 	animation: animFadeIn 2s ease-out forwards;
@@ -178,7 +178,7 @@
 #locIntroTitle3	{ animation-delay: 2.5s; }
 #locIntroGame	{ animation-delay: 4.0s; }
 #locIntroSound	{ animation-delay: 4.0s; }
-#playButton		{ animation-delay: 4.0s; }
+#play			{ animation-delay: 4.0s; }
 
 .introBoxRefresh
 {
