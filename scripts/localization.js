@@ -9,13 +9,13 @@ var Localization = new function()
             "ru": "Веры и Карела"
         },
         {
-            id: "titleBaby",
+            id: "locIntroTitle2",
             "en": "DAUGHTER",
             "cs": "DCERA",
             "ru": "ДОЧЬ"
         },
         {
-            id: "locIntroTitle2",
+            id: "locIntroTitle3",
             "en": "was born on June XXth 2024",
             "cs": "se narodila XX. června 2024",
             "ru": "был рождён XX июня 2024 года"
@@ -174,6 +174,12 @@ var Localization = new function()
         {
             RefreshDocument(document);
             RefreshDocument(Game.GetSVGDoc());
+
+            const introBox = document.getElementById("introBox");
+            introBox.classList.remove("introBoxRefresh");
+            setTimeout(() => {
+                introBox.classList.add("introBoxRefresh");
+            }, 0.1);
         }
 
         //--- Refresh buttons

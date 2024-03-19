@@ -77,14 +77,14 @@
 	margin-bottom: 5vh;
 }
 
-#play em
+#play p
 {
 	opacity: 0.5;
 }
 
 #introBox button
 {
-	margin-top: 5vh;
+	margin-top: 2vh;
 	margin-bottom: auto;
 	padding: 0;
 	width: min(200px, 40vh, 90%);
@@ -165,4 +165,23 @@
 {
 	0% { transform: rotate(0deg); }
 	100% { transform: rotate(360deg); }
+}
+
+#locIntroTitle1, #locIntroTitle2, #locIntroTitle3, #locIntroGame, #locIntroSound, #playButton
+{
+	opacity: 0;
+	animation: animFadeIn 2s ease-out forwards;
+}
+
+#locIntroTitle1	{ animation-delay: 0.5s; }
+#locIntroTitle2	{ animation-delay: 1.5s; }
+#locIntroTitle3	{ animation-delay: 2.5s; }
+#locIntroGame	{ animation-delay: 4.0s; }
+#locIntroSound	{ animation-delay: 4.0s; }
+#playButton		{ animation-delay: 4.0s; }
+
+.introBoxRefresh
+{
+	opacity: 0;
+	animation: animFadeIn 1s ease-out forwards;
 }
