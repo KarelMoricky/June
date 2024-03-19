@@ -219,7 +219,7 @@ var Outro = new function()
             //--- Close
             Camera.EnableManualInput(true);
             Camera.SetCamera(0, 0, OUTRO_ZOOM_VALUE, 0);
-            Camera.SetCamera(0, 0, CREDITS_ZOOM_VALUE, 0.5);
+            Camera.SetCamera(0, -75, CREDITS_ZOOM_VALUE, 0.5); //--- Offset down to show the constellation
             
             m_Tiles.classList.remove("animTilesOut");
             m_Tiles.classList.add("animTilesIn");

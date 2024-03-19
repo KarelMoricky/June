@@ -27,17 +27,17 @@
         <!-- Stars -->
         <g id="constStars">
             <!-- Alpha -->
-            <circle id="constStar_alf" cx="74" cy="-60" r="6px" />
+            <circle id="constStar_alf" cx="74" cy="-60" r="5px" />
             <!-- Epsilon -->
-            <circle id="constStar_eps" cx="2" cy="-98" r="4px" />
+            <circle id="constStar_eps" cx="2" cy="-98" r="3px" />
             <!-- Zeta -->
-            <circle id="constStar_zet" cx="0" cy="0" r="4px" />
+            <circle id="constStar_zet" cx="0" cy="0" r="3px" />
             <!-- Beta -->
-            <circle id="constStar_bet" cx="-49" cy="203" r="4px" />
+            <circle id="constStar_bet" cx="-49" cy="203" r="3px" />
             <!-- Delta -->
-            <circle id="constStar_del" cx="-92" cy="33" r="4px" />
+            <circle id="constStar_del" cx="-92" cy="33" r="3px" />
             <!-- Gamma -->
-            <circle id="constStar_gam" cx="-138" cy="233" r="4px" />
+            <circle id="constStar_gam" cx="-138" cy="233" r="3px" />
         </g>
 
         <!-- Highlighted Stars -->
