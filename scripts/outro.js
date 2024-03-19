@@ -3,8 +3,8 @@ var Outro = new function()
     const INERTIA_DEFAULT = 0.02;
     
     const OUTRO_MOVE_DELAY = 0.25; //--- How long before camera animation starts
-    const OUTRO_ZOOM_VALUE = 3.5; //--- Camera zoom in outro
-    const CREDITS_ZOOM_VALUE = 0.5; //--- Camera zoom at the end of the game
+    const OUTRO_ZOOM_VALUE = 4.5; //--- Camera zoom in outro
+    const CREDITS_ZOOM_VALUE = 0.66; //--- Camera zoom at the end of the game
 
     let m_CanClose = false;
     let m_Tiles = null;

@@ -1,6 +1,7 @@
 var Note = new function()
 {
-    const NOTE_ZOOM_VALUE = 0.5; //--- Camera zoom factor
+    const NOTE_ZOOM = 0.66;          //--- Note zoom
+    const NOTE_OFFSET_Y = -60; //--- Vertical camera offset in zommed-in view
 
     const m_Note = document.getElementById("note");
     var m_InDetail = false;
@@ -40,7 +41,7 @@ var Note = new function()
                     let posX = tile.getAttribute(VAR_TARGET_X);
                     let posY = tile.getAttribute(VAR_TARGET_Y);
 
-                    Camera.SetCamera(posX, parseInt(posY) - 20, NOTE_ZOOM_VALUE, 1.5 - currentTime);
+                    Camera.SetCamera(posX, parseInt(posY) + NOTE_OFFSET_Y, NOTE_ZOOM, 1.5 - currentTime);
                 }
             },
             {
@@ -101,7 +102,7 @@ var Note = new function()
         else
         {
             Camera.EnableManualInput(true);
-            Camera.SetCamera(-1, -1, 1, 0.5);
+            Camera.SetCamera(-1, -1, DEFAULT_ZOOM, 0.5);
             Tile.RevealNextTile();
 
             PlayAudio("audioNoteEnd");

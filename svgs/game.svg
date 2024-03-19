@@ -3,7 +3,7 @@
   class="gameStateDefault"
   x="0"
   y="0"
-  viewBox="-1920 -1160 3840 1080" 
+  viewBox="-1920 -900 3840 810" 
   preserveAspectRatio="xMidYMid slice"
   xmlns="http://www.w3.org/2000/svg"
   xmlns:xlink="http://www.w3.org/1999/xlink" >
@@ -38,15 +38,15 @@
   <g id="tutorial" class="hidden">
 
     <!-- Drag view -->
-    <circle id="tutorialViewTouch" class="ignoreCursor" cx="0" cy="-800" />
-    <svg id="tutorialView" x="-300" y="-950" width="600" height="200">
+    <circle id="tutorialViewTouch" class="ignoreCursor" cx="0" cy="-600" />
+    <svg id="tutorialView" x="-300" y="-750" width="600" height="200">
       <text text-anchor="middle" class="animTutorialViewx">
         <tspan x="50%" dy="3.2em" id="locTutorialView">Drag the view down</tspan>
       </text>
     </svg>
 
     <!-- Move tile -->
-    <svg id="tutorialTile" x="-440" y="-60" width="600" height="200">
+    <svg id="tutorialTile" x="-400" y="-60" width="600" height="200">
       <text text-anchor="middle">
         <tspan x="50%" dy="1.2em" id="locTutorialTile1">Grab the tile</tspan>
         <tspan x="50%" dy="1.2em" id="locTutorialTile2">to its place</tspan>
@@ -55,7 +55,7 @@
   </g>
 
   <!-- Outro heart indicator -->
-  <g id="heartHint" class="animHeartHintIn hidden ignoreCursor" x="0" y="590">
+  <g id="heartHint" class="animHeartHintIn hidden ignoreCursor" x="0" y="500">
     <polygon points="2,2 -2,2 -2,0 0,0 0,-2 2,-2" />
     <polygon points="2,2 -2,2 -2,0 0,0 0,-2 2,-2" class="animHeartHintPulse" />
   </g>
@@ -63,7 +63,7 @@
   <!-- Tiles -->
   <svg id="tiles">
     <g id="tileComposition">
-      <svg id="tile01" tileId="1" class="tile" width="256" height="256">
+      <svg id="tile01" tileId="1" class="tile" width="256" height="256" x="121.24" y="70">
         <g id="tileContent" transform="translate(-128,-152)">
           <image id="tilePicture" href="../images/tile01.png" />
           <text id="tileNumber" x="50%" y="50%">1</text>

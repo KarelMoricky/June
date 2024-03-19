@@ -6,8 +6,8 @@ var Camera = new function()
 
     const LIMIT_W_MAX = 1920 * 0.5;
 
-    var m_Current = {x: 0, y: 0, zoom: 1};
-    var m_Target = {x: 0, y: 0, zoom: 1};
+    var m_Current = {x: 0, y: 0, zoom: DEFAULT_ZOOM};
+    var m_Target = {x: 0, y: 0, zoom: DEFAULT_ZOOM};
 
     var m_Velocity = {x: 0, y: 0};
     var m_ClickPos = {x: 0, y: 0};
@@ -214,7 +214,7 @@ var Camera = new function()
         
         Game.GetSVG().addEventListener("keydown", (ev) => {
             if (ev.key == "Escape" && !m_Anim.playing && m_Target.zoom == 1)
-                Camera.SetCamera(0, 0, 1);
+                Camera.SetCamera(0, 0, DEFAULT_ZOOM);
         });
 
         if (Debug.SkipIntro())
