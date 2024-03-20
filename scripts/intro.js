@@ -71,10 +71,7 @@ var Intro = new function()
                     docElm.msRequestFullscreen();
             }
 
-            let ev = new CustomEvent(EVENT_PAUSE,{detail: {
-                isPaused: false
-            }});
-            window.dispatchEvent(ev);
+            window.dispatchEvent(new Event(EVENT_INTRO));
 
             if (!Debug.SkipIntro())
                 PlayAudio("audioPlay");

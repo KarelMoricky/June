@@ -60,13 +60,8 @@ var Tile = new function()
     {
         RevealNextTile();
     }
-    
-    window.addEventListener(EVENT_GAME_INIT, OnGameInit);
-    window.addEventListener(EVENT_GAME_DRAG_START, OnGameDragStart);
-    window.addEventListener(EVENT_GAME_DRAG, OnGameDrag);
-    window.addEventListener(EVENT_GAME_DRAG_END, OnGameDragEnd);
 
-    function OnGameInit()
+    window.addEventListener(EVENT_GAME_INIT, () =>
     {
         m_TilesElement = Game.GetSVGDoc().getElementById(ID_TILES_ELEMENT);
         m_TileHint = Game.GetSVGDoc().getElementById(ID_TILE_TARGET);
@@ -111,8 +106,6 @@ var Tile = new function()
             SetTilePos(tile, gridX, gridY);
             EvaluateTile(tile, false);
 
-            //if (tile.id == "tile02") //--- #TODO: Don't hardcode
-            //    SetCurrentTile(tile);
             const gridTile = CreateElement("rect", gridLines, [
                 ["id", "grid_" + targetPosition],
                 ["x", targetPosition[0]],
@@ -128,9 +121,6 @@ var Tile = new function()
         }
         m_Tiles.sort((a, b) => parseInt(a.getAttribute("tileId")) - parseInt(b.getAttribute("tileId")));
 
-        let currentTile = Game.GetSVGDoc().getElementById("tile02"); //--- #TODO: Don't hardcode
-        SetCurrentTile(currentTile);
-
         //--- Cheats
         Game.GetSVG().addEventListener("keydown", OnKeyDown);
         Game.GetSVG().getElementById("cheatRevealAll").addEventListener("click", CheatRevealAll);
@@ -139,7 +129,62 @@ var Tile = new function()
 
         SetElementVisible(m_TileHint, true);
         //RevealNextTile();
-    }
+    });
+
+    window.addEventListener(EVENT_INTRO, () =>
+    {
+        let currentTile = Game.GetSVGDoc().getElementById("tile02"); //--- #TODO: Don't hardcode
+        SetCurrentTile(currentTile);
+    });
+
+    window.addEventListener(EVENT_GAME_DRAG_START, (ev) =>
+    {
+        if (!m_SelectedTile)
+            return;
+
+        m_TargetPos = [];
+
+        m_ClickTilePos = [parseInt(m_SelectedTile.getAttribute("x")), parseInt(m_SelectedTile.getAttribute("y"))];
+        SetTileState(m_SelectedTile, TILE_STATE_EDITING);
+
+        m_SelectedTile.querySelector("#tileContent").classList.remove("tileFadeIn");
+
+        PlayAudio("audioTileDragStart");
+        Vibrate(VIBRATION_TILE_DRAG_START);
+    });
+
+    window.addEventListener(EVENT_GAME_DRAG, (ev) =>
+    {
+        if (!m_SelectedTile)
+            return;
+
+        DragTile(ev, TILE_DRAG_SNAP);
+    });
+
+    window.addEventListener(EVENT_GAME_DRAG_END, (ev) =>
+    {
+        if (!m_SelectedTile)
+            return;
+
+        DragTile(ev, true);
+        let tile = m_SelectedTile;
+        m_SelectedTile = null;
+        
+        let isConfirmed = EvaluateTile(tile, true);
+        UpdateTiles();
+
+        if (isConfirmed)
+        {
+            AnimateTile(tile, true);
+
+            Vibrate(VIBRATION_TILE_CONFIRMED);
+        }
+        else
+        {
+            PlayAudio("audioTileDragEnd");
+            Vibrate(VIBRATION_TILE_DRAG_END);
+        }
+    });
 
     function OnKeyDown(ev)
     {
@@ -201,55 +246,6 @@ var Tile = new function()
          }
          
          requestAnimationFrame(OnEachFrame);
-    }
-
-    function OnGameDragStart(ev)
-    {
-        if (!m_SelectedTile)
-            return;
-
-        m_TargetPos = [];
-
-        m_ClickTilePos = [parseInt(m_SelectedTile.getAttribute("x")), parseInt(m_SelectedTile.getAttribute("y"))];
-        SetTileState(m_SelectedTile, TILE_STATE_EDITING);
-
-        m_SelectedTile.querySelector("#tileContent").classList.remove("tileFadeIn");
-
-        PlayAudio("audioTileDragStart");
-        Vibrate(VIBRATION_TILE_DRAG_START);
-    }
-
-    function OnGameDrag(ev)
-    {
-        if (!m_SelectedTile)
-            return;
-
-        DragTile(ev, TILE_DRAG_SNAP);
-    }
-
-    function OnGameDragEnd(ev)
-    {
-        if (!m_SelectedTile)
-            return;
-
-        DragTile(ev, true);
-        let tile = m_SelectedTile;
-        m_SelectedTile = null;
-        
-        let isConfirmed = EvaluateTile(tile, true);
-        UpdateTiles();
-
-        if (isConfirmed)
-        {
-            AnimateTile(tile, true);
-
-            Vibrate(VIBRATION_TILE_CONFIRMED);
-        }
-        else
-        {
-            PlayAudio("audioTileDragEnd");
-            Vibrate(VIBRATION_TILE_DRAG_END);
-        }
     }
 
     function DragTile(ev, snap)

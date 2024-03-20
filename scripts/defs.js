@@ -55,11 +55,12 @@ const GAME_STATE_DISABLED = "gameStateDisabled";
 
 //#region Events
 const EVENT_GAME_INIT = "GameInit";
+const EVENT_GAME_START = "GameStart";
 const EVENT_GAME_DRAG_START = "GameDragStart";
 const EVENT_GAME_DRAG = "GameDrag";
 const EVENT_GAME_DRAG_END = "GameDragEnd";
 const EVENT_TILE_CONFIRMED = "TileConfirmed";
-const EVENT_PAUSE = "Pause";
+const EVENT_INTRO = "Intro";
 const EVENT_OUTRO = "Outro";
 //#endregion
 

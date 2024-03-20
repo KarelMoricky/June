@@ -134,7 +134,7 @@ var Game = new function()
         ev.returnValue = 'Game progress will not be saved. Are you sure you want to leave?';
     });
 
-    window.addEventListener(EVENT_PAUSE, () =>
+    window.addEventListener(EVENT_INTRO, () =>
     {
         SetElementVisible(m_SvgDoc.getElementById("tutorial"), true);
     });
