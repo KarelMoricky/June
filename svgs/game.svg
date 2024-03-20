@@ -244,5 +244,5 @@
   <!-- Debug cursor -->
   <!-- <circle id="cursor" class="ignoreCursor" style="fill: rgb(255,0,0);" cx="1000" cy="1000" r="10px" /> -->
   <circle id="circle" class="ignoreCursor" style="fill: red;" cx="100000" cy="100000" r="15px" />
-  <circle id="cheatRevealAll" class="hiddenx" style="fill: rgba(255, 255, 255, 0);" cx="0" cy="1050" r="30px" />
+  <circle id="cheatRevealAll" class="hiddenx" style="fill: rgba(255, 255, 255, 0);" cx="0" cy="850" r="30px" />
 </svg>
