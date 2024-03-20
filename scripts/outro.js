@@ -77,6 +77,7 @@ var Outro = new function()
                 SetElementVisible(Game.GetSVGDoc().getElementById("heartHighlight1"), true);
                 SetElementVisible(Game.GetSVGDoc().getElementById("heartHighlight2"), true);
                 SetElementVisible(Game.GetSVGDoc().getElementById("heartHighlight3"), true);
+                Game.GetSVGDoc().getElementById("heartPolygon").classList.add("animHeartBeat");
             }
         },
         {

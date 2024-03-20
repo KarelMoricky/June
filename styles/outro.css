@@ -148,6 +148,11 @@
 	animation: animFadeOut 0.7s ease-out forwards;
 }
 
+#heartPolygon
+{
+	transform: scale(1.86) translate(-256px,-113px);
+}
+
 .animHeartBeat
 {
 	animation: animHeartBeat 1s infinite ease;

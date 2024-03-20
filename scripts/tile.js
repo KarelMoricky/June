@@ -210,9 +210,9 @@ var Tile = new function()
             //--- [~] Skip to the last tile
             CheatRevealAll(true);
         }
-        else if (ev.key == "E")
+        else if (ev.key == "F")
         {
-            //--- [E] Skip to outro
+            //--- [F] Skip to outro
             CheatRevealAll(false);
         }
         else if (ev.key == "X")
