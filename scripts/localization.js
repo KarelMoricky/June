@@ -57,7 +57,7 @@ var Localization = new function()
         {
             id: "locTutorialTile1",
             "en": "Bring the baby",
-            "cs": "Přetáhněte miminko",
+            "cs": "Přitáhněte miminko",
             "ru": ""
         },
         {
@@ -71,7 +71,7 @@ var Localization = new function()
         //#region Notes
         {
             id: "note_tile02",
-            "en": "Placeholder: Hello little one, we are your family. There are so many things we'll do together!",
+            "en": "Placeholder: MMMMMMMMMMMMMM<br />MMMMMMMMMMMMMM<br />MMMMMMMMMMMMMM<br />MMMMMMMMMMMMMM",
             "cs": "",
             "ru": ""
         },
