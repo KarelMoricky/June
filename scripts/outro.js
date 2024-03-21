@@ -221,6 +221,19 @@ var Outro = new function()
             Camera.EnableManualInput(true);
             Camera.SetCamera(0, 0, OUTRO_ZOOM_VALUE, 0);
             Camera.SetCamera(0, -75, CREDITS_ZOOM_VALUE, 0.5); //--- Offset down to show the constellation
+
+            //--- Exit full screen after camera animation ends
+            setTimeout(() =>
+            {
+                if (document.exitFullscreen)
+                    document.exitFullscreen();
+                else if (document.webkitExitFullscreen)
+                    document.webkitExitFullscreen();
+                else if (document.mozCancelFullScreen)
+                    document.mozCancelFullScreen();
+                else if (document.msExitFullscreen)
+                    document.msExitFullscreen();
+            }, 500);
             
             m_Tiles.classList.remove("animTilesOut");
             m_Tiles.classList.add("animTilesIn");
