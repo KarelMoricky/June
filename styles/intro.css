@@ -186,8 +186,8 @@
 
 #locIntroTitle1, #locIntroTitle2, #locIntroTitle3, #locIntroTitle4, #play, #noScript, #gameObject
 {
-	xopacity: 0;
-	xanimation: animFadeIn 2s ease-out forwards;
+	opacity: 0;
+	animation: animFadeIn 2s ease-out forwards;
 }
 
 #locIntroTitle1	 { animation-delay: 1.0s; }
