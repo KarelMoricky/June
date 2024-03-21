@@ -27,27 +27,15 @@ var Localization = new function()
             "ru": "был рождён XX июня 2024 года"
         },
         {
-            id: "locIntroGame",
-            "en": "To find out her name, please play<br />a little game we designed for her.",
-            "cs": "Chete-li se dozvědět její jméno,<br />zahrajte si prosím krátkou hru,<br />kterou jsme pro ni připravili",
-            "ru": ""
-        },
-        {
-            id: "locIntroSound",
-            "en": "(with the sound on)",
-            "cs": "(hrajte se zapnutým zvukem)",
-            "ru": ""
-        },
-        {
-            id: "loadingText",
-            "en": "LOADING",
-            "cs": "NAČÍTÁM",
-            "ru": ""
-        },
-        {
             id: "playText",
             "en": "PLAY",
             "cs": "HRAJTE",
+            "ru": ""
+        },
+        {
+            id: "playDescription",
+            "en": "(with sound) to find out her name",
+            "cs": "(se zvukem) a zjistěte její jméno",
             "ru": ""
         },
         //#endregion

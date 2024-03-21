@@ -53,10 +53,10 @@
 	text-align: center;
 }
 
-#introBox p
+.introBoxRefresh
 {
-	margin: 0.2em;
-	font-size: min(2vh, 100%);
+	opacity: 0;
+	animation: animFadeIn 1s ease-out forwards;
 }
 
 #introBox h1
@@ -77,28 +77,22 @@
 	margin-bottom: 5vh;
 }
 
-#play p
-{
-	opacity: 0.5;
-}
-
 #introBox button
 {
 	margin-top: 2vh;
 	margin-bottom: auto;
 	padding: 0;
-	width: min(200px, 40vh, 90%);
-	height: min(70px, 11vh);
-	font-family: Nunito, sans-serif;
-	font-size: min(200%, 5vh);
-	font-weight: bold;
-	border-radius: min(20px, 3vh);
+	width: 34vh;
+	height: 9vh;
+	font-family: "Roboto Slab", serif;
+	font-size: 3.5vh;
+	border-radius: 3vh;
 	border: none;
-	background-color: rgba(255, 255, 255, 0.2);
+	background-color: rgba(255, 255, 255, 0.3);
 }
 #introBox button:disabled
 {
-	color: var(--color-dark);
+	color: rgba(255, 255, 255, 0.3);
 }
 #introBox button:enabled
 {
@@ -133,32 +127,37 @@
 	border: 2px dashed black;
 }
 
+#playText
+{
+	margin: 0;
+	text-align: center;
+	font-weight: bold;
+}
+
+#playDescription
+{
+	margin: 0;
+	font-size: 1.8vh;
+}
+
 #loading
 {
 	position: relative;
-}
-
-#loadingText, #playText
-{
-	font-family: "Roboto Slab", serif;
-	text-align: center;
-	/* color: var(--color-dark); */
 }
 
 /* https://www.w3schools.com/howto/howto_css_loader.asp */
 #loadingSpinner
 {
 	position: absolute;
-	left: min(75px, 16vh);
-	top: max(-6px, -1vh);
-	border: min(70px, 1vh) solid rgba(225, 225, 225, 0.3);
-	border-top: min(70px, 1vh) solid white;
-	border-right: min(70px, 1vh) solid white;
+	left: -4.5vh;
+	top: 0.3vh;
+	border: 1vh solid rgba(255, 255, 255, 0.3);
+	border-top: 1vh solid white;
+	border-right: 1vh solid white;
 	border-radius: 50%;
-	width: min(40px, 7vh);
-	height: min(40px, 7vh);
+	width: 2vh;
+	height: 2vh;
 	animation: loadingSpin 2s linear infinite;
-	z-index: -1;
 }
 @keyframes loadingSpin
 {
@@ -166,7 +165,7 @@
 	100% { transform: rotate(360deg); }
 }
 
-#locIntroTitle1, #locIntroTitle2, #locIntroTitle3, #locIntroTitle4, #locIntroGame, #locIntroSound, #play, #noScript, #gameObject
+#locIntroTitle1, #locIntroTitle2, #locIntroTitle3, #locIntroTitle4, #play, #noScript, #gameObject
 {
 	opacity: 0;
 	animation: animFadeIn 2s ease-out forwards;
@@ -176,13 +175,5 @@
 #locIntroTitle2	 { animation-delay: 2.0s; }
 #locIntroTitle3	 { animation-delay: 3.0s; }
 #locIntroTitle4	 { animation-delay: 3.0s; }
-#gameObject	 	 { animation-delay: 3.0s; }
-#locIntroGame	 { animation-delay: 5.0s; }
-#locIntroSound	 { animation-delay: 5.0s; }
-#play, #noScript { animation-delay: 5.0s; }
-
-.introBoxRefresh
-{
-	opacity: 0;
-	animation: animFadeIn 1s ease-out forwards;
-}
+#play, #noScript { animation-delay: 4.0s; }
+#gameObject	 	 { animation-delay: 4.0s; }

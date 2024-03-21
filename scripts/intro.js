@@ -18,16 +18,14 @@ var Intro = new function()
     SetElementVisible(document.getElementById(ID_LOADING), true);
     SetElementVisible(document.getElementById("play"), true);
 
-    window.addEventListener("load", OnLoadIntroBox);
-    function OnLoadIntroBox()
+    window.addEventListener("load", () =>
     {
         m_ButtonPlay.addEventListener("click", OnButtonPlay);
 
         if (Debug.IsManualLoad())
         {
             //--- Init manual hiding
-            let loading = document.getElementById(ID_LOADING);
-            loading.addEventListener("click", OnLoadFinished);
+            document.getElementById("play").addEventListener("click", OnLoadFinished);
         }
         else
         {
@@ -76,5 +74,5 @@ var Intro = new function()
             if (!Debug.SkipIntro())
                 PlayAudio("audioPlay");
         }
-    }
+    });
 }
