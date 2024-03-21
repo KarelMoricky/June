@@ -46,7 +46,6 @@ var Localization = new function()
             "en": "Drag the view down",
             "cs": "Přetáhněte pohled dolů",
             "ru": "",
-            "nl": ""
         },
         {
             id: "locTutorialTile1",
@@ -137,7 +136,21 @@ var Localization = new function()
             "en": "Placeholder: We can't wait to explore the world with you. You are our...",
             "cs": "",
             "ru": "",
-            "nl": ""
+        },
+        //#endregion
+
+        //#region Credits
+        {
+            id: "thanks",
+            "en": "Thank you for playing!",
+            "cs": "Děkujeme za pozornost!",
+            "ru": "Спасибо за внимание!",
+        },
+        {
+            id: "credits",
+            "en": "Game by <a href=\"https://www.instagram.com/dododollydo/\">Mom</a> and <a href=\"http://moricky.com\">Dad</a>, art by <a href=\"https://www.behance.net/mikovecjir5bc4\">Jirka</a>, audio by <a href=\"#\">TBD</a>, testing by <a href=\"https://twitter.com/YorisYan\">Joris</a>, <a href=\"https://www.instagram.com/katacik/\">Katka</a>, and <a href=\"https://twitter.com/maruksp\">Marek</a>",
+            "cs": "Hra od <a href=\"https://www.instagram.com/dododollydo/\">maminky</a> a <a href=\"http://moricky.com\">tatínka</a>, grafika od <a href=\"https://www.behance.net/mikovecjir5bc4\">Jirky</a>, zvuky od <a href=\"#\">TBD</a>, testovali <a href=\"https://twitter.com/YorisYan\">Joris</a>, <a href=\"https://www.instagram.com/katacik/\">Katka</a>, a <a href=\"https://twitter.com/maruksp\">Marek</a>",
+            "ru": "",
         },
         //#endregion
 
