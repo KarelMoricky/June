@@ -45,7 +45,7 @@
 {
 	position: absolute;
 	left: 50%;
-	top: 40vh;
+	top: 38vh;
 	transform: translate(-50%, -50%);
 	width: 95%;
 	font-family: "Roboto Slab", serif;
@@ -79,7 +79,7 @@
 
 #introBox button
 {
-	margin-top: 2vh;
+	margin-top: 4vh;
 	margin-bottom: auto;
 	padding: 0;
 	width: 34vh;
@@ -172,8 +172,8 @@
 }
 
 #locIntroTitle1	 { animation-delay: 1.0s; }
-#locIntroTitle2	 { animation-delay: 2.0s; }
-#locIntroTitle3	 { animation-delay: 3.0s; }
-#locIntroTitle4	 { animation-delay: 3.0s; }
-#play, #noScript { animation-delay: 4.0s; }
-#gameObject	 	 { animation-delay: 4.0s; }
+#locIntroTitle2	 { animation-delay: 2.5s; }
+#locIntroTitle3	 { animation-delay: 4.0s; }
+#locIntroTitle4	 { animation-delay: 4.0s; }
+#play, #noScript { animation-delay: 5.5s; }
+#gameObject	 	 { animation-delay: 5.5s; }

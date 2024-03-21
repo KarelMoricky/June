@@ -123,7 +123,7 @@ var Game = new function()
         m_DefaultViewBox = Game.GetCurrentViewBox();
         
         //--- Skip intro animation
-        if (Debug.IsDev())
+        if (Debug.IsDev() && Debug.SkipIntro())
             object.style.animationDelay = "0s";
 
         window.dispatchEvent(new Event(EVENT_GAME_INIT));
