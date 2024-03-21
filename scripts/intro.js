@@ -1,6 +1,6 @@
 var Intro = new function()
 {
-    const ID_LOADING = "loading";
+    const ID_LOADING = "loadingSpinner";
     const ID_INTRO_AREA = "introArea";
     const ID_BUTTON_PLAY = "playButton";
 
@@ -35,6 +35,7 @@ var Intro = new function()
             return;
 
         SetElementVisible(document.getElementById("playText"), true);
+        SetElementVisible(document.getElementById("playFullscreen"), true);
         SetElementVisible(document.getElementById(ID_LOADING), false);
 
         let play = document.getElementById("playButton");
