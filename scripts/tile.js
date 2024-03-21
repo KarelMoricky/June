@@ -37,7 +37,7 @@ var Tile = new function()
         m_SelectedTile = null;
 
         //--- Ignore the first drag, we assume that the player wanted to drag the camera
-        if (!m_First && !Debug.IsDev())
+        if (!m_First && (!Debug.IsDev() || !Debug.SkipIntro()))
         {
             m_First = true;
             return;

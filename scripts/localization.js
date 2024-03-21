@@ -6,7 +6,7 @@ var Localization = new function()
             id: "locIntroTitle1",
             "en": "Vera and Karel's",
             "cs": "Veřina a Karlova",
-            "ru": "Веры и Карела"
+            "ru": " "
         },
         {
             id: "locIntroTitle2",
@@ -16,6 +16,12 @@ var Localization = new function()
         },
         {
             id: "locIntroTitle3",
+            "en": " ",
+            "cs": " ",
+            "ru": "Веры и Карела"
+        },
+        {
+            id: "locIntroTitle4",
             "en": "was born on June XXth 2024",
             "cs": "se narodila XX. června 2024",
             "ru": "был рождён XX июня 2024 года"
@@ -71,7 +77,7 @@ var Localization = new function()
         //#region Notes
         {
             id: "note_tile02",
-            "en": "Placeholder: MMMMMMMMMMMMMM<br />MMMMMMMMMMMMMM<br />MMMMMMMMMMMMMM<br />MMMMMMMMMMMMMM",
+            "en": "MMMMMMMMMMMMMM<br />MMMMMMMMMMMMMM<br />MMMMMMMMMMMMMM<br />MMMMMMMMMMMMMM",
             "cs": "",
             "ru": ""
         },

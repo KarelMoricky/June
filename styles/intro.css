@@ -94,10 +94,10 @@
 	font-weight: bold;
 	border-radius: min(20px, 3vh);
 	border: none;
+	background-color: rgba(255, 255, 255, 0.2);
 }
 #introBox button:disabled
 {
-	background-color: rgba(255, 255, 255, 0.3);
 	color: var(--color-dark);
 }
 #introBox button:enabled
@@ -107,7 +107,6 @@
 	color: white;
 	animation: animPulseButton 2s ease infinite;
 	border: 0.4vh solid white;
-	background: none;
 }
 #introBox button:hover:not([disabled])
 {
@@ -167,18 +166,20 @@
 	100% { transform: rotate(360deg); }
 }
 
-#locIntroTitle1, #locIntroTitle2, #locIntroTitle3, #locIntroGame, #locIntroSound, #play
+#locIntroTitle1, #locIntroTitle2, #locIntroTitle3, #locIntroTitle4, #locIntroGame, #locIntroSound, #play, #noScript, #gameObject
 {
 	opacity: 0;
 	animation: animFadeIn 2s ease-out forwards;
 }
 
-#locIntroTitle1	{ animation-delay: 0.5s; }
-#locIntroTitle2	{ animation-delay: 1.5s; }
-#locIntroTitle3	{ animation-delay: 2.5s; }
-#locIntroGame	{ animation-delay: 4.0s; }
-#locIntroSound	{ animation-delay: 4.0s; }
-#play			{ animation-delay: 4.0s; }
+#locIntroTitle1	 { animation-delay: 1.0s; }
+#locIntroTitle2	 { animation-delay: 2.0s; }
+#locIntroTitle3	 { animation-delay: 3.0s; }
+#locIntroTitle4	 { animation-delay: 3.0s; }
+#gameObject	 	 { animation-delay: 3.0s; }
+#locIntroGame	 { animation-delay: 5.0s; }
+#locIntroSound	 { animation-delay: 5.0s; }
+#play, #noScript { animation-delay: 5.0s; }
 
 .introBoxRefresh
 {
