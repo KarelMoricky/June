@@ -1,17 +1,18 @@
 #languageBox
 {
 	position: absolute;
-	left: 50%;
+	left: 0;
 	top: 2em;
-	transform: translate(-50%, -50%);
+	width: 100%;
 
 	font-family: "Roboto Slab", serif;
 	text-wrap: nowrap;
+	text-align: center;
 }
 
 #languageBox button
 {
-	text-decoration: none;
+	display: inline-block;
 	margin-left: 0.2em;
 	margin-right: 0.2em;
 	padding: 0.5em;
@@ -26,6 +27,7 @@
 
 	font-family: "Roboto Slab", serif;
 	font-size: 1.5vh;
+	text-decoration: none;
 }
 #languageBox button:hover, #languageBox button:disabled
 {
