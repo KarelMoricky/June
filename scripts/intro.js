@@ -5,6 +5,7 @@ var Intro = new function()
     const ID_BUTTON_PLAY = "playButton";
 
     const m_IntroArea = document.getElementById(ID_INTRO_AREA);
+    var m_CanLoad = 0;
 
     this.IsVisible = function()
     {
@@ -18,19 +19,42 @@ var Intro = new function()
     SetElementVisible(document.getElementById(ID_LOADING), true);
     SetElementVisible(document.getElementById("play"), true);
 
+    //--- End the loading only after intro animation (5s long) is finished
+    //--- It's a fake to create an illusion that an elaborate game is being prepared (gam dev tricks 101)
+    if (!Debug.IsManualLoad())
+    {
+        setTimeout(() => {
+            m_CanLoad++
+            Intro.OnLoadFinished();
+        }, 6000);
+    }
+
+    this.OnLoadFinished = function()
+    {
+        if (m_CanLoad < 2)
+            return;
+
+        SetElementVisible(document.getElementById("playText"), true);
+        SetElementVisible(document.getElementById(ID_LOADING), false);
+
+        let play = document.getElementById("playButton");
+        play.disabled = false;
+    }
+
     window.addEventListener("load", () =>
     {
+        m_CanLoad++
         m_ButtonPlay.addEventListener("click", OnButtonPlay);
 
         if (Debug.IsManualLoad())
         {
             //--- Init manual hiding
-            document.getElementById("play").addEventListener("click", OnLoadFinished);
+            document.getElementById("play").addEventListener("click", OnDebugLoadFinished);
         }
         else
         {
             //--- Hide loading
-            OnLoadFinished();
+            Intro.OnLoadFinished();
         }
 
         if (Debug.IsDev())
@@ -40,13 +64,10 @@ var Intro = new function()
                 OnButtonPlay();
         }
 
-        function OnLoadFinished()
+        function OnDebugLoadFinished()
         {
-            SetElementVisible(document.getElementById("playText"), true);
-            SetElementVisible(document.getElementById(ID_LOADING), false);
-
-            let play = document.getElementById("playButton");
-            play.disabled = false;
+            m_CanLoad++
+            Intro.OnLoadFinished();
         }
 
         function OnButtonPlay()

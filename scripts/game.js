@@ -121,6 +121,10 @@ var Game = new function()
 
         //--- Get game dimensions
         m_DefaultViewBox = Game.GetCurrentViewBox();
+        
+        //--- Skip intro animation
+        if (Debug.IsDev())
+            object.style.animationDelay = "0s";
 
         window.dispatchEvent(new Event(EVENT_GAME_INIT));
     });
