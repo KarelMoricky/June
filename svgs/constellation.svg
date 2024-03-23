@@ -43,17 +43,29 @@
         <!-- Highlighted Stars -->
         <g id="constStarHighlights" class="hidden">
             <!-- Alpha -->
-            <image id="constStarHighlight_alf" class="hidden" href="../svgs/constellationStar.svg" x="74" y="-60" width="44" height="50" />
+            <g style="transform: translate(74px, -60px) scale(1.7);">
+                <image id="constStarHighlight_alf" class="hidden" href="../svgs/constellationStar.svg" style="transform: translate(-13px,-15px) rotate(86deg);" />
+            </g>
             <!-- Epsilon -->
-            <image id="constStarHighlight_eps" class="hidden" href="../svgs/constellationStar.svg" x="2" y="-98" width="26" height="30" />
+            <g style="transform: translate(2px, -98px);">
+                <image id="constStarHighlight_eps" class="hidden" href="../svgs/constellationStar.svg" style="transform: translate(-13px,-15px) rotate(34deg);" />
+            </g>
             <!-- Zeta -->
-            <image id="constStarHighlight_zet" class="hidden" href="../svgs/constellationStar.svg" x="0" y="0" width="26" height="30" />
+            <g style="transform: translate(0px, 0px);">
+                <image id="constStarHighlight_zet" class="hidden" href="../svgs/constellationStar.svg" style="transform: translate(-13px,-15px) rotate(40deg);" />
+            </g>
             <!-- Beta -->
-            <image id="constStarHighlight_bet" class="hidden" href="../svgs/constellationStar.svg" x="-49" y="203" width="26" height="30" />
+            <g style="transform: translate(-49px, 203px);">
+                <image id="constStarHighlight_bet" class="hidden" href="../svgs/constellationStar.svg" style="transform: translate(-13px,-15px) rotate(56deg);" />
+            </g>
             <!-- Delta -->
-            <image id="constStarHighlight_del" class="hidden" href="../svgs/constellationStar.svg" x="-92" y="33" width="26" height="30" />
+            <g style="transform: translate(-92px, 33px);">
+                <image id="constStarHighlight_del" class="hidden" href="../svgs/constellationStar.svg" style="transform: translate(-13px,-15px) rotate(81deg);" />
+            </g>
             <!-- Gamma -->
-            <image id="constStarHighlight_gam" class="hidden" href="../svgs/constellationStar.svg" x="-138" y="233" width="26" height="30" />
+            <g style="transform: translate(-138px, 233px);">
+                <image id="constStarHighlight_gam" class="hidden" href="../svgs/constellationStar.svg" style="transform: translate(-13px,-15px) rotate(90deg);" />
+            </g>
         </g>
     </g>
 </svg>

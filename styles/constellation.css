@@ -12,11 +12,13 @@
 
 #constStarHighlights image
 {
+    width: 26px;
+    height: 30px;
+    transform-origin: 13px 15px;
     opacity: 0; 
-    transform: translate(-13px, -15px);
 	animation: animFadeIn 1s ease forwards;
 }
-#constStarHighlight_alf { animation-delay: 0.0s !important; transform: translate(-22px, -25px) !important; }
+#constStarHighlight_alf { animation-delay: 0.0s !important; }
 #constStarHighlight_eps { animation-delay: 0.2s !important; }
 #constStarHighlight_zet { animation-delay: 0.4s !important; }
 #constStarHighlight_bet { animation-delay: 0.6s !important; }

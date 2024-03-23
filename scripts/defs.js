@@ -7,8 +7,8 @@ const FORCED_START = [];        //--- When defined, all new tiles will start on 
 const TILE_DRAG_SNAP = 2;       //--- 0: No snap, 1: Always snap, 2: Snap only adjacent
 const DEFAULT_ZOOM = 1;         //--- Default view box zoom
 
-const SKIP_NOTE_ANIM = true;    //--- When true, note reveal animation will be instant
-const SKIP_OUTRO_ANIM = true;   //--- When true, initial otro animation (zoom out) will be instant
+const SKIP_NOTE_ANIM = 1;       //--- When true, note reveal animation will be instant
+const SKIP_OUTRO_ANIM = 1;      //--- When true, initial otro animation (zoom out) will be instant
 
 const DEFAULT_LANGUAGE = "en";  //--- Default localization language
 //#endregion
