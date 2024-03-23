@@ -35,7 +35,7 @@ var Intro = new function()
             return;
 
         SetElementVisible(document.getElementById("playText"), true);
-        SetElementVisible(document.getElementById("playFullscreen"), true);
+        //SetElementVisible(document.getElementById("playFullscreen"), true);
         SetElementVisible(document.getElementById(ID_LOADING), false);
 
         let play = document.getElementById("playButton");
