@@ -68,7 +68,6 @@ var Tile = new function()
         m_TileHint = Game.GetSVGDoc().getElementById(ID_TILE_TARGET);
 
         const gridLines = Game.GetSVGDoc().getElementById("gridLines");
-        gridLines.setAttribute("transform", ISO_MATRIX);
 
         let i = 0;
         for (let tileID of TARGET_POSITIONS.keys())
@@ -107,12 +106,16 @@ var Tile = new function()
             SetTilePos(tile, gridX, gridY);
             EvaluateTile(tile, false);
 
-            const gridTile = CreateElement("rect", gridLines, [
+            //--- Create grid tile
+            const points = GetGridPos(targetPosition, 0, 0)
+                         + GetGridPos(targetPosition, 1, 0)
+                         + GetGridPos(targetPosition, 1, 1)
+                         + GetGridPos(targetPosition, 0, 1)
+                         + GetGridPos(targetPosition, 0, 0);
+            
+            const gridTile = CreateElement("polyline", gridLines, [
                 ["id", "grid_" + targetPosition],
-                ["x", targetPosition[0]],
-                ["y", targetPosition[1]],
-                ["width", 1],
-                ["height", 1],
+                ["points", points],
                 ["class", "hidden gridTile"]
             ], true);
     
@@ -131,6 +134,13 @@ var Tile = new function()
         SetElementVisible(m_TileHint, true);
         //RevealNextTile();
     });
+
+    function GetGridPos(pos, offsetX, offsetY)
+    {
+        //--- 0.94 makes it match the image size, and prevents flickering on mobile when changing zoom
+        const transform = new DOMPointReadOnly(pos[0] + offsetX * 0.94, pos[1] + offsetY * 0.94).matrixTransform(ISO_MATRIX);
+        return (pos[0] + transform.x) + "," + (pos[1] + transform.y) + " ";
+    }
 
     window.addEventListener(EVENT_INTRO, () =>
     {
@@ -489,19 +499,24 @@ var Tile = new function()
         {
             for (let y = m_CoordRange.minY; y <= m_CoordRange.maxY; y++)
             {
+                var showTile = false;
                 for (let i = 0; i < m_OccupiedCoords.length; i++)
                 {
-                    const disX = Math.abs(x - m_OccupiedCoords[i][0]);
-                    const disY = Math.abs(y - m_OccupiedCoords[i][1]);
-                    if (disX + disY < 2)
+                    if (x == m_OccupiedCoords[i][0] && y == m_OccupiedCoords[i][1])
                     {
-                        const gridTile = Game.GetSVGDoc().getElementById("grid_" + [x, y]);
-                        if (gridTile)
-                            SetElementVisible(gridTile, true);
-
+                        //--- Tile already occupied, don't show its grid
+                        showTile = false;
                         break;
                     }
+
+                    const disX = Math.abs(x - m_OccupiedCoords[i][0]);
+                    const disY = Math.abs(y - m_OccupiedCoords[i][1]);
+                    showTile |= disX + disY < 2;
                 }
+
+                const gridTile = Game.GetSVGDoc().getElementById("grid_" + [x, y]);
+                if (gridTile)
+                    SetElementVisible(gridTile, showTile);
             }
         }
     }
