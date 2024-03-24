@@ -13,6 +13,8 @@ var Tile = new function()
     const TILE_STATE_EDITING = "tileStateEditing";
     const TILE_STATE_CONFIRMED = "tileStateConfirmed";
 
+    const FIRST_TILE = "tile02";
+
     var m_CurrentTile = null;
     var m_SelectedTile = null;
     var m_Tiles = [];
@@ -144,7 +146,7 @@ var Tile = new function()
 
     window.addEventListener(EVENT_INTRO, () =>
     {
-        let currentTile = Game.GetSVGDoc().getElementById("tile02"); //--- #TODO: Don't hardcode
+        let currentTile = Game.GetSVGDoc().getElementById(FIRST_TILE);
         SetCurrentTile(currentTile);
     });
 
