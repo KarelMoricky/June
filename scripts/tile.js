@@ -26,6 +26,7 @@ var Tile = new function()
     var m_TileHint = null;
     var m_Snapped = false;
     var m_First = false;
+    var m_Sort = "";
 
     this.GetSelected = function()
     {
@@ -351,9 +352,22 @@ var Tile = new function()
     
     function UpdateTiles()
     {
-        //m_TilesZSorted.sort((a, b) => parseInt(a.getAttribute(VAR_TARGET_Y)) - parseInt(b.getAttribute(VAR_TARGET_Y)));
+        //--- Sort by Y coordinate
         m_TilesZSorted.sort((a, b) => parseInt(a.getAttribute("y")) - parseInt(b.getAttribute("y")));
+
+        //--- Check for change
+        const prevSort = m_Sort;
+        m_Sort = "";
+        for (let i = 0; i < m_TilesZSorted.length; i++)
+        {
+            m_Sort += m_TilesZSorted[i].getAttribute("tileId");
+        }
+
+        //--- No change, ignore
+        if (m_Sort == prevSort)
+            return;
     
+        //--- Re-add in the sorted order
         for (let i = 0; i < m_TilesZSorted.length; i++)
         {
             m_TilesElement.appendChild(m_TilesZSorted[i]);

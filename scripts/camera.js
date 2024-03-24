@@ -184,9 +184,15 @@ var Camera = new function()
         {
             //--- Dragging
             let progress = timeSlice * m_InertiaStrength;
-            m_Current.x = Lerp(m_Current.x, m_Target.x, progress);
-            m_Current.y = Lerp(m_Current.y, m_Target.y, progress);
-            m_Current.zoom = Lerp(m_Current.zoom, m_Target.zoom, progress);
+
+            if (Math.abs(m_Current.x - m_Target.x) > 1)
+                m_Current.x = Lerp(m_Current.x, m_Target.x, progress);
+
+            if (Math.abs(m_Current.y - m_Target.y) > 1)
+                m_Current.y = Lerp(m_Current.y, m_Target.y, progress);
+
+            if (Math.abs(m_Current.zoom - m_Target.zoom) > 0.01)
+                m_Current.zoom = Lerp(m_Current.zoom, m_Target.zoom, progress);
         }
 
         Apply();
