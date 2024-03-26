@@ -369,11 +369,10 @@
 	padding-bottom: 2vh;
 	width: 90%;
 	margin-left: 5%;
-	font-family: "Tahoma", sans-serif;
-	font-size: 1.8vh;
+	font-family: "Roboto Slab", serif;
+	font-size: 2vh;
 	color: var(--color-highlight);
 	opacity: 0.8;
-	letter-spacing: 0.1vh;
 }
 #credits a
 {
