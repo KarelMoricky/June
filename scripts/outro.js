@@ -225,14 +225,8 @@ var Outro = new function()
             //--- Exit full screen after camera animation ends
             setTimeout(() =>
             {
-                if (document.exitFullscreen)
+                if (document.fullscreenElement)
                     document.exitFullscreen();
-                else if (document.webkitExitFullscreen)
-                    document.webkitExitFullscreen();
-                else if (document.mozCancelFullScreen)
-                    document.mozCancelFullScreen();
-                else if (document.msExitFullscreen)
-                    document.msExitFullscreen();
             }, 500);
             
             m_Tiles.classList.remove("animTilesOut");
