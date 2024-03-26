@@ -101,10 +101,10 @@ var Note = new function()
         }
         else
         {
+            const tile = Tile.RevealNextTile();
+            Camera.SetCamera(tile.getAttribute("x"), tile.getAttribute("y"), DEFAULT_ZOOM, 1.5);
             Camera.EnableManualInput(true);
-            Camera.SetCamera(-1, -1, DEFAULT_ZOOM, 0.5);
-            Tile.RevealNextTile();
-
+            
             PlayAudio("audioNoteEnd");
         }
     }

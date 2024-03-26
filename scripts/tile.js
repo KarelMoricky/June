@@ -61,7 +61,7 @@ var Tile = new function()
 
     this.RevealNextTile = function()
     {
-        RevealNextTile();
+        return RevealNextTile();
     }
 
     window.addEventListener(EVENT_GAME_INIT, () =>
@@ -532,9 +532,10 @@ var Tile = new function()
             if (!IsElementVisible(m_Tiles[i]))
             {
                 SetCurrentTile(m_Tiles[i]);
-                break;
+                return m_Tiles[i];
             }
         }
+        return null;
     }
 
     function CheatRevealAll(leaveLast = false)
