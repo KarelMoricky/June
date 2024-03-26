@@ -2,7 +2,7 @@ var Debug = new function()
 {
     var m_IsOffline = window.location.href.startsWith("http://127.0.0.1");
     var m_IsDev = DEV_MODE == 2 || (DEV_MODE == 1 && m_IsOffline);
-    var m_SkipIntro = DEV_SKIP_INTRO && m_IsOffline;
+    var m_SkipIntro = DEV_SKIP_INTRO && m_IsDev;
     var m_IsManualLoad = DEV_MANUAL_LOAD && m_IsDev;
 
     this.IsOffline = function()

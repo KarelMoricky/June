@@ -105,22 +105,33 @@ function ProcessAudio(audio, timeline, step = 10)
             console.warn(`ProcessAudio: Event has time ${timeline[i].time} s, but audio duration is only ${audio.duration} s!`);
     }
 
+    var backupTime = 0;
     function Tick()
     {
+        var currentTime = audio.currentTime;
+        if (backupTime != 0)
+            currentTime = backupTime;
+
         //--- Process entries
         for (let i = indexes.length - 1; i >= 0; i--)
         {
             const entry = timeline[indexes[i]];
-            if (audio.currentTime > entry.time)
+            if (currentTime > entry.time)
             {
-                entry.function(audio.currentTime);
+                entry.function(currentTime);
                 indexes.splice(i, 1);
             }
         }
 
-        //--- Stop when the sound stops or when there are no more entries to process
-        if (!audio.paused && indexes.length > 0)
+        //--- Continue only when audio is still playing and there are animation steps remaining (or on the first frame, as audio is sometimes paused on iOS)
+        if ((currentTime < audio.duration && indexes.length > 0) || currentTime == 0)
+        {
             setTimeout(Tick, step);
+
+            //--- Audio loaded, but failed to play - inititate backup time tracking
+            if (audio.paused && audio.readyState == 4)
+                backupTime += step / 1000;
+        }
     }
     Tick();
 }
