@@ -25,11 +25,18 @@
 	backdrop-filter: blur(10px);
 }
 
-.animatedText
+.animatedWord
 {
 	display: inline-block;
 	opacity: 0;
 	animation: animFadeIn 0.5s ease-out forwards;
+}
+
+.animatedLine
+{
+	margin: 0;
+	opacity: 0;
+	animation: animFadeIn 2s ease-out forwards;
 }
 
 .animNoteIn, .animNoteOut

@@ -52,7 +52,7 @@ function Vibrate(pattern)
         window.navigator.vibrate(pattern);
 }
 
-function AnimateWords(element, duration = 3, className = "animatedText")
+function AnimateWords(element, duration = 3, className = "animatedWord")
 {
     const segments = element.innerHTML.split(" ");
     element.innerHTML = "";
@@ -74,6 +74,34 @@ function AnimateWords(element, duration = 3, className = "animatedText")
                 ["style", `animation-delay: ${interval * i}s; animation-duration: ${interval}`]
             ]);
             segment.innerHTML = segments[i] + "&nbsp;";
+            result.push(segment);
+        }
+    }
+    return result;
+}
+
+function AnimateLines(element, duration = 3, className = "animatedLine")
+{
+    const segments = element.innerHTML.split("<br>");
+    element.innerHTML = "";
+
+    let interval = duration / segments.length;
+
+    let result = [];
+    let segment = null;
+    for (let i = 0; i < segments.length; i++)
+    {
+        if (segments[i] == "<br>")
+        {
+            element.innerHTML += "<br />";
+        }
+        else
+        {
+            segment = CreateElement("p", element, [
+                ["class", className],
+                ["style", `animation-delay: ${interval * i}s; animation-duration: ${interval}`]
+            ]);
+            segment.innerHTML = segments[i] + "<br />";
             result.push(segment);
         }
     }
