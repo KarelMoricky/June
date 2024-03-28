@@ -64,7 +64,7 @@ var Localization = new function()
         //#region Notes
         {
             id: "note_tile02",
-            "en": "MMMMMMMMMMMMMM<br />MMMMMMMMMMMMMM<br />MMMMMMMMMMMMMM<br />MMMMMMMMMMMMMM",
+            "en": "Hi, Little One, <br/> today is your date! <br /> Let's see what fun <br /> adventures await.",
             "cs": "",
             "ru": ""
         },

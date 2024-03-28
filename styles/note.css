@@ -11,24 +11,18 @@
 
 #note
 {
-	position: absolute;
-	left: -2vh;
-	top: auto;
-	bottom: 0;
 	max-height: 20vh;
-	width: 100%;
+	width: min-content;
+	display: block;
+	margin: 0 auto 0 auto;
+	white-space: nowrap;
 
 	color: white;
 	font-family: "Caveat", serif;
 	font-size: 4vh;
-	padding: 2vh;
 
 	background-color: rgba(10, 22, 48, 0.75);
 	backdrop-filter: blur(10px);
-	/* border: 1px solid var(--color-highlight); */
-	/* border-radius: 3vh; */
-
-	/* filter: drop-shadow(0 0 30px var(--color-highlight)); */
 }
 
 .animatedText

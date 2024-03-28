@@ -63,12 +63,19 @@ function AnimateWords(element, duration = 3, className = "animatedText")
     let segment = null;
     for (let i = 0; i < segments.length; i++)
     {
-        segment = CreateElement("span", element, [
-            ["class", className],
-            ["style", `animation-delay: ${interval * i}s; animation-duration: ${interval}`]
-        ]);
-        segment.innerHTML = segments[i] + "&nbsp;";
-        result.push(segment);
+        if (segments[i] == "<br>")
+        {
+            element.innerHTML += "<br />";
+        }
+        else
+        {
+            segment = CreateElement("span", element, [
+                ["class", className],
+                ["style", `animation-delay: ${interval * i}s; animation-duration: ${interval}`]
+            ]);
+            segment.innerHTML = segments[i] + "&nbsp;";
+            result.push(segment);
+        }
     }
     return result;
 }
