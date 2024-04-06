@@ -21,6 +21,7 @@ var Camera = new function()
     var m_TimePrev = 0;
     var m_InertiaStrength = INERTIA_DEFAULT;
     var m_IsManualInput = true;
+    var m_IsDragging = false;
     //#region Public functions
     this.SetCamera = function(posX, posY, zoom, duration = -1, delay = 0)
     {
@@ -91,15 +92,6 @@ var Camera = new function()
         //console.log("Apply", m_Current, m_ViewBox, m_ViewBoxDef);
         Game.GetGame().setAttribute("viewBox", `${m_ViewBox.x} ${m_ViewBox.y} ${m_ViewBox.w} ${m_ViewBox.h}`);
     }
-
-    function Click(ev)
-    {
-        m_ClickScreen.x = ev.clientX;
-        m_ClickScreen.y = ev.clientY;
-
-        m_ClickPos.x = m_Current.x;
-        m_ClickPos.y = m_Current.y;
-    }
     //#endregion
 
     //#region Events
@@ -116,12 +108,18 @@ var Camera = new function()
 
         m_InertiaStrength = INERTIA_DRAG;
 
-        Click(ev);
+        m_ClickScreen.x = ev.clientX;
+        m_ClickScreen.y = ev.clientY;
+
+        m_ClickPos.x = m_Current.x;
+        m_ClickPos.y = m_Current.y;
+
+        m_IsDragging = true; //--- Without this, the player could initiate drag even when the camera is animating
     }
 
     function OnGameDrag(ev)
     {
-        if (Tile.GetSelected() || m_Anim.playing || !m_IsManualInput)
+        if (Tile.GetSelected() || m_Anim.playing || !m_IsManualInput || !m_IsDragging)
             return;
 
         let coef = Math.min((m_ViewBox.w / window.innerWidth), (m_ViewBox.h / window.innerHeight)); //--- I have no idea what I'm doing
@@ -151,6 +149,8 @@ var Camera = new function()
         m_Velocity.x = m_Velocity.y = 0;
 
         m_InertiaStrength = INERTIA_DEFAULT;
+
+        m_IsDragging = false;
 
         Game.SetState(GAME_STATE_DEFAULT);
     }

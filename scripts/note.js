@@ -49,13 +49,24 @@ var Note = new function()
                 time: 1.75,
                 function: function()
                 {
+                    //--- Show current line
                     Localization.Localize(m_Note, "note_" + ev.detail.tile.id);
+
                     SetElementVisible(m_Note, true);
                     m_Note.classList.remove("animNoteOut");
                     m_Note.classList.add("animNoteIn");
+                    
+                    const tilePair = ev.detail.tile.getAttribute("tilePair");
+                    let delay = 0;
+                    if (tilePair != null)
+                        delay = 1;
 
                     if (!SKIP_NOTE_ANIM || !Debug.IsDev())
-                        AnimateWords(m_Note);
+                        AnimateLines(m_Note, 3 - delay, delay);
+
+                    //--- Show paired line
+                    if (tilePair != null)
+                        Localization.Localize(m_Note, "note_" + tilePair, true);
                 }
             },
             {
@@ -101,8 +112,12 @@ var Note = new function()
         }
         else
         {
+            let duration = 1.5;
+            if (SKIP_NOTE_ANIM && Debug.IsDev())
+                duration = 1;
+
             const tile = Tile.RevealNextTile();
-            Camera.SetCamera(tile.getAttribute("x"), tile.getAttribute("y"), DEFAULT_ZOOM, 1.5);
+            Camera.SetCamera(tile.getAttribute("x"), tile.getAttribute("y"), DEFAULT_ZOOM, duration);
             Camera.EnableManualInput(true);
             
             PlayAudio("audioNoteEnd");

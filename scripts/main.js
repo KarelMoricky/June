@@ -80,7 +80,7 @@ function AnimateWords(element, duration = 3, className = "animatedWord")
     return result;
 }
 
-function AnimateLines(element, duration = 3, className = "animatedLine")
+function AnimateLines(element, duration = 3, delay = 0, className = "animatedLine")
 {
     const segments = element.innerHTML.split("<br>");
     element.innerHTML = "";
@@ -99,7 +99,7 @@ function AnimateLines(element, duration = 3, className = "animatedLine")
         {
             segment = CreateElement("p", element, [
                 ["class", className],
-                ["style", `animation-delay: ${interval * i}s; animation-duration: ${interval}`]
+                ["style", `animation-delay: ${interval * i + delay}s; animation-duration: ${interval}`]
             ]);
             segment.innerHTML = segments[i] + "<br />";
             result.push(segment);

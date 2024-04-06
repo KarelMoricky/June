@@ -64,67 +64,67 @@ var Localization = new function()
         //#region Notes
         {
             id: "note_tile02",
-            "en": "Hi, Little One, <br/> today is your date! <br /> Let's see what fun <br /> adventures await.",
+            "en": "Hi, Little One, <br/> so small, yet so great! <br /> Let's see what fun <br /> adventures await.",
             "cs": "",
             "ru": ""
         },
         {
             id: "note_tile03",
-            "en": "Placeholder: We'll hike through forests and hills.",
+            "en": "Through forests and hills <br/> we'll hike,",
             "cs": "",
             "ru": ""
         },
         {
             id: "note_tile04",
-            "en": "Placeholder: And build castles by the sea.",
+            "en": "and at the seaside <br/> build splendid sand castles.",
             "cs": "",
             "ru": ""
         },
         {
             id: "note_tile05",
-            "en": "Placeholder: We'll explore the natural world.",
+            "en": "We'll explore this world,",
             "cs": "",
             "ru": ""
         },
         {
             id: "note_tile06",
-            "en": "Placeholder: As well as the digital one.",
+            "en": "and a few other ones.",
             "cs": "",
             "ru": ""
         },
         {
             id: "note_tile07",
-            "en": "Placeholder: We'll travel to the cold North and watch the polar lights.",
+            "en": "We will travel far north, <br/> look up to the skies, <br/> utterly speechless <br/> under polar lights.",
             "cs": "",
             "ru": ""
         },
         {
             id: "note_tile08",
-            "en": "Placeholder: Or stay warm in dunes while flying the kites.",
+            "en": "We'll be flying a kite, <br/> across the dunes. <br/> Under wide summer sky <br/> soaking its blues.",
             "cs": "",
             "ru": ""
         },
         {
             id: "note_tile09",
-            "en": "Placeholder: We'll see towers that look like rockets,",
+            "en": "Placeholder: <br/> We'll see towers <br/> that look like rockets,",
             "cs": "",
             "ru": ""
         },
         {
             id: "note_tile10",
-            "en": "Placeholder: And rockets as tall as towers.",
+            "en": "Placeholder: <br/> And rockets <br/> as tall as towers.",
             "cs": "",
             "ru": ""
         },
         {
             id: "note_tile11",
-            "en": "Placeholder: At the end of the day, we'll sip a tea,...",
+            "en": "As day draws to a close, <br/> it's time to slow down.",
             "cs": "",
             "ru": ""
         },
         {
             id: "note_tile12",
-            "en": "Placeholder: ...and be with our friends.",
+            "en": "We'll be always with you, <br/> every moment you are. <br/> Forever and ever, <br/> you're our star.",
             "cs": "",
             "ru": ""
         },
@@ -195,7 +195,7 @@ var Localization = new function()
         document.getElementById("languageRU").disabled = m_Language == "ru";
     }
 
-    this.Localize = function(element, id = "")
+    this.Localize = function(element, id = "", append = false)
     {
         if (id == "")
             id = element.id;
@@ -204,7 +204,7 @@ var Localization = new function()
         {
             let container = TEXTS[i];
             if (container.id == id)
-                SetText(element, container);
+                SetText(element, container, append);
         }
     }
 
@@ -222,7 +222,7 @@ var Localization = new function()
         }
     }
 
-    function SetText(element, container)
+    function SetText(element, container, append = false)
     {
         let text = container[m_Language];
         if (text == "")
@@ -231,7 +231,10 @@ var Localization = new function()
         if (text == "")
             text = `!MISSING STRING: ${container.id}`
 
-        element.innerHTML = text;
+        if (append)
+            element.innerHTML = `<span style=\"opacity: 0.5;\">${text}</span>` + element.innerHTML; //--- #TODO: Remove or don't hardcode
+        else
+            element.innerHTML = text;
     }
 
     //--- Init

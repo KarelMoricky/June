@@ -76,7 +76,6 @@ const VAR_GRID_TARGET_Y = "gtY";
 const VAR_TARGET_X = "tX";
 const VAR_TARGET_Y = "tY";
 const VAR_CONFIRMED = "tileConfirmed";
-const VAR_TIER = "tileTier";
 const VAR_TILE_MIN = "minTile";
 const VAR_TILE_MAX = "maxTile";
 //#endregion
