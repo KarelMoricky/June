@@ -64,25 +64,25 @@ var Localization = new function()
         //#region Notes
         {
             id: "note_tile02",
-            "en": "Hi, Little One, <br/> so small, yet so great! <br /> Let's see what fun <br /> adventures await.",
+            "en": "Hi, Little One, <br/> so small, yet great! <br /> Let's see what fun <br /> adventures await.",
             "cs": "",
             "ru": ""
         },
         {
             id: "note_tile03",
-            "en": "Through forests and hills <br/> we'll hike,",
+            "en": "Where we are from, <br/> forests, hills, trails abound. <br/> But for you here, <br/> they'll be a treasure found.",
             "cs": "",
             "ru": ""
         },
         {
             id: "note_tile04",
-            "en": "and at the seaside <br/> build splendid sand castles.",
+            "en": "Beach and sea, however, <br/> you'll have nearby, <br/> we'll head there whenever <br/> there's a clear sky.",
             "cs": "",
             "ru": ""
         },
         {
             id: "note_tile05",
-            "en": "We'll explore this world,",
+            "en": "Nature is all around, <br/> and you'll explore it too. <br/> Smell the air, feel the ground, <br/> soak the breathtaking view.",
             "cs": "",
             "ru": ""
         },

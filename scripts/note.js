@@ -56,17 +56,17 @@ var Note = new function()
                     m_Note.classList.remove("animNoteOut");
                     m_Note.classList.add("animNoteIn");
                     
-                    const tilePair = ev.detail.tile.getAttribute("tilePair");
+                    //const tilePair = ev.detail.tile.getAttribute("tilePair");
                     let delay = 0;
-                    if (tilePair != null)
-                        delay = 1;
+                    //if (tilePair != null)
+                    //    delay = 1;
 
                     if (!SKIP_NOTE_ANIM || !Debug.IsDev())
                         AnimateLines(m_Note, 3 - delay, delay);
 
                     //--- Show paired line
-                    if (tilePair != null)
-                        Localization.Localize(m_Note, "note_" + tilePair, true);
+                    //if (tilePair != null)
+                    //    Localization.Localize(m_Note, "note_" + tilePair, true);
                 }
             },
             {

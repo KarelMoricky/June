@@ -5,7 +5,7 @@
 
 	position: absolute;
 	left: 50vw;
-	top: 5vh;
+	top: 3vh;
 	transform: translate(-50%, 0);
 }
 
@@ -15,6 +15,7 @@
 	width: min-content;
 	display: block;
 	margin: 0 auto 0 auto;
+	padding: 2vh;
 	white-space: nowrap;
 
 	color: white;
