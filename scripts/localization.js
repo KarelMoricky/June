@@ -113,7 +113,7 @@ var Localization = new function()
         {
             id: "note_tile10",
             "en": "Waiting, ready for launch,  <br /> a tower, a rocket? <br /> Waiting for us to watch, <br /> or to be your ticket?",
-            "cs": "",
+            "cs": "Připravena ke startu, <br /> věž nebo raketa? <br /> Je pouze jednou z mnoha, <br /> či s tebou odlétá?",
             "ru": ""
         },
         {
@@ -134,7 +134,7 @@ var Localization = new function()
         {
             id: "outroNote",
             "en": "You played your game. <br /> You know your name. <br /> You're our...",
-            "cs": "",
+            "cs": "Tahle hra je pro tebe, <br /> Jméno své znáš z nebe. <br /> Jsi naše...",
             "ru": "",
         },
         //#endregion
@@ -143,7 +143,7 @@ var Localization = new function()
         {
             id: "thanks",
             "en": "Thank you for playing!<br />Please consider sharing.",
-            "cs": "Děkujeme za pozornost!",
+            "cs": "Děkujeme za hraní! <br /> A třeba i sdílení.",
             "ru": "Спасибо за внимание!",
         },
         {
