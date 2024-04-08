@@ -18,12 +18,18 @@
 	padding: 2vh;
 	white-space: nowrap;
 
-	color: white;
-	font-family: "Caveat", serif;
-	font-size: 4vh;
 
 	background-color: rgba(10, 22, 48, 0.75);
 	backdrop-filter: blur(10px);
+}
+
+.noteText
+{
+	color: white;
+	font-family: "Times New Roman", serif;
+	font-style: italic;
+	font-size: 3vh;
+	line-height: 4vh; 
 }
 
 .animatedWord

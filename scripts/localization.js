@@ -64,55 +64,55 @@ var Localization = new function()
         //#region Notes
         {
             id: "note_tile02",
-            "en": "Hi, Little One, <br/> so small, yet great! <br /> Let's see what fun <br /> adventures await.",
-            "cs": "",
+            "en": "Here you are, Little One, <br /> so small, yet great! <br /> Let's discover what fun <br /> adventures await.",
+            "cs": "Ahoj Maličká, <br /> radost naše velká! <br /> Pojďme se podívat,  <br /> co nás spolu čeká.",
             "ru": ""
         },
         {
             id: "note_tile03",
-            "en": "Where we are from, <br/> forests, hills, trails abound. <br/> But for you here, <br/> they'll be a treasure found.",
-            "cs": "",
+            "en": "Where we are from,  <br /> forests, hills, trails abound. <br /> But for you here, <br /> they'll be a treasure found.",
+            "cs": "Odkud máma a táta jsou, <br /> kopců a lesů je fůra. <br /> Ty k nim máš cestu dalekou, <br /> čeká tě pořádná túra.",
             "ru": ""
         },
         {
             id: "note_tile04",
-            "en": "Beach and sea, however, <br/> you'll have nearby, <br/> we'll head there whenever <br/> there's a clear sky.",
+            "en": "Beach and sea, however, <br /> you will have nearby, <br /> we'll head there whenever <br /> there is a clear sky.",
             "cs": "",
             "ru": ""
         },
         {
             id: "note_tile05",
-            "en": "Nature is all around, <br/> and you'll explore it too. <br/> Smell the air, feel the ground, <br/> soak the breathtaking view.",
+            "en": "Nature is all around,  <br /> and you will explore it too. <br /> Smell the air, feel the ground, <br /> soak up the breathtaking view.",
             "cs": "",
             "ru": ""
         },
         {
             id: "note_tile06",
-            "en": "and a few other ones.",
+            "en": "Not always there, <br /> the breathtaking views, <br /> so let yourself lose  <br /> in worlds that you choose.",
             "cs": "",
             "ru": ""
         },
         {
             id: "note_tile07",
-            "en": "We will travel far north, <br/> look up to the skies, <br/> utterly speechless <br/> under polar lights.",
+            "en": "The wind blows, the lake froze, <br /> but the night is bright. <br /> Go forth far north, <br /> watch the polar lights.",
             "cs": "",
             "ru": ""
         },
         {
             id: "note_tile08",
-            "en": "We'll be flying a kite, <br/> across the dunes. <br/> Under wide summer sky <br/> soaking its blues.",
+            "en": "The wind blows, the life slows, <br /> the sun shines just fine. <br /> Hold tight the kite! <br /> Pull its endless line.",
             "cs": "",
             "ru": ""
         },
         {
             id: "note_tile09",
-            "en": "Placeholder: <br/> We'll see towers <br/> that look like rockets,",
+            "en": "More than meets the eye, <br /> a rocket, a tower? <br /> It touches the sky, <br /> let's walk up together!",
             "cs": "",
             "ru": ""
         },
         {
             id: "note_tile10",
-            "en": "Placeholder: <br/> And rockets <br/> as tall as towers.",
+            "en": "Waiting, ready for launch,  <br /> a tower, a rocket? <br /> Waiting for us to watch, <br /> or to be your ticket?",
             "cs": "",
             "ru": ""
         },
@@ -124,7 +124,7 @@ var Localization = new function()
         },
         {
             id: "note_tile12",
-            "en": "We'll be always with you, <br/> every moment you are. <br/> Forever and ever, <br/> you're our star.",
+            "en": "We'll be always with you, <br /> Every moment you are. <br /> Forever and ever. <br /> You're our star.",
             "cs": "",
             "ru": ""
         },
@@ -133,7 +133,7 @@ var Localization = new function()
         //#region Outro
         {
             id: "outroNote",
-            "en": "Placeholder: We can't wait to explore the world with you. You are our...",
+            "en": "You played your game. <br /> You know your name. <br /> You're our...",
             "cs": "",
             "ru": "",
         },
@@ -142,7 +142,7 @@ var Localization = new function()
         //#region Credits
         {
             id: "thanks",
-            "en": "Thank you for playing!",
+            "en": "Thank you for playing!<br />Please consider sharing.",
             "cs": "Děkujeme za pozornost!",
             "ru": "Спасибо за внимание!",
         },

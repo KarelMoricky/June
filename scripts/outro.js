@@ -89,7 +89,7 @@ var Outro = new function()
                 SetElementVisible(outroNote, true);
 
                 if (SKIP_OUTRO_ANIM || !Debug.IsDev())
-                    AnimateWords(outroNote);
+                    AnimateLines(outroNote);
             }
         },
         {

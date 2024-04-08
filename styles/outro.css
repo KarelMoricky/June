@@ -5,11 +5,7 @@
 	top: 30vh;
 	transform: translate(-50%, -50%);
 	width: min(14em, 90%);
-
-	color: white;
 	text-align: center;
-	font-family: "Caveat", sans-serif;
-	font-size: 4vh;
 }
 
 #outroName
@@ -55,20 +51,6 @@
 		padding-top: 8vh;
 	}
 }
-
-/* #outroBox p
-{
-	font-family: "Caveat", sans-serif;
-	font-size: 4vh;
-}
-#outroBox h1
-{
-    margin-top: 30vh;
-	font-family: "Roboto Slab", serif;
-	font-size: 10vh;
-	opacity: 0;
-	animation: animName 6s 2s ease-out forwards;
-} */
 
 .animOutroIn
 {
@@ -357,8 +339,6 @@
 
 #thanks
 {
-	font-family: "Caveat", sans-serif;
-	font-size: 4vh;
 	text-align: center;
 	padding: 1vh;
 	width: 100%;
