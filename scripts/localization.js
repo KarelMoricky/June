@@ -88,19 +88,19 @@ var Localization = new function()
         },
         {
             id: "note_tile06",
-            "en": "Not always there, <br /> the breathtaking views, <br /> so let yourself lose  <br /> in worlds that you choose.",
+            "en": "Not always there, <br /> the breathtaking view, <br /> so let yourself lose  <br /> in worlds that you choose.",
             "cs": "",
             "ru": ""
         },
         {
             id: "note_tile07",
-            "en": "The wind blows, the lake froze, <br /> but the night is bright. <br /> Go forth far north, <br /> watch the polar lights.",
+            "en": "The wind blows, and it snows, <br /> but the night is bright. <br /> Go forth far north, <br /> watch the polar lights.",
             "cs": "",
             "ru": ""
         },
         {
             id: "note_tile08",
-            "en": "The wind blows, the life slows, <br /> the sun shines just fine. <br /> Hold tight the kite! <br /> Pull its endless line.",
+            "en": "The wind blows, the sand flows, <br /> but summer heat's so sweet. <br /> Hold tight the kite! <br /> Fly, follow its lead.",
             "cs": "",
             "ru": ""
         },
@@ -118,13 +118,13 @@ var Localization = new function()
         },
         {
             id: "note_tile11",
-            "en": "As day draws to a close, <br/> it's time to slow down.",
+            "en": "Adventures await, <br /> and they can wait some more. <br /> Relax. Sit. <br /> Restore.",
             "cs": "",
             "ru": ""
         },
         {
             id: "note_tile12",
-            "en": "We'll be always with you, <br /> Every moment you are. <br /> Forever and ever. <br /> You're our star.",
+            "en": "Adventures await! <br /> What future will you claim? <br /> Forever and ever, <br /> we love you all the same.",
             "cs": "",
             "ru": ""
         },
