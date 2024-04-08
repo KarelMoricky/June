@@ -77,7 +77,7 @@ var Localization = new function()
         {
             id: "note_tile04",
             "en": "Beach and sea, however, <br /> you will have nearby, <br /> we'll head there whenever <br /> there is a clear sky.",
-            "cs": "",
+            "cs": "Pláž, duny, a moře, <br /> máš tu zase opodál. <br /> Půjdeme tam pokaždé, <br /> když je modrá obloha.",
             "ru": ""
         },
         {
@@ -107,7 +107,7 @@ var Localization = new function()
         {
             id: "note_tile09",
             "en": "More than meets the eye, <br /> a rocket, a tower? <br /> It touches the sky, <br /> let's walk up together!",
-            "cs": "",
+            "cs": "Co je to tam nahoře, <br /> raketa či věž? <br /> Strmě stoupá k obloze, <br /> vzhůru s námi běž.",
             "ru": ""
         },
         {
@@ -119,7 +119,7 @@ var Localization = new function()
         {
             id: "note_tile11",
             "en": "Adventures await, <br /> and they can wait some more. <br /> Relax. Sit. <br /> Restore.",
-            "cs": "",
+            "cs": "Příběh co nás čeká. <br /> A čekat může dál. <br /> Pohoda. Klid. <br /> Kdo by kam spěchal?",
             "ru": ""
         },
         {
