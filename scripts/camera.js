@@ -72,6 +72,19 @@ var Camera = new function()
     //#endregion
 
     //#region Calculation
+    function StartDrag(ev)
+    {
+        m_InertiaStrength = INERTIA_DRAG;
+
+        m_ClickScreen.x = ev.clientX;
+        m_ClickScreen.y = ev.clientY;
+
+        m_ClickPos.x = m_Current.x;
+        m_ClickPos.y = m_Current.y;
+
+        m_IsDragging = true; //--- Without this, the player could initiate drag even when the camera is animating
+    }
+
     function Apply()
     {
         if (!m_Anim.playing)
@@ -106,21 +119,17 @@ var Camera = new function()
         if (Tile.GetSelected() || m_Anim.playing || !m_IsManualInput)
             return;
 
-        m_InertiaStrength = INERTIA_DRAG;
-
-        m_ClickScreen.x = ev.clientX;
-        m_ClickScreen.y = ev.clientY;
-
-        m_ClickPos.x = m_Current.x;
-        m_ClickPos.y = m_Current.y;
-
-        m_IsDragging = true; //--- Without this, the player could initiate drag even when the camera is animating
+        StartDrag(ev);
     }
 
     function OnGameDrag(ev)
     {
-        if (Tile.GetSelected() || m_Anim.playing || !m_IsManualInput || !m_IsDragging)
+        if (Tile.GetSelected() || m_Anim.playing || !m_IsManualInput)// || !m_IsDragging)
             return;
+
+        //--- If the player clicked during animation, the drag would not be initiated - do it now
+        if (!m_IsDragging)
+            StartDrag(ev);
 
         let coef = Math.min((m_ViewBox.w / window.innerWidth), (m_ViewBox.h / window.innerHeight)); //--- I have no idea what I'm doing
         
