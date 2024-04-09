@@ -64,8 +64,8 @@ var Localization = new function()
         //#region Notes
         {
             id: "note_tile02",
-            "en": "Here you are, Little One, <br /> so small, yet great! <br /> Let's discover what fun <br /> adventures await.",
-            "cs": "Ahoj Maličká, <br /> radost naše velká! <br /> Pojďme se podívat,  <br /> co nás spolu čeká.",
+            "en": "Here you are, Little One, <br /> so small, yet so great! <br /> Let's discover what fun <br /> adventures await.",
+            "cs": "Ahoj Maličká, <br /> radost naše velká! <br /> Pojďme si prohlédout, <br /> příběh co nás čeká.",
             "ru": ""
         },
         {
@@ -133,7 +133,7 @@ var Localization = new function()
         //#region Outro
         {
             id: "outroNote",
-            "en": "You played your game. <br /> You know your name. <br /> You're our...",
+            "en": "Your name is music, <br /> it dots the night sky. <br /> You are our girl, you are...",
             "cs": "Tahle hra je pro tebe, <br /> Jméno své znáš z nebe. <br /> Jsi naše...",
             "ru": "",
         },
