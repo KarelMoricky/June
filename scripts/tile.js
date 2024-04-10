@@ -162,7 +162,7 @@ var Tile = new function()
 
         m_SelectedTile.querySelector("#tileContent").classList.remove("tileFadeIn");
 
-        Sound.Play("audioTileDragStart");
+        //Sound.Play("audioTileDragStart");
         Vibrate(VIBRATION_TILE_DRAG_START);
     });
 
@@ -194,7 +194,7 @@ var Tile = new function()
         }
         else
         {
-            Sound.Play("audioTileDragEnd");
+            //Sound.Play("audioTileDragEnd");
             Vibrate(VIBRATION_TILE_DRAG_END);
         }
     });

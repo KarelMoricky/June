@@ -277,7 +277,7 @@ var Outro = new function()
             m_TargetPos.x = m_Drag.x;
             m_TargetPos.y = m_Drag.y;
 
-            Sound.Play("audioTileDragStart");
+            //Sound.Play("audioTileDragStart");
             Vibrate(VIBRATION_OUTRO_DRAG_START);
         }
     }
@@ -337,7 +337,7 @@ var Outro = new function()
             m_TargetPos.x = 0;
             m_TargetPos.y = 0;
 
-            Sound.Play("audioTileDragEnd");
+            //Sound.Play("audioTileDragEnd");
             Vibrate(VIBRATION_OUTRO_DRAG_END);
         }
     }
