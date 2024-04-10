@@ -118,13 +118,13 @@ var Localization = new function()
         },
         {
             id: "note_tile11",
-            "en": "Adventures await, <br /> and they can wait some more. <br /> Relax. Sit. <br /> Restore.",
+            "en": "Adventures await, <br /> and when you're done with them, <br /> remember to rest. <br /> You'll jump back soon again.",
             "cs": "Příběh co nás čeká. <br /> A čekat může dál. <br /> Pohoda. Klid. <br /> Kdo by kam spěchal?",
             "ru": ""
         },
         {
             id: "note_tile12",
-            "en": "Adventures await! <br /> What future will you claim? <br /> Forever and ever, <br /> we love you all the same.",
+            "en": "Adventures await, <br /> who knows where to start? <br /> We're all here for you, <br /> the love in our heart.",
             "cs": "",
             "ru": ""
         },

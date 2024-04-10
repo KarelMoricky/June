@@ -111,16 +111,20 @@ function AnimateLines(element, duration = 3, delay = 0, className = "animatedLin
 //#endregion
 
 //#region Audio
+var s_LoadAudioOnPlay = false;
 function PlayAudio(name)
 {
     //--- https://www.w3schools.com/JSREF/dom_obj_audio.asp
-    let audioObject = document.getElementById(name);
-    if (audioObject)
+    let audio = document.getElementById(name);
+    if (audio)
     {
-        //audioObject.load(); //--- Don't use, would force reload before each play
-        audioObject.currentTime = 0;
-        audioObject.play();
-        return audioObject;
+        //--- Some audio failed to load previously, force loading all sounds just in case now
+        if (s_LoadAudioOnPlay)
+            audio.load();
+
+        audio.currentTime = 0;
+        audio.play();
+        return audio;
     }
     else
     {
@@ -140,12 +144,22 @@ function ProcessAudio(audio, timeline, step = 10)
             console.warn(`ProcessAudio: Event has time ${timeline[i].time} s, but audio duration is only ${audio.duration} s!`);
     }
 
-    var backupTime = 0;
+    //var backupTime = 0;
     function Tick()
     {
+        //--- On iOS, the audio is sometimes ready to play, but stuck. Reload it in such case.
+        if ((audio.paused || audio.ended) && audio.readyState == 4)
+        {
+            audio.load();
+            audio.play();
+            s_LoadAudioOnPlay = true;
+        }
+
         var currentTime = audio.currentTime;
+        /*
         if (backupTime != 0)
             currentTime = backupTime;
+        */
 
         //--- Process entries
         for (let i = indexes.length - 1; i >= 0; i--)
@@ -158,14 +172,19 @@ function ProcessAudio(audio, timeline, step = 10)
             }
         }
 
-        //--- Continue only when audio is still playing and there are animation steps remaining (or on the first frame, as audio is sometimes paused on iOS)
-        if ((currentTime < audio.duration && indexes.length > 0) || currentTime == 0)
+        //--- Tick again
+        if (
+                (currentTime < audio.duration && indexes.length > 0) //--- Audio is playing and there are entries remaining
+                || currentTime == 0 //--- First frame (in case something goes wrong)
+                || (audio.readyState != 4 && audio.networkState != 1) //--- Waiting for the audio to load
+        )
         {
             setTimeout(Tick, step);
-
+            /*
             //--- Audio loaded, but failed to play - inititate backup time tracking
             if (audio.paused && audio.readyState == 4)
                 backupTime += step / 1000;
+            */
         }
     }
     Tick();
