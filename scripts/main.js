@@ -111,6 +111,7 @@ function AnimateLines(element, duration = 3, delay = 0, className = "animatedLin
 //#endregion
 
 //#region Audio
+/*
 var s_LoadAudioOnPlay = false;
 function PlayAudio(name)
 {
@@ -132,7 +133,6 @@ function PlayAudio(name)
         return null;
     }
 }
-
 function ProcessAudio(audio, timeline, step = 10)
 {
     //--- Save indexes of timeline entries
@@ -159,7 +159,7 @@ function ProcessAudio(audio, timeline, step = 10)
         /*
         if (backupTime != 0)
             currentTime = backupTime;
-        */
+        * /
 
         //--- Process entries
         for (let i = indexes.length - 1; i >= 0; i--)
@@ -184,11 +184,12 @@ function ProcessAudio(audio, timeline, step = 10)
             //--- Audio loaded, but failed to play - inititate backup time tracking
             if (audio.paused && audio.readyState == 4)
                 backupTime += step / 1000;
-            */
+            * /
         }
     }
     Tick();
 }
+*/
 //#endregion
 
 //#region Math

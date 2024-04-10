@@ -94,7 +94,7 @@ var Intro = new function()
             window.dispatchEvent(new Event(EVENT_INTRO));
 
             if (!Debug.SkipIntro())
-                PlayAudio("audioPlay");
+                Sound.Play("audioPlay");
         }
     });
 }

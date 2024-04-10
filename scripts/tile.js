@@ -162,7 +162,7 @@ var Tile = new function()
 
         m_SelectedTile.querySelector("#tileContent").classList.remove("tileFadeIn");
 
-        PlayAudio("audioTileDragStart");
+        Sound.Play("audioTileDragStart");
         Vibrate(VIBRATION_TILE_DRAG_START);
     });
 
@@ -194,7 +194,7 @@ var Tile = new function()
         }
         else
         {
-            PlayAudio("audioTileDragEnd");
+            Sound.Play("audioTileDragEnd");
             Vibrate(VIBRATION_TILE_DRAG_END);
         }
     });
@@ -280,7 +280,7 @@ var Tile = new function()
             {
                 if (SetTileTransform(m_SelectedTile, gridTransform))
                 {
-                    PlayAudio("audioTileSnapStart");
+                    Sound.Play("audioTileSnapStart");
                     m_Snapped = true;
                 }
                 return;
@@ -288,7 +288,7 @@ var Tile = new function()
 
             if (m_Snapped)
             {
-                PlayAudio("audioTileSnapEnd");
+                Sound.Play("audioTileSnapEnd");
                 m_Snapped = false;
             }
         }

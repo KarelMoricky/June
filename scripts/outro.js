@@ -183,8 +183,8 @@ var Outro = new function()
 
         m_CanClose = false;
        
-        const audio = PlayAudio("audioOutroStart");
-        ProcessAudio(audio, m_TimelineOutroStart);
+        const audio = Sound.Play("audioOutroStart");
+        Sound.Timeline(audio, m_TimelineOutroStart);
 
         if (SKIP_OUTRO_ANIM && Debug.IsDev())
             audio.currentTime = audio.duration - 0.1;
@@ -248,7 +248,7 @@ var Outro = new function()
             m_TargetPos.x = 0;
             m_TargetPos.y = 0;
 
-            PlayAudio("audioOutroEnd");
+            Sound.Play("audioOutroEnd");
 
             window.removeEventListener(EVENT_GAME_DRAG_START, OnGameDragStart);
             Game.SetFinished();
@@ -277,7 +277,7 @@ var Outro = new function()
             m_TargetPos.x = m_Drag.x;
             m_TargetPos.y = m_Drag.y;
 
-            PlayAudio("audioTileDragStart");
+            Sound.Play("audioTileDragStart");
             Vibrate(VIBRATION_OUTRO_DRAG_START);
         }
     }
@@ -300,13 +300,13 @@ var Outro = new function()
             if (!m_Snapped)
             {
                 m_Snapped = true;
-                PlayAudio("audioTileSnapStart");
+                Sound.Play("audioTileSnapStart");
             }
         }
         else if (m_Snapped)
         {
             m_Snapped = false;
-            PlayAudio("audioTileSnapEnd");
+            Sound.Play("audioTileSnapEnd");
         }
     }
     
@@ -329,7 +329,7 @@ var Outro = new function()
             window.removeEventListener(EVENT_GAME_DRAG, OnGameDrag);
             window.removeEventListener(EVENT_GAME_DRAG_END, OnGameDragEnd);
 
-            ProcessAudio(PlayAudio("audioOutroName"), m_TimelineOutroName);
+            Sound.Timeline(Sound.Play("audioOutroName"), m_TimelineOutroName);
             Vibrate(VIBRATION_OUTRO_CONFIRMED);
         }
         else
@@ -337,7 +337,7 @@ var Outro = new function()
             m_TargetPos.x = 0;
             m_TargetPos.y = 0;
 
-            PlayAudio("audioTileDragEnd");
+            Sound.Play("audioTileDragEnd");
             Vibrate(VIBRATION_OUTRO_DRAG_END);
         }
     }

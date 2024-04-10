@@ -30,8 +30,8 @@ var Note = new function()
 
         Camera.EnableManualInput(false);
 
-        const audio = PlayAudio("audioNoteStart")
-        ProcessAudio(audio, [
+        const audio = Sound.Play("audioNoteStart")
+        Sound.Timeline(audio, [
             {
                 //--- Zoom camera
                 time: 0.25,
@@ -120,7 +120,7 @@ var Note = new function()
             Camera.SetCamera(tile.getAttribute("x"), tile.getAttribute("y"), DEFAULT_ZOOM, duration);
             Camera.EnableManualInput(true);
             
-            PlayAudio("audioNoteEnd");
+            Sound.Play("audioNoteEnd");
         }
     }
 }
