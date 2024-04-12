@@ -159,6 +159,13 @@
     </g>
   </svg>
 
+  <!-- Note loading spinner (https://fffuel.co/svg-spinner/) -->
+  <g id="noteLoading" class="ignoreCursor hidden">
+    <circle cx="0" cy="0" fill="none" r="30" stroke-width="26" id="noteLoadingBackground" />
+    <circle cx="0" cy="0" fill="none" r="20" stroke-width="12" id="noteLoadingCircle" />
+    <circle cx="0" cy="0" fill="none" r="20" stroke-width="12" stroke-dasharray="64 1400" id="noteLoadingSpinner" />
+  </g>
+
   <!-- Outro heart -->
   <svg id="heart" class="hidden heartDraggable">
     <polygon id="heartHighlight1" class="hidden" points="256,76 384,2 512,76 512,108 256,254 0,108 0,76 128,2" />

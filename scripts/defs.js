@@ -6,6 +6,7 @@ const DEV_MANUAL_LOAD = 1;      //--- When true, loading screen has to be progre
 const FORCED_START = [];        //--- When defined, all new tiles will start on this position instead of the one configured in ORIGIN_POSITIONS
 const TILE_DRAG_SNAP = 2;       //--- 0: No snap, 1: Always snap, 2: Snap only adjacent
 const DEFAULT_ZOOM = 1;         //--- Default view box zoom
+const NOTE_LOADING = 0;         //--- Force note loading
 
 const SKIP_NOTE_ANIM = 0;       //--- When true, note reveal animation will be instant
 const SKIP_OUTRO_ANIM = 1;      //--- When true, initial otro animation (zoom out) will be instant

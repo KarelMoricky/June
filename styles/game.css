@@ -138,3 +138,29 @@
 		stroke-opacity: 0;
     }
 }
+
+#noteLoadingBackground
+{
+	fill: var(--color-dark);
+	opacity: 0.5;
+}
+#noteLoadingCircle
+{
+	stroke: white;
+	opacity: 0.5;
+}
+#noteLoadingSpinner
+{
+	stroke: var(--color-highlight);
+	stroke: white;
+
+	transform-origin: 0 0;
+	animation: animNoteLoadingSpinner 2s infinite linear;
+}
+@keyframes animNoteLoadingSpinner
+{
+	to
+	{
+		transform: rotate(360deg)
+	}
+}

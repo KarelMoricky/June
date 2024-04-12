@@ -79,8 +79,54 @@ var Note = new function()
             }
         ]);
 
+
         if (SKIP_NOTE_ANIM && Debug.IsDev())
+        {
+            //--- Make the animation faster for development
             audio.currentTime = audio.duration - 0.1;
+        }
+        else
+        {
+            const forceNoteLoading = NOTE_LOADING && Debug.IsDev();
+
+            //--- Show loading spinner (on iOS the sound can take some time to load, and it can be confusing for the player)
+            if (forceNoteLoading)
+                audio.muted = true;
+
+            let spinner = Game.GetSVG().getElementById("noteLoading");
+            spinner.setAttribute("transform", `translate(${ev.detail.tile.getAttribute("tX")}, ${ev.detail.tile.getAttribute("tY")})`);
+
+            //--- Show the spinner after a brief delay, so it won't pop up when loading time is short
+            setTimeout(Show, 300);
+            function Show()
+            {
+                if (spinner)
+                    SetElementVisible(spinner, true);
+            }
+
+            //--- Wait for the audio to load
+            let n = 0;
+            setTimeout(Wait, 1);
+            function Wait()
+            {
+                if (audio.currentTime > 0 && (!forceNoteLoading || n > 400))
+                {
+                    SetElementVisible(spinner, false);
+                    spinner = null;
+
+                    if (forceNoteLoading)
+                        audio.muted = false;
+                }
+                else
+                {
+                    n++;
+                    setTimeout(Wait, 1);
+                }
+
+                if (forceNoteLoading)
+                    audio.currentTime = 0;
+            }
+        }
 
         Game.SetState(GAME_STATE_DISABLED);
         if (Debug.IsDev())

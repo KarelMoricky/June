@@ -1,6 +1,6 @@
 var Sound = new function()
 {
-    let m_LoadAudioOnPlay = false;
+    //let m_LoadAudioOnPlay = false;
 
     this.Play = function(name)
     {
@@ -9,8 +9,8 @@ var Sound = new function()
         if (audio)
         {
             //--- Some audio failed to load previously, force loading all sounds just in case now
-            if (m_LoadAudioOnPlay)
-                audio.load();
+            //if (m_LoadAudioOnPlay)
+            //    audio.load();
     
             audio.currentTime = 0;
             audio.play();
@@ -34,15 +34,20 @@ var Sound = new function()
                 console.warn(`Sound.Timeline(): Event has time ${timeline[i].time} s, but audio duration is only ${audio.duration} s!`);
         }
     
+        let n = 0;
         //var backupTime = 0;
         function Tick()
         {
             //--- On iOS, the audio is sometimes ready to play, but stuck. Reload it in such case.
             if ((audio.paused || audio.ended) && audio.readyState == 4)
             {
-                audio.load();
+                //--- When the duration shows incorrect value close to 0, reload the whole sound
+                if (audio.duration < 1)
+                    audio.load();
+
                 audio.play();
-                m_LoadAudioOnPlay = true;
+                //m_LoadAudioOnPlay = true;
+                n++;
             }
     
             var currentTime = audio.currentTime;

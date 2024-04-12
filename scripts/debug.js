@@ -27,7 +27,7 @@ var Debug = new function()
 
     this.Log = function()
     {
-        if (!m_IsDev || !m_Log)
+        if (!m_Log)
             return;
 
         m_Log.innerHTML = GetLogText(arguments);
@@ -35,7 +35,7 @@ var Debug = new function()
 
     this.AddLog = function()
     {
-        if (!m_IsDev || !m_Log)
+        if (!m_Log)
             return;
 
         if (m_Log.innerHTML != "")
@@ -54,13 +54,13 @@ var Debug = new function()
         return text;
     }
 
+    var m_Log = document.getElementById("log");
     if (m_IsDev)
     {
         document.title += "|DEV";
 
         var m_StartTime = new Date();
 
-        var m_Log = document.getElementById("log");
         var m_Pos = document.getElementById("pos");
 
         SetElementVisible(document.getElementById("disclaimer"), false);
