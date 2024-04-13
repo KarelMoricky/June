@@ -33,7 +33,7 @@ var Sound = new function()
         //var backupTime = 0;
         function Tick()
         {
-            Debug.Log(audio.paused, audio.ended, audio.currentTime, audio.duration, audio.networkState, audio.readyState, audio.buffered.start(0), audio.buffered.end(0));
+            //Debug.Log(audio.paused, audio.ended, audio.currentTime, audio.duration, audio.networkState, audio.readyState, audio.buffered.start(0), audio.buffered.end(0));
 
             //--- On iOS, the audio is sometimes ready to play, but stuck. Reload it in such case.
             if ((audio.paused || audio.ended) && audio.readyState == 4)
