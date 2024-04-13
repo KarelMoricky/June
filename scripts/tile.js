@@ -107,25 +107,18 @@ var Tile = new function()
 
             SetTilePos(tile, gridX, gridY);
             EvaluateTile(tile, false);
-
-            //--- Create grid tile
-            const points = GetGridPos(targetPosition, 0, 0)
-                         + GetGridPos(targetPosition, 1, 0)
-                         + GetGridPos(targetPosition, 1, 1)
-                         + GetGridPos(targetPosition, 0, 1)
-                         + GetGridPos(targetPosition, 0, 0);
-            
-            const gridTile = CreateElement("polyline", gridLines, [
-                ["id", "grid_" + targetPosition],
-                ["points", points],
-                ["class", "hidden gridTile"]
-            ], true);
+            CreateGridSquare(targetPosition, gridLines, "grid_" + targetPosition);
     
             m_Tiles[i] = tile; //--- Must be called after SetTilePos(), otherwise the tile will think it's already occupied
             m_TilesZSorted[i] = tile;
             i++;
         }
         m_Tiles.sort((a, b) => parseInt(a.getAttribute("tileId")) - parseInt(b.getAttribute("tileId")));
+
+        //--- Hint
+        const tileHint = Game.GetSVGDoc().getElementById("tileHint");
+        CreateGridSquare([0,0], tileHint, "", "");
+        CreateGridSquare([0,0], tileHint, "", "animTileHint");
 
         //--- Cheats
         Game.GetSVG().addEventListener("keydown", OnKeyDown);
@@ -136,6 +129,22 @@ var Tile = new function()
         SetElementVisible(m_TileHint, true);
         //RevealNextTile();
     });
+
+    function CreateGridSquare(targetPosition, parent, idAttribute, classAttribute = "hidden gridTile")
+    {
+        const points = GetGridPos(targetPosition, 0, 0)
+            + GetGridPos(targetPosition, 1, 0)
+            + GetGridPos(targetPosition, 1, 1)
+            + GetGridPos(targetPosition, 0, 1)
+            + GetGridPos(targetPosition, 0, 0);
+
+        const gridTile = CreateElement("polyline", parent, [
+            ["id", idAttribute],
+            ["points", points],
+            ["class", classAttribute]
+        ], true);
+        return gridTile;
+    }
 
     function GetGridPos(pos, offsetX, offsetY)
     {
@@ -469,8 +478,8 @@ var Tile = new function()
         //--- Update tile hint's position
         const targetX = m_CurrentTile.getAttribute(VAR_GRID_TARGET_X);
         const targetY = m_CurrentTile.getAttribute(VAR_GRID_TARGET_Y);
-        m_TileHint.setAttribute("x", targetX);
-        m_TileHint.setAttribute("y", targetY);
+        const transform = new DOMPointReadOnly(targetX, targetY).matrixTransform(ISO_MATRIX);
+        m_TileHint.setAttribute("style", `transform: translate(${transform.x}px, ${transform.y}px)`);
         SetElementVisible(m_TileHint, true);
         
         //--- Show tile-specific elements
