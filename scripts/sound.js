@@ -1,19 +1,15 @@
 var Sound = new function()
 {
-    //let m_LoadAudioOnPlay = false;
-
     this.Play = function(name)
     {
         //--- https://www.w3schools.com/JSREF/dom_obj_audio.asp
         let audio = document.getElementById(name);
         if (audio)
-        {
-            //--- Some audio failed to load previously, force loading all sounds just in case now
-            //if (m_LoadAudioOnPlay)
-            //    audio.load();
-    
+        {    
             audio.currentTime = 0;
+            audio.muted = false;
             audio.play();
+
             return audio;
         }
         else
@@ -34,20 +30,15 @@ var Sound = new function()
                 console.warn(`Sound.Timeline(): Event has time ${timeline[i].time} s, but audio duration is only ${audio.duration} s!`);
         }
     
-        let n = 0;
         //var backupTime = 0;
         function Tick()
         {
+            Debug.Log(audio.paused, audio.ended, audio.currentTime, audio.duration, audio.networkState, audio.readyState, audio.buffered.start(0), audio.buffered.end(0));
+
             //--- On iOS, the audio is sometimes ready to play, but stuck. Reload it in such case.
             if ((audio.paused || audio.ended) && audio.readyState == 4)
             {
-                //--- When the duration shows incorrect value close to 0, reload the whole sound
-                if (audio.duration < 1)
-                    audio.load();
-
                 audio.play();
-                //m_LoadAudioOnPlay = true;
-                n++;
             }
     
             var currentTime = audio.currentTime;
@@ -84,4 +75,30 @@ var Sound = new function()
         }
         Tick();
     }
+
+    //--- Preload sounds (https://remysharp.com/2010/12/23/audio-sprites)
+    window.addEventListener(EVENT_GAME_DRAG_START, OnInteract);
+    function OnInteract()
+    {
+        var children = document.getElementById("audio").children;
+        for (var i = 0; i < children.length; i++) 
+        {
+            var audio = children[i];
+            if (audio.getAttribute("noScriptPreload"))
+                continue;
+
+            //--- Pause right it starts playing, but keep it in the memory
+            audio.addEventListener("play", OnPlay, false);
+            function OnPlay(ev)
+            {
+                ev.target.pause();
+                ev.target.removeEventListener("play", OnPlay, false);
+            }
+            
+            //--- Play
+            audio.muted = true;
+            audio.play();
+        }
+        window.removeEventListener(EVENT_GAME_DRAG_START, OnInteract);
+    };
 }
