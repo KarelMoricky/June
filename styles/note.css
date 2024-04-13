@@ -1,23 +1,30 @@
 #noteArea
 {
-	width: 100%;
-	height: 20vh;
-
-	position: absolute;
-	left: 50vw;
-	top: 3vh;
-	transform: translate(-50%, 0);
+	max-height: 20vh;
+	width: min-content;
+	display: block;
+	margin: 3vh auto 0 auto;
 }
 
 #note
 {
-	max-height: 20vh;
-	width: min-content;
-	display: block;
-	margin: 0 auto 0 auto;
 	padding: 2vh;
 	white-space: nowrap;
+	background-color: rgba(10, 22, 48, 0.75);
+	backdrop-filter: blur(10px);
+}
 
+#noteContinue
+{
+	color: var(--color-highlight);
+	font-family: "Roboto Slab", serif;
+	font-style: italic;
+	font-size: min(2vh, 4vw);
+	text-align: center;
+	padding-top: 1em;
+	padding-bottom: 1em;
+	opacity: 0;
+	animation: animFadeIn 2s 1s ease-out forwards;
 	background-color: rgba(10, 22, 48, 0.75);
 	backdrop-filter: blur(10px);
 }
@@ -26,7 +33,7 @@
 {
 	color: white;
 	font-family: "Times New Roman", serif;
-	xfont-style: italic;
+	/*font-style: italic;*/
 	font-size: min(3vh, 6vw);
 	line-height: min(4vh, 8vw);
 }

@@ -4,6 +4,7 @@ var Note = new function()
     const NOTE_OFFSET_Y = -60; //--- Vertical camera offset in zommed-in view
 
     const m_Note = document.getElementById("note");
+    const m_NoteContinue = document.getElementById("noteContinue");
     var m_InDetail = false;
     let m_CanClose = true;
     let m_IsLast = false;
@@ -75,6 +76,7 @@ var Note = new function()
                 function: function()
                 {
                     AllowClosingNote();
+                    SetElementVisible(m_NoteContinue, true);
                 }
             }
         ]);
@@ -150,6 +152,8 @@ var Note = new function()
 
         m_Note.classList.remove("animNoteIn");
         m_Note.classList.add("animNoteOut");
+
+        SetElementVisible(m_NoteContinue, false);
 
         if (m_IsLast)
         {

@@ -63,6 +63,12 @@ var Localization = new function()
 
         //#region Notes
         {
+            id: "noteContinue",
+            "en": "Continue",
+            "cs": "Pokračujte",
+            "ru": ""
+        },
+        {
             id: "note_tile02",
             "en": "Here you are, Little One, <br /> so small, yet so great! <br /> Let's discover what fun <br /> adventures await.",
             "cs": "Ahoj Maličká, <br /> radost naše velká! <br /> Pojďme si prohlédout, <br /> příběh co nás čeká.",
