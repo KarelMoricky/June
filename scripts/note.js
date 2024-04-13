@@ -99,7 +99,7 @@ var Note = new function()
             spinner.setAttribute("transform", `translate(${ev.detail.tile.getAttribute("tX")}, ${ev.detail.tile.getAttribute("tY")})`);
 
             //--- Show the spinner after a brief delay, so it won't pop up when loading time is short
-            setTimeout(Show, 300);
+            setTimeout(Show, 500);
             function Show()
             {
                 if (spinner)
@@ -111,7 +111,7 @@ var Note = new function()
             setTimeout(Wait, 1);
             function Wait()
             {
-                if (audio.currentTime > 0 && (!forceNoteLoading || n > 400))
+                if ((audio.currentTime > 0.1 || audio.muted) && (!forceNoteLoading || n > 400))
                 {
                     SetElementVisible(spinner, false);
                     spinner = null;

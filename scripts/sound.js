@@ -30,22 +30,20 @@ var Sound = new function()
                 console.warn(`Sound.Timeline(): Event has time ${timeline[i].time} s, but audio duration is only ${audio.duration} s!`);
         }
     
-        //var backupTime = 0;
+        var backupTime = -1;
         function Tick()
         {
-            //Debug.Log(audio.paused, audio.ended, audio.currentTime, audio.duration, audio.networkState, audio.readyState, audio.buffered.start(0), audio.buffered.end(0));
+            //Debug.Log(audio.paused, audio.ended, audio.currentTime, audio.duration, audio.networkState, audio.readyState, backupTime);
 
             //--- On iOS, the audio is sometimes ready to play, but stuck. Reload it in such case.
-            if ((audio.paused || audio.ended) && audio.readyState == 4)
+            if ((audio.paused || audio.ended) && audio.readyState == 4 && backupTime == -1)
             {
                 audio.play();
             }
     
             var currentTime = audio.currentTime;
-            /*
-            if (backupTime != 0)
+            if (backupTime != -1)
                 currentTime = backupTime;
-            */
     
             //--- Process entries
             for (let i = indexes.length - 1; i >= 0; i--)
@@ -66,14 +64,25 @@ var Sound = new function()
             )
             {
                 setTimeout(Tick, step);
-                /*
-                //--- Audio loaded, but failed to play - inititate backup time tracking
-                if (audio.paused && audio.readyState == 4)
+
+                if (backupTime != -1)
                     backupTime += step / 1000;
-                */
             }
         }
         Tick();
+
+        //--- If the audio does not load within 1s, use backup time
+        setTimeout(Backup, 1000);
+        function Backup()
+        {
+            Debug.Log("Backup", audio.currentTime, audio.duration);
+            if (audio.currentTime < 0.1)
+            {
+                backupTime = 0;
+                audio.muted = true;
+                audio.pause();
+            }
+        }
     }
 
     //--- Preload sounds (https://remysharp.com/2010/12/23/audio-sprites)
