@@ -132,11 +132,11 @@ var Tile = new function()
 
     function CreateGridSquare(targetPosition, parent, idAttribute, classAttribute = "hidden gridTile")
     {
-        const points = GetGridPos(targetPosition, 0, 0)
-            + GetGridPos(targetPosition, 1, 0)
+        const points = GetGridPos(targetPosition, 1, 0)
             + GetGridPos(targetPosition, 1, 1)
             + GetGridPos(targetPosition, 0, 1)
-            + GetGridPos(targetPosition, 0, 0);
+            + GetGridPos(targetPosition, 0, 0)
+            + GetGridPos(targetPosition, 1, 0);
 
         const gridTile = CreateElement("polyline", parent, [
             ["id", idAttribute],
