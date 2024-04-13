@@ -142,14 +142,14 @@ var Localization = new function()
         //#region Credits
         {
             id: "thanks",
-            "en": "Thank you for playing!<br />Please consider sharing.",
-            "cs": "Děkujeme za hraní! <br /> A třeba i sdílení.",
+            "en": "Thank you for playing!",
+            "cs": "Děkujeme za hraní!",
             "ru": "Спасибо за внимание!",
         },
         {
             id: "credits",
-            "en": "Game by <a href=\"https://www.instagram.com/dododollydo/\">Mom</a> and <a href=\"http://moricky.com\">Dad</a>, art&nbsp;by&nbsp;<a href=\"https://www.behance.net/mikovecjir5bc4\">Jirka</a>, audio&nbsp;by&nbsp;<a href=\"#\">TBD</a>, testing&nbsp;by&nbsp;<a href=\"https://twitter.com/YorisYan\">Joris</a>, <a href=\"https://www.instagram.com/katacik/\">Katka</a>, and&nbsp;<a href=\"https://twitter.com/maruksp\">Marek</a>.<br />Handcrafted without AI.",
-            "cs": "Hra od <a href=\"https://www.instagram.com/dododollydo/\">maminky</a> a <a href=\"http://moricky.com\">tatínka</a>, grafika&nbsp;od&nbsp;<a href=\"https://www.behance.net/mikovecjir5bc4\">Jirky</a>, zvuky&nbsp;od&nbsp;<a href=\"#\">TBD</a>, testovali&nbsp;<a href=\"https://twitter.com/YorisYan\">Joris</a>, <a href=\"https://www.instagram.com/katacik/\">Katka</a>, a&nbsp;<a href=\"https://twitter.com/maruksp\">Marek</a>.<br />Vytvořeno ručně bez pomoci AI.",
+            "en": "Game by <a href=\"https://www.instagram.com/dododollydo/\">Mom</a> and <a href=\"http://moricky.com\">Dad</a>, art&nbsp;by&nbsp;<a href=\"https://www.behance.net/mikovecjir5bc4\">Jirka</a>, audio&nbsp;by&nbsp;<a href=\"#\">TBD</a>, testing&nbsp;by&nbsp;<a href=\"https://twitter.com/YorisYan\">Joris</a>, <a href=\"https://www.instagram.com/katacik/\">Katka</a>, and&nbsp;<a href=\"https://twitter.com/maruksp\">Marek</a>.<br /><a href=\"https://github.com/KarelMoricky/June\">Handcrafted</a> without AI.",
+            "cs": "Hra od <a href=\"https://www.instagram.com/dododollydo/\">maminky</a> a <a href=\"http://moricky.com\">tatínka</a>, grafika&nbsp;od&nbsp;<a href=\"https://www.behance.net/mikovecjir5bc4\">Jirky</a>, zvuky&nbsp;od&nbsp;<a href=\"#\">TBD</a>, testovali&nbsp;<a href=\"https://twitter.com/YorisYan\">Joris</a>, <a href=\"https://www.instagram.com/katacik/\">Katka</a>, a&nbsp;<a href=\"https://twitter.com/maruksp\">Marek</a>.<br /><a href=\"https://github.com/KarelMoricky/June\">Vytvořeno ručně</a> bez pomoci AI.",
             "ru": "",
         },
         //#endregion

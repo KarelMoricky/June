@@ -34,7 +34,7 @@
   <g id="tutorial" class="hidden">
 
     <!-- Drag view -->
-    <circle id="tutorialViewTouch" class="ignoreCursor" cx="0" cy="-600" />
+    <circle id="tutorialViewTouch" class="ignoreCursor" cx="0" cy="-620" />
     <svg id="tutorialView" x="-300" y="-750" width="600" height="200">
       <text text-anchor="middle" class="animTutorialViewx">
         <tspan x="50%" dy="3.2em" id="locTutorialView">Drag the view down</tspan>
