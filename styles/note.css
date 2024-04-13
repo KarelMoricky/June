@@ -16,17 +16,29 @@
 
 #noteContinue
 {
-	color: var(--color-highlight);
-	font-family: "Roboto Slab", serif;
-	font-style: italic;
-	font-size: min(2vh, 4vw);
+	width: 5vh;
+	height: 5vh;
+	line-height: 5vh;
+	margin: 3vh auto 0 auto;
+
+	font-size: 3vh;
 	text-align: center;
-	padding-top: 1em;
-	padding-bottom: 1em;
+	color: var(--color-light);
 	opacity: 0;
-	animation: animFadeIn 2s 1s ease-out forwards;
+
 	background-color: rgba(10, 22, 48, 0.75);
 	backdrop-filter: blur(10px);
+	border: 2px solid var(--color-light);
+	border-radius: 50%;
+
+	cursor: pointer;
+	animation: animFadeIn 2s 1s ease-out forwards;
+}
+
+#noteContinue:hover
+{
+	color: var(--color-highlight);
+	border-color: var(--color-highlight);
 }
 
 .noteText

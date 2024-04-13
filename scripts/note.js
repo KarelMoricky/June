@@ -12,6 +12,7 @@ var Note = new function()
     window.addEventListener(EVENT_GAME_INIT, OnGameInit);
     window.addEventListener(EVENT_TILE_CONFIRMED, OnTileConfirmed);
     window.addEventListener(EVENT_GAME_DRAG_START, CloseNote);
+    m_NoteContinue.addEventListener("click", CloseNote);
 
     function OnGameInit()
     {
