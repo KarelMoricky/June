@@ -75,7 +75,6 @@ var Sound = new function()
         setTimeout(Backup, 1000);
         function Backup()
         {
-            Debug.Log("Backup", audio.currentTime, audio.duration);
             if (audio.currentTime < 0.1)
             {
                 backupTime = 0;
