@@ -3,6 +3,12 @@ var Localization = new function()
     const TEXTS = [
         //#region Intro
         {
+            id: "documentTitle",
+            "en": "Vera and Karel have a girl!",
+            "cs": "Vera a Karel mají holčičku!",
+            "ru": ""
+        },
+        {
             id: "locIntroTitle1",
             "en": "Vera and Karel's",
             "cs": "Veřina a Karlova",
@@ -189,23 +195,21 @@ var Localization = new function()
             }, 0.1);
         }
 
+        //--- Set page title
+        document.title =  GetText(GetContainer("documentTitle"));
+
         //--- Refresh buttons
         document.getElementById("languageEN").disabled = m_Language == "en";
         document.getElementById("languageCS").disabled = m_Language == "cs";
         document.getElementById("languageRU").disabled = m_Language == "ru";
     }
 
-    this.Localize = function(element, id = "", append = false)
+    this.Localize = function(element, id = "")
     {
         if (id == "")
             id = element.id;
 
-        for (let i = 0; i < TEXTS.length; i++)
-        {
-            let container = TEXTS[i];
-            if (container.id == id)
-                SetText(element, container, append);
-        }
+        SetText(element, GetContainer(id));
     }
 
     function RefreshDocument(parent)
@@ -222,19 +226,32 @@ var Localization = new function()
         }
     }
 
-    function SetText(element, container, append = false)
+    function GetContainer(id)
+    {
+        for (let i = 0; i < TEXTS.length; i++)
+        {
+            let container = TEXTS[i];
+            if (container.id == id)
+                return container;
+        }
+        return null;
+    }
+
+    function GetText(container)
     {
         let text = container[m_Language];
         if (text == "")
             text = container[DEFAULT_LANGUAGE];
 
         if (text == "")
-            text = `!MISSING STRING: ${container.id}`
+            text = `!MISSING STRING: ${container.id}`;
 
-        if (append)
-            element.innerHTML = `<span style=\"opacity: 0.5;\">${text}</span>` + element.innerHTML; //--- #TODO: Remove or don't hardcode
-        else
-            element.innerHTML = text;
+        return text;
+    }
+
+    function SetText(element, container)
+    {
+        element.innerHTML = GetText(container);
     }
 
     //--- Init
