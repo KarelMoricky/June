@@ -57,7 +57,7 @@ var Debug = new function()
     var m_Log = document.getElementById("log");
     if (m_IsDev)
     {
-        document.title += "|DEV";
+        document.title = "Project June";
 
         var m_StartTime = new Date();
 
@@ -94,6 +94,6 @@ var Debug = new function()
     }
     if (m_IsOffline)
     {
-        document.title += "|LOC";
+        document.title += " (offline)";
     }
 }
