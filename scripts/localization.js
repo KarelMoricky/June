@@ -4,14 +4,14 @@ var Localization = new function()
         //#region Intro
         {
             id: "documentTitle",
-            "en": "Vera and Karel have a girl!",
-            "cs": "Vera a Karel mají holčičku!",
+            "en": "Vera & Karel have a girl!",
+            "cs": "Vera & Karel mají holčičku!",
             "ru": ""
         },
         {
             id: "locIntroTitle1",
-            "en": "Vera and Karel's",
-            "cs": "Veřina a Karlova",
+            "en": "Vera & Karel's",
+            "cs": "Veřina & Karlova",
             "ru": " "
         },
         {
