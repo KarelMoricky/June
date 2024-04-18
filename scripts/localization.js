@@ -101,19 +101,19 @@ var Localization = new function()
         {
             id: "note_tile07",
             "en": "The wind blows, and it snows, <br /> but the night is bright. <br /> Go forth far north, <br /> watch the polar lights.",
-            "cs": "",
+            "cs": "Vítr vane přes noční pláně, <br /> sněhem všechno zavání, <br /> jen se sebe a jdi na sever, <br /> sleduj záři polární.",
             "ru": ""
         },
         {
             id: "note_tile08",
             "en": "The wind blows, the sand flows, <br /> but summer heat's so sweet. <br /> Hold tight the kite! <br /> Fly, follow its lead.",
-            "cs": "",
+            "cs": "Vítr vane, léto plane, <br /> písek jasně se třpytí. <br /> jen drž draka pěkně zkrátka, <br /> jinak s tebou odletí.",
             "ru": ""
         },
         {
             id: "note_tile09",
             "en": "More than meets the eye, <br /> a rocket, a tower? <br /> It touches the sky, <br /> let's walk up together!",
-            "cs": "Co je to tam nahoře, <br /> raketa či věž? <br /> Strmě stoupá k obloze, <br /> vzhůru s námi běž.",
+            "cs": "Co to čeká nahoře, <br /> raketa nebo věž? <br /> Strmě stoupá k obloze, <br /> vzhůru k ní s námi běž.",
             "ru": ""
         },
         {
@@ -130,7 +130,7 @@ var Localization = new function()
         },
         {
             id: "note_tile12",
-            "en": "Adventures await, <br /> who knows where to start? <br /> We're all here for you, <br /> the love in our heart.",
+            "en": "Life awaits. <br /> This is where it starts. <br /> With you, with us, <br /> With love in our hearts.",
             "cs": "",
             "ru": ""
         },
