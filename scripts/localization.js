@@ -101,7 +101,7 @@ var Localization = new function()
         {
             id: "note_tile07",
             "en": "The wind blows, and it snows, <br /> but the night is bright. <br /> Go forth far north, <br /> watch the polar lights.",
-            "cs": "Vítr vane, neustane,<br /> padající sníh prohání.<br /> Vše si seber a jdi na sever, <br /> sleduj záři polární.",
+            "cs": "Vítr vane, neustane, <br /> padající sníh prohání. <br /> Vše si seber a jdi na sever, <br /> sleduj záři polární.",
             "ru": ""
         },
         {
