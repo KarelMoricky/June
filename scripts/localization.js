@@ -94,7 +94,7 @@ var Localization = new function()
         },
         {
             id: "note_tile06",
-            "en": "Build castles in the air - <br /> fantasy's everywhere.  <br /> So let yourself lose, <br /> in worlds that you choose."
+            "en": "Build castles in the air - <br /> fantasy's everywhere.  <br /> So let yourself lose, <br /> in worlds that you choose.",
             "cs": "Letí, řádí, neřízené, <br /> najdeš je, krásy smyšlené. <br /> Sama si je vytvoříš, <br /> ve své hlavě je nosíš.",
             "ru": ""
         },
