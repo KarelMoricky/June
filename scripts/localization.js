@@ -88,26 +88,26 @@ var Localization = new function()
         },
         {
             id: "note_tile05",
-            "en": "Nature is all around,  <br /> and you will explore it too. <br /> Smell the air, feel the ground, <br /> soak up the breathtaking view.",
-            "cs": "",
+            "en": "Feel the ground, smell the air - <br /> nature is everywhere. <br /> Soak up the breathtaking view. <br /> for you can explore it too.",
+            "cs": "Rostou, dupou, bují, voní, <br /> najdeš je, krásy přírodní, <br /> Jsou tu všude kolem nás, <br /> sama je už prozkoumáš.",
             "ru": ""
         },
         {
             id: "note_tile06",
-            "en": "Not always there, <br /> the breathtaking view, <br /> so let yourself lose  <br /> in worlds that you choose.",
-            "cs": "",
+            "en": "Build castles in the air - <br /> fantasy's everywhere.  <br /> So let yourself lose, <br /> in worlds that you choose."
+            "cs": "Letí, řádí, neřízené, <br /> najdeš je, krásy smyšlené. <br /> Sama si je vytvoříš, <br /> ve své hlavě je nosíš.",
             "ru": ""
         },
         {
             id: "note_tile07",
             "en": "The wind blows, and it snows, <br /> but the night is bright. <br /> Go forth far north, <br /> watch the polar lights.",
-            "cs": "Vítr vane přes noční pláně, <br /> sněhem všechno zavání, <br /> jen se sebe a jdi na sever, <br /> sleduj záři polární.",
+            "cs": "Vítr vane, neustane,<br /> padající sníh prohání.<br /> Vše si seber a jdi na sever, <br /> sleduj záři polární.",
             "ru": ""
         },
         {
             id: "note_tile08",
             "en": "The wind blows, the sand flows, <br /> but summer heat's so sweet. <br /> Hold tight the kite! <br /> Fly, follow its lead.",
-            "cs": "Vítr vane, léto plane, <br /> písek jasně se třpytí. <br /> jen drž draka pěkně zkrátka, <br /> jinak s tebou odletí.",
+            "cs": "Vítr vane, léto plane, <br /> písek zlatě se třpytí. <br /> Drž si draka pěkně zkrátka! <br /> Nebem s tebou poletí.",
             "ru": ""
         },
         {
