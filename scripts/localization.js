@@ -131,7 +131,7 @@ var Localization = new function()
         {
             id: "note_tile12",
             "en": "Life awaits. <br /> This is where it starts. <br /> With you, with us, <br /> With love in our hearts.",
-            "cs": "",
+            "cs": "Láska co nás čeká, <br /> tady a teď začíná, <br /> Mezi hvězdami. <br /> V našich srdcích spočívá.",
             "ru": ""
         },
         //#endregion
