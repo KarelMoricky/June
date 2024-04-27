@@ -4,7 +4,7 @@ var Note = new function()
     const NOTE_OFFSET_Y = -60; //--- Vertical camera offset in zommed-in view
 
     const TIME_CAMERA = 0.25;
-    const TIME_NOTE = 1.75;
+    const TIME_NOTE = 1.75; //--- 1.5 s between 4 lines: 3.25, 4.75, 6.25
     const TIME_END = 7.75;
 
     const m_Note = document.getElementById("note");

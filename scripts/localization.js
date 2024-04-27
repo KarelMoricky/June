@@ -143,6 +143,12 @@ var Localization = new function()
             "cs": "Tahle hra je pro tebe, <br /> Jméno své znáš z nebe. <br /> Jsi naše...",
             "ru": "",
         },
+        {
+            id: "outroName",
+            "en": "NAME",
+            "cs": "NAME",
+            "ru": "NAME", //ЛЫРА
+        },
         //#endregion
 
         //#region Credits

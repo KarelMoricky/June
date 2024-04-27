@@ -11,7 +11,7 @@ var Outro = new function()
     const TIME_START_HINT = 5.5;
 
     const TIME_NAME_HEART = 0;
-    const TIME_NAME_NOTE_IN_START = 1.5;
+    const TIME_NAME_NOTE_IN_START = 1.5; //--- 1.5 s between 3 lines: 3, 4.5
     const TIME_NAME_NOTE_IN_END = 6;
     const TIME_NAME_LETTER_1 = 6.5; //--- 1 s between letters
     const TIME_NAME_LETTER_2 = 7.5;
