@@ -6,6 +6,21 @@ var Outro = new function()
     const OUTRO_ZOOM_VALUE = 4.5; //--- Camera zoom in outro
     const CREDITS_ZOOM_VALUE = 0.66; //--- Camera zoom at the end of the game
 
+    const TIME_START_CAMERA = 0;
+    const TIME_START_EDIT = 5;
+    const TIME_START_HINT = 5.5;
+
+    const TIME_NAME_HEART = 0;
+    const TIME_NAME_NOTE_IN_START = 1.5;
+    const TIME_NAME_NOTE_IN_END = 6;
+    const TIME_NAME_LETTER_1 = 6.5; //--- 1 s between letters
+    const TIME_NAME_LETTER_2 = 7.5;
+    const TIME_NAME_LETTER_3 = 8.5;
+    const TIME_NAME_LETTER_4 = 9.5;
+    const TIME_NAME_NOTE_OUT = 10.5;
+    const TIME_NAME_CONSTELLATION = 11.5;
+    const TIME_NAME_END = 13;
+
     let m_CanClose = false;
     let m_Tiles = null;
     let m_TileComposition = null;
@@ -22,7 +37,7 @@ var Outro = new function()
     const m_TimelineOutroStart = [
         {
             //--- Animation started
-            time: 0,
+            time: TIME_START_CAMERA,
             function: function(currentTime)
             {
                 Camera.SetCamera(m_FinalPos.x, m_FinalPos.y, OUTRO_ZOOM_VALUE, 5 - currentTime, OUTRO_MOVE_DELAY);
@@ -33,7 +48,7 @@ var Outro = new function()
         },
         {
             //--- Make tiles editable
-            time: 5,
+            time: TIME_START_EDIT,
             function: function()
             {
                 SetElementVisible(m_Heart, true);
@@ -49,7 +64,7 @@ var Outro = new function()
         },
         {
             //--- Show hint
-            time: 5.5,
+            time: TIME_START_HINT,
             function: function()
             {
                 SetElementVisible(m_HeartHint, true);
@@ -61,7 +76,7 @@ var Outro = new function()
     const m_TimelineOutroName = [
         {
             //--- Heart
-            time: 0,
+            time: TIME_NAME_HEART,
             function: function()
             {
                 m_Heart.classList.add("animHeartIn");
@@ -82,19 +97,19 @@ var Outro = new function()
         },
         {
             //--- Handwriting
-            time: 1.5,
+            time: TIME_NAME_NOTE_IN_START,
             function: function()
             {
                 const outroNote = document.getElementById("outroNote");
                 SetElementVisible(outroNote, true);
 
                 if (SKIP_OUTRO_ANIM || !Debug.IsDev())
-                    AnimateLines(outroNote);
+                    AnimateLines(outroNote, (TIME_NAME_NOTE_IN_END - TIME_NAME_NOTE_IN_START));
             }
         },
         {
             //--- Letter 1
-            time: 5,
+            time: TIME_NAME_LETTER_1,
             function: function()
             {
                 const outroName = document.getElementById("outroName");
@@ -117,22 +132,22 @@ var Outro = new function()
         },
         {
             //--- Letter 2
-            time: 5.7,
+            time: TIME_NAME_LETTER_2,
             function: function() {ShowLetter(1);}
         },
         {
             //--- Letter 3
-            time: 6.4,
+            time: TIME_NAME_LETTER_3,
             function: function() {ShowLetter(2);}
         },
         {
             //--- Letter 4
-            time: 7.1,
+            time: TIME_NAME_LETTER_4,
             function: function() {ShowLetter(3);}
         },
         {
             //--- Fade out note
-            time: 8.0,
+            time: TIME_NAME_NOTE_OUT,
             function: function()
             {
                 outroNote.classList.add("animOutroNoteOut");
@@ -140,7 +155,7 @@ var Outro = new function()
         },
         {
             //--- Constellation
-            time: 8.5,
+            time: TIME_NAME_CONSTELLATION,
             function: function()
             {
                 const object = document.getElementById("constellationObject");
@@ -151,7 +166,7 @@ var Outro = new function()
         },
         {
             //--- End
-            time: 10,
+            time: TIME_NAME_END,
             function: function()
             {
                 m_CanClose = true;

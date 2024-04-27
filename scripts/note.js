@@ -3,6 +3,10 @@ var Note = new function()
     const NOTE_ZOOM = 0.66;          //--- Note zoom
     const NOTE_OFFSET_Y = -60; //--- Vertical camera offset in zommed-in view
 
+    const TIME_CAMERA = 0.25;
+    const TIME_NOTE = 1.75;
+    const TIME_END = 7.75;
+
     const m_Note = document.getElementById("note");
     const m_NoteContinue = document.getElementById("noteContinue");
     var m_InDetail = false;
@@ -36,19 +40,19 @@ var Note = new function()
         Sound.Timeline(audio, [
             {
                 //--- Zoom camera
-                time: 0.25,
+                time: TIME_CAMERA,
                 function: function(currentTime)
                 {
                     let tile = ev.detail.tile;
                     let posX = tile.getAttribute(VAR_TARGET_X);
                     let posY = tile.getAttribute(VAR_TARGET_Y);
 
-                    Camera.SetCamera(posX, parseInt(posY) + NOTE_OFFSET_Y, NOTE_ZOOM, 1.5 - currentTime);
+                    Camera.SetCamera(posX, parseInt(posY) + NOTE_OFFSET_Y, NOTE_ZOOM, (TIME_NOTE - TIME_CAMERA) - currentTime);
                 }
             },
             {
                 //--- Write text
-                time: 1.75,
+                time: TIME_NOTE,
                 function: function()
                 {
                     //--- Show current line
@@ -57,23 +61,14 @@ var Note = new function()
                     SetElementVisible(m_Note, true);
                     m_Note.classList.remove("animNoteOut");
                     m_Note.classList.add("animNoteIn");
-                    
-                    //const tilePair = ev.detail.tile.getAttribute("tilePair");
-                    let delay = 0;
-                    //if (tilePair != null)
-                    //    delay = 1;
 
                     if (!SKIP_NOTE_ANIM || !Debug.IsDev())
-                        AnimateLines(m_Note, 3 - delay, delay);
-
-                    //--- Show paired line
-                    //if (tilePair != null)
-                    //    Localization.Localize(m_Note, "note_" + tilePair, true);
+                        AnimateLines(m_Note, TIME_END - TIME_NOTE);
                 }
             },
             {
                 //--- End
-                time: 4.75,
+                time: TIME_END,
                 function: function()
                 {
                     AllowClosingNote();
