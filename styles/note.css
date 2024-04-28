@@ -61,7 +61,7 @@
 {
 	margin: 0;
 	opacity: 0;
-	animation: animFadeIn 2s ease-out forwards;
+	animation: animNoteLine 1.5s ease-out forwards;
 }
 
 .animNoteIn, .animNoteOut
@@ -81,5 +81,24 @@
 {
 	opacity: 1;
 	animation-name: animFadeOut; /* Simply reverting "in" animation does't work */
-	animation-duration: 0.2s;
+	animation-duration: 0.5s;
+}
+
+@keyframes animNoteLine
+{
+	0%
+	{
+		opacity: 0;
+		text-shadow: none;
+	}
+	30%
+	{
+		opacity: 1;
+		text-shadow: 0 0 3vh white;
+	}
+    100%
+	{
+		opacity: 1;
+		text-shadow: none;
+	}
 }

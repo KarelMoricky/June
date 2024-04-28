@@ -8,7 +8,7 @@ const TILE_DRAG_SNAP = 2;       //--- 0: No snap, 1: Always snap, 2: Snap only a
 const DEFAULT_ZOOM = 1;         //--- Default view box zoom
 const NOTE_LOADING = 0;         //--- Force note loading
 
-const SKIP_NOTE_ANIM = 1;       //--- When true, note reveal animation will be instant
+const SKIP_NOTE_ANIM = 0;       //--- When true, note reveal animation will be instant
 const SKIP_OUTRO_ANIM = 1;      //--- When true, initial otro animation (zoom out) will be instant
 
 const DEFAULT_LANGUAGE = "en";  //--- Default localization language
