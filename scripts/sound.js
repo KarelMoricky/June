@@ -27,7 +27,7 @@ var Sound = new function()
         {
             indexes.push(i);
             if (timeline[i].time >= audio.duration)
-                console.warn(`Sound.Timeline(): Event has time ${timeline[i].time} s, but audio duration is only ${audio.duration} s!`);
+                console.warn(`Sound.Timeline(): Event for ${audio.id} has time ${timeline[i].time} s, but audio duration is only ${audio.duration} s!`);
         }
     
         var backupTime = -1;

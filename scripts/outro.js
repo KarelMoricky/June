@@ -198,6 +198,7 @@ var Outro = new function()
 
         m_CanClose = false;
        
+        Sound.Play("musicOutroStart");
         const audio = Sound.Play("audioOutroStart");
         Sound.Timeline(audio, m_TimelineOutroStart);
 
