@@ -80,12 +80,13 @@ function AnimateWords(element, duration = 3, className = "animatedWord")
     return result;
 }
 
-function AnimateLines(element, duration = 3, delay = 0, className = "animatedLine")
+function AnimateLines(element, intervals = [], intervalOffset = 0, duration = 1.5)
 {
     const segments = element.innerHTML.split("<br>");
     element.innerHTML = "";
 
-    let interval = duration / segments.length;
+    if (segments.length != intervals.length)
+        console.warn(`Error when animating lines at '${element}' - it has ${segments.length} segments, but only ${intervals.length} intervals are defined!`);
 
     let result = [];
     let segment = null;
@@ -97,9 +98,13 @@ function AnimateLines(element, duration = 3, delay = 0, className = "animatedLin
         }
         else
         {
+            var delay = i;
+            if (i < intervals.length)
+                delay = intervals[i] - intervalOffset;
+
             segment = CreateElement("p", element, [
-                ["class", className],
-                ["style", `animation-delay: ${interval * i + delay}s; animation-duration: ${interval}`]
+                ["class", "animatedLine"],
+                ["style", `animation-delay: ${delay}s; animation-duration: ${duration}`]
             ]);
             segment.innerHTML = segments[i] + "<br />";
             result.push(segment);

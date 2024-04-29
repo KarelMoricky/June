@@ -4,7 +4,11 @@ var Note = new function()
     const NOTE_OFFSET_Y = -60; //--- Vertical camera offset in zommed-in view
 
     const TIME_CAMERA = 0.25;
-    const TIME_NOTE = 1.75; //--- 1.5 s between 4 lines: 3.25, 4.75, 6.25
+    const TIME_NOTE_LINES_DEFAULT = [1.75, 3.25, 4.75, 6.25];
+    const TIME_NOTE_LINES = [
+        {id: "tile02", intervals: [2, 3, 4, 5]},
+        {id: "tile03", intervals: [2, 2.6, 4, 4.6]},
+    ];
     const TIME_END = 7.75;
 
     const m_Note = document.getElementById("note");
@@ -47,12 +51,12 @@ var Note = new function()
                     let posX = tile.getAttribute(VAR_TARGET_X);
                     let posY = tile.getAttribute(VAR_TARGET_Y);
 
-                    Camera.SetCamera(posX, parseInt(posY) + NOTE_OFFSET_Y, NOTE_ZOOM, (TIME_NOTE - TIME_CAMERA) - currentTime);
+                    Camera.SetCamera(posX, parseInt(posY) + NOTE_OFFSET_Y, NOTE_ZOOM, (TIME_NOTE_LINES_DEFAULT[0] - TIME_CAMERA) - currentTime);
                 }
             },
             {
                 //--- Write text
-                time: TIME_NOTE,
+                time: TIME_NOTE_LINES_DEFAULT[0],
                 function: function()
                 {
                     //--- Show current line
@@ -63,7 +67,20 @@ var Note = new function()
                     m_Note.classList.add("animNoteIn");
 
                     if (!SKIP_NOTE_ANIM || !Debug.IsDev())
-                        AnimateLines(m_Note, TIME_END - TIME_NOTE);
+                    {
+                        //--- Pick intervals tailored for the tile
+                        var intervals = TIME_NOTE_LINES_DEFAULT;
+                        for (let i = 0; i < TIME_NOTE_LINES.length; i++)
+                        {
+                            if (TIME_NOTE_LINES[i].id == ev.detail.tile.id)
+                            {
+                                intervals = TIME_NOTE_LINES[i].intervals;
+                                break;
+                            }
+                        }
+
+                        AnimateLines(m_Note, intervals, TIME_NOTE_LINES_DEFAULT[0]);
+                    }
                 }
             },
             {

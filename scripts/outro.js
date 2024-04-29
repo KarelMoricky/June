@@ -11,8 +11,7 @@ var Outro = new function()
     const TIME_START_HINT = 6.3;
 
     const TIME_NAME_HEART = 0;
-    const TIME_NAME_NOTE_IN_START = 1.5; //--- 1.5 s between 3 lines: 3, 4.5
-    const TIME_NAME_NOTE_IN_END = 6;
+    const TIME_NAME_NOTE_LINES = [1.5, 3, 4.5];
     const TIME_NAME_LETTER_1 = 6.5; //--- 1 s between letters
     const TIME_NAME_LETTER_2 = 7.5;
     const TIME_NAME_LETTER_3 = 8.5;
@@ -97,14 +96,13 @@ var Outro = new function()
         },
         {
             //--- Handwriting
-            time: TIME_NAME_NOTE_IN_START,
+            time: TIME_NAME_NOTE_LINES[0],
             function: function()
             {
                 const outroNote = document.getElementById("outroNote");
                 SetElementVisible(outroNote, true);
 
-                if (SKIP_OUTRO_ANIM || !Debug.IsDev())
-                    AnimateLines(outroNote, (TIME_NAME_NOTE_IN_END - TIME_NAME_NOTE_IN_START));
+                AnimateLines(outroNote, TIME_NAME_NOTE_LINES);
             }
         },
         {
