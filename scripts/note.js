@@ -79,7 +79,7 @@ var Note = new function()
                             }
                         }
 
-                        AnimateLines(m_Note, intervals, TIME_NOTE_LINES_DEFAULT[0]);
+                        AnimateLines(m_Note, intervals, TIME_NOTE_LINES_DEFAULT[0] + 0.1); //--- Add extra offset to compensate for fade-in effect
                     }
                 }
             },

@@ -102,7 +102,7 @@ var Outro = new function()
                 const outroNote = document.getElementById("outroNote");
                 SetElementVisible(outroNote, true);
 
-                AnimateLines(outroNote, TIME_NAME_NOTE_LINES);
+                AnimateLines(outroNote, TIME_NAME_NOTE_LINES, TIME_NAME_NOTE_LINES[0]);
             }
         },
         {

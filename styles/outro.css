@@ -12,9 +12,10 @@
 {
 	position: absolute;
 	left: 50vw;
-	top: 65vh;
+	top: 64vh;
 	transform: translate(-50%, -50%);
 	width: min(14em, 90%);
+	height: 18vh;
 
 	color: white;
 	text-align: center;
