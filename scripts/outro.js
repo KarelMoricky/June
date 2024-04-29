@@ -7,8 +7,8 @@ var Outro = new function()
     const CREDITS_ZOOM_VALUE = 0.66; //--- Camera zoom at the end of the game
 
     const TIME_START_CAMERA = 0;
-    const TIME_START_EDIT = 5;
-    const TIME_START_HINT = 5.5;
+    const TIME_START_EDIT = 5.7;
+    const TIME_START_HINT = 6.3;
 
     const TIME_NAME_HEART = 0;
     const TIME_NAME_NOTE_IN_START = 1.5; //--- 1.5 s between 3 lines: 3, 4.5
@@ -197,8 +197,7 @@ var Outro = new function()
         Game.SetState(GAME_STATE_DISABLED);
 
         m_CanClose = false;
-       
-        Sound.Play("musicOutroStart");
+        
         const audio = Sound.Play("audioOutroStart");
         Sound.Timeline(audio, m_TimelineOutroStart);
 

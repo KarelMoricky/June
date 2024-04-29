@@ -5,7 +5,7 @@ var Note = new function()
 
     const TIME_CAMERA = 0.25;
     const TIME_NOTE = 1.75; //--- 1.5 s between 4 lines: 3.25, 4.75, 6.25
-    const TIME_END = 6.5;
+    const TIME_END = 7.75;
 
     const m_Note = document.getElementById("note");
     const m_NoteContinue = document.getElementById("noteContinue");

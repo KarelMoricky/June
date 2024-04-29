@@ -26,8 +26,13 @@ var Sound = new function()
         for (let i = 0; i < timeline.length; i++)
         {
             indexes.push(i);
+
+            //--- Entry's time is beyond sound's duration - cap it at the duration, so it gets played at the end
             if (timeline[i].time >= audio.duration)
-                console.warn(`Sound.Timeline(): Event for ${audio.id} has time ${timeline[i].time} s, but audio duration is only ${audio.duration} s!`);
+            {
+                //console.warn(`Sound.Timeline(): Event for ${audio.id} has time ${timeline[i].time} s, but audio duration is only ${audio.duration} s!`);
+                timeline[i].time = audio.duration - 0.01;
+            }
         }
     
         var backupTime = -1;
@@ -36,7 +41,7 @@ var Sound = new function()
             //Debug.Log(audio.paused, audio.ended, audio.currentTime, audio.duration, audio.networkState, audio.readyState, backupTime);
 
             //--- On iOS, the audio is sometimes ready to play, but stuck. Reload it in such case.
-            if ((audio.paused || audio.ended) && audio.readyState == 4 && backupTime == -1)
+            if ((audio.paused || audio.ended) && audio.readyState == 4 && backupTime == -1 && audio.currentTime < 1)
             {
                 audio.play();
             }
