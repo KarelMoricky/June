@@ -71,7 +71,7 @@ var Localization = new function()
         {
             id: "note_tile02",
             "en": "Here you are, Little One, <br /> so small, yet so great! <br /> Let's discover what fun <br /> adventures await.",
-            "cs": "Ahoj Maličká, <br /> radost naše velká! <br /> Pojďme si prohlédout, <br /> příběh co nás čeká.",
+            "cs": "Ahoj Maličká, <br /> radost naše velká! <br /> Pojďme si vyprávět, <br /> příběh co nás čeká.",
             "ru": ""
         },
         {
@@ -83,13 +83,13 @@ var Localization = new function()
         {
             id: "note_tile04",
             "en": "Beach and sea, however, <br /> you will have nearby, <br /> we'll head there whenever <br /> there is a clear sky.",
-            "cs": "Pláž, duny, a moře, <br /> máš tu zase opodál. <br /> Půjdeme tam pokaždé, <br /> když je modrá obloha.",
+            "cs": "Pláž, duny, a moře, <br /> máš tu zase opodál. <br /> Půjdem tam pokaždé, <br /> když je modrá obloha.",
             "ru": ""
         },
         {
             id: "note_tile05",
             "en": "Feel the ground, smell the air - <br /> nature is everywhere. <br /> Soak up the breathtaking view. <br /> for you can explore it too.",
-            "cs": "Rostou, dupou, bují, voní, <br /> najdeš je, krásy přírodní, <br /> Jsou tu všude kolem nás, <br /> sama je už prozkoumáš.",
+            "cs": "Rostou, dupou, bují, voní, <br /> najdeš je, krásy přírodní, <br /> Jsou tu všude kolem nás, <br /> sama už je prozkoumáš.",
             "ru": ""
         },
         {
@@ -113,13 +113,13 @@ var Localization = new function()
         {
             id: "note_tile09",
             "en": "More than meets the eye, <br /> a rocket, a tower? <br /> It touches the sky, <br /> let's walk up together!",
-            "cs": "Co to čeká nahoře, <br /> raketa nebo věž? <br /> Strmě stoupá k obloze, <br /> vzhůru k ní s námi běž.",
+            "cs": "Co to čeká nahoře, <br /> raketa nebo věž? <br /> Strmě stoupá k obloze, <br /> na vrchol s námi běž.",
             "ru": ""
         },
         {
             id: "note_tile10",
             "en": "Waiting, ready for launch,  <br /> a tower, a rocket? <br /> Waiting for us to watch, <br /> or to be your ticket?",
-            "cs": "Připravena ke startu, <br /> věž nebo raketa? <br /> Je pouze jednou z mnoha, <br /> či s tebou odlétá?",
+            "cs": "Ke startu připravena, <br /> věž nebo raketa? <br /> Vydá se vzhůru sama, <br /> či s tebou odlétá?",
             "ru": ""
         },
         {
