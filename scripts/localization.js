@@ -33,6 +33,12 @@ var Localization = new function()
             "ru": "был рождён XX июня 2024 года"
         },
         {
+            id: "locIntroTitle5",
+            "en": "in Haarlem, The Netherlands",
+            "cs": "v nizozemském Haarlemu",
+            "ru": ""
+        },
+        {
             id: "playText",
             "en": "PLAY",
             "cs": "HRAJTE",

@@ -74,6 +74,11 @@
 	margin: 0;
 }
 
+#locIntroTitle5
+{
+	padding-top: 0.6vh;
+}
+
 #title
 {
 	margin-bottom: 5vh;
@@ -184,7 +189,7 @@
 	top: 0;
 }
 
-#locIntroTitle1, #locIntroTitle2, #locIntroTitle3, #locIntroTitle4, #play, #noScript, #gameObject
+#locIntroTitle1, #locIntroTitle2, #locIntroTitle3, #locIntroTitle4, #locIntroTitle5, #play, #noScript, #gameObject
 {
 	opacity: 0;
 	animation: animFadeIn 2s ease-out forwards;
@@ -194,5 +199,6 @@
 #locIntroTitle2	 { animation-delay: 2.5s; }
 #locIntroTitle3	 { animation-delay: 4.0s; }
 #locIntroTitle4	 { animation-delay: 4.0s; }
-#play, #noScript { animation-delay: 5.5s; }
-#gameObject	 	 { animation-delay: 5.5s; }
+#locIntroTitle5	 { animation-delay: 5.5s; }
+#play, #noScript { animation-delay: 7.0s; }
+#gameObject	 	 { animation-delay: 7.0s; }
