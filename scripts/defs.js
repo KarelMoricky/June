@@ -1,6 +1,6 @@
 //#region Constants
 const DEV_MODE = 1;             //--- 0: disabled, 1: offline, 2: offline & online
-const DEV_SKIP_INTRO = 1;       //--- When true, intro screen will be skipped. Offline mode only.
+const DEV_SKIP_INTRO = 0;       //--- When true, intro screen will be skipped. Offline mode only.
 const DEV_MANUAL_LOAD = 1;      //--- When true, loading screen has to be progressed manually by clicking on play button. Dev mode only.
 
 const FORCED_START = [];        //--- When defined, all new tiles will start on this position instead of the one configured in ORIGIN_POSITIONS

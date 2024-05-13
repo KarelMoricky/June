@@ -74,9 +74,13 @@
 	margin: 0;
 }
 
-#locIntroTitle5
+#locIntroTitle1
 {
-	padding-top: 0.6vh;
+	padding-bottom: 0.5vh;
+}
+#locIntroTitle4, #locIntroTitle5
+{
+	padding-top: 0.5vh;
 }
 
 #title
