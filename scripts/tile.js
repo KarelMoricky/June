@@ -405,9 +405,11 @@ var Tile = new function()
             tile.classList.add(CLASS_TILE_CONFIRMED);
             m_OccupiedCoords.push([parseInt(tile.getAttribute(VAR_GRID_TARGET_X)), parseInt(tile.getAttribute(VAR_GRID_TARGET_Y))]);
             
-            //--- #HACK
+            //--- Adjust picture position
             let tilePicture = tile.getElementById(ID_TILE_CONTENT);
-            tilePicture.setAttribute("transform","translate(-128,-128)");
+            const offsetX = -0.5 * parseInt(getComputedStyle(tilePicture).getPropertyValue("--tile-width"));
+            const offsetY = -0.5 * parseInt(getComputedStyle(tilePicture).getPropertyValue("--tile-height"));
+            tilePicture.setAttribute("transform",`translate(${offsetX},${offsetY})`);
 
             //--- Hide tile hint (and remove its animation, so it will be restarted once it's added again)
             SetElementVisible(m_TileHint, false);

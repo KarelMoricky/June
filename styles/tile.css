@@ -1,5 +1,7 @@
 :root {
 	--display-numbers: none;
+    --tile-width: 256px;
+    --tile-height: 400px;
 }
 
 #tiles
@@ -25,6 +27,8 @@
 .tile
 {
 	overflow: visible;
+	width: var(--tile-width);
+	height: var(--tile-height);
 }
 
 .tileCurrent
@@ -61,9 +65,20 @@
 	filter: none !important; /* Remove tile highlight */
 }
 
+#tileContent
+{
+	transform: translate(calc(-0.5 * var(--tile-width)), calc(-0.5 * var(--tile-height) - 24px));
+}
+
+.tileConfirmed #tileContent
+{
+	transform: translate(calc(-0.5 * var(--tile-width)), calc(-0.5 * var(--tile-height)));
+}
+
 #tileArea
 {
 	fill: rgba(0, 255, 0, 0);
+	transform: translate(0, 80px);
 	stroke: none;
 }
 
@@ -93,19 +108,19 @@
 	0%
 	{
 		opacity: 0;
-		transform: translate(calc(-128px * 2), calc(-152px * 2)) scale(2);
+		transform: translate(calc(-1 * var(--tile-width)), calc(-1 * var(--tile-height))) scale(2);
 	}
     100%
 	{
 		opacity: 1;
-		transform: translate(-128px, -152px);
+		transform: translate(calc(-0.5 * var(--tile-width)), calc(-0.5 * var(--tile-height) - 24px));
 	}
 }
 
 #tilePicture
 {
 	pointer-events: none;
-	transform: scale(0.5);
+	transform: scale(0.25);
 	/*transform: translate(12px, 44px) scale(0.45); /* Guessed values */
 }
 
@@ -135,7 +150,7 @@
 	{
 		animation-timing-function: ease-in;
 		opacity: 1;
-		transform: translate(-128px, calc(-24px - 128px));
+		transform: translate(calc(-0.5 * var(--tile-width)), calc(-24px - 0.5 * var(--tile-height)));
 	}
 
 	24%
@@ -146,25 +161,25 @@
 	40%
 	{
 		animation-timing-function: ease-in;
-		transform: translate(-128px, calc(-16px - 128px));
+		transform: translate(calc(-0.5 * var(--tile-width)), calc(-16px - 0.5 * var(--tile-height)));
 	}
 
 	65%
 	{
 		animation-timing-function: ease-in;
-		transform: translate(-128px, calc(-8px - 128px));
+		transform: translate(calc(-0.5 * var(--tile-width)), calc(-8px - 0.5 * var(--tile-height)));
 	}
 
 	82%
 	{
 		animation-timing-function: ease-in;
-		transform: translate(-128px, calc(-4px - 128px));
+		transform: translate(calc(-0.5 * var(--tile-width)), calc(-4px - 0.5 * var(--tile-height)));
 	}
 
 	93%
 	{
 		animation-timing-function: ease-in;
-		transform: translate(-128px, calc(-2px - 128px));
+		transform: translate(calc(-0.5 * var(--tile-width)), calc(-2px - 0.5 * var(--tile-height)));
 	}
 
 	25%,
@@ -173,13 +188,13 @@
 	87%
 	{
 		animation-timing-function: ease-out;
-		transform: translate(-128px, calc(0px - 128px));
+		transform: translate(calc(-0.5 * var(--tile-width)), calc(0px - 0.5 * var(--tile-height)));
 	}
 
 	100%
 	{
 		animation-timing-function: ease-out;
 		opacity: 1;
-		transform: translate(-128px, calc(0px - 128px));
+		transform: translate(calc(-0.5 * var(--tile-width)), calc(0px - 0.5 * var(--tile-height)));
 	}
 }
