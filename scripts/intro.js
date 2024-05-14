@@ -26,7 +26,7 @@ var Intro = new function()
         setTimeout(() => {
             m_CanLoad++
             Intro.OnLoadFinished();
-        }, 6000);
+        }, 8250);
     }
 
     this.OnLoadFinished = function()

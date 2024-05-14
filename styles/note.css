@@ -18,11 +18,12 @@
 {
 	width: 5vh;
 	height: 5vh;
-	line-height: 5.25vh;
+	line-height: 4.5vh;
 	margin: 2vh auto 0 auto;
 
 	font-size: 4vh;
 	text-align: center;
+	vertical-align: middle;
 	color: var(--color-light);
 	opacity: 0;
 

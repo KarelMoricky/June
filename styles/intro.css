@@ -200,9 +200,9 @@
 }
 
 #locIntroTitle1	 { animation-delay: 1.0s; }
-#locIntroTitle2	 { animation-delay: 2.5s; }
+#locIntroTitle2	 { animation-delay: 2.5s; animation-name: animNoteLine !important; }
 #locIntroTitle3	 { animation-delay: 4.0s; }
 #locIntroTitle4	 { animation-delay: 4.0s; }
 #locIntroTitle5	 { animation-delay: 5.5s; }
 #play, #noScript { animation-delay: 7.0s; }
-#gameObject	 	 { animation-delay: 7.0s; }
+#gameObject	 	 { animation-delay: 7.5s; }
