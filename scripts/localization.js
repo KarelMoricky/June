@@ -4,7 +4,7 @@ var Localization = new function()
         //#region Intro
         {
             id: "documentTitle",
-            "en": "Vera & Karel had a girl!",
+            "en": "Vera & Karel Had a Girl!",
             "cs": "Vera & Karel mají holčičku!",
             "ru": ""
         },
