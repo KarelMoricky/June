@@ -364,6 +364,11 @@
 	font-weight: bold;
 }
 
+#credits a:hover
+{
+	color: white;
+}
+
 #anotherGame
 {
 	padding-bottom: 3vh;
