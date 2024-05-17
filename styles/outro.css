@@ -333,32 +333,57 @@
 	width: 100%;
 	left: 0;
 	right: 0;
-	bottom: 10vh;
+	bottom: 0;
 	background-color: rgba(0, 0, 0, 0.7);
 	backdrop-filter: blur(10px);
 	animation: animFadeIn 2s 1s ease forwards;
 	opacity: 0;
+	font-family: "Roboto Slab", serif;
+	font-size: 2vh;
+	text-align: center;
 }
 
 #thanks
 {
-	text-align: center;
 	padding: 1vh;
 	width: 100%;
 }
+
 #credits
 {
-	text-align: center;
-	padding-bottom: 2vh;
+	padding-bottom: 3vh;
 	width: 90%;
 	margin-left: 5%;
-	font-family: "Roboto Slab", serif;
-	font-size: 2vh;
 	color: var(--color-highlight);
 	opacity: 0.8;
 }
+
 #credits a
 {
 	color: var(--color-highlight);
 	font-weight: bold;
+}
+
+#anotherGame
+{
+	padding-bottom: 3vh;
+	color: var(--color-light);
+}
+
+#anotherGame a
+{
+	color: white;
+	text-decoration: none;
+	background-color: rgba(255, 255, 255, 0.1);
+	border: 0.3vh solid white;
+	border-radius: 2vh;
+	padding: 1vh 2vh 1vh 2vh;
+}
+
+#anotherGame a:hover
+{
+	background-color: white;
+	color: var(--color-dark);
+	/* color: var(--color-highlight);
+	border-color: var(--color-highlight); */
 }
