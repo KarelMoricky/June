@@ -1,3 +1,4 @@
+![Vera & Karel Had a Girl!](images/og_image.jpg)
 # Vera & Karel Had a Girl!
 __And we made a game for her!__
 https://baby.moricky.com/2024/
