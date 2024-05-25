@@ -10,7 +10,7 @@ This is the game for the younger child, a daughter. While I made the first game 
 
 I'm publishing source code of the project here. It's a free game anyway, and as a Bohemia Interactive developer, it feels natural to keep my code exposed, for everyone to see (and critique).
 
-Have fun playing the game, and exploring how it was made! ♥
+Have fun playing the game, and exploring how it was made! 💙
 
 # Full Credits
 - **Karel Mořický** (me) wrote HTML, CSS, JavaScript, English and Czech texts.
