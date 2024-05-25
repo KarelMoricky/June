@@ -14,18 +14,18 @@ Have fun playing the game, and exploring how it was made! ♥
 
 # Full Credits
 - Karel Mořický (me) wrote HTML, CSS, JavaScript, English and Czech texts.
- - http://moricky.com\
+  - http://moricky.com\
 - Vera Ryzhkina, my wife, composed and recorded music, composed and sang the lullaby, and wrote English and Russian texts.
- - https://www.instagram.com/dododollydo/
+  - https://www.instagram.com/dododollydo/
 - Jiří Mikovec, my friend from Czechia, painted the beatiful tiles.
- - https://www.behance.net/mikovecjir5bc4\
+  - https://www.behance.net/mikovecjir5bc4\
 - August.ro painted the announcement card. We chose her because she did also our son's card, and we wanted keep the same style.
- - https://www.instagram.com/august.ro/
+  - https://www.instagram.com/august.ro/
 - Our friends Joris, Katka, Marek, and Olga tested the game.
 - Answers by following people and websites helped me with coding:
- - https://easings.net/ - to create smooth camera transitions
- - https://fffuel.co/svg-spinner/ - to make tile loading spinner (visible only when something goes wrong with sounds; usually on iOS)
- - https://codepen.io/bennettfeely/pen/vYLmYJz - to implement twinkling stars in the background
- - https://remysharp.com/2010/12/23/audio-sprites - to preload sounds which solved reccuring iOS issues
- - https://www.w3schools.com/howto/howto_css_loader.asp - to make the intro screen loading spinner
- - And all the good people on https://stackoverflow.com/ whose questions and answers popped up in my search results when I was stuck
+  - https://easings.net/ - to create smooth camera transitions
+  - https://fffuel.co/svg-spinner/ - to make tile loading spinner (visible only when something goes wrong with sounds; usually on iOS)
+  - https://codepen.io/bennettfeely/pen/vYLmYJz - to implement twinkling stars in the background
+  - https://remysharp.com/2010/12/23/audio-sprites - to preload sounds which solved reccuring iOS issues
+  - https://www.w3schools.com/howto/howto_css_loader.asp - to make the intro screen loading spinner
+  - And all the good people on https://stackoverflow.com/ whose questions and answers popped up in my search results when I was stuck
