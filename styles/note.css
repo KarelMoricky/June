@@ -14,7 +14,7 @@
 	backdrop-filter: blur(10px);
 }
 
-#noteContinue
+.continueButton
 {
 	width: 5vh;
 	height: 5vh;
@@ -33,10 +33,11 @@
 	border-radius: 50%;
 
 	cursor: pointer;
+	pointer-events: auto;
 	animation: animFadeIn 2s 1s ease-out forwards;
 }
 
-#noteContinue:hover
+.continueButton:hover
 {
 	color: var(--color-highlight);
 	border-color: var(--color-highlight);

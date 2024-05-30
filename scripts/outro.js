@@ -11,14 +11,14 @@ var Outro = new function()
     const TIME_START_HINT = 6.3;
 
     const TIME_NAME_HEART = 0;
-    const TIME_NAME_NOTE_LINES = [1.5, 3, 4.5];
-    const TIME_NAME_LETTER_1 = 6.5; //--- 1 s between letters
-    const TIME_NAME_LETTER_2 = 7.5;
-    const TIME_NAME_LETTER_3 = 8.5;
-    const TIME_NAME_LETTER_4 = 9.5;
-    const TIME_NAME_NOTE_OUT = 10.5;
-    const TIME_NAME_CONSTELLATION = 11.5;
-    const TIME_NAME_END = 13;
+    const TIME_NAME_NOTE_LINES = [3.15, 5.1, 7.1];
+    const TIME_NAME_LETTER_1 = 9.3;
+    const TIME_NAME_LETTER_2 = 11.1;
+    const TIME_NAME_LETTER_3 = 13.0;
+    const TIME_NAME_LETTER_4 = 13.7;
+    const TIME_NAME_NOTE_OUT = 16.8;
+    const TIME_NAME_CONSTELLATION = 21;
+    const TIME_NAME_END = 32.5;
 
     let m_CanClose = false;
     let m_Tiles = null;
@@ -161,6 +161,7 @@ var Outro = new function()
                 SetElementVisible(constellationSvg.getElementById("constLines"), true, true);
                 SetElementVisible(constellationSvg.getElementById("constStarHighlights"), true, true);
             }
+            //--- Timing in constellation.css
         },
         {
             //--- End
@@ -169,6 +170,10 @@ var Outro = new function()
             {
                 m_CanClose = true;
                 Game.SetState(GAME_STATE_DEFAULT);
+
+                const outroContinue = document.getElementById("outroContinue");
+                SetElementVisible(outroContinue, true);
+                outroContinue.addEventListener("click", CloseOutro);
             }
         }
     ];
@@ -231,40 +236,7 @@ var Outro = new function()
         if (m_CanClose)
         {
             //--- Close
-            Camera.EnableManualInput(true);
-            Camera.SetCamera(0, 0, OUTRO_ZOOM_VALUE, 0);
-            Camera.SetCamera(0, -75, CREDITS_ZOOM_VALUE, 0.5); //--- Offset down to show the constellation
-
-            //--- Exit full screen after camera animation ends
-            setTimeout(() =>
-            {
-                if (document.fullscreenElement)
-                    document.exitFullscreen();
-            }, 500);
-            
-            m_Tiles.classList.remove("animTilesOut");
-            m_Tiles.classList.add("animTilesIn");
-
-            const grid = Game.GetSVGDoc().getElementById("grid");
-            grid.classList.remove("animTilesOut");
-            grid.classList.add("animTilesIn");
-
-            document.getElementById("outroNote").classList.add("animOutroOut");
-            document.getElementById("outroName").classList.add("animOutroOut");
-            
-            m_Heart.classList.remove("animHeartIn");
-            m_Heart.classList.add("animHeartOut");
-
-            SetElementVisible(document.getElementById("creditsArea"), true);
-
-            m_TimePrev = -1;
-            m_TargetPos.x = 0;
-            m_TargetPos.y = 0;
-
-            Sound.Play("audioOutroEnd");
-
-            window.removeEventListener(EVENT_GAME_DRAG_START, OnGameDragStart);
-            Game.SetFinished();
+            CloseOutro();
         }
         else
         {
@@ -353,6 +325,47 @@ var Outro = new function()
             //Sound.Play("audioTileDragEnd");
             Vibrate(VIBRATION_OUTRO_DRAG_END);
         }
+    }
+
+    function CloseOutro()
+    {
+        Camera.EnableManualInput(true);
+        Camera.SetCamera(0, 0, OUTRO_ZOOM_VALUE, 0);
+        Camera.SetCamera(0, -75, CREDITS_ZOOM_VALUE, 0.5); //--- Offset down to show the constellation
+
+        //--- Exit full screen after camera animation ends
+        setTimeout(() =>
+        {
+            if (document.fullscreenElement)
+                document.exitFullscreen();
+        }, 500);
+
+        const outroContinue = document.getElementById("outroContinue");
+        SetElementVisible(outroContinue, false);
+        
+        m_Tiles.classList.remove("animTilesOut");
+        m_Tiles.classList.add("animTilesIn");
+
+        const grid = Game.GetSVGDoc().getElementById("grid");
+        grid.classList.remove("animTilesOut");
+        grid.classList.add("animTilesIn");
+
+        document.getElementById("outroNote").classList.add("animOutroOut");
+        document.getElementById("outroName").classList.add("animOutroOut");
+        
+        m_Heart.classList.remove("animHeartIn");
+        m_Heart.classList.add("animHeartOut");
+
+        SetElementVisible(document.getElementById("creditsArea"), true);
+
+        m_TimePrev = -1;
+        m_TargetPos.x = 0;
+        m_TargetPos.y = 0;
+
+        //Sound.Play("audioOutroEnd");
+
+        window.removeEventListener(EVENT_GAME_DRAG_START, OnGameDragStart);
+        Game.SetFinished();
     }
 
     function CanSnapHeart()

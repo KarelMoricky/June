@@ -55,6 +55,14 @@
 	}
 }
 
+#outroContinue
+{
+	position: absolute;
+	left: 50vw;
+	top: 80vh;
+	transform: translate(-50%, -50%);
+}
+
 .animOutroIn
 {
 	animation: animOutroIn 1.5s 0.5s ease forwards;
