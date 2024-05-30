@@ -28,7 +28,8 @@ Have fun playing the game, and exploring how it was made! 💙
   - And all the good people on https://stackoverflow.com/ whose questions and answers popped up in my search results when I was stuck
  
 # Tools Used
-- **Visual Studio Code** for coding
-- **Total Commander** for FTP management
-- **Audacity** for mixing audio
-- **Google Sheets** for managing localization and time tracking
+- **[Visual Studio Code](https://code.visualstudio.com/)** for coding
+- **[Adobe Photoshop](https://www.adobe.com/products/photoshop.html)** and **[Procreate](https://procreate.com/)** for tile art
+- **[Audacity](https://www.audacityteam.org/)** for mixing audio
+- **[Total Commander](https://www.ghisler.com/)** for FTP management
+- **[Google Sheets](https://www.google.com/sheets/about/)** for prototyping, localization, and time tracking
