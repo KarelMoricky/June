@@ -30,6 +30,7 @@ Have fun playing the game, and exploring how it was made! 💙
 # Tools Used
 - **[Visual Studio Code](https://code.visualstudio.com/)** for coding
 - **[Adobe Photoshop](https://www.adobe.com/products/photoshop.html)** and **[Procreate](https://procreate.com/)** for tile art
+- **[Flat](https://flat.io/)** for composing music
 - **[Audacity](https://www.audacityteam.org/)** for mixing audio
 - **[Total Commander](https://www.ghisler.com/)** for FTP management
 - **[Google Sheets](https://www.google.com/sheets/about/)** for prototyping, localization, and time tracking
