@@ -9,7 +9,7 @@ It was well received. I was pleased with it, but at the same time I knew I estab
 
 This is the game for the younger child, a daughter. While I made the first game in Unity, this time I chose pure HTML and JavaScript, so it can run on all platforms (the previous one was PC only, and I underestimated how many people don't regularly use PC). Of course, I knew nothing about JavaScript and my HTML knowledge was from my high school times, so I had to learn a lot. I aimed to write the code myself - no libraries, and certainly **no AI assistance**. In fact, I intentionally avoided using AI altogether. This is a personal game for my daughter, and it felt wrong to have a machine generate it or some of its parts for me. Besides, it's more fun to fiddle with the code itself and not with prompts.
 
-I'm publishing source code of the project here. It's a free game anyway, and as a Bohemia Interactive developer, it feels natural to keep my code exposed, for everyone to see (and critique).
+I'm publishing source code of the project here. It's a free game anyway, and as a Bohemia Interactive developer, I'm used to exposing my code for everyone to see (and critique).
 
 Have fun playing the game, and exploring how it was made! 💙
 
