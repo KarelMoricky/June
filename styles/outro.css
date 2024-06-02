@@ -2,7 +2,7 @@
 {
 	position: absolute;
 	left: 50vw;
-	top: 30vh;
+	top: 24vh;
 	transform: translate(-50%, -50%);
 	width: min(14em, 90%);
 	text-align: center;
@@ -12,7 +12,7 @@
 {
 	position: absolute;
 	left: 50vw;
-	top: 64vh;
+	top: 70vh;
 	transform: translate(-50%, -50%);
 	width: min(14em, 90%);
 	height: 18vh;
@@ -59,7 +59,7 @@
 {
 	position: absolute;
 	left: 50vw;
-	top: 80vh;
+	top: 86vh;
 	transform: translate(-50%, -50%);
 }
 
@@ -138,7 +138,7 @@
 .animHeartOut
 {
 	opacity: 1;
-	animation: animFadeOut 0.7s ease-out forwards;
+	animation: animFadeOut 4s ease-out forwards;
 }
 
 #heartPolygon
@@ -288,7 +288,8 @@
 
 .animTilesIn
 {
-	animation: animFadeIn 0.2s ease;
+	opacity: 0;
+	animation: animFadeIn 2s ease forwards;
 }
 
 .animTilesOut
@@ -327,6 +328,17 @@
 {
 	0% {opacity: 0.5;}
     100% {opacity: 0;}
+}
+
+.animOutroTileOut
+{
+	animation: animFadeOut 5s 7s ease forwards;
+}
+
+.animOutroTileIn
+{
+	opacity: 0;
+	animation: animFadeIn 2s 1s ease forwards;
 }
 
 .animOutroNoteOut

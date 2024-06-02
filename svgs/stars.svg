@@ -65,7 +65,7 @@
         <circle cx="40.23%" cy="23.8%" r="0.9"></circle>
         <circle cx="46.31%" cy="47.62%" r="0.8"></circle>
         <circle cx="56.46%" cy="65.81%" r="0.8"></circle>
-        <circle cx="48.04%" cy="14.91%" r="1.2"></circle>
+        <circle cx="55.04%" cy="14.91%" r="1.2"></circle>
         <circle cx="78.06%" cy="4.3%" r="1.4"></circle>
         <circle cx="61.43%" cy="20.8%" r="1"></circle>
         <circle cx="62.58%" cy="42.46%" r="1.4"></circle>
@@ -90,7 +90,7 @@
         <circle cx="37.41%" cy="82.3%" r="0.9"></circle>
         <circle cx="49.91%" cy="70.34%" r="0.5"></circle>
         <circle cx="50.97%" cy="59.28%" r="0.9"></circle>
-        <circle cx="48.59%" cy="13.85%" r="0.6"></circle>
+        <circle cx="54.59%" cy="13.85%" r="0.6"></circle>
         <circle cx="22.14%" cy="84.75%" r="0.7"></circle>
         <circle cx="21.13%" cy="94.06%" r="0.9"></circle>
         <circle cx="43.31%" cy="78.67%" r="1.1"></circle>
@@ -220,7 +220,9 @@
         <circle cx="40.09%" cy="67.75%" r="1.3"></circle>
         <circle cx="62.85%" cy="8.47%" r="1.4"></circle>
         <circle cx="84.41%" cy="25.06%" r="0.5"></circle>
-        <circle cx="47.2%" cy="14%" r="0.8"></circle>
+
+        <circle cx="45.2%" cy="14%" r="0.8"></circle>
+
         <circle cx="9.29%" cy="55.22%" r="0.6"></circle>
         <circle cx="66.9%" cy="78.97%" r="1.2"></circle>
         <circle cx="97.3%" cy="56.87%" r="1.3"></circle>

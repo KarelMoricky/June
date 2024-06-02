@@ -64,6 +64,11 @@ var Tile = new function()
         return RevealNextTile();
     }
 
+    this.GetTiles = function()
+    {
+        return m_Tiles;
+    }
+
     window.addEventListener(EVENT_GAME_INIT, () =>
     {
         m_TilesElement = Game.GetSVGDoc().getElementById(ID_TILES_ELEMENT);

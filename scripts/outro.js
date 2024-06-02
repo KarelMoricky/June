@@ -17,8 +17,8 @@ var Outro = new function()
     const TIME_NAME_LETTER_3 = 13.0;
     const TIME_NAME_LETTER_4 = 13.7;
     const TIME_NAME_NOTE_OUT = 16.8;
-    const TIME_NAME_CONSTELLATION = 21;
-    const TIME_NAME_END = 32.5;
+    const TIME_NAME_CONSTELLATION = 33.5;
+    const TIME_NAME_END = 41;
 
     let m_CanClose = false;
     let m_Tiles = null;
@@ -144,11 +144,32 @@ var Outro = new function()
             function: function() {ShowLetter(3);}
         },
         {
-            //--- Fade out note
+            //--- Zoom in
             time: TIME_NAME_NOTE_OUT,
             function: function()
             {
                 outroNote.classList.add("animOutroNoteOut");
+
+                const cameraDuration = TIME_NAME_CONSTELLATION - TIME_NAME_NOTE_OUT;
+                Camera.SetCamera(0, 0, OUTRO_ZOOM_VALUE, 0);
+                Camera.SetCamera(0, 12, 1, cameraDuration); //--- Offset down to show the constellation
+
+                m_Tiles.classList.remove("animTilesOut");
+                m_Tiles.classList.add("animTilesIn");
+
+                m_Heart.classList.remove("animHeartIn");
+                m_Heart.classList.add("animHeartOut");
+
+                m_TimePrev = -1;
+                m_TargetPos.x = 0;
+                m_TargetPos.y = 0;
+
+                const tiles = Tile.GetTiles();
+                for (let i = 0; i < tiles.length; i++)
+                {
+                    if (i != 1)
+                        tiles[i].classList.add("animOutroTileOut");
+                }
             }
         },
         {
@@ -330,8 +351,8 @@ var Outro = new function()
     function CloseOutro()
     {
         Camera.EnableManualInput(true);
-        Camera.SetCamera(0, 0, OUTRO_ZOOM_VALUE, 0);
-        Camera.SetCamera(0, -75, CREDITS_ZOOM_VALUE, 0.5); //--- Offset down to show the constellation
+        //Camera.SetCamera(0, 0, OUTRO_ZOOM_VALUE, 0);
+        Camera.SetCamera(0, 0, CREDITS_ZOOM_VALUE, 2); //--- Offset down to show the constellation
 
         //--- Exit full screen after camera animation ends
         setTimeout(() =>
@@ -343,26 +364,19 @@ var Outro = new function()
         const outroContinue = document.getElementById("outroContinue");
         SetElementVisible(outroContinue, false);
         
-        m_Tiles.classList.remove("animTilesOut");
-        m_Tiles.classList.add("animTilesIn");
+        const tiles = Tile.GetTiles();
+        for (let i = 0; i < tiles.length; i++)
+        {
+            if (i != 1)
+            {
+                tiles[i].classList.remove("animOutroTileOut");
+                tiles[i].classList.add("animOutroTileIn");
+            }
+        }
 
-        const grid = Game.GetSVGDoc().getElementById("grid");
-        grid.classList.remove("animTilesOut");
-        grid.classList.add("animTilesIn");
-
-        document.getElementById("outroNote").classList.add("animOutroOut");
         document.getElementById("outroName").classList.add("animOutroOut");
-        
-        m_Heart.classList.remove("animHeartIn");
-        m_Heart.classList.add("animHeartOut");
 
         SetElementVisible(document.getElementById("creditsArea"), true);
-
-        m_TimePrev = -1;
-        m_TargetPos.x = 0;
-        m_TargetPos.y = 0;
-
-        //Sound.Play("audioOutroEnd");
 
         window.removeEventListener(EVENT_GAME_DRAG_START, OnGameDragStart);
         Game.SetFinished();
