@@ -4,19 +4,20 @@ var Note = new function()
     const NOTE_OFFSET_Y = -60; //--- Vertical camera offset in zommed-in view
 
     const TIME_CAMERA = 0.25;
-    const TIME_NOTE_LINES_DEFAULT = [1.75, 3.25, 4.75, 6.25];
+    const TIME_NOTE = 1;
+    const TIME_NOTE_LINES_DEFAULT = [2, 3, 4, 5];
     const TIME_NOTE_LINES = [
-        {id: "tile02", intervals: [2, 3, 4, 5]},
-        {id: "tile03", intervals: [2, 2.6, 4, 4.6]},
-        {id: "tile04", intervals: [1.1, 3.1, 5.1, 7.1]},
-        {id: "tile05", intervals: [1, 2, 4, 5.6]},
-        {id: "tile06", intervals: [1.7, 2, 5.7, 6]},
-        {id: "tile07", intervals: [1.7, 2.1, 5.3, 6]},
+        //{id: "tile02", intervals: [2, 3, 4, 5]}, //--- Use default
+        {id: "tile03", intervals: [2, 2.7, 4, 4.7]},
+        //{id: "tile04", intervals: [2.1, 3.1, 4.1, 5.1]}, //--- Use default
+        {id: "tile05", intervals: [2, 2.7, 4, 4.7]},
+        {id: "tile06", intervals: [1.7, 2, 3.3, 3.7]},
+        {id: "tile07", intervals: [1.7, 2, 3.3, 3.7]},
         {id: "tile08", intervals: [1.7, 2, 3.6, 4]},
-        {id: "tile09", intervals: [1.7, 2, 4.3, 5]},
-        {id: "tile10", intervals: [2, 3, 6, 7]},
+        {id: "tile09", intervals: [1.7, 2, 3.6, 4]},
+        //{id: "tile10", intervals: [2, 3, 5, 7]}, //--- Use default
         {id: "tile11", intervals: [1, 3, 4.7, 5.7]},
-        {id: "tile12", intervals: [4.1, 4.4, 4.8, 5.1]},
+        //{id: "tile12", intervals: [4.1, 4.4, 4.8, 5.1]}, //--- Use default
     ];
     const TIME_END = 7.75;
 
@@ -49,7 +50,7 @@ var Note = new function()
 
         Camera.EnableManualInput(false);
 
-        //ev.detail.tile.id = "tile12"; //--- Debug skip
+        //ev.detail.tile.id = "tile04"; //--- Debug skip
 
         const audio = Sound.Play("music_" + ev.detail.tile.id);
         Sound.Timeline(audio, [
@@ -67,12 +68,12 @@ var Note = new function()
             },
             {
                 //--- Write text
-                time: 1,//TIME_NOTE_LINES_DEFAULT[0],
+                time: TIME_NOTE,
                 function: function()
                 {
                     //--- Show current line
                     Localization.Localize(m_Note, "note_" + ev.detail.tile.id);
-console.log("LOL");
+
                     SetElementVisible(m_Note, true);
                     m_Note.classList.remove("animNoteOut");
                     m_Note.classList.add("animNoteIn");
@@ -90,7 +91,7 @@ console.log("LOL");
                             }
                         }
 
-                        AnimateLines(m_Note, intervals, 1/*TIME_NOTE_LINES_DEFAULT[0]*/ + 0.1); //--- Add extra offset to compensate for fade-in effect
+                        AnimateLines(m_Note, intervals, TIME_NOTE + 0.1); //--- Add extra offset to compensate for fade-in effect
                     }
                 }
             },
