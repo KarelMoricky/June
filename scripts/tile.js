@@ -64,6 +64,11 @@ var Tile = new function()
         return RevealNextTile();
     }
 
+    this.RemoveCurrentTile = function()
+    {
+        SetCurrentTile(null);
+    }
+
     this.GetTiles = function()
     {
         return m_Tiles;

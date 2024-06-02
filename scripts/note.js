@@ -182,6 +182,7 @@ var Note = new function()
 
         if (m_IsLast)
         {
+            Tile.RemoveCurrentTile();
             const ev = new CustomEvent(EVENT_OUTRO);
             window.dispatchEvent(ev);
         }
