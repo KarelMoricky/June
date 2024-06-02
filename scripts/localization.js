@@ -145,7 +145,7 @@ var Localization = new function()
         //#region Outro
         {
             id: "outroNote",
-            "en": "Your name is music, <br /> it dots the night sky. <br /> You are our girl, you are...",
+            "en": "Your name is music, <br /> it dots the night sky. <br /> You are our girl, ...",
             "cs": "Tahle hra je pro tebe, <br /> Jméno své znáš z nebe. <br /> Jsi naše...",
             "ru": "",
         },

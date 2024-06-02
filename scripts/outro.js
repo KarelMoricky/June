@@ -7,8 +7,8 @@ var Outro = new function()
     const CREDITS_ZOOM_VALUE = 0.66; //--- Camera zoom at the end of the game
 
     const TIME_START_CAMERA = 0;
-    const TIME_START_EDIT = 5.7;
-    const TIME_START_HINT = 6.3;
+    const TIME_START_EDIT = 4.7;
+    const TIME_START_HINT = 5.7;
 
     const TIME_NAME_HEART = 0;
     const TIME_NAME_NOTE_LINES = [3.15, 5.1, 7.1];
