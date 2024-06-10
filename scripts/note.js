@@ -50,7 +50,8 @@ var Note = new function()
 
         Camera.EnableManualInput(false);
 
-        ev.detail.tile.id = "tile03"; //--- Debug skip
+        //if (Debug.IsDev())
+        //  ev.detail.tile.id = "tile03"; //--- Debug skip
 
         const audio = Sound.Play("music_" + ev.detail.tile.id);
         Sound.Timeline(audio, [

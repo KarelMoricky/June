@@ -76,11 +76,6 @@ var Game = new function()
         }
         return viewBox;
     }
-    
-    this.SetCurrentViewBox = function(viewBox)
-    {
-        m_Game.setAttribute("viewBox", viewBox[0] + " " + viewBox[1] + " " + viewBox[2] + " " + viewBox[3]);
-    }
 
     this.ToGameCoords = function(posX, posY)
     {
@@ -136,16 +131,6 @@ var Game = new function()
 
         ev.preventDefault();
         ev.returnValue = 'Game progress will not be saved. Are you sure you want to leave?';
-    });
-
-    window.addEventListener(EVENT_INTRO, () =>
-    {
-        SetElementVisible(m_SvgDoc.getElementById("tutorial"), true);
-    });
-    
-    window.addEventListener(EVENT_TILE_CONFIRMED, () =>
-    {
-        SetElementVisible(m_SvgDoc.getElementById("tutorial"), false);
     });
     //#endregion
 
