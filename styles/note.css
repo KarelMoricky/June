@@ -52,6 +52,11 @@
 	line-height: min(4vh, 8vw);
 }
 
+.noteText_ru
+{
+	font-size: min(3vh, 5vw);
+}
+
 .animatedWord
 {
 	display: inline-block;

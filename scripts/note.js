@@ -19,7 +19,7 @@ var Note = new function()
         {id: "tile11", intervals: [1, 3, 4.7, 5.7]},
         //{id: "tile12", intervals: [4.1, 4.4, 4.8, 5.1]}, //--- Use default
     ];
-    const TIME_END = 7.75;
+    const TIME_END = 6;
 
     const m_Note = document.getElementById("note");
     const m_NoteContinue = document.getElementById("noteContinue");
@@ -50,7 +50,7 @@ var Note = new function()
 
         Camera.EnableManualInput(false);
 
-        //ev.detail.tile.id = "tile04"; //--- Debug skip
+        ev.detail.tile.id = "tile03"; //--- Debug skip
 
         const audio = Sound.Play("music_" + ev.detail.tile.id);
         Sound.Timeline(audio, [
