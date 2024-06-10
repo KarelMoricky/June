@@ -10,8 +10,13 @@
 {
 	padding: 2vh;
 	white-space: nowrap;
-	background-color: rgba(10, 22, 48, 0.75);
+	background-color: rgba(10, 22, 48, 0.5);
 	backdrop-filter: blur(10px);
+}
+
+.note_tile12
+{
+	border: 0.7vh double var(--color-light);
 }
 
 .continueButton

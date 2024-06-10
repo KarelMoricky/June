@@ -26,6 +26,7 @@ var Note = new function()
     var m_InDetail = false;
     let m_CanClose = true;
     let m_IsLast = false;
+    let m_PrevTileId = "";
 
     window.addEventListener(EVENT_GAME_INIT, OnGameInit);
     window.addEventListener(EVENT_TILE_CONFIRMED, OnTileConfirmed);
@@ -78,6 +79,12 @@ var Note = new function()
                     SetElementVisible(m_Note, true);
                     m_Note.classList.remove("animNoteOut");
                     m_Note.classList.add("animNoteIn");
+
+                    //--- Assign custom class
+                    if (m_PrevTileId != "")
+                        m_Note.classList.remove("note_" + m_PrevTileId)
+                    m_Note.classList.add("note_" + ev.detail.tile.id)
+                    m_PrevTileId = ev.detail.tile.id;
 
                     if (!SKIP_NOTE_ANIM || !Debug.IsDev())
                     {
