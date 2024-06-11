@@ -6,7 +6,7 @@ var Localization = new function()
             id: "documentTitle",
             "en": "Vera & Karel Had a Girl!",
             "cs": "Vera & Karel mají holčičku!",
-            "ru": ""
+            "ru": "У Веры и Карела родилась дочь!"
         },
         {
             id: "locIntroTitle1",
@@ -174,7 +174,7 @@ var Localization = new function()
             id: "credits",
             "en": "Game by <a href=\"https://www.instagram.com/dododollydo/\">Mom</a> and <a href=\"http://moricky.com\">Dad</a>, game art&nbsp;by&nbsp;<a href=\"https://www.behance.net/mikovecjir5bc4\">Jirka</a>, cover&nbsp;art&nbsp;by&nbsp;<a href=\"https://www.instagram.com/august.ro/\">August.ro</a>, testing&nbsp;by&nbsp;<a href=\"https://twitter.com/YorisYan\">Joris</a>, <a href=\"https://www.instagram.com/katacik/\">Katka</a>, <a href=\"https://twitter.com/maruksp\">Marek</a>, and&nbsp;<a href=\"https://www.instagram.com/flufflekek/\">Olga</a>.<br /><a href=\"https://github.com/KarelMoricky/June\">Handcrafted</a> without AI.",
             "cs": "Hra od <a href=\"https://www.instagram.com/dododollydo/\">maminky</a> a <a href=\"http://moricky.com\">tatínka</a>, grafika&nbsp;hry&nbsp;od&nbsp;<a href=\"https://www.behance.net/mikovecjir5bc4\">Jirky</a>, grafika&nbsp;oznámení&nbsp;od&nbsp;<a href=\"https://www.instagram.com/august.ro/\">August.ro</a>, testovali&nbsp;<a href=\"https://twitter.com/YorisYan\">Joris</a>, <a href=\"https://www.instagram.com/katacik/\">Katka</a>, <a href=\"https://twitter.com/maruksp\">Marek</a>, a&nbsp;<a href=\"https://www.instagram.com/flufflekek/\">Olga</a>.<br /><a href=\"https://github.com/KarelMoricky/June\">Vytvořeno ručně</a> bez pomoci AI.",
-            "ru": "",
+            "ru": "Игру сделали <a href=\"https://www.instagram.com/dododollydo/\">мама</a> и <a href=\"http://moricky.com\">папа</a>, иллюстрации&nbsp;-&nbsp;<a href=\"https://www.behance.net/mikovecjir5bc4\">Jirka</a>, тестирование - Joris, Katka, Marek и Ольга",
         },
         {
             id: "locGameSelection",
