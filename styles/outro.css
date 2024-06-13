@@ -138,7 +138,14 @@
 .animHeartOut
 {
 	opacity: 1;
-	animation: animFadeOut 4s ease-out forwards;
+	animation: animHeartOut 6s ease-out forwards;
+}
+
+@keyframes animHeartOut
+{
+	0% {opacity: 1;}
+	33% {opacity: 1;}
+    100% {opacity: 0;}
 }
 
 #heartPolygon
@@ -289,7 +296,7 @@
 .animTilesIn
 {
 	opacity: 0;
-	animation: animFadeIn 2s ease forwards;
+	animation: animFadeIn 2s 2s ease forwards;
 }
 
 .animTilesOut

@@ -132,13 +132,13 @@ var Localization = new function()
             id: "note_tile10",
             "en": "Waiting, ready for launch,  <br /> a tower, a rocket? <br /> Waiting for us to watch, <br /> or to be your ticket?",
             "cs": "Ke startu připravena, <br /> věž nebo raketa? <br /> Vydá se vzhůru sama, <br /> či s tebou odlétá?",
-            "ru": ""
+            "ru": "Или космодром, обратный отсчёт. <br /> И вот ракета пошла на взлёт. <br /> Куда она тебя унесёт? <br /> Ввысь и вперёд, ввысь и вперёд.",
         },
         {
             id: "note_tile11",
             "en": "Adventures await, <br /> there's so many of them. <br /> Remember to rest, <br /> they'll find you soon again.",
             "cs": "Příběh co nás čeká. <br /> A čekat může dál. <br /> Pohoda. Klid. <br /> Kdo by kam spěchal?",
-            "ru": ""
+            "ru": "Ну а может, всё же, скорей домой? <br /> Чашка ‘кофе’ (чая?), и мы с тобой. <br /> Смех, улыбки, слёзы, объятий круг. <br /> Каждый миг бесценен. И мир вокруг.",
         },
         {
             id: "note_tile12",
@@ -153,13 +153,13 @@ var Localization = new function()
             id: "outroNote",
             "en": "Your name is music, <br /> it dots the night sky. <br /> You are our girl, ...",
             "cs": "Tahle hra je pro tebe, <br /> Jméno své znáš z nebe. <br /> Jsi naše...",
-            "ru": "",
+            "ru": "Мы очень тебя ждали. <br /> Добро пожаловать в этот мир, <br /> Наша…",
         },
         {
             id: "outroName",
-            "en": "NAME",
-            "cs": "NAME",
-            "ru": "NAME", //ЛЫРА
+            "en": "LYRA",
+            "cs": "LYRA",
+            "ru": "ЛИРА",
         },
         //#endregion
 
@@ -174,7 +174,7 @@ var Localization = new function()
             id: "credits",
             "en": "Game by <a href=\"https://www.instagram.com/dododollydo/\">Mom</a> and <a href=\"http://moricky.com\">Dad</a>, game art&nbsp;by&nbsp;<a href=\"https://www.behance.net/mikovecjir5bc4\">Jirka</a>, cover&nbsp;art&nbsp;by&nbsp;<a href=\"https://www.instagram.com/august.ro/\">August.ro</a>, testing&nbsp;by&nbsp;<a href=\"https://twitter.com/YorisYan\">Joris</a>, <a href=\"https://www.instagram.com/katacik/\">Katka</a>, <a href=\"https://twitter.com/maruksp\">Marek</a>, and&nbsp;<a href=\"https://www.instagram.com/flufflekek/\">Olga</a>.<br /><a href=\"https://github.com/KarelMoricky/June\">Handcrafted</a> without AI.",
             "cs": "Hra od <a href=\"https://www.instagram.com/dododollydo/\">maminky</a> a <a href=\"http://moricky.com\">tatínka</a>, grafika&nbsp;hry&nbsp;od&nbsp;<a href=\"https://www.behance.net/mikovecjir5bc4\">Jirky</a>, grafika&nbsp;oznámení&nbsp;od&nbsp;<a href=\"https://www.instagram.com/august.ro/\">August.ro</a>, testovali&nbsp;<a href=\"https://twitter.com/YorisYan\">Joris</a>, <a href=\"https://www.instagram.com/katacik/\">Katka</a>, <a href=\"https://twitter.com/maruksp\">Marek</a>, a&nbsp;<a href=\"https://www.instagram.com/flufflekek/\">Olga</a>.<br /><a href=\"https://github.com/KarelMoricky/June\">Vytvořeno ručně</a> bez pomoci AI.",
-            "ru": "Игру сделали <a href=\"https://www.instagram.com/dododollydo/\">мама</a> и <a href=\"http://moricky.com\">папа</a>, иллюстрации&nbsp;-&nbsp;<a href=\"https://www.behance.net/mikovecjir5bc4\">Jirka</a>, тестирование - Joris, Katka, Marek и Ольга",
+            "ru": "Игру сделали <a href=\"https://www.instagram.com/dododollydo/\">мама</a> и <a href=\"http://moricky.com\">папа</a>, иллюстрации&nbsp;-&nbsp;<a href=\"https://www.behance.net/mikovecjir5bc4\">Jirka</a>, иллюстрация обложки&nbsp;-&nbsp;<a href=\"https://www.instagram.com/august.ro/\">August.ro</a>, тестирование&nbsp;-&nbsp;<a href=\"https://twitter.com/YorisYan\">Joris</a>, <a href=\"https://www.instagram.com/katacik/\">Katka</a>, <a href=\"https://twitter.com/maruksp\">Marek</a> и <a href=\"https://www.instagram.com/flufflekek/\">Ольга</a>.<br /><a href=\"https://github.com/KarelMoricky/June\">Игра сделана</a> без использования ИИ.",
         },
         {
             id: "locGameSelection",
