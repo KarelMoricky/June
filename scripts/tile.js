@@ -292,8 +292,8 @@ var Tile = new function()
 
     function DragTile(ev, snap)
     {
-        let viewBox = Game.GetCurrentViewBox();
-        let coef = Math.min((viewBox[2] / window.innerWidth), (viewBox[3] / window.innerHeight)); //--- I have no idea what I'm doing
+        let viewBox = Camera.GetViewBoxDef();
+        let coef = Math.min((viewBox.w / window.innerWidth), (viewBox.h / window.innerHeight)); //--- I have no idea what I'm doing
         let posX = m_ClickTilePos[0] - (Game.GetClickPos()[0] - ev.clientX) * coef;
         let posY = m_ClickTilePos[1] - (Game.GetClickPos()[1] - ev.clientY) * coef;
 
@@ -323,8 +323,8 @@ var Tile = new function()
         }
 
         //--- Free transform
-        m_TargetPos[0] = posX;
-        m_TargetPos[1] = posY;
+        m_TargetPos[0] = Clamp(posX, viewBox.x, viewBox.x + viewBox.w);
+        m_TargetPos[1] = Clamp(posY, viewBox.y, viewBox.h);
 
         //--- Save grid coords, so we can snap back to them when hovering over occupied tile
         m_SelectedTile.setAttribute(VAR_GRID_X, gridTransform.x);

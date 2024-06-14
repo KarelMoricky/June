@@ -3,7 +3,7 @@ var Tutorial = new function()
     function UpdateTileTutorial()
     {
         //--- Show only when the viuew revealed target tile position
-        SetElementVisible(Game.GetSVGDoc().getElementById("tutorialTileTouch"), Game.GetCurrentViewBox()[1] > -700);
+        SetElementVisible(Game.GetSVGDoc().getElementById("tutorialTileTouch"), Camera.GetViewBox().y > -700);
     }
 
     function OnDragStart(ev)

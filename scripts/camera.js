@@ -69,6 +69,16 @@ var Camera = new function()
         }
         m_IsManualInput = enable;
     }
+
+    this.GetViewBox = function()
+    {
+        return m_ViewBox;
+    }
+
+    this.GetViewBoxDef = function()
+    {
+        return m_ViewBoxDef;
+    }
     //#endregion
 
     //#region Calculation

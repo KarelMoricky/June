@@ -293,8 +293,8 @@ var Outro = new function()
         if (!m_Drag.isActive)
             return;
         
-        let viewBox = Game.GetCurrentViewBox();
-        let coef = Math.min((viewBox[2] / window.innerWidth), (viewBox[3] / window.innerHeight)); //--- I have no idea what I'm doing
+        let viewBox = Camera.GetViewBox();
+        let coef = Math.min((viewBox.w / window.innerWidth), (viewBox.h / window.innerHeight)); //--- I have no idea what I'm doing
         m_TargetPos.x = m_Drag.x - (Game.GetClickPos()[0] - ev.clientX) * coef;
         m_TargetPos.y = m_Drag.y - (Game.GetClickPos()[1] - ev.clientY) * coef;
         
