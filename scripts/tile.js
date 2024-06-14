@@ -323,8 +323,8 @@ var Tile = new function()
         }
 
         //--- Free transform
-        m_TargetPos[0] = Clamp(posX, viewBox.x, viewBox.x + viewBox.w);
-        m_TargetPos[1] = Clamp(posY, viewBox.y, viewBox.h);
+        m_TargetPos[0] = Clamp(posX, viewBox.x * 0.5, -viewBox.x * 0.5);
+        m_TargetPos[1] = Clamp(posY, -viewBox.h, viewBox.h);
 
         //--- Save grid coords, so we can snap back to them when hovering over occupied tile
         m_SelectedTile.setAttribute(VAR_GRID_X, gridTransform.x);
