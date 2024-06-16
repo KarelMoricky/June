@@ -28,9 +28,9 @@ var Localization = new function()
         },
         {
             id: "locIntroTitle4",
-            "en": "was born on June XXth 2024",
-            "cs": "se narodila XX. června 2024",
-            "ru": "родилась XX июня 2024 г."
+            "en": `was born on June ${m_Today}th 2024`,
+            "cs": `se narodila ${m_Today}. června 2024`,
+            "ru": `родилась ${m_Today} июня 2024 г.`
         },
         {
             id: "locIntroTitle5",
@@ -151,8 +151,8 @@ var Localization = new function()
         //#region Outro
         {
             id: "outroNote",
-            "en": "Your name is music, <br /> it dots the night sky. <br /> You are our girl, ...",
-            "cs": "Tahle hra je pro tebe, <br /> Jméno své znáš z nebe. <br /> Jsi naše...",
+            "en": "Your name is music, <br /> it dots the night sky. <br /> You are our girl, …",
+            "cs": "Tahle hra je pro tebe, <br /> Jméno své znáš z nebe. <br /> Jsi naše…",
             "ru": "Мы очень тебя ждали. <br /> Добро пожаловать в этот мир, <br /> Наша…",
         },
         {

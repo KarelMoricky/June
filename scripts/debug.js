@@ -1,3 +1,5 @@
+var m_Today = (new Date()).getDate();
+
 var Debug = new function()
 {
     var m_IsOffline = window.location.href.startsWith("http://127.0.0.1");
