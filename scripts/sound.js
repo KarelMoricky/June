@@ -1,3 +1,19 @@
+if ("mediaSession" in navigator)
+{
+    navigator.mediaSession.metadata = new MediaMetadata(
+        {
+            artwork:
+            [
+                {
+                    src: "http://baby.moricky.com/2024/images/og_image.jpg",
+                    sizes: "1200x630",
+                    type: "image/jpeg",
+                }
+            ],
+        }
+    );
+}
+    
 var Sound = new function()
 {
     this.Play = function(name)
