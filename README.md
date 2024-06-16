@@ -19,6 +19,7 @@ Have fun playing the game, and exploring how it was made! 💙
 - **[Jiří Mikovec](https://www.behance.net/mikovecjir5bc4)**, my friend from Czechia, painted the beatiful tiles.
 - **[August.ro](https://www.instagram.com/august.ro)** painted the announcement card. We chose her because she did also our son's card, and we wanted keep the same style.
 - Our friends **[Joris](https://twitter.com/YorisYan)**, **[Katka](https://www.instagram.com/katacik/)**, **[Marek](https://twitter.com/maruksp)**, and **[Olga](https://www.instagram.com/flufflekek/)** tested the game.
+- **[Owen Pomery](https://owenpomery.com/)** for initial inspiration for tile-base game.
 - Answers by following people and websites helped me with coding:
   - https://easings.net/ - to create smooth camera transitions
   - https://fffuel.co/svg-spinner/ - to make tile loading spinner (shown when sounds don't load; usually on iOS)
