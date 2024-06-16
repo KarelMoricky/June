@@ -83,7 +83,7 @@ var Outro = new function()
                 m_Heart.classList.remove("heartDraggable");
     
                 m_HeartHint.classList.remove("animHeartHintIn");
-                m_HeartHint.classList.add("animHeartOut");
+                m_HeartHint.classList.add("animHeartHintOut");
     
                 m_Tiles.classList.add("animTilesOut");
                 m_TileComposition.classList.add("animTilesSettle");
