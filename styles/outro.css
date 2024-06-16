@@ -62,6 +62,18 @@
 	top: 86vh;
 	transform: translate(-50%, -50%);
 }
+@supports (top: 70dvh)
+{
+	#outroName
+	{
+		top: 70dvh;
+	}
+
+	#outroContinue
+	{
+		top: 86dvh;
+	}
+}
 
 .animOutroIn
 {
