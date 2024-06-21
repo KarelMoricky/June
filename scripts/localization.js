@@ -124,7 +124,7 @@ var Localization = new function()
         },
         {
             id: "note_tile09",
-            "en": "More than meets the eye, <br /> a rocket, a tower? <br /> It touches the sky, <br /> let's walk up together!",
+            "en": "More than meets the eye, <br /> a rocket, a tower? <br /> Built to touch the sky, <br /> let's climb up together!",
             "cs": "Co to čeká nahoře, <br /> raketa nebo věž? <br /> Strmě stoupá k obloze, <br /> na vrchol s námi běž.",
             "ru": "Или телебашня, ели и фуникулёр <br /> (в гору он спешит, весел и так скор). <br /> Затаив дыханье, посмотришь вниз, <br /> А там сонный город, в тумане сиз.",
         },
@@ -136,7 +136,7 @@ var Localization = new function()
         },
         {
             id: "note_tile11",
-            "en": "Adventures await, <br /> there's so many of them. <br /> Remember to rest, <br /> they'll find you soon again.",
+            "en": "Adventures await, <br /> everywhere you see. <br /> You won't end up late - <br /> have a cup of tea.",
             "cs": "Příběh co nás čeká. <br /> A čekat může dál. <br /> Pohoda. Klid. <br /> Kdo by kam spěchal?",
             "ru": "Ну а может, всё же, скорей домой? <br /> Чашка ‘кофе’ (чая?), и мы с тобой. <br /> Смех, улыбки, слёзы, объятий круг. <br /> Каждый миг бесценен. И мир вокруг.",
         },
