@@ -28,9 +28,9 @@ var Localization = new function()
         },
         {
             id: "locIntroTitle4",
-            "en": `was born on June ${m_Today}th 2024`,
-            "cs": `se narodila ${m_Today}. června 2024`,
-            "ru": `родилась ${m_Today} июня 2024 г.`
+            "en": `was born on June 29th 2024`,
+            "cs": `se narodila 29. června 2024`,
+            "ru": `родилась 29 июня 2024 г.`
         },
         {
             id: "locIntroTitle5",
@@ -136,14 +136,14 @@ var Localization = new function()
         },
         {
             id: "note_tile11",
-            "en": "Adventures await, <br /> everywhere you see. <br /> You won't end up late - <br /> have a cup of tea.",
-            "cs": "Příběh co nás čeká. <br /> A čekat může dál. <br /> Pohoda. Klid. <br /> Kdo by kam spěchal?",
+            "en": "Adventures await, <br /> everywhere you see. <br /> You will not be late - <br /> want a cup of tea?",
+            "cs": "Příběh co nás čeká. <br /> A čekat může dál. <br /> Není nutno spěchat - <br /> Nechceš ještě čaj?",
             "ru": "Ну а может, всё же, скорей домой? <br /> Чашка ‘кофе’ (чая?), и мы с тобой. <br /> Смех, улыбки, слёзы, объятий круг. <br /> Каждый миг бесценен. И мир вокруг.",
         },
         {
             id: "note_tile12",
-            "en": "Life awaits. <br /> This is where it starts. <br /> With you, with us, <br /> With love in our hearts.",
-            "cs": "Láska co nás čeká, <br /> tady a teď začíná, <br /> Mezi hvězdami. <br /> V našich srdcích spočívá.",
+            "en": "Life awaits. <br /> This is where it starts - <br /> among friends, <br /> with love in our hearts.",
+            "cs": "Život co tě čeká, <br /> burácí jak řeka. <br /> Tady a teď pramení, <br /> naše srdce promění.",
             "ru": "Здравствуй, Счастье. <br /> (Открываю глаза). <br /> Нам столько нужно тебе сказать. <br /> Показать.",
         },
         //#endregion
